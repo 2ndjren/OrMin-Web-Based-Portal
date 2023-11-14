@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
   <link rel="stylesheet" href="{{asset('css/datatable.css')}}">
   <script src="{{asset('js/datatable.js')}}"></script>
-  @vite('resources/css/app.css')
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
 
 
