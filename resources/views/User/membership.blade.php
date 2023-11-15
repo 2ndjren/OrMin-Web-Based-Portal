@@ -12,7 +12,7 @@
 
             <div class="w-3/4 mx-auto  py-12 justify-center md:py-20">
                 <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-red-600">
-                    JOIN THE COMMUNITY<span class="text-gray-800 "> OF COMPASSION</span>
+                    JOIN THE COMMUNITY<span class="text-gray-800 "><br> OF COMPASSION</span>
                 </h1>
 
             </h1>
