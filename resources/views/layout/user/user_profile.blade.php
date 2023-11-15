@@ -11,9 +11,6 @@
   <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
 </head>
 <body>
-    @include('layout.user.appointment_modal')
-    @include('layout.user.membership_modal')
-    @include('layout.user.insurance_modal')
     <div class="flex h-screen w-screen fixed bg-gray-200 ">
    
         <div class="block h-full w-full ">
