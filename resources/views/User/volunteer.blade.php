@@ -10,7 +10,7 @@
 
         <div class="w-full mx-auto px-12  py-24 justify-center md:pb-20 ">
             <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-gray-700">
-                BE ONE OF US,<span class="text-red-700"> BE A VOLUNTEER!</span>
+                UNITING FOR HUMANITY,<span class="text-red-700"> VOLUNTEERS STAND READY!</span>
             </h1>
 
             <p class="text-lg text-gray-600 ">

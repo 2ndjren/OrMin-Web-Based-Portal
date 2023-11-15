@@ -1,10 +1,18 @@
 @extends('layout.user.layout')
 @section('donate')
 <div class="h-screen w-full overflow-y-auto space-y-5 ">
+
+<img class="object-cover w-full h-50" src="{{asset('static/user/home/cbg.png')}}" alt="apple watch photo" />
+
     <div class="h-1/4 bg-center bg-cover bg-no-repeat" style="background-image:url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t1.6435-9/50022313_623915704731113_7773089081394724864_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeHOvgBvjx6ke7Bb9b6B4Xh2dZKMyBuru511kozIG6u7ncnq1ruJ_uvZC7TelJWjj-uxS-E8yECsoLSavLBj5ETr&_nc_ohc=gpsLWmRrH80AX-kUu96&_nc_ht=scontent.fmnl30-3.fna&oh=00_AfBHC0IKrCf7VF7mb8vaPEYj55e50qSxl27M8y90P1X6aQ&oe=65347415')">
         <div class="h-full p-20 bg-white  bg-opacity-80">
+
+
+
             <div class="w-full text-full text-6xl text-center text-red-500 font-bold">
-                <p>DONATE</p>
+                   <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-gray-700">
+                SMALL ACTS, BIG IMPACT,<span class="text-red-700"> RED CROSS DONATION!</span>
+            </h1>
             </div>
         </div>
     </div>
@@ -162,6 +170,7 @@
 
     <div id="blood" class="min-h-screen bg-gray-300">
         <main class="py-12">
+        <img class="object-cover w-full h-50" src="{{asset('static/user/home/bdbg.png')}}" alt="apple watch photo" />
 
         <section class="bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/BLOOD.jpg')">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">

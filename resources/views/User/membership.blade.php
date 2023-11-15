@@ -11,9 +11,11 @@
         <section class="bg-cover bg-no-repeat py-10 bg-opacity-25" style="background-image: url('static/user/home/tbg.jpg')">
 
             <div class="w-3/4 mx-auto  py-12 justify-center md:py-20">
-                <h1 class="md:text-2xl  xl:text-4xl text-4xl font-bold mb-4 text-red-600">
-                    RED CROSS <span class="text-gray-800 "> ORIENTAL MINDORO CHAPTER</span>
+                <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-red-600">
+                    JOIN THE COMMUNITY<span class="text-gray-800 "> OF COMPASSION</span>
                 </h1>
+
+            </h1>
 
                 <div class="text-gray-700 text-xl">
 

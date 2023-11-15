@@ -11,7 +11,10 @@
   
     <div class="container  w-full mx-auto py-5 px-12  pb-12 justify-center md:pb-20 ">
 
-        <p class="md:text-4xl font-semibold text-red-600 mt-6 text-2xl">Red Cross Trainings</p>
+    <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-gray-700">
+                BUILDING RESILIENCE THROUGH,<span class="text-red-700"> RED CROSS TRAINING</span>
+            </h1>
+
         <div class="my-4">
             <!-- Accordion Item 1 -->
             <div x-data="{ open: false }">
