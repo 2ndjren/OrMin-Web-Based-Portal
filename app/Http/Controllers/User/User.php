@@ -13,15 +13,22 @@ class User extends Controller
 {
     //
     public function Home(){
-        return view('User.home');
+        if(session("USER")){
+           return view('User.home');
+        }
+        elseif(session('ADMIN')||session('STAFF')){
+            return redirect('dashboard');
+        }
+        else{
+            return redirect('signin');
+        }
     }
+    
     //
     public function Donate(){
         return view('User.donate');
     }
     public function User_Profile(){
-            return view('User.profile');
-
         if(session('USER')){
             return view('User.profile');
         }
