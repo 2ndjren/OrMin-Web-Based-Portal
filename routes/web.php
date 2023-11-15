@@ -54,9 +54,10 @@ Route::get('myinsurance',[User::class,'MyInsurance']);
 // USER INSURANCE 
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);
 Route::get('my-blood-donation-history',[User::class,'blood_history']);
-Route::get('membership',[User::class,'Membership']);
-Route::get('training',[User::class,'Training']);
-Route::get('volunteer',[User::class,'Volunteer']);
+
+Route::get('user/membership/',[User::class,'Membership']);
+Route::get('user/training',[User::class,'Training']);
+Route::get('user/volunteer',[User::class,'Volunteer']);
 
 
 

@@ -68,7 +68,7 @@
               <ul class="flex flex-col font-lg font-bold p-4 md:p-0 mt-4  md:flex-row md:space-x-14 md:mt-0">
 
                 <li>
-                  <button href="{{url('donate')}}" id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Donate <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <button  id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Donate <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                     </svg></button>
                   <!-- Dropdown menu -->
@@ -76,11 +76,11 @@
 
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Raise Fund</a>
+                        <a href="{{url('donate')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Raise Fund</a>
                       </li>
 
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Give Blood</a>
+                        <a href="{{url('donate#blood')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Give Blood</a>
                       </li>
                     </ul>
 
@@ -98,15 +98,15 @@
 
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
-                        <a href="{{url('membership')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
+                        <a href="{{url('user/membership')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
                       </li>
 
                       <li>
-                        <a href="{{url('training')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
+                        <a href="{{url('user/training')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
                       </li>
 
                       <li>
-                        <a href="{{url('volunteer')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
+                        <a href="{{url('user/volunteer')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
                       </li>
 
                     </ul>
