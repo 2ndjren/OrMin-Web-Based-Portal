@@ -22,7 +22,10 @@
         <div class="flex items-center w-full justify-center h-auto p-4">
           <div class="w-full text-center">
           <div class="w-full flex justify-center">
-          <img class="  " src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
+
+          <a href="{{url('/')}}" class="flex">
+              <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
+            </a>
         </div>
 
             <p class="text-white font-normal text-sm md:text-xl pb-5">Connecting Hearts, Saving Lives</p>
