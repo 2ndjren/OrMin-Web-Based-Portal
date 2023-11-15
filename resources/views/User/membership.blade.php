@@ -5,10 +5,10 @@
 
 <div class="h-screen w-full overflow-y-auto ">
 
-    <img class="object-cover w-full h-50" src="{{asset('user/static/mbg.jpg')}}" alt="apple watch photo" />
+    <img class="object-cover w-full h-50" src="{{asset('static/user/home/mbg.jpg')}}" alt="apple watch photo" />
     <main class="grow">
 
-        <section class="bg-cover bg-no-repeat py-10 bg-opacity-25" style="background-image: url('user/tbg.jpg')">
+        <section class="bg-cover bg-no-repeat py-10 bg-opacity-25" style="background-image: url('static/user/home/tbg.jpg')">
 
             <div class="w-3/4 mx-auto  py-12 justify-center md:py-20">
                 <h1 class="md:text-2xl  xl:text-4xl text-4xl font-bold mb-4 text-red-600">
@@ -50,7 +50,7 @@
                         <!-- {{-- {/* 1nd item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img width="100" src="{{asset('user/categories/classic.png')}}" alt="" />
+                                <img width="100" src="{{asset('static/user/categories/classic.png')}}" alt="" />
                             </div>
 
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
@@ -78,7 +78,7 @@
                         <!-- {{-- {/* 2nd item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/bronze.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/bronze.png')}}" alt="" width="200" />
                             </div>
 
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
@@ -107,7 +107,7 @@
                         <!-- {{-- {/* 3rd item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/silver.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/silver.png')}}" alt="" width="200" />
                             </div>
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
                             <p class='text-md text-red-600'> Ages 5-25 years old <br />
@@ -134,7 +134,7 @@
                         <!-- {{-- {/* 4th item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/gold.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/gold.png')}}" alt="" width="200" />
                             </div>
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
                             <p class='text-md text-red-600'> Ages 5-25 years old <br />
@@ -161,7 +161,7 @@
                         <!-- {{-- {/* 5th item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/platinum.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/platinum.png')}}" alt="" width="200" />
                             </div>
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
                             <p class='text-md text-red-600'> Ages 5-25 years old <br />
@@ -188,7 +188,7 @@
                         <!-- {{-- {/* 6th item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/senior.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/senior.png')}}" alt="" width="200" />
                             </div>
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
                             <p class='text-md text-red-600'> Ages 5-25 years old <br />
@@ -215,7 +215,7 @@
                         <!-- {{-- {/* 7th item */} --}} -->
                         <div class="relative flex flex-col items-center">
                             <div class="block transition duration-300 ease-in-out hover:scale-125" aria-label="Cruip">
-                                <img src="{{asset('user/categories/plus.png')}}" alt="" width="200" />
+                                <img src="{{asset('static/user/categories/plus.png')}}" alt="" width="200" />
                             </div>
                             <h3 class="font-bold text-red-700 pt-10">CLASSIC</h3>
                             <p class='text-md text-red-600'> Ages 5-25 years old <br />
