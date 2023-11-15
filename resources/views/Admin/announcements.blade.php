@@ -44,12 +44,20 @@
       </div>
     </div>
   </div>
+  <div id="post_announcement-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-20  bg-black bg-opacity-50  ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg">
+    <div id="membership-account-profile" class="flex"></div>
+    <div id="membership-account-profile-btns" class="flex justify-end"></div>
+
+  </div>
+</div>
   <script>
     $(document).ready(function () {
       Create_Post();
       Announcements()
       Post_Btn()
       Active_Post()
+      Open_Post_Modal_View()
     });
 
     function Create_Post() {
@@ -119,7 +127,7 @@
                 var monthName = months[month - 1];
                 var table_data="<div class='shadow-md mb-2 rounded-md text-left w-full'>"
                 
-                    table_data+="<button class='border border-blue-500 w-full rounded-md p-3 flex hover:text-white hover:bg-green-500 h-20'>"
+                    table_data+="<button type="+user.id+"  class=' history_modal_btn border border-blue-500 w-full rounded-md p-3 flex hover:text-white hover:bg-green-500 h-20'>"
                     table_data+="<div class='hover:text-white'>"
                  
                     table_data+="<p class='text-left font-semibold hover:text-white'> "+monthName+" "+day+","+year+"</p>" 
@@ -200,6 +208,28 @@
                 window.alert(xhr.responseText);
             }
     });
+ }
+ function Open_Post_Modal_View(){
+  $(document).on('click','.history_modal_btn',function (e) { 
+    e.preventDefault();
+    var id=$(this).data('id');
+    $.ajax({
+      type: "GET",
+      url: "/post-announcements-history-details/"+id,
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        console.log(response)
+        $('#post_announcement-modal').removeClass('hidden');
+        
+      },
+      error: function (xhr, status, error) {
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+            }
+    });
+    
+  });
  }
   </script>
 </div>

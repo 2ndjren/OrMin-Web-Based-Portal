@@ -70,5 +70,10 @@ class Announcements extends Controller
         $poster=user::find($id);
         return response()->json($poster);
     }
+    public function Find_Post($id){
+        $user=user::find($id);
+        $poster=$user->announcement;
+        return response()->json($poster);
+    }
 
 }
