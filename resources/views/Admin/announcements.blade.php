@@ -1,6 +1,6 @@
 @extends('layout.admin.layout')
 @section('announcements')
-<title>Insurance</title>
+<title>Insurance </title>
 <div class="py-2 px-10">
   <p class="text-3xl font-medium  text-green-600">Announcements</p>
 
