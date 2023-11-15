@@ -15,7 +15,7 @@ class announcement extends Model
         'announcement',
         'e_id',
     ];
-    public function announcement()
+    public function user()
     {
         // Define the inverse of the relationship
         return $this->belongsTo(announcement::class, 'e_id', 'id');
