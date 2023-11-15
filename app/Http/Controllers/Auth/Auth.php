@@ -27,7 +27,7 @@ class Auth extends Controller
             return redirect('/');
         }
         else{
-            return view('auth.signin');     
+            return view('auth.signin');   
         }
     }
     public function SignUp(){

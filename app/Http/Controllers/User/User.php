@@ -20,7 +20,7 @@ class User extends Controller
             return redirect('dashboard');
         }
         else{
-            return redirect('signin');
+            return view('User.home');
         }
     }
     
