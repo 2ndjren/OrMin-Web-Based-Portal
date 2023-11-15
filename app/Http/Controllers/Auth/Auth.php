@@ -24,10 +24,12 @@ class Auth extends Controller
             return redirect('dashboard');
         }
         elseif(session('USER')){
-            return redirect('/');
+            // return redirect('/');
+            return view('User.profile');
         }
         else{
-            return view('auth.signin');     
+            return redirect('/');
+            // return view('User.signin');     
         }
     }
     public function SignUp(){
