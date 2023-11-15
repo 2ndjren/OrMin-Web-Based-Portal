@@ -165,10 +165,6 @@
     </div>
 
 
-
-
-    <img class="object-cover w-full h-50" src="{{asset('static/user/home/bdbg.jpg')}}" alt="apple watch photo" />
-
     <section id="blood" class="bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/BLOOD.jpg')">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
             <div class="flex justify-end">
@@ -337,8 +333,8 @@
 
 </section>
 </div>
-</div>
-@include('layout.user.footer')
 
+@include('layout.user.footer')
+</div>
 
 @endsection
