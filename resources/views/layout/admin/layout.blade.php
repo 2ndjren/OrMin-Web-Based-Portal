@@ -55,7 +55,7 @@
         </aside>
 
         <!-- Main content area -->
-        <div class="flex-1 p-4 overflow-y-auto">
+        <div class="flex-1 overflow-y-auto">
             <!-- Header -->
             <header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
                 <!-- Header content -->
@@ -103,7 +103,7 @@
         </div>
 
         <!-- Content Area -->
-        <div class="p-6">
+        <div class="p-4">
 
             <!-- Toggle Mobile Sidebar Button -->
             <button id="sidebarToggle" class="lg:hidden block text-black text-2xl focus:outline-none p-3 rounded-full">&#9776;</button>
