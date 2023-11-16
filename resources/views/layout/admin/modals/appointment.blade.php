@@ -1,5 +1,16 @@
 <!-- ONGOING APPOINTMENT MODAL  -->
 <div  id="appointment-ongoing-profile-modal" class=" hidden backdrop-blur-sm w-full h-full xl:px-96  sm:px-10  md:px-40 lg:96 sm:py-20 fixed z-20">
+
+<header class="border-b-2 border-gray-500  bg-blue-950 relative">
+                <div class="container mx-auto p-2 text-center relative">
+                    <!-- Logo positioned on top center of the header -->
+                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+                </div>
+            </header>
+            
     <div class=" bg-yellow-50  w-full shadow-xl border-2 border-yellow-500  " >
         <div class="top text-center p-5">
         <p class=" text-2xl font-bold text-gray-600">Appointment Details</p>

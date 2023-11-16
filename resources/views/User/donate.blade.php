@@ -165,8 +165,6 @@
 
     <div id="blood" class="min-h-screen bg-gray-300">
         <main class="py-12">
-        <img class="object-cover w-full h-50" src="{{asset('static/user/home/bdbg.jpg')}}" alt="apple watch photo" />
-
         <section class="bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/BLOOD.jpg')">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div class="flex justify-end">

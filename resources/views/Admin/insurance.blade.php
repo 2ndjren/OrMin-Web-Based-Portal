@@ -141,22 +141,21 @@
                     <div class="relative">
                         <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                           <option value="">Select </option>
-                          <option value="Puerto Galera">Puerto Galera</option>
-                          <option value="San Teodoro">San Teodoro</option>
                           <option value="Baco">Baco</option>
-                          <option value="Calapan">Calapan</option>
-                          <option value="Naujan">Naujan</option>
-                          <option value="Victoria">Victoria</option>
-                          <option value="Socorro">Socorro</option>
-                          <option value="Pola">Pola</option>
-                          <option value="Pinamalayan">Pinamalayan</option>
-                          <option value="Gloria">Gloria</option>
                           <option value="Bansud">Bansud</option>
                           <option value="Bongabong">Bongabong</option>
-                          <option value="Roxas">Roxas</option>
-                          <option value="Mansalay">Mansalay</option>
                           <option value="Bulalacao">Bulalacao</option>
-
+                          <option value="Calapan">Calapan</option>
+                          <option value="Gloria">Gloria</option>
+                          <option value="Mansalay">Mansalay</option>
+                          <option value="Naujan">Naujan</option>
+                          <option value="Pinamalayan">Pinamalayan</option>
+                          <option value="Pola">Pola</option>
+                          <option value="Puerto Galera">Puerto Galera</option>
+                          <option value="Roxas">Roxas</option>
+                          <option value="San Teodoro">San Teodoro</option>
+                          <option value="Socorro">Socorro</option>
+                          <option value="Victoria">Victoria</option>
 
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -262,6 +261,7 @@
 
   </div>
 </div>
+
 <div id="show-membership-account-payment-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="membership-account-payment" class="block  p-10"></div>

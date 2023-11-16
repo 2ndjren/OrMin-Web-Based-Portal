@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="{{asset('js/jquery.js')}}"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
   <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
