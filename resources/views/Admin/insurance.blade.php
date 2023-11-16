@@ -300,8 +300,8 @@
                     <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
                 </div>
             </header>
-            <div id="membership-account-profile" class="flex"></div>
-    <div id="membership-account-profile-btns" class="flex justify-end"></div>
+            <div id="membership-account-profile" class="flex p-4"></div>
+    <div id="membership-account-profile-btns" class="flex justify-end p-4"></div>
 
   </div>
 </div>
@@ -331,7 +331,7 @@
                 </div>
             </header>
     <div class="">
-      <div class="mb-4 w-full ">
+      <div class="mb-4 w-full p-4 ">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Print</label>
         <div class="relative">
           <select id="to_print" name="to_print" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
