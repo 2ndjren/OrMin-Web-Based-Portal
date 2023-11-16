@@ -19,7 +19,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen">
 
-        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center" style="background-image: url('static/admin/sidebar.jpg')">
+        <aside class="w-64 text-white hidden shadow-2xl flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center" style="background-image: url('static/admin/sidebar.jpg')">
 
             <div class="border-b-2 border-gray-300 w-full flex flex-col items-center">
                 <img class="h-20" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Logo">
@@ -57,7 +57,7 @@
         <!-- Main content area -->
         <div class="flex-1 overflow-y-auto">
             <!-- Header -->
-            <header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
+            <header class="flex justify-between items-center shadow-xl fixed bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
                 <!-- Header content -->
                 <h1 class="font-semibold text-blue-800">RED CROSS ORMIN PORTAL</h1>
 

@@ -69,7 +69,7 @@
 
 
 
-<div id="create-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50 ">
+<div id="create-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
 <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
             <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
@@ -288,14 +288,25 @@
 </div>
 <!-- ///// -->
 
+<div id="membership-account-profile-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
+<div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+            <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-<div id="membership-account-profile-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-20  bg-black bg-opacity-50  ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg">
-    <div id="membership-account-profile" class="flex"></div>
+                <div class="container mx-auto p-2 text-center relative">
+                    <!-- Logo positioned on top center of the header -->
+                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+                </div>
+            </header>
+            <div id="membership-account-profile" class="flex"></div>
     <div id="membership-account-profile-btns" class="flex justify-end"></div>
 
   </div>
 </div>
+
+<!-- //// -->
 
 <div id="show-membership-account-payment-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
@@ -307,8 +318,18 @@
 
 
 <!-- Print Modal  -->
-<div id="create-report-print-modal" class="fixed  hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+  <div id="create-report-print-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
+<div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+            <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+                <div class="container mx-auto p-2 text-center relative">
+                    <!-- Logo positioned on top center of the header -->
+                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+                </div>
+            </header>
     <div class="">
       <div class="mb-4 w-full ">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Print</label>
