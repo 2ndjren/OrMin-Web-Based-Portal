@@ -64,7 +64,9 @@
 
 <div id="create-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50 ">
 
-<header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+  <div class="modal-container bg-white sm:w-full h-5/6  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg overflow-y-auto ">
+  <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
 <div class="container mx-auto p-2 text-center relative">
     <!-- Logo positioned on top center of the header -->
@@ -75,8 +77,6 @@
 </div>
 </header>
 
-
-  <div class="modal-container bg-white sm:w-full h-5/6  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg overflow-y-auto ">
   <h2 class="text-2xl font-semibold text-green-600">Create Membership</h2>
   <div class="p-2 border border-green-500 bg-green-500 bg-opacity-10 rounded-md hidden" id="success">
               <p id="success-message" class="text-center text-blue-500"></p>
