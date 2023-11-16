@@ -18,37 +18,7 @@
     <div class="flex-wrap w-full xl:fixed">
       <div class="flex p-2 h-25 w-full bg-red-600  border-b-4 border-gray-400">
         @if (session('USER'))
-        <!-- <div class="w-full flex justify-center">
-          <div class=" mr-20">
-            <a href="{{url('/')}}" class="flex">
-              <img class="h-16" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
-            </a>
-          </div>
-          <div class=" h-16 py-8">
-            <a href="{{url('donate')}}" class="p-5"><span class="text-white p-2  hover:text-red-500 font-semibold hover:bg-white rounded-lg">Donate</span></a>
-          </div>
-
-          <div class=" h-16 py-8">
-            <a href="{{url('donate')}}" class="p-5"><span class="text-white p-2  hover:text-red-500 font-semibold hover:bg-white rounded-lg">Membership</span></a>
-          </div>
-
-          <div class=" h-16 py-8">
-            <a href="{{url('training')}}" class="p-5"><span class="text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">Trainings</span></a>
-          </div>
-          <div class=" h-16 py-8">
-            <a href="/volunteer" class="p-5"><span class="text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">Volunteer</span></a>
-          </div>
-          <div class=" h-16 py-8">
-            <a href="#" class="p-5"><span class="text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">ABOUT US</span></a>
-          </div>
-
-          <div class=" flex justify-end ">
-            <div class="pt-8">
-              <a class="bg-yellow-500 rounded-xl shadow-sm px-5 py-2 hover:bg-yellow-600 text-white" href="{{url('profile')}}">{{session('USER')['fname']}}</a>
-            </div>
-          </div>
-        </div> -->
-
+        
         <nav class="w-screen dark:bg-gray-900 dark:border-gray-700 shadow-md">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center">
