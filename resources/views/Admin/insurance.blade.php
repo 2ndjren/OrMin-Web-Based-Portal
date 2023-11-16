@@ -755,11 +755,6 @@
       Account_To_Notified()
     }, 5000);
 
-
-
-
-
-
   });
 
   function Account_To_Notified() {

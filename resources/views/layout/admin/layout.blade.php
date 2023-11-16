@@ -17,7 +17,12 @@
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar with Red Theme Background -->
-        <div class="w-64 bg-red-500 text-white p-4 hidden lg:flex flex-col items-center">
+        <div class="w-64 bg-red-500 text-white p-4 hidden lg:flex flex-col items-center relative bg-cover"  style="background-image: url('static/admin/sidebar.jpg')">
+
+        <div class="border-b-2 border-gray-300">
+            <h1>ADMINISTRATOR</h1>
+        </div>
+
             <ul class="space-y-2">
                 <li><a href="{{url('dashboard')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                     <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
