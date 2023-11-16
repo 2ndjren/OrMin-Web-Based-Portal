@@ -15,7 +15,6 @@
 
 </head>
 <body class="bg-gray-100">
-<div class="flex h-screen">
 
 <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center" style="background-image: url('static/admin/sidebar.jpg')">
 
@@ -52,8 +51,7 @@
     </ul>
 </aside>
 
-<!-- Main content area -->
-<main class="flex-1">
+
 <!-- Header -->
 <header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
     <!-- Header content -->
@@ -68,7 +66,6 @@
 
     </div>
 </header>
-</main>
 
         <!-- Mobile Sidebar (hidden by default) -->
         <div id="mobileSidebar" class="sm:w-80 md:w-72 lg:w-64 bg-red-500 text-white p-4 lg:hidden hidden">
@@ -111,7 +108,6 @@
            @yield('chats')
            @yield('accounts')
         </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
