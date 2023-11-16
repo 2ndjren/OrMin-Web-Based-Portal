@@ -15,41 +15,60 @@
 
 </head>
 <body class="bg-gray-100">
-    <div class="flex h-screen">
-        <!-- Sidebar with Red Theme Background -->
-        <div class="w-64 bg-red-500 text-white p-4 hidden lg:flex flex-col items-center relative bg-cover"  style="background-image: url('static/admin/sidebar.jpg')">
+<div class="flex h-screen">
 
-        <div class="border-b-2 border-gray-300">
-            <h1>ADMINISTRATOR</h1>
-        </div>
+<aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center" style="background-image: url('static/admin/sidebar.jpg')">
 
-            <ul class="space-y-2">
-                <li><a href="{{url('dashboard')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
-                </a></li>
-                <li><a href="{{url('membership')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Membership
-                </a></li>
-                <li><a href="{{url('volunteers')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Volunteers
-                </a></li>
-                <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Announcements
-                </a></li>
-                <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Chats
-                </a></li>
-              @if(session('ADMIN'))
-              <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-users mr-2"></i> Accounts
-                </a></li>
-              @endif
-              <li><a href="{{url('logout')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                    <i class="fas fa-tachometer-alt mr-2"></i> Logout
-                </a></li>
-              
-            </ul>
-        </div>
+    <div class="border-b-2 border-gray-300 w-full flex flex-col items-center">
+        <img class="h-20" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Logo">
+        <h2 class="text-center pb-4 font-semibold">ADMINISTRATOR</h2>
+    </div>
+    
+    <ul class="space-y-2 p-4">
+        <li><a href="{{url('dashboard')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+        </a></li>
+        <li><a href="{{url('membership')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Membership
+        </a></li>
+        <li><a href="{{url('volunteers')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Volunteers
+        </a></li>
+        <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Announcements
+        </a></li>
+        <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Chats
+        </a></li>
+      @if(session('ADMIN'))
+      <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-users mr-2"></i> Accounts
+        </a></li>
+      @endif
+      <li><a href="{{url('logout')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+            <i class="fas fa-tachometer-alt mr-2"></i> Logout
+        </a></li>
+      
+    </ul>
+</aside>
+
+<!-- Main content area -->
+<main class="flex-1">
+<!-- Header -->
+<header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
+    <!-- Header content -->
+    <h1 class="font-semibold text-blue-800">RED CROSS ORMIN PORTAL</h1>
+    
+    <!-- Dropdown for account settings -->
+    <div class="bg-blue-800 p-2">
+        <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
+            <span class="mr-1">{{session('ADMIN')['fname']}}</span>
+            
+        </button>
+
+    </div>
+</header>
+</main>
 
         <!-- Mobile Sidebar (hidden by default) -->
         <div id="mobileSidebar" class="sm:w-80 md:w-72 lg:w-64 bg-red-500 text-white p-4 lg:hidden hidden">
@@ -93,7 +112,7 @@
            @yield('accounts')
         </div>
     </div>
-
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
