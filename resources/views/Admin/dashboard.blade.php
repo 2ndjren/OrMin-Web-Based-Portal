@@ -2,7 +2,7 @@
 @section('dashboard')
 <title>Dashboard</title>
 <div class="py-2 px-10">
-  <p class="text-3xl font-medium  text-green-600">Dashboard</p>
+  <p class="text-3xl font-medium  text-red-600">Dashboard</p>
   <div class="flex justify-end">
 
   </div>
