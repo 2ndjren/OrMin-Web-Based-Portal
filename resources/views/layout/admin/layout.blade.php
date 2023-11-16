@@ -51,8 +51,23 @@
     </ul>
 </aside>
 
+<!-- Main content area -->
+<main class="flex-1">
+<!-- Header -->
+<header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
+    <!-- Header content -->
+    <h1 class="font-semibold text-blue-800">RED CROSS ORMIN PORTAL</h1>
+    
+    <!-- Dropdown for account settings -->
+    <div class="bg-blue-800 p-2">
+        <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
+            <span class="mr-1">{{session('ADMIN')['fname']}}</span>
+            
+        </button>
 
-
+    </div>
+</header>
+</main>
 
         <!-- Mobile Sidebar (hidden by default) -->
         <div id="mobileSidebar" class="sm:w-80 md:w-72 lg:w-64 bg-red-500 text-white p-4 lg:hidden hidden">
@@ -86,20 +101,6 @@
 
         <!-- Content Area -->
         <div class="flex-1 p-4 overflow-y-auto">
-            <!-- Header -->
-<header class="flex justify-between items-center bg-gray-50 text-gray-900 p-4 border-b-2 border-gray-300">
-    <!-- Header content -->
-    <h1 class="font-semibold text-blue-800">RED CROSS ORMIN PORTAL</h1>
-    
-    <!-- Dropdown for account settings -->
-    <div class="bg-blue-800 p-2">
-        <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
-            <span class="mr-1">{{session('ADMIN')['fname']}}</span>
-            
-        </button>
-
-    </div>
-</header>
             <!-- Toggle Mobile Sidebar Button -->
             <button id="sidebarToggle" class="lg:hidden block text-black text-2xl focus:outline-none p-3 rounded-full">&#9776;</button>
            @yield('dashboard')
