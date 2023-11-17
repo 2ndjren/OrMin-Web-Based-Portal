@@ -70,237 +70,237 @@
 
 
 <div id="create-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
-<div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
-            <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+  <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-                <div class="container mx-auto p-2 text-center relative">
-                    <!-- Logo positioned on top center of the header -->
-                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
-                </div>
-            </header>
+        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+      </div>
+    </header>
 
-<div  class="h-96 p-4 overflow-y-auto">
-     <h2 class="text-2xl font-semibold text-blue-800">Add New Record</h2>
-    <div class="p-2 border border-green-500 bg-green-500 bg-opacity-10 rounded-md hidden" id="success">
-      <p id="success-message" class="text-center text-blue-500"></p>
+    <div class="h-96 p-4 overflow-y-auto">
+      <h2 class="text-2xl font-semibold text-blue-800">Add New Record</h2>
+      <div class="p-2 border border-green-500 bg-green-500 bg-opacity-10 rounded-md hidden" id="success">
+        <p id="success-message" class="text-center text-blue-500"></p>
+      </div>
+
+      <div class="p-2 border border-red-500 bg-red-500 bg-opacity-10 rounded-md hidden" id="failed">
+        <p id="failed-message" class="text-center text-blue-500"></p>
+      </div>
+      <form id="create-membership-account" enctype="multipart/form-data">
+        @csrf
+        <input id="id" name="id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="hidden">
+
+        <div class="flex space-x-2">
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">First Name</label>
+            <input id="fname" name="fname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Middle Name</label>
+            <input id="mname" name="mname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Last Name</label>
+            <input id="lname" name="lname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Birthday</label>
+            <input id="birthday" name="birthday" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Age</label>
+            <input id="age" name="age" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Gender</label>
+            <div class="relative">
+              <select id="gender" name="gender" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country">
+                <option value="">Select </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Blood Type</label>
+            <div class="relative">
+              <select id="blood_type" name="blood_type" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country">
+                <option value="">Select </option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex space-x-2">
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Municipality/City</label>
+            <div class="relative">
+              <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Baco">Baco</option>
+                <option value="Bansud">Bansud</option>
+                <option value="Bongabong">Bongabong</option>
+                <option value="Bulalacao">Bulalacao</option>
+                <option value="Calapan">Calapan</option>
+                <option value="Gloria">Gloria</option>
+                <option value="Mansalay">Mansalay</option>
+                <option value="Naujan">Naujan</option>
+                <option value="Pinamalayan">Pinamalayan</option>
+                <option value="Pola">Pola</option>
+                <option value="Puerto Galera">Puerto Galera</option>
+                <option value="Roxas">Roxas</option>
+                <option value="San Teodoro">San Teodoro</option>
+                <option value="Socorro">Socorro</option>
+                <option value="Victoria">Victoria</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Barangay</label>
+            <input id="barangay" name="barangay" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Street</label>
+            <input id="barangay_street" name="barangay_street" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+
+        </div>
+        <div class="mb-4 w-full">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Mebership ID</label>
+          <input id="mem_id" name="mem_id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+        </div>
+        <div class="flex space-x-2">
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
+            <div class="relative">
+              <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Classic">Classic</option>
+                <option value="Bronze">Bronze</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Senior">Senior</option>
+                <option value="Senior Plus">Senior Plus</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Amount</label>
+            <input id="amount" name="amount" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program Status</label>
+            <div class="relative">
+              <select id="status" name="status" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Pending">Pending</option>
+                <option value="Activated">Activated</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="mb-4 w-full">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Email</label>
+          <input id="email" name="email" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email">
+        </div>
+        <div class="flex space-x-2">
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Type of Payment</label>
+            <div class="relative">
+              <select id="type_of_payment" name="type_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Gcash">Gcash</option>
+                <option value="Paymaya">Paymaya</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Proof of Payment</label>
+            <input id="proof_of_payment" name="proof_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file">
+          </div>
+
+
+        </div>
+
+        <div class="mt-6 flex justify-end">
+          <button id="close-create-membership-modal" class="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+            <div>Save </div>
+            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+          </button>
+        </div>
+      </form>
+
     </div>
-
-    <div class="p-2 border border-red-500 bg-red-500 bg-opacity-10 rounded-md hidden" id="failed">
-      <p id="failed-message" class="text-center text-blue-500"></p>
-    </div>
-    <form id="create-membership-account" enctype="multipart/form-data">
-      @csrf
-      <input id="id" name="id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="hidden">
-
-      <div class="flex space-x-2">
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">First Name</label>
-          <input id="fname" name="fname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Middle Name</label>
-          <input id="mname" name="mname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Last Name</label>
-          <input id="lname" name="lname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-      </div>
-      <div class="flex space-x-2">
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Birthday</label>
-          <input id="birthday" name="birthday" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date">
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Age</label>
-          <input id="age" name="age" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Gender</label>
-          <div class="relative">
-            <select id="gender" name="gender" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country">
-              <option value="">Select </option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Blood Type</label>
-          <div class="relative">
-            <select id="blood_type" name="blood_type" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="country">
-              <option value="">Select </option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex space-x-2">
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Municipality/City</label>
-          <div class="relative">
-            <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Baco">Baco</option>
-              <option value="Bansud">Bansud</option>
-              <option value="Bongabong">Bongabong</option>
-              <option value="Bulalacao">Bulalacao</option>
-              <option value="Calapan">Calapan</option>
-              <option value="Gloria">Gloria</option>
-              <option value="Mansalay">Mansalay</option>
-              <option value="Naujan">Naujan</option>
-              <option value="Pinamalayan">Pinamalayan</option>
-              <option value="Pola">Pola</option>
-              <option value="Puerto Galera">Puerto Galera</option>
-              <option value="Roxas">Roxas</option>
-              <option value="San Teodoro">San Teodoro</option>
-              <option value="Socorro">Socorro</option>
-              <option value="Victoria">Victoria</option>
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Barangay</label>
-          <input id="barangay" name="barangay" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Street</label>
-          <input id="barangay_street" name="barangay_street" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-
-      </div>
-      <div class="mb-4 w-full">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Mebership ID</label>
-        <input id="mem_id" name="mem_id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-      </div>
-      <div class="flex space-x-2">
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
-          <div class="relative">
-            <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Classic">Classic</option>
-              <option value="Bronze">Bronze</option>
-              <option value="Silver">Silver</option>
-              <option value="Gold">Gold</option>
-              <option value="Platinum">Platinum</option>
-              <option value="Senior">Senior</option>
-              <option value="Senior Plus">Senior Plus</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Amount</label>
-          <input id="amount" name="amount" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program Status</label>
-          <div class="relative">
-            <select id="status" name="status" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Pending">Pending</option>
-              <option value="Activated">Activated</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center  px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="mb-4 w-full">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Email</label>
-        <input id="email" name="email" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email">
-      </div>
-      <div class="flex space-x-2">
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Type of Payment</label>
-          <div class="relative">
-            <select id="type_of_payment" name="type_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Gcash">Gcash</option>
-              <option value="Paymaya">Paymaya</option>
-              <option value="Bank Transfer">Bank Transfer</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Proof of Payment</label>
-          <input id="proof_of_payment" name="proof_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file">
-        </div>
-
-
-      </div>
-
-      <div class="mt-6 flex justify-end">
-        <button id="close-create-membership-modal" class="bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-        <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-          <div>Save </div>
-          <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-        </button>
-      </div>
-    </form>
-
   </div>
-</div>
 </div>
 <!-- ///// -->
 
 <div id="membership-account-profile-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
-<div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
-            <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+  <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-                <div class="container mx-auto p-2 text-center relative">
-                    <!-- Logo positioned on top center of the header -->
-                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
-                </div>
-            </header>
-            <div id="membership-account-profile" class="flex p-4"></div>
+        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+      </div>
+    </header>
+    <div id="membership-account-profile" class="flex p-4"></div>
     <div id="membership-account-profile-btns" class="flex justify-end p-4"></div>
 
   </div>
@@ -318,19 +318,19 @@
 
 
 <!-- Print Modal  -->
-  <div id="create-report-print-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
-<div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
-            <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+<div id="create-report-print-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
+  <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-                <div class="container mx-auto p-2 text-center relative">
-                    <!-- Logo positioned on top center of the header -->
-                    <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-                    <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-                    <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
-                </div>
-            </header>
-    <div class="">
+        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
+        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+      </div>
+    </header>
+    <div class="p-4">
       <div class="mb-4 w-full p-4 ">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Print</label>
         <div class="relative">
@@ -348,91 +348,32 @@
 
       </div>
 
-    </div>
-    <div class=" hidden mb-4 w-full " id="selection_to_print">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Sales to Print</label>
-      <div class="relative">
-        <select id="type_of_sales_to_print" name="type_of_sales_to_print" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <option value="">Select </option>
-          <option value="Annual">Annual</option>
-          <option value="Monthly">Monthly</option>
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-          <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-          </svg>
+
+      <div class=" hidden mb-4 w-full " id="selection_to_print">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Sales to Print</label>
+        <div class="relative">
+          <select id="type_of_sales_to_print" name="type_of_sales_to_print" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="">Select </option>
+            <option value="Annual">Annual</option>
+            <option value="Monthly">Monthly</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+            </svg>
+          </div>
         </div>
+
       </div>
 
-    </div>
 
-
-    <div id="annual_sales_report" class="hidden">
-      <form id="check_print_results_for_annual_sales">
-        @csrf
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
-          <div class="relative">
-            <select id="annual_report" name="annual_report" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-        </div>
-        <div class="mt-6 flex justify-end">
-          <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-            <div>Proceed </div>
-            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-          </button>
-        </div>
-      </form>
-    </div>
-    <div id="monthly_sales_report" class="hidden">
-      <form id="check_print_results_for_monthly_sales">
-        @csrf
-        <div class="Monthly">
-          <div class="mb-4 w-full " id="Annual">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Month?</label>
-            <div class="relative">
-              <select id="monthly_sales_month" name="monthly_sales_month" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                <option value="">Select </option>
-                <option value="01">January</option>
-                <option value="02">February</option>
-                <option value="03">March</option>
-                <option value="04">April</option>
-                <option value="05">May</option>
-                <option value="06">June</option>
-                <option value="07">July</option>
-                <option value="08">August</option>
-                <option value="09">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">Decemebr</option>
-
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-                </svg>
-              </div>
-            </div>
-
-          </div>
-          <div class="mb-4 w-full " id="Annual">
+      <div id="annual_sales_report" class="hidden">
+        <form id="check_print_results_for_annual_sales">
+          @csrf
+          <div class="mb-4 w-full ">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
             <div class="relative">
-              <select id="monthly_sales_year" name="monthly_sales_year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+              <select id="annual_report" name="annual_report" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Select </option>
                 <option value="2019">2019</option>
                 <option value="2020">2020</option>
@@ -448,50 +389,86 @@
             </div>
 
           </div>
-        </div>
-        <div class="mt-6 flex justify-end">
-          <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-            <div>Proceed </div>
-            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-          </button>
-        </div>
-      </form>
-
-    </div>
-    <div id="membership_data" class="hidden">
-      <div class="mb-4 w-full " id="membership_type_of_data_to_print">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Type of data to print?</label>
-        <div class="relative">
-          <select id="type_of_data_to_print" name="type_of_data_to_print" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            <option value="">Select </option>
-            <option value="program">Per program</option>
-            <option value="municipality">Per municipality</option>
-            <option value="barangay">Per barangay</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-            </svg>
+          <div class="mt-6 flex justify-end">
+            <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+            <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+              <div>Proceed </div>
+              <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+            </button>
           </div>
-        </div>
+        </form>
+      </div>
+
+      <div id="monthly_sales_report" class="hidden">
+        <form id="check_print_results_for_monthly_sales">
+          @csrf
+          <div class="Monthly">
+            <div class="mb-4 w-full " id="Annual">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Month?</label>
+              <div class="relative">
+                <select id="monthly_sales_month" name="monthly_sales_month" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option value="">Select </option>
+                  <option value="01">January</option>
+                  <option value="02">February</option>
+                  <option value="03">March</option>
+                  <option value="04">April</option>
+                  <option value="05">May</option>
+                  <option value="06">June</option>
+                  <option value="07">July</option>
+                  <option value="08">August</option>
+                  <option value="09">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">Decemebr</option>
+
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+            <div class="mb-4 w-full " id="Annual">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
+              <div class="relative">
+                <select id="monthly_sales_year" name="monthly_sales_year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                  <option value="">Select </option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                  </svg>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="mt-6 flex justify-end">
+            <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+            <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+              <div>Proceed </div>
+              <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+            </button>
+          </div>
+        </form>
 
       </div>
-      <form id="per_program_to_print_form" class="hidden">
-        @csrf
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
+      <div id="membership_data" class="hidden">
+        <div class="mb-4 w-full " id="membership_type_of_data_to_print">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Type of data to print?</label>
           <div class="relative">
-            <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <select id="type_of_data_to_print" name="type_of_data_to_print" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
               <option value="">Select </option>
-              <option value="Classic">Classic</option>
-              <option value="Bronze">Bronze</option>
-              <option value="Silver">Silver</option>
-              <option value="Gold">Gold</option>
-              <option value="Platinum">Platinum</option>
-              <option value="Senior">Senior</option>
-              <option value="Senior Plus">Senior Plus</option>
-
+              <option value="program">Per program</option>
+              <option value="municipality">Per municipality</option>
+              <option value="barangay">Per barangay</option>
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -501,264 +478,287 @@
           </div>
 
         </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
-          <div class="relative">
-            <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
+        <form id="per_program_to_print_form" class="hidden">
+          @csrf
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
+            <div class="relative">
+              <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Classic">Classic</option>
+                <option value="Bronze">Bronze</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Senior">Senior</option>
+                <option value="Senior Plus">Senior Plus</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
+            <div class="relative">
+              <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mt-6 flex justify-end">
+            <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+            <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+              <div>Proceed </div>
+              <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+            </button>
+          </div>
+        </form>
+        <form id="per_muncipality_to_print_form" class="hidden">
+          @csrf
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Municipality/City?</label>
+            <div class="relative">
+              <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Baco">Baco</option>
+                <option value="Bansud">Bansud</option>
+                <option value="Bongabong">Bongabong</option>
+                <option value="Bulalacao">Bulalacao</option>
+                <option value="Calapan">Calapan</option>
+                <option value="Gloria">Gloria</option>
+                <option value="Mansalay">Mansalay</option>
+                <option value="Naujan">Naujan</option>
+                <option value="Pinamalayan">Pinamalayan</option>
+                <option value="Pola">Pola</option>
+                <option value="Puerto Galera">Puerto Galera</option>
+                <option value="Roxas">Roxas</option>
+                <option value="San Teodoro">San Teodoro</option>
+                <option value="Socorro">Socorro</option>
+                <option value="Victoria">Victoria</option>
+              </select>
+
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
+            <div class="relative">
+              <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mt-6 flex justify-end">
+            <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+            <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+              <div>Proceed </div>
+              <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+            </button>
+          </div>
+        </form>
+        <form id="per_barangay_to_print_form" class="hidden">
+          @csrf
+
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Municipality/City?</label>
+            <div class="relative">
+              <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Baco">Baco</option>
+                <option value="Bansud">Bansud</option>
+                <option value="Bongabong">Bongabong</option>
+                <option value="Bulalacao">Bulalacao</option>
+                <option value="Calapan">Calapan</option>
+                <option value="Gloria">Gloria</option>
+                <option value="Mansalay">Mansalay</option>
+                <option value="Naujan">Naujan</option>
+                <option value="Pinamalayan">Pinamalayan</option>
+                <option value="Pola">Pola</option>
+                <option value="Puerto Galera">Puerto Galera</option>
+                <option value="Roxas">Roxas</option>
+                <option value="San Teodoro">San Teodoro</option>
+                <option value="Socorro">Socorro</option>
+                <option value="Victoria">Victoria</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
             </div>
           </div>
 
-        </div>
-        <div class="mt-6 flex justify-end">
-          <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-            <div>Proceed </div>
-            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-          </button>
-        </div>
-      </form>
-      <form id="per_muncipality_to_print_form" class="hidden">
-        @csrf
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Municipality/City?</label>
-          <div class="relative">
-            <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Baco">Baco</option>
-              <option value="Bansud">Bansud</option>
-              <option value="Bongabong">Bongabong</option>
-              <option value="Bulalacao">Bulalacao</option>
-              <option value="Calapan">Calapan</option>
-              <option value="Gloria">Gloria</option>
-              <option value="Mansalay">Mansalay</option>
-              <option value="Naujan">Naujan</option>
-              <option value="Pinamalayan">Pinamalayan</option>
-              <option value="Pola">Pola</option>
-              <option value="Puerto Galera">Puerto Galera</option>
-              <option value="Roxas">Roxas</option>
-              <option value="San Teodoro">San Teodoro</option>
-              <option value="Socorro">Socorro</option>
-              <option value="Victoria">Victoria</option>
-
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">What barangay?</label>
+            <input id="barangay" name="barangay" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
           </div>
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
-          <div class="relative">
-            <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
+            <div class="relative">
+              <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
             </div>
+
           </div>
-
-        </div>
-        <div class="mt-6 flex justify-end">
-          <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-            <div>Proceed </div>
-            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-          </button>
-        </div>
-      </form>
-      <form id="per_barangay_to_print_form" class="hidden">
-        @csrf
-
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What Municipality/City?</label>
-          <div class="relative">
-            <select id="municipality" name="municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Baco">Baco</option>
-              <option value="Bansud">Bansud</option>
-              <option value="Bongabong">Bongabong</option>
-              <option value="Bulalacao">Bulalacao</option>
-              <option value="Calapan">Calapan</option>
-              <option value="Gloria">Gloria</option>
-              <option value="Mansalay">Mansalay</option>
-              <option value="Naujan">Naujan</option>
-              <option value="Pinamalayan">Pinamalayan</option>
-              <option value="Pola">Pola</option>
-              <option value="Puerto Galera">Puerto Galera</option>
-              <option value="Roxas">Roxas</option>
-              <option value="San Teodoro">San Teodoro</option>
-              <option value="Socorro">Socorro</option>
-              <option value="Victoria">Victoria</option>
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
+          <div class="mt-6 flex justify-end">
+            <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+            <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
+              <div>Proceed </div>
+              <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
+            </button>
           </div>
-        </div>
-
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">What barangay?</label>
-          <input id="barangay" name="barangay" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">What year?</label>
-          <div class="relative">
-            <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-        </div>
-        <div class="mt-6 flex justify-end">
-          <button class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-          <button type="submit" class="bg-blue-500 flex space-x-2 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg">
-            <div>Proceed </div>
-            <div id="spinner" class=" hidden  border-b-2 w-5 h-5 border-white rounded-full animate-spin"></div>
-          </button>
-        </div>
-      </form>
+        </form>
 
 
+      </div>
+      <div class="mt-6 flex justify-end">
+        <button id="close-closebtn" class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
+
+      </div>
     </div>
-    <div class="mt-6 flex justify-end">
-      <button id="close-closebtn" class="close-create-print-modal bg-gray-500 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg mr-4">Close</button>
-
-    </div>
-
   </div>
-</div>
 
 
 
 
 
-<div id="export-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="membership-account-payment" class="block  p-3">
-      <form id="membership-export-data-form">
-        @csrf
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
-          <div class="relative">
-            <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Classic">Classic</option>
-              <option value="Bronze">Bronze</option>
-              <option value="Silver">Silver</option>
-              <option value="Gold">Gold</option>
-              <option value="Platinum">Platinum</option>
-              <option value="Senior">Senior</option>
-              <option value="Senior Plus">Senior Plus</option>
 
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
+  <div id="export-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+    <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+      <div id="membership-account-payment" class="block  p-3">
+        <form id="membership-export-data-form">
+          @csrf
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Program</label>
+            <div class="relative">
+              <select id="level" name="level" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Classic">Classic</option>
+                <option value="Bronze">Bronze</option>
+                <option value="Silver">Silver</option>
+                <option value="Gold">Gold</option>
+                <option value="Platinum">Platinum</option>
+                <option value="Senior">Senior</option>
+                <option value="Senior Plus">Senior Plus</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
             </div>
+
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Account Status</label>
+            <div class="relative">
+              <select id="status" name="status" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Activated">Activated</option>
+                <option value="Pending">Pending</option>
+                <option value="Declined">Declined</option>
+                <option value="Expired">Expired</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Year</label>
+            <div class="relative">
+              <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="2022">2024</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+
           </div>
 
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Account Status</label>
-          <div class="relative">
-            <select id="status" name="status" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="Activated">Activated</option>
-              <option value="Pending">Pending</option>
-              <option value="Declined">Declined</option>
-              <option value="Expired">Expired</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
+          <div class="flex justify-end space-x-2">
+            <button id="close-export-date-form-modal-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+            <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
           </div>
 
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Year</label>
-          <div class="relative">
-            <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2022">2024</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
+        </form>
+      </div>
 
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="flex justify-end space-x-2">
-          <button id="close-export-date-form-modal-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
-          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
-        </div>
-
-      </form>
     </div>
-
   </div>
-</div>
 
-<div id="decline-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="decline-membership-note" class="w-full">
-      <p class="font-semibold">State your reason on the text box!</p>
-      <form id="decline-membership-form"">
+  <div id="decline-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+    <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
+      <div id="decline-membership-note" class="w-full">
+        <p class="font-semibold">State your reason on the text box!</p>
+        <form id="decline-membership-form"">
         @csrf
         <input id=" decline-id" type="hidden" name="id">
-        <textarea placeholder="Write here..." class="border w-full" name="note" id="" cols="30" rows="5"></textarea>
-        <div class="flex justify-end space-x-2">
-          <button id="close-decline-membership-account-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
-          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
-        </div>
-      </form>
+          <textarea placeholder="Write here..." class="border w-full" name="note" id="" cols="30" rows="5"></textarea>
+          <div class="flex justify-end space-x-2">
+            <button id="close-decline-membership-account-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
+            <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
-
 
 <script>
   $(document).ready(function() {

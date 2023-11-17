@@ -2,7 +2,7 @@
 @section('chats')
 <title>Chats</title>
 <div class="py-2 px-10">
-  <p class="text-3xl font-medium  text-green-600">Messages</p>
+  <p class="text-3xl font-medium  text-red-600">Messages</p>
   <div class="h-screen">
     <div class=" h-full overflow-x-auto mt-3 p-5 rounded-md  space-y-2">
      

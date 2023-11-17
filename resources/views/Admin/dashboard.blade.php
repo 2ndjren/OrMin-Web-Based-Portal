@@ -18,7 +18,7 @@
     <div class=" sm:block lg:flex w-full space-x-2">
         <div class="container mx-auto py-4 w-full">
           <div class=" rounded-lg p-4 gap">
-            <div class="container mx-auto py-4 bg-white p-4 flex">
+            <div class="container mx-auto py-4 shadow-lg bg-white p-4 flex">
 
             <div class="w-full">
             <p class="text-blue-500 font-semibold text-2xl text-left pb-2 ">APPOINTMENTS</p>
