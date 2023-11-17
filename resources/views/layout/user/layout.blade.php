@@ -113,7 +113,7 @@
         <nav class="w-screen dark:bg-gray-900 dark:border-gray-700 shadow-md">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center">
-              <img class="h-14" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Red ross Logo Logo" />
+              <!-- <img class="h-14" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Red ross Logo Logo" /> -->
               <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN</span>
             </a>
 
