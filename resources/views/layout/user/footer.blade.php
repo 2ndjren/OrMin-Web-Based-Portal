@@ -4,7 +4,7 @@
             <div class="md:col-span-5 lg:col-span-8">
                 <div class="flex items-center space-x-4">
                     <a href="/" aria-label="Cruip">
-                        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="" class="inline-block h-20" />
+                        <!-- <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="" class="inline-block h-20" /> -->
                     </a>
                     <img src="https://ppdo.ormindoro.gov.ph/wp-content/uploads/2017/11/pgom-logo-official.png" alt="" class="inline-block h-16" />
                 </div>
