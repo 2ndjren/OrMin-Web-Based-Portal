@@ -59,40 +59,7 @@
 
   </div>
 
-  <div class="max-w-full p-6 mx-auto bg-white rounded-md overflow-hidden shadow-md">
-    <div class="p-4 ">
-        <h2 class="text-xl font-semibold mb-2 border-b-2 border-gray-300">View Latest Post from ORMIN Red Cross</h2>
 
-        <div class="max-h-screen overflow-y-auto border-b-2 border-gray-300">
-          
-            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-6 mb-2">
-              <div class="flex justify-center">
-                <iframe width="560" height="315" src="https://redcross.org.ph/wp-content/uploads/2023/09/373313159_677518164266726_5088723651220931343_n.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-
-                <p class="font-bold text-2xl mt-2">
-                  ON #INTERNATIONALDAYOFTHEDISAPPEARED, LET'S ALL REMEMBER THOSE WHO ARE STILL MISSING UP TO THIS TIME. </p>
-                <p class="text-xs text-gray-500">Posted on November 17, 2023 8:00 am</p>
-
-                <p class="text-md mt-2">Philippine Red Cross continues to reconnect families through its Restoring Family Links — a program of the Red Cross and Red Crescent Movement, more specifically the International Committee of the Red Cross Philippines and National Red Cross and Red Crescent Societies — involving activities that aim to prevent separation and disappearance, look for missing persons, restore and maintain contact between family members and clarify the fate of persons reported missing.</p>
-            
-            </div>
-            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
-              <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
-              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-          </div>
-          <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
-            <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
-            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-        </div>
-       
-
-            <!-- You can add more announcements as needed -->
-        </div>
-    </div>
-</div>
 
 
 
@@ -127,12 +94,47 @@
     </div>
   </section>
 
+  <div class="max-w-full p-6 mx-auto bg-white rounded-md overflow-hidden shadow-md">
+    <div class="p-6 ">
+        <h2 class="text-2xl font-semibold mb-2 border-b-2 border-gray-300">View Latest Post from ORMIN Red Cross</h2>
 
-  <div class="bg-cover bg-no-repeat py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
+        <div class="max-h-screen overflow-y-auto border-b-2 border-gray-300">
+          
+            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-6 mb-2">
+              <div class="flex justify-center">
+                <iframe width="560" height="315" src="https://redcross.org.ph/wp-content/uploads/2023/09/373313159_677518164266726_5088723651220931343_n.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+
+                <p class="font-bold text-2xl mt-2">
+                  ON #INTERNATIONALDAYOFTHEDISAPPEARED, LET'S ALL REMEMBER THOSE WHO ARE STILL MISSING UP TO THIS TIME. </p>
+                <p class="text-xs text-gray-500">Posted on November 17, 2023 8:00 am</p>
+
+                <p class="text-md mt-2">Philippine Red Cross continues to reconnect families through its Restoring Family Links — a program of the Red Cross and Red Crescent Movement, more specifically the International Committee of the Red Cross Philippines and National Red Cross and Red Crescent Societies — involving activities that aim to prevent separation and disappearance, look for missing persons, restore and maintain contact between family members and clarify the fate of persons reported missing.</p>
+            
+            </div>
+            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
+              <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
+              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+          </div>
+          <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
+            <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
+            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+        </div>
+       
+
+            <!-- You can add more announcements as needed -->
+        </div>
+    </div>
+</div>
+
+
+  <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
 
 
 
-    <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+    <div class="h-screen p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -183,8 +185,8 @@
 
 
 
-  <div class="h-screen bg-center bg-cover ease-in-out transition-opacity" style="background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t1.6435-9/86408136_894556941000320_5054492052813774848_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_aid=0&_nc_eui2=AeE0bFobkl3UMSmE0zaa4gJgiaooucyjQMqJqii5zKNAylsYme4GubZ_M21UxmCNQau66HrZZBQG79Dnbx0ZM1V-&_nc_ohc=4FDyUWntYKkAX_Y9fa9&_nc_ht=scontent.fmnl30-3.fna&oh=00_AfCFqUKpI1VIQQI-4nSdTA0Wo1WxROSOjCjXFBWUp8OZzQ&oe=653371D0')">
-    <div class="p-6 md:p-20 flex h-full w-full bg-white bg-opacity-75">
+  <div class="h-screen p-6 md:p-28  bg-center bg-cover ease-in-out transition-opacity" style="background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t1.6435-9/86408136_894556941000320_5054492052813774848_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_aid=0&_nc_eui2=AeE0bFobkl3UMSmE0zaa4gJgiaooucyjQMqJqii5zKNAylsYme4GubZ_M21UxmCNQau66HrZZBQG79Dnbx0ZM1V-&_nc_ohc=4FDyUWntYKkAX_Y9fa9&_nc_ht=scontent.fmnl30-3.fna&oh=00_AfCFqUKpI1VIQQI-4nSdTA0Wo1WxROSOjCjXFBWUp8OZzQ&oe=653371D0')">
+    <div class="flex h-full w-full bg-white bg-opacity-75">
       <div class="md:w-1/2">
         <!-- Content for the left side (Image side) -->
       </div>
@@ -200,7 +202,7 @@
   </div>
 
 
-  <section class="bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
+  <section class="h-screen bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
       <div class="flex justify-start">
         <div class="px-15 py-24 lg:w-3/4">
