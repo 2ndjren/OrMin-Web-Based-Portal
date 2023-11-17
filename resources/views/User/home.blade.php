@@ -59,6 +59,41 @@
 
   </div>
 
+  <div class="max-w-full p-6 mx-auto bg-white rounded-md overflow-hidden shadow-md">
+    <div class="p-4 ">
+        <h2 class="text-xl font-semibold mb-2 border-b-2 border-gray-300">View Latest Post from ORMIN Red Cross</h2>
+
+        <div class="max-h-screen overflow-y-auto border-b-2 border-gray-300">
+          
+            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-6 mb-2">
+              <div class="flex justify-center">
+                <iframe width="560" height="315" src="https://redcross.org.ph/wp-content/uploads/2023/09/373313159_677518164266726_5088723651220931343_n.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+
+                <p class="font-bold text-2xl mt-2">
+                  ON #INTERNATIONALDAYOFTHEDISAPPEARED, LET'S ALL REMEMBER THOSE WHO ARE STILL MISSING UP TO THIS TIME. </p>
+                <p class="text-xs text-gray-500">Posted on November 17, 2023 8:00 am</p>
+
+                <p class="text-md mt-2">Philippine Red Cross continues to reconnect families through its Restoring Family Links — a program of the Red Cross and Red Crescent Movement, more specifically the International Committee of the Red Cross Philippines and National Red Cross and Red Crescent Societies — involving activities that aim to prevent separation and disappearance, look for missing persons, restore and maintain contact between family members and clarify the fate of persons reported missing.</p>
+            
+            </div>
+            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
+              <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
+              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+          </div>
+          <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
+            <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
+            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+        </div>
+       
+
+            <!-- You can add more announcements as needed -->
+        </div>
+    </div>
+</div>
+
 
 
   <div class="h-screen bg-gray-400">
@@ -97,7 +132,7 @@
 
 
 
-    <div class="p-4 md:p-20 flex flex-col-reverse md:flex-row w-full">
+    <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -125,7 +160,7 @@
 
 
   <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class="p-4 md:p-10 bg-green-600 bg-opacity-75">
+    <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
