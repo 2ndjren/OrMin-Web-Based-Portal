@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\Appointments;
 use App\Http\Controllers\Admin\Chats;
 use App\Http\Controllers\Admin\Donations;
+use App\Http\Controllers\Admin\Feedback;
 use App\Http\Controllers\Admin\Feedbacks;
 use App\Http\Controllers\Admin\Generate_Reports;
 use App\Http\Controllers\Admin\Insurance;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Admin\Print_Report;
 use App\Http\Controllers\Admin\Reports;
 use App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Admin\Volunteers;
+use App\Http\Controllers\User\User_Volunteers;
 use App\Http\Controllers\Auth\Auth;
 use App\Http\Controllers\RTC\RTC;
 use App\Http\Controllers\User\User;
@@ -54,6 +56,14 @@ Route::get('myinsurance',[User::class,'MyInsurance']);
 // USER INSURANCE 
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);
 Route::get('my-blood-donation-history',[User::class,'blood_history']);
+Route::post('create-user-membership',[User::class,'Create_Membership_Account']);
+Route::get('volunteer-details-card',[User::class,'Volunteer_Details']);
+Route::post('submit-volunteer-form',[User_Volunteers::class,'Submit_Volunteer']);
+
+
+
+
+
 
 Route::get('user/membership/',[User::class,'Membership']);
 Route::get('user/training',[User::class,'Training']);
@@ -153,3 +163,4 @@ Route::get('reports',[Reports::class,'Reports']);
 // GENERATE REPORT 
 Route::get('print-waiting-list',[Generate_Reports::class,'Export_Waiting_Appointments']);
 Route::get('print-approved-list',[Generate_Reports::class,'Export_Approved_Appointments']);
+Route::post('share-feedback',[Feedback::class,'Create_Feedback']);

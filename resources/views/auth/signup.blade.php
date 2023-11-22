@@ -22,14 +22,15 @@
       <!-- First Column -->
       <div class="flex items-center w-full justify-center md:h-screen h-auto p-4">
         <div class="w-full text-center">
-          <div class="w-full flex justify-center">
+          <!-- <div class="w-full flex justify-center">
           <a href="{{url('/')}}" class="flex">
               <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
             </a>
-          </div>
+          </div> -->
 
           <p class="text-white font-normal text-sm md:text-xl pb-5">Connecting Hearts, Saving Lives</p>
-          <p class="text-white font-bold text-2xl md:text-6xl">OrMiN-RC Portal System</p>
+          <p class="text-white font-bold text-2xl md:text-6xl">PRC ORMIN</p>
+            <p class="text-white font-semi  bold text-xl md:text-5xl">Portal System</p>
           <p class="text-gray-500 font-lighter text-xs md:text-lg py-5"><i>The Philippine Red Cross Oriental Mindoro Chapter is a vital humanitarian organization dedicated to serving the needs of the local community and beyond. Nestled in the heart of Oriental Mindoro, this chapter is a beacon of hope and support during times of crisis and a pillar of assistance in times of need.</i></p>
         </div>
       </div>
@@ -188,23 +189,12 @@
             <button class="w-full md:w-1/3 bg-green-500 py-2 hover:bg-green-600 text-white" type="submit">Submit</button>
           </div>
           <div class="text-center mb-1">
-            <a class="hover:text-gray-400 text-gray-400 hover:border-b-2 pb-1" href="{{url('signin')}}">Already have an account?</a>
+            <a class="hover:text-blue-400 text-gray-800 hover:border-b-2 pb-1" href="{{url('signin')}}">Already have an account?</a>
             <p class="text-sm text-gray-400 mt-10">All rights reserve.</p>
           </div>
 
       </div>
       </form>
-
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
   </div>

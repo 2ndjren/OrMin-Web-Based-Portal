@@ -1,4 +1,4 @@
-<footer class="py-20 md:py-20 text-gray-200 bg-gray-800" id="about">
+<footer class="py-20 mb-20 text-gray-200 bg-gray-800" id="about">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
         <div class="grid md:grid-cols-12 gap-8 lg:gap-20 mb-4 md:mb-8">
             <div class="md:col-span-5 lg:col-span-8">

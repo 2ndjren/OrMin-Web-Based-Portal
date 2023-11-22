@@ -7,7 +7,12 @@ use App\Models\appointments;
 use App\Models\blood;
 use App\Models\insurance;
 use App\Models\user as ModelsUser;
+use App\Models\volunteers;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class User extends Controller
 {
@@ -100,8 +105,34 @@ class User extends Controller
 
     }
     public function MyInsurance(){
-        $data= insurance::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','ACTIVATED'])->first();
-        return response()->json($data);
+        $ongoing= insurance::where('u_id',session('USER')['id'])->orderBy('start_at','desc')->whereIn('status',['PENDING','ACTIVATED'])->first();
+        $history= insurance::where('u_id',session('USER')['id'])->whereIn('status',['DECLINED','EXPIRED'])->get();
+        $classic=asset('/static/user/categories/classic.png');
+        $bronze=asset('/static/user/categories/bronze.png');
+        $silver=asset('/static/user/categories/silver.png');
+        $gold=asset('/static/user/categories/gold.png');
+        $platinum=asset('/static/user/categories/platinum.png');
+        $senior=asset('/static/user/categories/senior.png');
+        $plus=asset('/static/user/categories/plus.png');
+        $data=[
+            'ongoing'=>$ongoing,
+            'history'=>$history,
+            'classic'=>$classic,
+            'bronze'=>$bronze,
+            'silver'=>$silver,
+            'gold'=>$gold,
+            'platinum'=>$platinum,
+            'senior'=>$senior,
+            'plus'=>$plus,
+        ];
+        if($ongoing!=null){
+    
+            return response()->json($data);
+        }else if($ongoing!=""){
+            return response()->json($data);
+        }else{
+            return response()->json(['results'=> 'No active insurance found!']);
+        }
     }
 
     public function blood_history(){
@@ -109,6 +140,7 @@ class User extends Controller
         ->where('mname',session('USER')['mname'])
         ->where('lname',session('USER')['lname'])->get();
         $latest=blood::where('status','VALIDATED')->orderBy('donated_at','desc')->limit(1)->get();
+   
         $data=[
             'blood'=>$blood,
             'latest'=>$latest,
@@ -118,6 +150,76 @@ class User extends Controller
 
     
     }
+    public function Volunteer_Details(){
+        $withid= volunteers::where('id',session('USER')['id'])->orderBy('created_at','desc')->first();
+        $noId= volunteers::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])-> where('lname',session('USER')['lname'])->orderBy('created_at','desc')->first();
+        $volunteer=asset('/static/user/categories/volunteer.jpg');
+   
+        if($withid!=null){
+            $data=[
+                'withid'=>$withid,
+                'vol_card'=>$volunteer,
+            ];
+            return response()->json(['withid'=>$withid]);
+        }else if($noId!=null){
+            $data=[
+                'noid'=>$noId,
+                'vol_card'=>$volunteer,
+            ];
+            return response()->json($data);
+        }else{
+            return response()->json(['results'=>'No history records found!']);
+        }
+    }
+
+    public function Create_Membership_Account(Request $request){
+        $rules=[
+            'blood_type'=>'required',
+            'municipality'=>'required',
+            'barangay'=>'required',
+            'barangay_street'=>'required',
+            'level'=>'required',
+            'amount'=>'required',
+            'type_of_payment'=>'required',
+            'proof_of_payment'=>'required|image|max:25000',
+        ];
+        $validator=Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return response()->json(['failed'=>'All fields are required!']);
+        }
+        DB::beginTransaction();
+        $create= new insurance();
+        $id= mt_rand(111111111,999999999);
+        $create->id=$id;
+        $create->u_id=session('USER')['id'];
+        $create->fname=strtoupper(session('USER')['fname']);
+        $create->mname=strtoupper(session('USER')['mname']);
+        $create->lname=strtoupper(session('USER')['lname']);
+        $create->birthday=session('USER')['bday'];
+        $create->age=session('USER')['age'];
+        $create->blood_type=$request->blood_type;
+        $create->gender=strtoupper(session('USER')['gender']);
+        $create->municipality=strtoupper($request->municipality);
+        $create->barangay=strtoupper($request->barangay);
+        $create->barangay_street=strtoupper($request->barangay_street);
+        $create->level=strtoupper($request->level);
+        $create->type_of_payment=strtoupper($request->type_of_payment);
+        $path=$request->file('proof_of_payment')->store('public/membership/payments');
+        $create->proof_of_payment=Storage::url($path);
+        $create->amount=$request->amount;
+        $create->notified='0';   
+        $create->email=session('USER')['email'];
+        $create->status="PENDING";
+        $saved= $create->save();
+        if($saved){
+            DB::commit();
+            return response()->json(['success'=>'Membership account successfully created!']);
+        }else{
+            return response()->json(['failed'=>'Network error!']);
+        }
+        
+    }
+
 
     public function Membership(){
         return view('User.membership');

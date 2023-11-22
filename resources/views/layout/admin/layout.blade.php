@@ -22,8 +22,8 @@
         <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center" style="background-image: url('static/admin/sidebar.jpg')">
 
             <div class="border-b-2 border-gray-300 w-full flex flex-col items-center">
-                <img class="h-20" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Logo">
-                <h2 class="text-center pb-4 font-semibold">ADMINISTRATOR</h2>
+                <!-- <img class="h-20" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Logo"> -->
+                <h2 class="text-center p-4 font-semibold">ADMINISTRATOR</h2>
             </div>
 
             <ul class="space-y-2 p-4">

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('volunteers', function (Blueprint $table) {
             $table->string('id');
-            $table->string('vol_id')->nullable;
+            $table->string('vol_id')->nullable();
             $table->string('u_id')->nullable();
             $table->string('e_id')->nullable();
             $table->string('vol_profile')->nullable();

@@ -285,10 +285,8 @@
             <h3 class="text-4xl font-bold text-white mb-2">SHARE YOUR FEEDBACK.</h3>
             <p class="text-xl text-purple-200">Help us improve our service by providing your feedback.</p>
           </div>
-          <form action="" class="w-full">
-            <div class="mt-2 block pr-1">
-              <input type="text" name="name" class="w-full rounded-full border border-gray-300 p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600" placeholder="Enter you name" />
-            </div>
+          <form id="create-feedback-form" class="w-full">
+            @csrf
             <div>
               <textarea name="message" cols="10" rows="3" placeholder="message" class="mt-3 w-full rounded-xl border border-gray-300 p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
             </div>
@@ -305,6 +303,40 @@
   </div>
 
 </div>
+<script>
+  $(document).ready(function () {
+    Create_Feedback()
+  });
+  
+  function Create_Feedback(){
+        $('#create-feedback-form').submit(function (e) { 
+            e.preventDefault();
+            var formdata= new FormData($(this)[0]);
+            $.ajax({
+                type: "POST",
+                url: "{{url('share-feedback')}}",
+                data: formdata,
+                contentType: false,
+                 processData: false,
+                success: function (response) {
+                    if(response.success){
+                      $('#create-feedback-form')[0].reset()
+                      alert(response.success)
+                    }else if(response.failed){
+                      alert(response.failed)
+                    }else{
+                      alert('Something went wrong!')
+                    }
+                },
+        error: function(xhr, status, error) {
+          // Handle errors, if any
+          window.alert(xhr.responseText);
+        }
+            });
+            
+        });
+      }
+</script>
 <script>
   // Initialization for ES Users
 

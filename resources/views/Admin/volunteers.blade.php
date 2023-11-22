@@ -132,10 +132,12 @@
             <div class="p-2 border border-red-500 bg-red-500 bg-opacity-10 rounded-md hidden" id="failed">
               <p id="failed-message" class="text-center text-blue-500"></p>
             </div>
+
   <form id="create-volunteer-record-form"  enctype="multipart/form-data">
     @csrf
     <input type="hidden" name="account_id"  id="account_id">
     <input id="id" name="id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="hidden" >
+    
  <div class="flex space-x-2">
  <div class="mb-4 w-full">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Volunteer ID</label>
@@ -435,21 +437,21 @@
                     <div class="relative">
                         <select id="edit_municipality" name="edit_municipality" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                           <option value="">Select </option>
-                          <option value="PEURTO GALERA">Puerto Galera</option>
-                          <option value="SAN TEODORO">San Teodoro</option>
-                          <option value="BACO">Baco</option>
-                          <option value="CALAPAN CITY">Calapan</option>
-                          <option value="NAUJAN">Naujan</option>
-                          <option value="VICTORIA">Victoria</option>
-                          <option value="SOCORRO">Socorro</option>
-                          <option value="POLA">Pola</option>
-                          <option value="PINAMALAYAN">Pinamalayan</option>
-                          <option value="GLORIA">Gloria</option>
-                          <option value="BANSUD">Bansud</option>
-                          <option value="BONGABONG">Bongabong</option>
-                          <option value="ROXAS">Roxas</option>
-                          <option value="MANSALAY">Mansalay</option>
-                          <option value="BULALACAO">Bulalacao</option>
+                          <option value="Baco">Baco</option>
+                <option value="Bansud">Bansud</option>
+                <option value="Bongabong">Bongabong</option>
+                <option value="Bulalacao">Bulalacao</option>
+                <option value="Calapan">Calapan</option>
+                <option value="Gloria">Gloria</option>
+                <option value="Mansalay">Mansalay</option>
+                <option value="Naujan">Naujan</option>
+                <option value="Pinamalayan">Pinamalayan</option>
+                <option value="Pola">Pola</option>
+                <option value="Puerto Galera">Puerto Galera</option>
+                <option value="Roxas">Roxas</option>
+                <option value="San Teodoro">San Teodoro</option>
+                <option value="Socorro">Socorro</option>
+                <option value="Victoria">Victoria</option>
 
 
                         </select>
@@ -492,13 +494,6 @@
        
     </div>
   </div>
-
-
-
-
-
-
-
 
 
   <div id="volunteer-account-profile-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-20  bg-black bg-opacity-50  ">
