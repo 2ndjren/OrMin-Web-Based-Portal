@@ -16,10 +16,10 @@
 <body class="">
   <div class="flex h-screen  w-screen overflow-y-hidden ">
     <div class="flex-wrap w-full xl:fixed">
-      <div class="flex p-2 h-25 w-full bg-red-600  border-b-4 border-gray-400">
+      <div class="flex p-2 h-25 w-full bg-red-800  border-b-4 border-gray-400">
         @if (session('USER'))
         
-        <nav class="w-screen dark:bg-gray-900 dark:border-gray-700 shadow-md">
+        <nav class="w-screen">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center">
               <!-- <img class="h-14" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Red ross Logo Logo" /> -->
@@ -110,7 +110,7 @@
 
         @else
 
-        <nav class="w-screen dark:bg-gray-900 dark:border-gray-700 shadow-md">
+        <nav class="w-screen">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center">
               <!-- <img class="h-14" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="Red ross Logo Logo" /> -->

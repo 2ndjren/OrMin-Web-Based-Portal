@@ -5,6 +5,7 @@ $(document).ready(function () {
   AppointmentBtn()
   Membership()
   MemberhsipBtn()
+  Volunteer_Account()
   
 });
 
@@ -229,51 +230,111 @@ function Membership(){
       console.log(data)
       $('#membership-info').empty()
       if(data.results){
+        var results="<div class=''>"
+        results+="<p>"+data.results+"</p>";
+        results+="<button type='button' id='open-modal-form' class='p-2 bg-green-500 text-white rounded-md'>Get yours now!</button>";
+        results+="</div>";
+        $('#membership-info').append(results);
+      }else if(data.ongoing.status==="PENDING"){
+        var ongoing="<div class=' p-5 rounded-md bg-blue-500 bg-opacity-10'>"
+        ongoing+="<p class='text-lg font-semibold text-blue-500'>Membership Account</p>";
+        ongoing+="<p>Program to Avail: <span class='text-green font-semibold text-yellow-500 '>"+data.ongoing.level+"</span></p>";
+        ongoing+="<p>Amount: ₱"+data.ongoing.amount+".00 </p>";
+        ongoing+="<p>Status: <span class='px-2 py-1 rounded-full bg-yellow-500 text-sm font-semibold text-white'>"+data.ongoing.status+"</span></p>";
+        ongoing += "<div class='flex justify-center h-72 w-96' style='background-image: url(" + data.classic + ")'>";
+        
+        ongoing+="</div >";
+        ongoing+="</div>";
+        $('#membership-info').append(ongoing);
+      }else if(data.ongoing.status==="ACTIVATED"){
+        var ongoing="<div class=' p-5 rounded-md bg-blue-500 bg-opacity-10'>"
+        ongoing+="<p class='text-lg font-semibold text-blue-500'>Membership Account</p>";
+        ongoing+="<p>Program to Avail: <span class='text-green font-semibold text-green-500 '>"+data.ongoing.level+"</span></p>";
+        ongoing+="<p>Amount: ₱"+data.ongoing.amount+".00 </p>";
+        ongoing+="<p>Status: <span class='px-2 py-1 rounded-full bg-green-500 text-sm font-semibold text-white'>Active</span></p>";
+        var start = new Date(data.ongoing.start_at);
 
-        var membership="<div class='pt-10 w-full flex justify-center space-y-2  space-x-3 text-center'><div class=' bg-white w-3/4 opacity-5 p-10 rounded-xl'>"
-        membership+="<p class='text-red-500 text-xl font-semibold' >NO MEMBERSHIP FOUND!<p>"
-        membership+="<p class='text-blue-500' >You don't have any membership account found that match in your details but you can still avail one of this program.<p>"
-        membership+="<p class='text-blue-500' >Just click the button bellow if you want to see more information  about this  membership program <p>"
-        membership+="<p class='text-blue-500 mb-5' >or avail yours now!<p>"
-        membership+="<div class='flex justify-center space-x-3'><a href='' class='font-semibold text-sm px-5 py-2 bg-red-600 rounded-xl shadow-md text-white hover:text-red-500 hover:bg-white hover:border-2 border-red-500 ' >Membership Details</a >"
-        membership+=" <button id='register-program-btn' class='font-semibold text-sm px-5 py-2 bg-red-600 rounded-xl shadow-md text-white hover:text-red-500 hover:bg-white hover:border-2 border-red-500 ' >Register Now!</button > </div>"
-        membership+="</div></div>"
-        $('#membership-info').append(membership)
-      }else{
-        var details="<div class='p-5'><div><p class='font-semibold text-cyan-500 text-sm mt-5'>INSURANCE INFORMATION</div>"
-        if(data.status==="ACTIVATED"|| data.status==="EXPIRED"){
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>MEMBERSHIP ID: </span><span class='font-semibold text-gray-600'>"+ data.mem_id+"</span></p>"
+        var startday = start.getDate(); 
+        var startmonth = start.getMonth() + 1; 
+        var startyear = start.getFullYear(); 
+        var end = new Date(data.ongoing.end_at);
 
+        var endday = end.getDate(); 
+        var endmonth = end.getMonth() + 1; 
+        var endyear = end.getFullYear(); 
+        var months = [
+          "January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+        ];
+        var startmon = months[startmonth - 1];
+        var endmon = months[endmonth - 1];
+        ongoing+="<p>Validity: "+startmon+" "+startday+", "+startyear+"-"+endyear+"</p>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden classic-card' style='background-image:url("+data.classic+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden bronze-card' style='background-image:url("+data.bronze+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden silver-card' style='background-image:url("+data.silver+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden gold-card' style='background-image:url("+data.gold+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden platinum-card' style='background-image:url("+data.platinum+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden senior-card' style='background-image:url("+data.senior+");'>";
+        ongoing+="</div>";
+        ongoing+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden plus-card' style='background-image:url("+data.plus+");'>";
+        ongoing+="</div>";
+        if(ongoing.level==="CLASSIC"){
+          $('#classic-card').removeClass('hidden')
         }
-   if(data.sname!==""){
-    details+="<p><span class='font-semibold text-gray-500 text-xs'>NAME: </span><span class='font-semibold text-gray-600'>"+data.fname+" "+data.mname+ " "+data.lname+" "+data.sname+"</span></p>"
-   }else{
-    details+="<p><span class='font-semibold text-gray-500 text-xs'>NAME: </span><span class='font-semibold text-gray-600'>"+data.fname+" "+data.mname+ " "+data.lname+"</span></p>"
-   }
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>AGE: </span><span class='font-semibold text-gray-600'>"+ data.age+"</span></p>"
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>BIRTHDAY: </span><span class='font-semibold text-gray-600'>"+ data.birthday+"</span></p>"
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>GENDER: </span><span class='font-semibold text-gray-600'>"+ data.gender+"</span></p>"
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>ADDRESS: </span><span class='font-semibold text-gray-600'>"+ data.address+"</span></p>"
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>LEVEL: </span><span class='font-semibold text-gray-600'>"+ data.level+"</span></p>"
-   details+="<p><span class='font-semibold text-gray-500 text-xs'>PRICE: </span><span class='font-semibold text-gray-600'>"+ data.amount+"</span></p>"
-if(data.status==="PENDING"){
-  details+="<p><span class='font-semibold text-gray-500 text-xs'>STATUS: </span><span class='font-semibold  bg-gray-600 text-white rounded-md py-1 px-2'>"+ data.status+"</span></p>"
-
-}
-else if(data.status==="ACTIVATED"){
-  details+="<p><span class='font-semibold text-gray-500 text-xs'>STATUS: </span><span class='font-semibold  bg-green-600 text-white rounded-md py-1 px-2'>"+ data.status+"</span></p>"
-  details+="<p><span class='font-semibold text-gray-500 text-xs'>VALIDTIY: </span><span class='font-semibold '>"+ data.start_at+"-"+data.end_at+"</span></p>"
-
-}
-else if(data.status==="EXPIRED"){
-  details+="<p><span class='font-semibold text-gray-500 text-xs'>STATUS: </span><span class='font-semibold  bg-red-600 text-white rounded-md py-1 px-2'>"+ data.status+"</span></p>"
-  details+="<p><span class='font-semibold text-gray-500 text-xs'>VALIDTIY: </span><span class='font-semibold '>"+ data.start_at+"-"+data.end_at+"</span></p>"
-
-}
-        details+="</div>"
-        $('#membership-info').append(details)
+   
+        ongoing+="</div>";
+        $('#membership-info').append(ongoing);
       }
+      
     }
+  });
+}
+function Volunteer_Account(){
+  $.ajax({
+    type: "GET",
+    url: "/volunteer-details-card",
+    data: "data",
+    dataType: "json",
+    success: function (response) {
+      console.log(response)
+
+
+      var noid="<div class='h-96 w-auto bg-no-repeat mt-5 hidden plus-card' style='background-image:url("+response.vol_card+");'>";
+      noid+="</div>"
+      noid+="<p>"+response.noid.fname+"</p>"
+      $('#volunteer-details').append(noid)
+      if(response.noid){
+        var noid="<div>"
+
+        noid+="<div class='h-96 w-auto bg-no-repeat mt-5 hidden plus-card' style='background-image:url("+response.vol_card+");'>";
+        noid+="<p>"+response.noid.fname+"</p>"
+        noid+="</div>";
+        noid+="</div>"
+        $('#volunteer-details').append(noid)
+      }else if(response.withid){
+        var withid="<div>"
+
+        withid+="<p>"+response.withid+"</p>"
+        withid+="</div>"
+        $('#volunteer-details').append(withid)
+
+      }else if(response.results){
+        var results="<div>"
+
+        results+="<p>"+response.results+"</p>"
+        results+="</div>"
+        $('#volunteer-details').append(results)
+      }
+      
+    },  error: function (xhr, status, error) {
+      // Handle errors, if any
+      window.alert(xhr.responseText);
+  }
   });
 }
 

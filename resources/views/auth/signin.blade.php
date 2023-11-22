@@ -21,15 +21,16 @@
         <!-- First Column -->
         <div class="flex items-center w-full justify-center h-auto p-4">
           <div class="w-full text-center">
-          <div class="w-full flex justify-center">
+          <!-- <div class="w-full flex justify-center">
 
           <a href="{{url('/')}}" class="flex">
               <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
             </a>
-        </div>
+        </div> -->
 
             <p class="text-white font-normal text-sm md:text-xl pb-5">Connecting Hearts, Saving Lives</p>
-            <p class="text-white font-bold text-2xl md:text-6xl">OrMiN-RC Portal System</p>
+            <p class="text-white font-bold text-2xl md:text-6xl">PRC ORMIN</p>
+            <p class="text-white font-semi  bold text-xl md:text-5xl">Portal System</p>
             <p class="text-gray-500 font-lighter text-xs md:text-lg py-5"><i>The Philippine Red Cross Oriental Mindoro Chapter is a vital humanitarian organization dedicated to serving the needs of the local community and beyond. Nestled in the heart of Oriental Mindoro, this chapter is a beacon of hope and support during times of crisis and a pillar of assistance in times of need.</i></p>
           </div>
         </div>
@@ -54,7 +55,7 @@
               @csrf
               <div class="block" id="signin-email">
                 <label class="text-sm text-white" for="">Email <br></label>
-                <input name="email" type="email" class="text-green-600 p-2 w-full text-md rounded-sm @error('email') is-invalid @enderror">
+                <input name="email" type="email" class="text-gray-900 p-2 w-full text-md rounded-sm @error('email') is-invalid @enderror">
                 <div>@error('email')
                   <p class="text-left text-red-700 text-sm"><sup>{{$message}}</sup></p>
                   @enderror
@@ -62,7 +63,7 @@
               </div>
               <div class="block pt-4" id="signin-password">
                 <label class="text-sm text-white" for="">Password <br></label>
-                <input name="password" type="password" class="text-green-600 p-2 w-full text-md rounded-sm @error('password') is-invalid @enderror">
+                <input name="password" type="password" class="text-gray-900 p-2 w-full text-md rounded-sm @error('password') is-invalid @enderror">
                 <div>@error('password')
                   <p class="text-left text-red-700 text-sm"><sup>{{$message}}</sup></p>
                   @enderror
