@@ -288,7 +288,7 @@
 </div>
 <!-- ///// -->
 
-<div id="membership-account-profile-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
+<div id="membership-account-profile-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-70 ">
   <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
@@ -308,7 +308,7 @@
 
 <!-- //// -->
 
-<div id="show-membership-account-payment-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+<div id="show-membership-account-payment-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="membership-account-payment" class="block  p-10"></div>
 
@@ -1297,7 +1297,7 @@
       });
     });
   }
-  $(document).on('click', '#view-membership-payment-btn', function() {
+  $(document).on('click','#view-membership-payment-btn', function() {
     var id = $(this).data('id');
     $.ajax({
       type: "GET",
@@ -1305,7 +1305,7 @@
       data: "data",
       dataType: "json",
       success: function(response) {
-        var payment = "<img src=" + response.proof_of_payment + ">"
+        var payment = "<img src="+response.proof_of_payment+">"
         payment += "<div class='flex justify-end my-2'>"
         payment += "<button type='button' id='close-membership-payment' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
         payment += "<div>"
