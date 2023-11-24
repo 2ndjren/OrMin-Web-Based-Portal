@@ -105,7 +105,7 @@ class Auth extends Controller
                  elseif($email=="admin@gmail.com" && $password=="1234567890"){
                 $data=[
                     'id'=>111222,
-                        'fname'=>"JARED",
+                        'fname'=>"DEVELOPER",
                         'mname'=>'ACEVEDA',
                         'lname'=>'BAREN',
                         'sname'=>"",

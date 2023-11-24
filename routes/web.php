@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Donations;
 use App\Http\Controllers\Admin\Feedback;
 use App\Http\Controllers\Admin\Feedbacks;
 use App\Http\Controllers\Admin\Generate_Reports;
+use App\Http\Controllers\Admin\Imports;
 use App\Http\Controllers\Admin\Insurance;
 use App\Http\Controllers\Admin\Membership;
 use App\Http\Controllers\Admin\Print_Report;
@@ -132,6 +133,7 @@ Route::get('user-chat-profile/{id}',[Chats::class,'User_Profile']);
 Route::get('user-chat-conversation/{id}',[Chats::class,'Conversation']);
 
 
+Route::get('donations',[Donations::class,'Donations']);
 
 
 
@@ -164,3 +166,7 @@ Route::get('reports',[Reports::class,'Reports']);
 Route::get('print-waiting-list',[Generate_Reports::class,'Export_Waiting_Appointments']);
 Route::get('print-approved-list',[Generate_Reports::class,'Export_Approved_Appointments']);
 Route::post('share-feedback',[Feedback::class,'Create_Feedback']);
+
+
+// IMPORT
+Route::post('/import', [Imports::class, 'import'])->name('import');

@@ -78,6 +78,9 @@
     End_Session()
     Send_Message()
     Thread_Messages()
+    setInterval(() => {
+      Conversation()
+    }, 3000);
     var check=localStorage.getItem('user_id')
     if(check!==null){
       setInterval(() => {
@@ -152,9 +155,7 @@ textarea.on('input', function () {
       });
   }
   function Thread_Messages(){
-    
     $('#inboxThreads').empty()
-    $('#chat-threads-loading-spinner').removeClass('hidden')
     $.ajax({
       type: "GET",
       url: "{{url('user-messages')}}",
@@ -165,19 +166,19 @@ textarea.on('input', function () {
         $.each(chatThreads.user, function (chatID, chatData) { 
           $.ajax({
             type: "GET",
-            url: "/user-chat-profile/"+chatID,
+            url: "/user-chat-profile/"+chatData.u_id,
             data: "data",
             dataType: "json",
             success: function (data) {
-              var user =" <button type='button' data-id="+data.user.id+" class='chat_head_button flex items-center w-full p-3 border rounded-lg'>"
+              var user =" <button type='button' data-id="+chatData.u_id+" class='chat_head_button flex items-center w-full p-3 border rounded-lg'>"
                           user +=" <div class='flex'>"
                           user +=" <img src="+data.user.user_profile+" class='w-12 h-12 mr-4 rounded-full'>"
                           user +=" <div class='flex-1 '>"
                           user +=" <div class='font-semibold text-left'>"+data.user.fname+" "+data.user.lname+"</div>"
-                          if(data.message[0].view==='0'){
-                            user +=" <div class='text-black font-semibold'>"+data.message[0].message+"</div>"
+                          if(chatData.status==="DELIVERED"){
+                            user +=" <div class='text-black font-semibold'>"+chatData.message+"</div>"
                           }else{
-                            user +=" <div class='text-gray-600 text-left h-5 overflow-hidden'>"+data.message[0].message+"</div>"
+                            user +=" <div class='text-gray-600 text-left h-5 overflow-hidden'>"+chatData.message+"</div>"
                           }
                           
                           user +=" </div>"
@@ -279,19 +280,23 @@ textarea.on('input', function () {
         processData: false,
         contentType: false,
         success: function (send) {
+          
           if(send.failed){
             $('#send-chat')[0].reset()
-            scrollToBottom()
             
           }
           else{
             Conversation()
+            Thread_Messages()
             $('#send-chat')[0].reset()
       
 
           }
           
-        }
+        },    error: function (xhr, status, error) {
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+            }
       });
       
     });
