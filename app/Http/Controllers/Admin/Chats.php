@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\chat;
 use App\Models\chat_notification;
+use App\Models\chat_threads;
 use App\Models\push_notification;
 use App\Models\user;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -66,9 +68,6 @@ class Chats extends Controller
             $send->u_id=$request->u_id;
             $send->e_id=session('STAFF')['id'];
             $send->type=session('STAFF')['type'];
-        }else{
-            $send->u_id=$request->u_id;
-            $send->e_id=session('STAFF')['id'];
         }
         if($request->message!=null){
             $send->message=$message;
@@ -81,8 +80,84 @@ class Chats extends Controller
         $send->status='DELIVERED';
         $sent=$send->save();
         if($sent){
-            DB::commit();
-            return response()->json(['success'=>'Message sent!']);
+            $chat_threads= new chat_threads();
+            if(session('USER')){
+                $match=chat_threads::find(session('USER')['id']);
+                if($match){
+                    $updated=chat_threads::where('u_id',$match->u_id)->update([
+                        'message'=>$message,
+                        'sent_at'=>Carbon::now(),
+                        'status'=>'DELIVERED',
+                    ]);
+                    if($updated){
+                        DB::commit();
+                        return response()->json(['success'=>'Message sent!']);
+                    }
+                    else{
+                        DB::rollBack();
+                        return response()->json(['failed'=>'error send!']);
+                    }
+                
+                }else{
+                $user=user::find(session('USER')['id']);
+                   if($user){
+                    $chat_threads->u_id=$user->id;
+                    $chat_threads->prof_image=$user->user_profile;
+                    $chat_threads->message=$message;
+                    $chat_threads->sent_at=Carbon::now();
+                    $chat_threads->status='DELIVERED';
+                    $saved=$chat_threads->save();
+                    if($saved){
+                        DB::commit();
+                        return response()->json(['success'=>'Message sent!']);
+                    }else{
+                        DB::rollBack();
+                        return response()->json(['message'=>'Check your network!']);
+                    }
+                   }
+                }
+            }else{
+                $match=chat_threads::find($request->u_id);
+                if($match){
+                    $updated=chat_threads::where('u_id',$match->u_id)->update([
+                        'message'=>$message,
+                        'sent_at'=>Carbon::now(),
+                        'status'=>'DELIVERED',
+                    ]);
+                    if($updated){
+                        DB::commit();
+                        return response()->json(['success'=>'Message sent!']);
+                    }
+                    else{
+                        DB::rollBack();
+                        return response()->json(['failed'=>'Check your !']);
+                    }
+                
+                }else{
+                $user=user::find($request->u_id);
+                   if($user){
+                    $chat_threads->u_id=$user->id;
+                    $chat_threads->prof_image=$user->user_profile;
+                    $chat_threads->message=$message;
+                    $chat_threads->sent_at=Carbon::now();
+                    $chat_threads->status='DELIVERED';
+                    $saved=$chat_threads->save();
+                    if($saved){
+                        DB::commit();
+                        return response()->json(['success'=>'Message sent!']);
+                    }else{
+                        DB::rollBack();
+                        return response()->json(['failed'=>'Check your network!']);
+                    }
+                   }else{
+                    return response()->json(['failed'=>'User not found!']);
+
+                   }
+                }
+                
+            }
+       
+            
         }else{
             return response()->json(['failed'=>'Message not sent!']);
         }
@@ -106,6 +181,7 @@ class Chats extends Controller
     public function Conversation($id){
         $notify=chat::where('u_id',$id)->where('notify','0')->update(['notify'=>'1']);
         $view=chat::where('u_id',$id)->where('view','0')->update(['view'=>'1']);
+        $thread_status=chat_threads::where('u_id',$id)->where('status','DELIVERED')->update(['status'=>'SEEN']);
         $seen=chat::where('u_id',$id)->where('status','DELIVERED')->update(['status'=>'SEEN']);
         $user=user::find($id);
         
@@ -120,19 +196,13 @@ class Chats extends Controller
     public function User_Messages(){
         if(session('ADMIN')|| session('STAFF'))
         {
-            $check=chat::with('user')->get();
-            $match=$check->groupBy('u_id')->count();
-          if($match>0){
-            $user = chat::with('user') ->orderby('created_at','desc')->get();
-            $groupdata = $user->groupBy('u_id');
-        $data = [
-          'user'=>$groupdata,
-        ];
-        
-        return response()->json($data);
-          }else{
-            return response()->json(['results'=>'No messages yet!']);
-          }
+            $messages=chat_threads::whereIn('status',['SEEN','DELIVERED'])->orderBy('sent_at','desc')->get();
+            $data = [
+                'user'=>$messages,
+              ];
+              
+              return response()->json($data);
+
         }
         
         if(session('USER'))

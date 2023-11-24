@@ -57,6 +57,11 @@
       </div>
       @if(session('ADMIN'))
       <div class=" flex justify-end space-x-2">
+
+
+
+        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Import Data</button>
+
         <button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
         <button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Print</button>
       </div>
@@ -75,10 +80,10 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
-        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
       </div>
     </header>
 
@@ -294,10 +299,10 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
-        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
       </div>
     </header>
     <div id="membership-account-profile" class="flex p-4"></div>
@@ -324,10 +329,10 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
-        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-        <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-        <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
       </div>
     </header>
 
@@ -661,22 +666,22 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 
-  <div id="export-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-    <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+<div id="export-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-<div class="container mx-auto p-2 text-center relative">
-  <!-- Logo positioned on top center of the header -->
-  <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-  <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
-  <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
-</div>
-</header>
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
 
-<div class="p-4">
+    <div class="p-4">
       <div id="membership-account-payment" class="block  p-3">
         <form id="membership-export-data-form">
           @csrf
@@ -748,27 +753,60 @@
         </form>
       </div>
 
-      </div>
-
     </div>
+
+  </div>
+</div>
+
+<div id="import-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
+
+    <div class="p-4">
+
+
+      <form id="importForm" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" accept=".xlsx,.xls" required>
+
+        <div class="flex justify-end space-x-2">
+          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
+        </div>
+      </form>
+    </div>
+
   </div>
 
-  <div id="decline-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-    <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
-      <div id="decline-membership-note" class="w-full">
-        <p class="font-semibold">State your reason on the text box!</p>
-        <form id="decline-membership-form"">
+</div>
+
+
+<div id="decline-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
+    <div id="decline-membership-note" class="w-full">
+      <p class="font-semibold">State your reason on the text box!</p>
+      <form id="decline-membership-form"">
         @csrf
         <input id=" decline-id" type="hidden" name="id">
-          <textarea placeholder="Write here..." class="border w-full" name="note" id="" cols="30" rows="5"></textarea>
-          <div class="flex justify-end space-x-2">
-            <button id="close-decline-membership-account-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
-            <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
-          </div>
-        </form>
-      </div>
+        <textarea placeholder="Write here..." class="border w-full" name="note" id="" cols="30" rows="5"></textarea>
+        <div class="flex justify-end space-x-2">
+          <button id="close-decline-membership-account-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>
 
 
 <script>
@@ -1128,6 +1166,15 @@
     $('#export-data-form-modal').addClass('block')
 
   });
+  $('#open-import-modal-form-btn').click(function(e) {
+    e.preventDefault();
+    $('#import-data-form-modal').removeClass('hidden')
+    $('#import-data-form-modal').addClass('block')
+
+  });
+
+
+
   $('#close-export-date-form-modal-btn').click(function(e) {
     e.preventDefault();
     $('#membership-export-data-form')[0].reset()
@@ -1297,7 +1344,7 @@
       });
     });
   }
-  $(document).on('click','#view-membership-payment-btn', function() {
+  $(document).on('click', '#view-membership-payment-btn', function() {
     var id = $(this).data('id');
     $.ajax({
       type: "GET",
@@ -1305,7 +1352,7 @@
       data: "data",
       dataType: "json",
       success: function(response) {
-        var payment = "<img src="+response.proof_of_payment+">"
+        var payment = "<img src=" + response.proof_of_payment + ">"
         payment += "<div class='flex justify-end my-2'>"
         payment += "<button type='button' id='close-membership-payment' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
         payment += "<div>"
@@ -1408,7 +1455,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1434,7 +1481,26 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<span class=" font-semibold text-xs  ">' + row.start_at + '-' + row.end_at + '</span>'
+
+            var start = new Date(row.start_at);
+
+var startday = start.getDate(); 
+var startmonth = start.getMonth() + 1; 
+var startyear = start.getFullYear(); 
+
+var end = new Date(row.end_at);
+
+var endday = end.getDate(); 
+var endmonth = end.getMonth() + 1; 
+var endyear = end.getFullYear(); 
+var months = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+var startmon = months[startmonth - 1];
+var endmon = months[endmonth - 1];
+
+            return '<span class=" font-semibold text-xs  ">' +  startmon + ' ' + startday + ', ' + startyear + ' - ' + endyear + '</span>'
           }
         },
         {
@@ -1473,7 +1539,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1541,7 +1607,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1592,7 +1658,7 @@
         success: function(response) {
           console.log(response)
           var left_details = "<div class='w-full'>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " " + response.mname + " " + response.lname + "</span></p>"
+          left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " "  + " " + response.lname + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>AGE. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.age + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.gender + "</span></p>"
@@ -1645,6 +1711,49 @@
     });
 
   }
+
+ 
+  function importExcel() {
+    var formData = new FormData();
+    formData.append('file', $('input[name="file"]')[0].files[0]);
+
+    // Get CSRF token from the meta tag
+    var token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+      type: "POST",
+      url: "{{ route('import') }}",
+      data: formData,
+      processData: false,
+      contentType: false,
+      headers: {
+        'X-CSRF-TOKEN': token // Include CSRF token in the header
+      },
+      success: function(response) {
+        console.log(response);
+        $('#import-data-form-modal').addClass('hidden');
+
+        // Handle success response here
+        // Refresh the table (assuming your table has an ID of 'data-table')
+  
+      $('#membership-accounts-table').DataTable().ajax.reload(); // Reload DataTable
+            
+
+ 
+      },
+      error: function(xhr, status, error) {
+        console.error(xhr.responseText);
+        // Handle error response here
+        window.alert(xhr.responseText);
+      }
+    });
+  }
+
+  // Close modal when the "Back" button is clicked
+  $('#close-import-modal-form-btn').on('click', function() {
+    $('#import-data-form-modal').addClass('hidden');
+  });
 </script>
 
 @endsection
+

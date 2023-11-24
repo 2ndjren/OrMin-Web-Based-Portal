@@ -26,4 +26,5 @@ class chat extends Model
         return $this->belongsTo(chat::class, 'u_id', 'id');
     }
 
+
 }

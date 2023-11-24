@@ -29,8 +29,7 @@
           </div> -->
 
           <p class="text-white font-normal text-sm md:text-xl pb-5">Connecting Hearts, Saving Lives</p>
-          <p class="text-white font-bold text-2xl md:text-6xl">PRC ORMIN</p>
-            <p class="text-white font-semi  bold text-xl md:text-5xl">Portal System</p>
+          <p class="text-white font-bold text-2xl md:text-6xl">PRC MINDORO ORIENTAL CHAPTER</p>
           <p class="text-gray-500 font-lighter text-xs md:text-lg py-5"><i>The Philippine Red Cross Oriental Mindoro Chapter is a vital humanitarian organization dedicated to serving the needs of the local community and beyond. Nestled in the heart of Oriental Mindoro, this chapter is a beacon of hope and support during times of crisis and a pillar of assistance in times of need.</i></p>
         </div>
       </div>

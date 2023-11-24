@@ -98,7 +98,7 @@ var targetarea=  $('#last-message')
           else{
             $('#chat-error-message').removeClass('hidden')
           $('#chat-error-message').addClass('block')
-          $('#chat-error-message').text(data.errors.message)
+          $('#chat-error-message').text(data.failed)
           setTimeout(() => {
             $('#chat-error-message').removeClass('block')
           $('#chat-error-message').addClass('hidden')
@@ -163,7 +163,7 @@ var targetarea=  $('#last-message')
         $('#conversations').append(message);
        }
 
-        scrollToBottom()
+        // scrollToBottom()
 
       },
       error: function (xhr, status, error) {

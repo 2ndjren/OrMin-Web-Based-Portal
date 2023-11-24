@@ -38,6 +38,9 @@ class user extends Model
         // Define a one-to-many relationship with the Announcement model
         return $this->hasMany(announcement::class, 'e_id', 'id');
     }
+    public function Chat_threads(){
+        return $this->hasOne(chat_threads::class,'u_id','id');
+    }
 
 }
 

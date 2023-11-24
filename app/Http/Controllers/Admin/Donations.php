@@ -16,7 +16,7 @@ class Donations extends Controller
 {
     //
     public function Donations(){
-        if(session('ADMIN')){
+        if(session('ADMIN')||session('STAFF')){
             return view('Admin.donations');
 
         }
