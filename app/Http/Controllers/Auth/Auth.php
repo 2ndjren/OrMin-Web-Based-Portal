@@ -14,29 +14,22 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-
-
 
 class Auth extends Controller
 {
-    
     //
-    public function SignIn($randomChars){
-        // $randomChars will contain the value passed in the URL
-
-        // Your existing logic here
-        $url = route('signin', ['randomChars' => $randomChars]);
-
+    public function SignIn(){
+        
         if(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
-        } elseif(session('USER')){
+        }
+        elseif(session('USER')){
             return redirect('/');
-        } else {
-            return view('auth.signin', compact('url'));   
+        }
+        else{
+            return view('auth.signin');   
         }
     }
-    
     public function SignUp(){
         if(session('USER')){
             return view('User.profile');
