@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Insurance;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Imports_data implements ToModel, WithStartRow
 {
@@ -16,15 +17,15 @@ class Imports_data implements ToModel, WithStartRow
     public function model(array $row)
     {
         $id = mt_rand(111111111, 999999999);
-    // Convert Excel date serial number to a Unix timestamp
-    $birthday = !empty($row[3]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[3]) : null;
-    $startAt = !empty($row[6]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[6]) : null;
-    $endAt = !empty($row[7]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[7]) : null;
+        // Convert Excel date serial number to a Unix timestamp
+        $birthday = !empty($row[3]) ? Date::excelToTimestamp($row[3]) : null;
+        $startAt = !empty($row[6]) ? Date::excelToTimestamp($row[6]) : null;
+        $endAt = !empty($row[7]) ? Date::excelToTimestamp($row[7]) : null;
 
-    // Convert Unix timestamp to 'YYYY-MM-DD' format
-    $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
-    $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
-    $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
+        // Convert Unix timestamp to 'YYYY-MM-DD' format
+        $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
+        $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
+        $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
         return new Insurance([
             'id' => $id,
@@ -34,12 +35,12 @@ class Imports_data implements ToModel, WithStartRow
             'municipality' => $row[4],
             'type_of_payment' => $row[5],
             'start_at' => $formattedStartAt,
-            'end_at' => $formattedEndAt,    
+            'end_at' => $formattedEndAt,
             'mem_id' => $row[8],
             'OR#' => $row[9],
             'level' => 'CLASSIC',
             'status' => "ACTIVATED",
-            
+
         ]);
     }
 }
