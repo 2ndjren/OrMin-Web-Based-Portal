@@ -16,25 +16,25 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+
+
 class Auth extends Controller
 {
+    
     //
     public function SignIn(){
-
-        $token = Str::random(20); // Change 20 to your desired length
-        $url = route('signin') . '?token=' . $token;
-        
-
+        $randomChars = Str::random(10); // Generates a string of 10 characters
+        $url = route('signin', ['randomChars' => $randomChars]);
+    
         if(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
-        }
-        elseif(session('USER')){
+        } elseif(session('USER')){
             return redirect('/');
-        }
-        else{
-             return view('auth.signin', ['url' => $url]);  
+        } else {
+            return view('auth.signin', compact('url'));   
         }
     }
+    
     public function SignUp(){
         if(session('USER')){
             return view('User.profile');
