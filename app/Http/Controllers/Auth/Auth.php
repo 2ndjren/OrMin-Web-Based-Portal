@@ -14,11 +14,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class Auth extends Controller
 {
     //
     public function SignIn(){
+
+        $token = Str::random(20); // Change 20 to your desired length
+        $url = route('signin') . '?token=' . $token;
+        
 
         if(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
@@ -27,7 +32,7 @@ class Auth extends Controller
             return redirect('/');
         }
         else{
-            return view('auth.signin');   
+             return view('auth.signin', ['url' => $url]);  
         }
     }
     public function SignUp(){
