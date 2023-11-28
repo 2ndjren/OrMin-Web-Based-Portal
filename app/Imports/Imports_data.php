@@ -17,9 +17,9 @@ class Imports_data implements ToModel, WithStartRow
     {
         $id = mt_rand(111111111, 999999999);
     // Convert Excel date serial number to a Unix timestamp
-    $birthday = !empty($row[2]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[3]) : null;
-    $startAt = !empty($row[7]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[6]) : null;
-    $endAt = !empty($row[8]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[7]) : null;
+    $birthday = !empty($row[3]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[3]) : null;
+    $startAt = !empty($row[6]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[6]) : null;
+    $endAt = !empty($row[7]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[7]) : null;
 
     // Convert Unix timestamp to 'YYYY-MM-DD' format
     $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
