@@ -836,7 +836,7 @@
       success: function(check) {
         var today = new Date();
         var formattedDate = today.toISOString().split('T')[0];
-        $.each(check, function(index, field) {
+        $.each(check.toexpire, function(index, field) {
           if (field.days_before_end === formattedDate && field.notified === '0') {
             $.ajax({
               type: "GET",
@@ -845,10 +845,32 @@
               dataType: "json",
               success: function(response) {
                 console.log(response)
-              }
+              },
+              error: function(xhr, status, error) {
+          // Handle errors, if any
+          window.alert(xhr.responseText);
+        }
             });
-          } else {}
+          }
 
+        });
+        $.each(check.expired, function (index, field) { 
+          if(field.end_at===formattedDate && field.status==='ACTIVATED' && field.notified==='1') {
+            $.ajax({
+              type: "GET",
+              url: "/notify-expired-account/" + field.id,
+              data: "data",
+              dataType: "json",
+              success: function(response) {
+                console.log("success")
+              },
+              error: function(xhr, status, error) {
+          // Handle errors, if any
+          window.alert(xhr.responseText);
+        }
+            });
+
+          }  
         });
 
       }

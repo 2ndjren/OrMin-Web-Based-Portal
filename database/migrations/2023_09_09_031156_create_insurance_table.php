@@ -17,19 +17,28 @@ return new class extends Migration
             $table->string('u_id')->nullable();
             $table->string('e_id')->nullable();
             $table->string('fname');
-            $table->string('mname');
+            $table->string('mname')->nullable();
             $table->string('lname');
             $table->string('sname')->nullable();
-            $table->string('blood_type');
+<<<<<<< Updated upstream
+            $table->string('blood_type')->nullable();
             $table->string('age');
-            $table->string('gender');
+=======
+            $table->string('blood_type');
+            $table->string('age')->nullable();
+>>>>>>> Stashed changes
+            $table->string('gender')->nullable();
             $table->string('birthday');
             $table->string('municipality');
-            $table->string('barangay');
-            $table->string('barangay_street');
+            $table->string('barangay')->nullable();
+            $table->string('barangay_street')->nullable();
             $table->string('level');
+<<<<<<< Updated upstream
+            $table->string('amount')->nullable();
+=======
             $table->string('amount');
-            $table->string('email');
+>>>>>>> Stashed changes
+            $table->string('email')->nullable();
             $table->string('status');
             $table->date('start_at')->nullable();
             $table->date('end_at')->nullable();

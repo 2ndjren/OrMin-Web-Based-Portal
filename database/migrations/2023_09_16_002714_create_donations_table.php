@@ -18,14 +18,15 @@ return new class extends Migration
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');
-            $table->string('sname')->nullable();
             $table->string('age');
             $table->string('gender');
             $table->string('municipality_city');
             $table->string('donated_amount');
             $table->string('donation_type')->nullable();
             $table->string('payment_type')->nullable();
-            $table->string('company_name')->nullable();
+            $table->string('type')->nullable();
+            $table->text('note')->nullable();
+            $table->string('donator_info')->nullable();
             $table->string('donation_proof')->nullable();
             $table->string('status');
             $table->timestamps();

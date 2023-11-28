@@ -1,247 +1,485 @@
 @extends('layout.admin.layout')
-@include('layout.admin.modals.donation')
-@include('layout.admin.modals.blood_modal')
-
 @section('donations')
 <title>Donations</title>
+
 <div class="py-10 px-10 h-screen ">
 <div class="">
     <p class="text-center text-4xl text-green-600 UPPERCASE"><span class="bg-gray-100 px-10 py-2 rounded-md">Membership's Overview</span></p>
   </div>
-
-  <div class="block h-40 bg-white m-3  w-full rounded-md">
-    
-<div class="flex w-full">
-<div class="h-full w-1/2 ">
-      <div class="p-4 w-full text-center"><p class="font-bold">Fundraising Donation</p></div>
-      <div class="flex w-full">
-      <div class=" h-full w-1/2 text-center">
-        <p class="text-gray-600 font-semibold text-3xl"><i class="fa-solid fa-hand-holding-dollar"></i> <span id="overall-donation-sum"></span></p>
-        <p class="text-gray-600 text-sm">Overall Amount Donated</p>
-      </div>
-      <div class=" h-full w-1/2 text-center">
-        <p class="text-gray-600 font-semibold text-3xl"><i class="fa-solid fa-user"></i> <span id="overall-donatorw-count"></span></p>
-        <p class="text-gray-600 text-sm">Donors Count</p>
-
-      </div>
-      </div>
-   
+  <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
+  <div class="">
+      <button id="verified-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Donation</button>
+      <button id="pending-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Submitted Donation</button>
+      <button id="other-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Others</button>
     </div>
-    <div class="h-full w-1/2 ">
-      <div class="p-4 w-full text-center"><p class="font-bold">Blood Donation</p></div>
-      <div class="flex w-full">
-      <div class=" h-full w-full text-center">
-        <p class="text-gray-600 font-semibold text-3xl"><i class="fa-solid fa-hand-holding-heart"></i> <span id="overall-blood-donors-count"></span></p>
-        <p class="text-gray-600 text-sm">Overall Donated Blood</p>
-      </div>
-      </div>
-   
-    </div>
+  <div id="donations-tables" class="block w-full">
+
+</div>
+<div class="h-10"></div>
+  </div>
 </div>
 
-  </div>
-  <div class="sm:block md:block lg:flex xl:flex 2xl:flex">
-    <button id="fundingbtn" class="bg-white shadow-sm px-10 py-2 text-green-600 m-2 hover:bg-green-600 hover:text-white" type="button">Funding</button>
-    <button id="bloodbtn" class="bg-white shadow-sm px-10 py-2 text-green-600 m-2 hover:bg-green-600 hover:text-white" type="button">Blood</button>
-  </div>
-  <div id="funding" class="sm:block md:block lg:block xl:block 2xl:block  h-screen">
-    <div class="sm:block md:flex lg:flex xl:flex 2xl:flex">
-        <div class="p-3 h-54 sm:w-full md:w-1/2  m-3  lg:w-full  xl:w-full 2xl:w-1/2 shadow-lg bg-white rounded-sm"> 
-          <p class="font-semibold text-gray-600 text-center">Top 5 Donators</p>
-          <div class="w-full p-5">
-            <table id="hightest_donation" class="w-full">
 
-            <tbody>
-
-            </tbody>
-            </table>
-      
+<div id="create-donation-record" class=" hidden fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg  ">
+    <div id="decline-membership-note" class="w-full">
+      <div class="sm:h-screen lg:h-20 sm:block lg:hidden md:hidden"></div>
+      <p class="font-semibold">Add Records</p>
+      <form id="create-donation-form"">
+        @csrf
+     <div class="sm:block md:flex lg:flex md:space-x-2   lg:space-x-2">
+     <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">First Name</label>
+            <input  id="fname" name="fname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Middle Name</label>
+            <input  id="mname" name="mname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Last Name</label>
+            <input  id="lname" name="lname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
           </div>
 
-        </div>
-    </div>
-    
+     </div>
+     <div class="sm:block md:flex lg:flex md:space-x-2   lg:space-x-2">
+     <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Age</label>
+            <input id="age" name="age" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Gender</label>
+            <div class="relative">
+              <select id="gender" name="gender" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
 
-      <div class="h-auto sm:block md:block lg:flex xl:block 2xl:flex">
-        <div class="w-full">
-        <div class="sm:block md:block lg:flex xl:flex 2xl:flex">
-    <button id="listofdonorsbtn" class="bg-white shadow-sm px-10 py-2 text-green-600 m-2 hover:bg-green-600 hover:text-white" type="button">List of Donors</button>
-    <button id="listofpendingdonorsbtn" class="bg-white shadow-sm px-10 py-2 text-green-600 m-2 hover:bg-green-600 hover:text-white" type="button">Donation Request</button>
-  </div>
-   
-        <div id="donation" class=" h-auto p-5 sm:w-full md:w-full  m-3  lg:w-1/4  xl:w-full 2xl:w-full shadow-lg bg-white rounded-sm">
-        <div class="w-full mb-5">
-                <p class="text-gray-600 text-2xl"><i class="fa-solid fa-list"></i> Donations List</p>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
               </div>
-          <div class="w-full flex">
-          <div class="w-full flex justify-end">
-          <button id="open-create-donation-form-btn" class="py-1 bg-green-500 text-white rounded-md px-3">Add Donation</button>
-          </div>
+            </div>
 
           </div>
-          <div class="w-full h-auto p-5">
+          <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Municipality/City</label>
+            <div class="relative">
+              <select id="municipality_city" name="municipality_city" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Baco">Baco</option>
+                <option value="Bansud">Bansud</option>
+                <option value="Bongabong">Bongabong</option>
+                <option value="Bulalacao">Bulalacao</option>
+                <option value="Calapan City">Calapan City</option>
+                <option value="Gloria">Gloria</option>
+                <option value="Mansalay">Mansalay</option>
+                <option value="Naujan">Naujan</option>
+                <option value="Pinamalayan">Pinamalayan</option>
+                <option value="Pola">Pola</option>
+                <option value="Puerto Galera">Puerto Galera</option>
+                <option value="Roxas">Roxas</option>
+                <option value="San Teodoro">San Teodoro</option>
+                <option value="Socorro">Socorro</option>
+                <option value="Victoria">Victoria</option>
 
-          
-            @include('layout.admin.datatables.donation.validated_donors')
-          </div>
-
-        </div>
-        <div id="listofdonors" class="hidden h-auto p-5 sm:w-full md:w-full  m-3  lg:w-1/4  xl:w-full 2xl:w-full shadow-lg bg-white rounded-sm">
-        <div class="w-full mb-5">
-                <p class="text-gray-600 text-2xl"><i class="fa-solid fa-list"></i>Pending Donations</p>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
               </div>
-              <div class="w-full h-auto p-5">
-          
-                @include('layout.admin.datatables.donation.pending')
-              
-              </div>
-
-        </div>
-    </div>
-<div class="h-screen"></div>
-  </div>
-  <div id="blood" class="sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden h-screen w-full">
-
-    <div class="p-3 h-auto w-full sm:w-full md:w-full  m-3  lg:w-1/4  xl:w-full 2xl:w-1/4 shadow-lg bg-white rounded-sm">           
-    <div class="w-full mb-5">
-      
-                <p class="text-gray-600 text-2xl"><i class="fa-solid fa-list"></i>Blood Donors List</p>
-                <div class="w-full flex justify-end">
-        
-        <button id="open-create-blood-donation-form-btn" class="py-1 bg-green-500 text-white rounded-md px-3">Add Blood Donor</button>
-</div>
-
-      
-    </div>
-  @include('layout.admin.datatables.donation.blood')
-
-
-  </div>
+            </div>
+          </div>
+     </div>
+     <div class="sm:block md:flex lg:flex md:space-x-2   lg:space-x-2">
   
+
+
+     <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Donated Amount</label>
+            <input id="donated_amount" name="donated_amount" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Mode of Donation</label>
+            <div class="relative">
+              <select id="payment_type" name="  payment_type" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Gcash">GCash Express</option>
+                <option value="Cash on hand">Cash on hand</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Donators Type</label>
+            <div class="relative">
+              <select id="donation_type" name="donation_type" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="Individual">Individual</option>
+                <option value="Group">Group</option>
+                <option value="Company/Organization">Company/Organization</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Identity</label>
+            <div class="relative">
+              <select id="type" name="type" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="">Select </option>
+                <option value="0">Anonymous</option>
+                <option value="1">Charity Funder</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+
+     
+
+     </div>
+     
+     <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Other Information</label>
+            <input id="donator_info" name="donator_info" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+     <div class="mb-4 w-full">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Proof of Donation</label>
+            <input id="donation_proof" name="donation_proof" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file">
+          </div>
+        <div class="flex justify-end space-x-2">
+          <button id="close-create-donation-record-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
+<div id="show-donation-details-modal" class="fixed  hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
+    <div id="donation-details" class="block  p-10"></div>
+
+  </div>
+</div>
+<div id="donation-proof-image" class="hidden  fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg  ">
+  <div id="donation-image" class="block">
+    
+  </div>
+
+  </div>
+</div>
+
+
+<div id="decline-form-modal" class="fixed hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
+    <div id="donation-" class="block  p-10">
+      <form action="">
+        @csrf
+        <p>Add note:</p>
+        <textarea class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  name="" id="" cols="30" rows="10"></textarea>
+        <div class="flex justify-center space-x-2"> 
+          <button type="button" class="p-2 bg-green-500 text-white font-semibold rounded-md">Cancel</button>
+          <button type="submit" class="p-2 bg-red-500 text-white font-semibold rounded-md">Proceed</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
 
 <script>
   $(document).ready(function () {
-    ActiveDonationsButton()
-    DonationOnhoverButton()
-    Overall_Donation_Sum()
-    Datatables()
-    Blood_Buttons()
-});
-function abbreviateAmount(amount) {
-            if (amount >= 1000000000) {
-                return (amount / 1000000000).toFixed(1) + 'b';
-            } else if (amount >= 1000000) {
-                return (amount / 1000000).toFixed(1) + 'm';
-            } else if (amount >= 1000) {
-                return (amount / 1000).toFixed(1) + 'k';
-            } else if (amount >= 100) {
-                return (amount / 100).toFixed(1) + 'h';
-            } else {
-                return amount.toString();
-            }
+    Donation_Btn()
+    Verified_Donations()
+    Donation_Tab_Controller()
+  });
+  function Donation_Btn(){
+    $('#create-donation-record-btn').click(function (e) { 
+      e.preventDefault();
+      $('#create-donation-record').removeClass('hidden');
+      
+    });
+    $('#close-create-donation-record-btn').click(function (e) { 
+      e.preventDefault();
+      $('#create-donation-record').addClass('hidden');
+      $('#create-donation-form')[0].reset();
+      
+    });
+
+    $(document).on('click','.show-donation-details-btn',function(){
+      var id= $(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/donation-details/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          var details="<div>"
+          details+="<p class='font-semibold'>Donation Details</p>"
+          if(response.details.type==='0')
+          {
+            details+="<p> <span class='font-semibold'>Identity:</span>Anonymous</p>"
+          }else{
+            details+="<p> <span class='font-semibold'>Name:</span> "+response.details.fname+""+response.details.lname+"</p>"
+          }
+          details+="<p> <span class='font-semibold'>Amount:</span> "+response.details.donated_amount+"</p>"
+          details+="<button class='donation-proof-btn' type='button' data-id="+response.details.id+">"
+          details+="<div>"
+          details+="<p> <span class='font-semibold'>Proof of donation:</span></p>"
+          details+="<img class='h-20 ' src="+response.details.donation_proof+">"
+          details+="</div>"
+          details+="</button>"
+
+          details+="<p> <span class='font-semibold'>Donated at:</span> "+response.details.created_at+"</p>"
+
+        details+="<div class='flex justify-end space-x-2'>"
+        if(response.details.status==="PENDING"){
+
+          details+="<button type='button' data-id="+response.details.id+" class='approved-donation-btn px-2 py-1  rounded-md bg-green-500 text-white font-semibold'>Granted</button>"
+          details+="<button type='button' data-id="+response.details.id+" class='approved-donation-btn px-2 py-1  rounded-md bg-red-500 text-white font-semibold'>Deny</button>"
         }
-function Overall_Donation_Sum(){
-  $.ajax({
-    type: "GET",
-    url: "{{url('overall-donation-sum')}}",
-    data: "data",
-    dataType: "json",
-    success: function (data) {
-            var overallroundedAmount = abbreviateAmount(data.overall_donation_sum);
-            var rounddonatorscount = abbreviateAmount(data.overall_donators_count);
+        details+="<button type='button' class='close-details-modal-btn close px-2 py-1  rounded-md bg-green-500 text-white font-semibold'>Close</button>"
+        
+        details+="</div'>"
+          details+="</div>"
+          $('#donation-details').append(details)
           
-      $('#overall-donation-sum').text(overallroundedAmount)
-      $('#overall-donatorw-count').text(rounddonatorscount)
-      $("#hightest_donation tbody").empty();
-  
-      var counter=1
-  $.each(data.highest_donation, function (index, data) { 
-    var roundhighestdonation = abbreviateAmount(data.donated_amount);
+          $('#show-donation-details-modal').removeClass('hidden')
+        }
+      });
+    });
+    $(document).on('click','.donation-proof-btn',function(){
+     
+      var id=$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/donation-details/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          console.log(response)
+          var details="<div>"
+       details+="<img class='h-screen' src="+response.details.donation_proof+">"
+       details+="</div>"
+       details+="<div class='flex justify-end space-x-2'>"
+        details+="<button type='button' class='close-donation-image-modal-btn close px-2 py-1 mt-2  rounded-md bg-green-500 text-white font-semibold'>Close</button>"
+        
+        details+="</div'>"
+      $('#donation-image').append(details)
+      $('#donation-proof-image').removeClass('hidden')
 
-    var row = "<tr class='text-center '>";
-    row += "<td class=' text-gray-600 py-1'>"+counter++ +"</td>";
-    row += "<td class=' text-gray-600 py-1'>"+data.fname +" "+data.lname+"</td>";
-    row += "<td class=' text-gray-600 py-1'>"+roundhighestdonation +"</td>";
-    row += "</tr>";
-    
-    $("#hightest_donation tbody").append(row);
-  });
-
-    }
-  });
-}
-function ActiveDonationsButton(){
-  $('#donations-btn').addClass('bg-gray-400 text-lg indent-6');    
-  }
-  function DonationOnhoverButton(){
-    $('#fundingbtn').addClass('bg-green-600 text-white');
-    $('#fundingbtn').removeClass('bg-white text-green-600');
-    $('#fundingbtn').click(function (e) { 
-      e.preventDefault();
-      $('#fundingbtn').addClass('bg-green-600 text-white');
-      $('#fundingbtn').removeClass('bg-white text-green-600');
-
-      $('#bloodbtn').removeClass('bg-green-600 text-white');
-      $('#bloodbtn').addClass('bg-white text-green-600');
-      $('#funding').show();
-      $('#blood').hide();
+        }
+      });
     });
 
-    $('#bloodbtn').click(function (e) { 
-      e.preventDefault();
-      $('#bloodbtn').addClass('bg-green-600 text-white');
-      $('#bloodbtn').removeClass('bg-white text-green-600');
-
-      $('#fundingbtn').removeClass('bg-green-600 text-white');
-      $('#fundingbtn').addClass('bg-white text-green-600');
-      $('#funding').hide();
-      $('#blood').show();
+    $(document).on('click','.close-donation-image-modal-btn',function(){
+      $('#donation-image').empty()
+      $('#donation-proof-image').addClass('hidden')
     });
-  }
-  function Datatables(){
-    $('#listofpendingdonorsbtn').click(function (e) { 
-      e.preventDefault();
-      $('#listofdonors').removeClass('hidden');
-      $('#listofdonors').addClass('block');
-      $('#donation').removeClass('block');
-      $('#donation').addClass('hidden');
+    $(document).on('click','.close-details-modal-btn',function(){
+      $('#donation-details').empty()
+
+      $('#show-donation-details-modal').addClass('hidden')
     });
-    $('#listofdonorsbtn').click(function (e) { 
-      e.preventDefault();
-      $('#listofdonors').removeClass('block');
-      $('#listofdonors').addClass('hidden');
-      $('#donation').removeClass('hidden');
-      $('#donation').addClass('block');
+    $(document).on('click','.approved-donation-btn',function(){
+      var id=$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/approve-donation/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          console.log(response)
+        }
+      });
     });
-  }
 
-
-
-
-
-  function Blood_Buttons(){
-    $('#open-create-blood-donation-form-btn').click(function (e) { 
+    $('#create-donation-form').submit(function (e) { 
       e.preventDefault();
-      $('#Blood-Donation-Form-Modal').removeClass('hidden')
-      $('#Blood-Donation-Form-Modal').addClass('block')
-    });
-    $('#close-create-blood-donation-btn').click(function (e) { 
-      e.preventDefault();
-      $('#Blood-Donation-Form-Modal').removeClass('block')
-      $('#Blood-Donation-Form-Modal').addClass('hidden')
+      var formdata= new FormData($(this)[0])
+      $.ajax({
+        type: "POST",
+        url: "{{url('add-donation-record')}}",
+        data: formdata,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          console.log(response)
+          if (response.success) {
+            $('#create-donation-form')[0].reset();
+            alert(response.success)
+
+          } else {
+            alert(response.failed)
+          }
+
+        },
+        error: function(xhr, status, error) {
+          // Handle errors, if any
+          window.alert(xhr.responseText);
+        }
+      });
+      
     });
   }
+  function Verified_Donations() {
+    var donation_records = "<table id ='donation-table' class='stripe hover w-full h-auto '>"
+    donation_records += "<thead>"
+    donation_records += "<tr>"
+    donation_records += "<th>Name</th>"
+    donation_records += "<th>Muncipality</th>"
+    donation_records += " <th>Action</th>"
+    donation_records += " </tr>"        
+    donation_records += " </thead>"
+    donation_records += " <tbody> "
+    donation_records += " </tbody>"
+    donation_records += " </table>"
+    $('#donations-tables').append(donation_records)
+    let others = new DataTable('#donation-table', {
+      "responsive": true,
+      "ajax": {
+        "url": "/donation-records",
+        "type": "GET",
+        "dataSrc": "verified",
+      },
+      "columns": [{
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data":"municipality_city"
 
- 
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<button class="show-donation-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Details</button>';
+          }
+        }
+      ],
+    });
+   
+  }
+  function Pending_Donations() {
+    var donation_records = "<table id ='donation-table' class='stripe hover w-full h-auto '>"
+    donation_records += "<thead>"
+    donation_records += "<tr>"
+    donation_records += "<th>Name</th>"
+    donation_records += "<th>Muncipality</th>"
+    donation_records += " <th>Action</th>"
+    donation_records += " </tr>"        
+    donation_records += " </thead>"
+    donation_records += " <tbody> "
+    donation_records += " </tbody>"
+    donation_records += " </table>"
+    $('#donations-tables').append(donation_records)
+    let others = new DataTable('#donation-table', {
+      "responsive": true,
+      "ajax": {
+        "url": "/donation-records",
+        "type": "GET",
+        "dataSrc": "pending",
+      },
+      "columns": [{
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data":"municipality_city"
 
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<button class="show-donation-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Details</button>';
+          }
+        }
+      ],
+    });
+   
+  }
+  function Decline_Donations() {
+    var donation_records = "<table id ='donation-table' class='stripe hover w-full h-auto '>"
+    donation_records += "<thead>"
+    donation_records += "<tr>"
+    donation_records += "<th>Name</th>"
+    donation_records += "<th>Muncipality</th>"
+    donation_records += " <th>Action</th>"
+    donation_records += " </tr>"        
+    donation_records += " </thead>"
+    donation_records += " <tbody> "
+    donation_records += " </tbody>"
+    donation_records += " </table>"
+    $('#donations-tables').append(donation_records)
+    let others = new DataTable('#donation-table', {
+      "responsive": true,
+      "ajax": {
+        "url": "/donation-records",
+        "type": "GET",
+        "dataSrc": "declined",
+      },
+      "columns": [{
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data":"municipality_city"
 
-  
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<button class="show-donation-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Details</button>';
+          }
+        }
+      ],
+    });
+  }
 
-
-
-  // MODAL 
-  
+  function Donation_Tab_Controller(){
+    $('#verified-donation-table-btn').click(function (e) { 
+      e.preventDefault();
+      $('#donations-tables').empty();
+      Verified_Donations()
+      
+    });
+    $('#pending-donation-table-btn').click(function (e) { 
+      e.preventDefault();
+      $('#donations-tables').empty();
+      Pending_Donations()
+      
+    });
+    $('#other-donation-table-btn').click(function (e) { 
+      e.preventDefault();
+      $('#donations-tables').empty();
+      Decline_Donations()
+      
+    });
+  }
 </script>
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\appointments;
+use App\Models\donations;
 use App\Models\insurance;
 use App\Models\municipality;
 use App\Models\user;
@@ -26,6 +27,18 @@ class Dashboard extends Controller
           return redirect('signin');
         }
         
+    }
+    public function Charity_Donations(){
+      $year= date('Y');
+      $mon= date('m');
+      $annual=donations::whereYear('created_at',$year)->sum('donated_amount');
+      $monthly=donations::whereMonth('created_at',$mon)->sum('donated_amount');
+      $data=[
+        'annual'=>$annual,
+        'monthly'=>$monthly,
+      ];
+      return response()->json($data);
+
     }
     public function User_Accounts(){
       $user=user::where('account_status','VERIFIED')->where('type','USER')->count();
