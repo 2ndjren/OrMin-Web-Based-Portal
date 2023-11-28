@@ -330,7 +330,7 @@
                 },
         error: function(xhr, status, error) {
           // Handle errors, if any
-          window.alert(xhr.responseText);
+          // window.alert(xhr.responseText);
         }
             });
             
