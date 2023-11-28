@@ -37,8 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('signup',[Auth::class,'SignUp']);
 Route::get('lagout',[Auth::class,'Logout']);
-// Route::get('signin',[Auth::class,'SignIn']);
-Route::get('signin/{randomChars}', [Auth::class, 'SignIn'])->name('signin')->where('randomChars', '[A-Za-z0-9]{10}');
+Route::get('signin',[Auth::class,'SignIn']);
 Route::post('login',[Auth::class,'Login']);
 Route::get('logout',[Auth::class,'Logout']);
 Route::post('register',[Auth::class,'Register']);
