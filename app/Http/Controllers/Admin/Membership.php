@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\Notify_Membership_Account_Mail;
+use App\Mail\Send_Expired_Mail_Alert;
 use App\Mail\Send_Membership_Program_Info;
 use App\Models\insurance;
 use Carbon\Carbon;
@@ -27,8 +28,13 @@ class Membership extends Controller
         }
     }
     public function Members_Accounts(){
-        $accounts=insurance::where('status','ACTIVATED')->where('notified','0')->get();
-        return response()->json($accounts);
+        $toexpired=insurance::where('status','ACTIVATED')->where('notified','0')->get();
+        $expired=insurance::where('status','ACTIVATED')->where('notified','1')->get();
+        $data=[
+            'toexpire'=>$toexpired,
+            'expired'=>$expired,
+        ];
+        return response()->json($data);
     }
     public function To_Notif_Accounts($id){
         DB::beginTransaction();
@@ -65,6 +71,32 @@ class Membership extends Controller
 
         // return response()->json($);
     }
+    public function Notify_When_Expired($id){
+        DB::beginTransaction();
+        $account=insurance::find($id);
+        $updated=insurance::where('id',$id)->update(['status'=>'EXPIRED']);
+        if($updated){
+            $mail=[
+                'level'=>$account->level,
+                'program'=>$account->program,
+                'end_at'=>$account->end_at,
+                'start_at'=>$account->start_at,
+                'status'=>$account->status,
+            ];
+            $sent= Mail::to($account->email)->send(new Send_Expired_Mail_Alert($mail));
+            if($sent){
+                DB::commit();
+                return response()->json(['success'=>'Mail sent']);
+            }else{
+                DB::rollBack();
+                return response()->json(['failed'=>'Mail error']);
+            }
+    }else{
+        return response()->json(['failed'=>'Somthing went wrong!']);
+
+    }
+
+    }
     public function Membership_Profile($id){
         $data=insurance::find($id);
         return response()->json($data);
@@ -97,7 +129,7 @@ class Membership extends Controller
         $updated=insurance::where('id',$id)->update([
             'status'=>'ACTIVATED',
             'start_at'=>$start,
-            'end_at'=>$end_at,
+            'end_at'=>$start,
             'days_before_end'=>$start,
         ]);
         if($updated){
@@ -194,7 +226,7 @@ class Membership extends Controller
             $days_before_end=$before_end->modify('-15 days');
 
             $create->start_at=$start;
-            $create->end_at=$end_at;
+            $create->end_at=$start;
             // $create->days_before_end=$start;
             $create->days_before_end=$start;
             $create->notified='0';

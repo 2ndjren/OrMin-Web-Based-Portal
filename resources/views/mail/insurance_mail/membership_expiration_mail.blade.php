@@ -8,7 +8,7 @@
 </head>
 <body>
     <p class=""> Dear Sir/ Ma'am</p>
-    <p>Your membership program has only 15 days left before it expires. You can renew your account through our official website or visit our Red Cross office.</p>
+    <p>Your membership program is set to expire in just 15 days. Renew your account conveniently through our official website or by visiting our Red Cross office.</p>
 
     <p>Here are your membership account informations:</p>
     <p>Program: {{$mail['level']}}</p>

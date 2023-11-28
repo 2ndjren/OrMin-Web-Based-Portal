@@ -83,6 +83,8 @@ Route::get('membership-dashboard-main',[Dashboard::class,'Memberships_Dashboard_
 
 Route::get('volunteers-per-municipalities',[Dashboard::class,'Volunteers_Per_Municipalities']);
 Route::get('volunteers-per-roles',[Dashboard::class,'Volunteer_Roles_Count']);
+Route::get('donation-info',[Dashboard::class,'Charity_Donations']);
+Route::get('donation-details/{id}',[Dashboard::class,'Donation_Data']);
 
 
 
@@ -97,6 +99,7 @@ Route::get('approve-membership/{id}',[Membership::class,'Approve_Membership']);
 
 Route::get('notify-member/{id}',[Membership::class,'To_Notif_Accounts']);
 Route::get('members-accounts',[Membership::class,'Members_Accounts']);
+Route::get('notify-expired-account/{id}',[Membership::class,'Notify_When_Expired']);
 
 
 Route::get('volunteers',[Volunteers::class,'Volunteers']);
@@ -134,6 +137,10 @@ Route::get('user-chat-conversation/{id}',[Chats::class,'Conversation']);
 
 
 Route::get('donations',[Donations::class,'Donations']);
+Route::post('add-donation-record',[Donations::class,'Create_Donation']);
+Route::get('donation-records',[Donations::class,'Donated_Funds']);
+Route::get('donation-details/{id}',[Donations::class,'Donation_Details']);
+Route::get('approve-donation/{id}',[Donations::class,'Approve_Donation']);
 
 
 
