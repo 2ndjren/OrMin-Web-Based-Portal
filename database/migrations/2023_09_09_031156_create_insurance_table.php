@@ -20,24 +20,17 @@ return new class extends Migration
             $table->string('mname')->nullable();
             $table->string('lname');
             $table->string('sname')->nullable();
-<<<<<<< Updated upstream
             $table->string('blood_type')->nullable();
             $table->string('age');
-=======
-            $table->string('blood_type');
-            $table->string('age')->nullable();
->>>>>>> Stashed changes
+
             $table->string('gender')->nullable();
             $table->string('birthday');
             $table->string('municipality');
             $table->string('barangay')->nullable();
             $table->string('barangay_street')->nullable();
             $table->string('level');
-<<<<<<< Updated upstream
             $table->string('amount')->nullable();
-=======
-            $table->string('amount');
->>>>>>> Stashed changes
+
             $table->string('email')->nullable();
             $table->string('status');
             $table->date('start_at')->nullable();
