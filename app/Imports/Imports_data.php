@@ -38,7 +38,7 @@ class Imports_data implements ToModel, WithStartRow
             'start_at' => $formattedStartAt,
             'end_at' => $formattedEndAt,    
             'mem_id' => $row[9],
-            'OR#' => $row[10],
+            'note' => $row[10], /// it must be OR#
             // Map other columns as needed
         ]);
     }
