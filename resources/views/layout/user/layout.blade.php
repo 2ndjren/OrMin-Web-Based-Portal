@@ -136,11 +136,11 @@
 
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Raise Fund</a>
+                        <a href="/signin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Raise Fund</a>
                       </li>
 
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Give Blood</a>
+                        <a href="/signin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Give Blood</a>
                       </li>
                     </ul>
 
@@ -158,15 +158,15 @@
 
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
+                        <a href="/signin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
                       </li>
 
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
+                        <a href="/signin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
                       </li>
 
                       <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
+                        <a href="/signin" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
                       </li>
 
                     </ul>
@@ -176,7 +176,7 @@
                 </li>
 
                 <li>
-                  <a href="#" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">About US</a>
+                  <a href="/signin" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">About US</a>
                 </li>
 
                 <ul class="lg:flex"> <!-- Reduced space-x -->
