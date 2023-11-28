@@ -1,10 +1,10 @@
 @extends('layout.admin.layout')
 @section('donations')
 <title>Donations</title>
-<div class="py-2 px-10 space-y-2">
-  <p class="text-3xl font-medium  text-green-600">Donations</p>
-  <div class="flex justify-end">
-    <button type="button" id="create-donation-record-btn" class="p-3 rounded-md bg-green-600 font-semibold text-white">Add Donation</button>
+
+<div class="py-10 px-10 h-screen ">
+<div class="">
+    <p class="text-center text-4xl text-green-600 UPPERCASE"><span class="bg-gray-100 px-10 py-2 rounded-md">Membership's Overview</span></p>
   </div>
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
   <div class="">

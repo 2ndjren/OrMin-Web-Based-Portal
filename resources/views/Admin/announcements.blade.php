@@ -2,7 +2,7 @@
 @section('announcements')
 <title>Insurance</title>
 <div class="py-2 px-10">
-  <p class="text-3xl font-medium  text-red-600">Announcements</p>
+  <p class="text-4xl text-green-600 UPPERCASE">Announcements</p>
 
 </div>
 <div class="  px-10">

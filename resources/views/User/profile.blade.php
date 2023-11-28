@@ -2,7 +2,7 @@
 @section('profile')
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
 
-<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 h-full w-full">
+<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 h-screen w-full">
   <div class="md:w-1/3  xl:w-1/3 sm:w-full p-10 bg-white shadow-md rounded-lg block space-y-5">
 
     <div class="flex justify-center">

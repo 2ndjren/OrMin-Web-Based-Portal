@@ -19,7 +19,7 @@ class Auth extends Controller
 {
     //
     public function SignIn(){
-
+        
         if(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
         }

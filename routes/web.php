@@ -22,6 +22,7 @@ use App\Http\Controllers\RTC\RTC;
 use App\Http\Controllers\User\User;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +34,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // AUTH 
+
 Route::get('signup',[Auth::class,'SignUp']);
 Route::get('lagout',[Auth::class,'Logout']);
-Route::get('signin',[Auth::class,'SignIn']);
+Route::get('/signin', [Auth::class, 'SignIn']);
 Route::post('login',[Auth::class,'Login']);
 Route::get('logout',[Auth::class,'Logout']);
 Route::post('register',[Auth::class,'Register']);

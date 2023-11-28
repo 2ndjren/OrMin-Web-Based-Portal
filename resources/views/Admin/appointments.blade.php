@@ -5,7 +5,7 @@
 <title>Appointments</title>
 <div class="py-10 px-10 h-auto ">
 
-  <p class="text-3xl font-medium mb-5"><i class="fa-regular fa-calendar-check"></i>  Appointments</p>
+  <p class="text-4xl text-green-600 UPPERCASE" mb-5"><i class="fa-regular fa-calendar-check"></i>  Appointments</p>
   <div class=" sm:block md:block lg:flex xl:flex 2xl:flex">
      <button id="appointmentsbtn" class=" px-10 py-2 bg-white hover:bg-green-600 hover:text-white text-green-600 m-2 shadow-sm" type="button">Appointments</button>
      <button id="requestbtn" class=" px-10 py-2 bg-white hover:bg-green-600 hover:text-white text-green-600 m-2 shadow-sm" type="button">Request</button>

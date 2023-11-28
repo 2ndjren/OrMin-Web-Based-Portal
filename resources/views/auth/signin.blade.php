@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="bg-cover bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
+  <div class="h-screen bg-cover bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
     <div class=" mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
         <!-- First Column -->
@@ -36,7 +36,7 @@
 
 
         <!-- Second Column -->
-        <div class="w-auto p-2 md:my-28 md:px-10  ">
+        <div class=" w-auto p-2 md:my-28 md:px-10  ">
           <div class="bg-opacity-50 bg-gray-900 rounded-md p-6">
             <div class="block mb-5">
               <p class="text-white">Welcome, Let's go!</p>

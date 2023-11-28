@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Insurance;
+use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 

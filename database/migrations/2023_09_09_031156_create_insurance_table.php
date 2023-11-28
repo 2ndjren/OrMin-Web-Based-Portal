@@ -46,6 +46,7 @@ return new class extends Migration
             $table->string('notified')->nullable();
             $table->string('type_of_payment');
             $table->string('proof_of_payment')->nullable();
+            $table->string('OR#')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
         });
