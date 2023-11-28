@@ -22,10 +22,12 @@ class Auth extends Controller
 {
     
     //
-    public function SignIn(){
-        $randomChars = Str::random(10); // Generates a string of 10 characters
+    public function SignIn($randomChars){
+        // $randomChars will contain the value passed in the URL
+
+        // Your existing logic here
         $url = route('signin', ['randomChars' => $randomChars]);
-    
+
         if(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
         } elseif(session('USER')){
