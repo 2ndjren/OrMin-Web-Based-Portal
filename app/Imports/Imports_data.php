@@ -17,9 +17,9 @@ class Imports_data implements ToModel, WithStartRow
     {
         $id = mt_rand(111111111, 999999999);
     // Convert Excel date serial number to a Unix timestamp
-    $birthday = !empty($row[2]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[2]) : null;
-    $startAt = !empty($row[7]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[7]) : null;
-    $endAt = !empty($row[8]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[8]) : null;
+    $birthday = !empty($row[2]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[3]) : null;
+    $startAt = !empty($row[7]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[6]) : null;
+    $endAt = !empty($row[8]) ? \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($row[7]) : null;
 
     // Convert Unix timestamp to 'YYYY-MM-DD' format
     $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
@@ -28,18 +28,18 @@ class Imports_data implements ToModel, WithStartRow
 
         return new Insurance([
             'id' => $id,
-            'fname' => $row[0],
-            'lname' => $row[1],
+            'fname' => $row[1],
+            'lname' => $row[2],
             'birthday' => $formattedBirthday,
-            'municipality' => $row[3],
-            'level' => $row[4],
-            'status' => $row[5],
-            'type_of_payment' => $row[6],
+            'municipality' => $row[4],
+            'type_of_payment' => $row[5],
             'start_at' => $formattedStartAt,
             'end_at' => $formattedEndAt,    
-            'mem_id' => $row[9],
-            'OR#' => $row[10],
-            // Map other columns as needed
+            'mem_id' => $row[8],
+            'OR#' => $row[9],
+            'level' => 'CLASSIC',
+            'status' => "ACTIVATED",
+            
         ]);
     }
 }
