@@ -55,7 +55,7 @@
 
           <div class="grid md:grid-cols-4 md:gap-2">
             <div class="relative z-0 w-full mb-6 group">
-              <input type="text" value="{{old('fname')}}" name="fname"  id="floating_first_name" autoComplete="on" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('fname') is-invalid @enderror" placeholder=" " required />
+              <input type="text" value="{{old('fname')}}" name="fname"  id="floating_first_name" autoComplete="on" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-nonefocus:outline-none focus:ring-0 focus:border-blue-600 peer @error('fname') is-invalid @enderror" placeholder=" " required />
                   @error('fname')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
                   @enderror
