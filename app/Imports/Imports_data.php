@@ -18,14 +18,18 @@ class Imports_data implements ToModel, WithStartRow
     {
         $id = mt_rand(111111111, 999999999);
         // Convert Excel date serial number to a Unix timestamp
-        $birthday = !empty($row[3]) ? Date::excelToTimestamp($row[3]) : null;
-        $startAt = !empty($row[6]) ? Date::excelToTimestamp($row[6]) : null;
-        $endAt = !empty($row[7]) ? Date::excelToTimestamp($row[7]) : null;
+        // $birthday = !empty($row[3]) ? Date::excelToTimestamp($row[3]) : null;
+        // $startAt = !empty($row[6]) ? Date::excelToTimestamp($row[6]) : null;
+        // $endAt = !empty($row[7]) ? Date::excelToTimestamp($row[7]) : null;
 
-        // Convert Unix timestamp to 'YYYY-MM-DD' format
-        $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
-        $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
-        $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
+        // // Convert Unix timestamp to 'YYYY-MM-DD' format
+        // $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
+        // $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
+        // $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
+
+        $formattedBirthday = date('Y-m-d', $row[3]);
+        $formattedStartAt =date('Y-m-d', $row[6]);
+        $formattedEndAt =  date('Y-m-d', $row[7]);
 
         return new Insurance([
             'id' => $id,
