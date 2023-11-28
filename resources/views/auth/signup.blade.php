@@ -85,7 +85,7 @@
             </div>
 
             <div class="relative z-0 w-full mb-6 group">
-              <input type="text" autoComplete="on" value="{{old('sname')}}" name="sname" id="floating_suffix" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+              <input type="text" autoComplete="on" value="{{old('sname')}}" name="sname" id="floating_suffix" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
 
               <label for="floating_suffix" class="absolute text-xs text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Ext. Name (Opt.)</label>
@@ -97,7 +97,7 @@
           <div class="grid md:grid-cols-3 md:gap-2">
 
             <div class="relative z-0 w-full mb-6 group">
-              <input type="number" autoComplete="on" value="{{old('age')}}" name="age" id="floating_last_name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer
+              <input type="number" autoComplete="on" value="{{old('age')}}" name="age" id="floating_last_name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer
               @error('age') is-invalid @enderror" placeholder=" " required />
                   @error('age')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
@@ -109,7 +109,7 @@
 
 
             <div class="relative z-0 w-full mb-6 group">
-              <input type="date" autoComplete="on" value="{{old('bday')}}" name="bday" id="floating_last_name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer  @error('bday') is-invalid @enderror" placeholder=" " required />
+              <input type="date" autoComplete="on" value="{{old('bday')}}" name="bday" id="floating_last_name" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer  @error('bday') is-invalid @enderror" placeholder=" " required />
                   @error('bday')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
                   @enderror
@@ -121,7 +121,7 @@
             <div class="relative z-0 w-full mb-6 group">
               <label for="gender" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Gender</label>
-              <select name='gender' autoComplete="on" id="gender" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('gender') is-invalid @enderror" placeholder=" " required />
+              <select name='gender' autoComplete="on" id="gender" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('gender') is-invalid @enderror" placeholder=" " required />
               <option class='text-gray-500'>---Choose here---</option>
               <option value="Male">Male</option>
               <option value='Female'>Female</option>
@@ -137,7 +137,7 @@
 
           <div class="grid grid-cols-1 md:gap-2">
             <div class="relative z-0 w-full mb-6 group  ">
-              <input type="file" autoComplete="on" value="{{old('user_profile')}}" name="user_profile" id="profile" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('user_profile') is-invalid @enderror" placeholder=" " required />
+              <input type="file" autoComplete="on" value="{{old('user_profile')}}" name="user_profile" id="profile" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('user_profile') is-invalid @enderror" placeholder=" " required />
               <label for="profile" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Upload your ID picture here</label>
             </div>
@@ -147,7 +147,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 md:gap-2">
 
             <div class="relative z-0 w-full mb-6 group  ">
-              <input type="number" autoComplete="on"  value="{{old('phone_num')}}" name="phone_num" id="floating_num" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('phone_num') is-invalid @enderror" placeholder=" " required />
+              <input type="number" autoComplete="on"  value="{{old('phone_num')}}" name="phone_num" id="floating_num" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('phone_num') is-invalid @enderror" placeholder=" " required />
                   @error('phone_num')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
                   @enderror
@@ -157,7 +157,7 @@
             </div>
 
             <div class="relative z-0 w-full mb-6 group">
-              <input type="email" autoComplete="on" value="{{old('email')}}" name="email" id="floating_email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer required  @error('email') is-invalid @enderror " placeholder=" " />
+              <input type="email" autoComplete="on" value="{{old('email')}}" name="email" id="floating_email" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer required  @error('email') is-invalid @enderror " placeholder=" " />
                   @error('email')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
                   @enderror
@@ -170,7 +170,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 md:gap-2">
 
             <div class="relative z-0 w-full mb-6 group  ">
-              <input type="password" autoComplete="on" value="{{old('password')}}" name="password" id="pass" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('password') is-invalid @enderror" placeholder=" " required/>
+              <input type="password" autoComplete="on" value="{{old('password')}}" name="password" id="pass" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('password') is-invalid @enderror" placeholder=" " required/>
                   @error('password')
                   <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
                   @enderror

@@ -2,17 +2,14 @@
 @section('dashboard')
 <title>Dashboard</title>
 <div class="py-2 px-10">
-  <p class="text-3xl font-medium  text-red-600">Dashboard</p>
+  <p class="text-4xl text-green-600 UPPERCASE">Dashboard</p>
   <div class="flex justify-end">
-
   </div>
 
 </div>
 
 <div class=" px-10 h-auto">
-<div class="h-auto ">
-
-
+<div class="h-screen ">
 
   <div class="">
     <div class=" sm:block lg:flex w-full space-x-2">
@@ -25,7 +22,7 @@
             <p><i class="fas fa-tachometer-alt mr-2"></i></p>
             </div>
             <div class="w-full">
-            <p class="text-blue-500 font-semibold text-2xl text-left pb-2 ">ACCOUNTS</p>
+            <p class="text-blue-500 font-semibold text-2xl text-left pb-2 border-l-2 border-gray-200 ">ACCOUNTS</p>
             <div class="flex">
               <div class="w-full text-center">
               <p><i class="fa-solid fa-users text-green-500 text-4xl"> <span id="user-counts">1</span></i></p>

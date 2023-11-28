@@ -2,13 +2,13 @@
 @section('membership')
 <title>Insurance</title>
 <div class="py-2 px-10">
-  <p class="text-3xl font-medium  text-green-600">Membership Program</p>
+  <p class="text-4xl text-green-600 UPPERCASE">Membership Program</p>
   <div class="flex justify-end">
     <button type="button" id="open-create-membership-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white">Create Membership</button>
   </div>
 </div>
 
-<div class="  px-10">
+<div class="h-screen  px-10">
 
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
@@ -1712,6 +1712,7 @@ var endmon = months[endmonth - 1];
 
   }
 
+
  
   function importExcel() {
     var formData = new FormData();
@@ -1731,24 +1732,19 @@ var endmon = months[endmonth - 1];
       },
       success: function(response) {
         console.log(response);
+
         $('#import-data-form-modal').addClass('hidden');
+        window.alert("Import Successful!");
 
-        // Handle success response here
-        // Refresh the table (assuming your table has an ID of 'data-table')
-  
-      $('#membership-accounts-table').DataTable().ajax.reload(); // Reload DataTable
-            
-
- 
+      $('#activated-accounts').DataTable().ajax.reload(); // Reload DataTable
+             
       },
       error: function(xhr, status, error) {
-        console.error(xhr.responseText);
         // Handle error response here
         window.alert(xhr.responseText);
       }
     });
   }
-
   // Close modal when the "Back" button is clicked
   $('#close-import-modal-form-btn').on('click', function() {
     $('#import-data-form-modal').addClass('hidden');

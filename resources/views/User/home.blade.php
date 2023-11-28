@@ -186,7 +186,7 @@
 
 
   <div class="h-screen p-6 md:p-28  bg-center bg-cover ease-in-out transition-opacity" style="background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t1.6435-9/86408136_894556941000320_5054492052813774848_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_aid=0&_nc_eui2=AeE0bFobkl3UMSmE0zaa4gJgiaooucyjQMqJqii5zKNAylsYme4GubZ_M21UxmCNQau66HrZZBQG79Dnbx0ZM1V-&_nc_ohc=4FDyUWntYKkAX_Y9fa9&_nc_ht=scontent.fmnl30-3.fna&oh=00_AfCFqUKpI1VIQQI-4nSdTA0Wo1WxROSOjCjXFBWUp8OZzQ&oe=653371D0')">
-    <div class="flex h-full w-full bg-white bg-opacity-75">
+    <div class="flex w-full bg-opacity-75">
       <div class="md:w-1/2">
         <!-- Content for the left side (Image side) -->
       </div>

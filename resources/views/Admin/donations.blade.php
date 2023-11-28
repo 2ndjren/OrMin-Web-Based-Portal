@@ -4,9 +4,9 @@
 
 @section('donations')
 <title>Donations</title>
-<div class="py-10 px-10 ">
+<div class="py-10 px-10 h-screen ">
 <div class="">
-    <p class="text-center text-gray-700  text-2xl "><span class="bg-gray-100 px-10 py-2 rounded-md">Membership's Overview</span></p>
+    <p class="text-center text-4xl text-green-600 UPPERCASE"><span class="bg-gray-100 px-10 py-2 rounded-md">Membership's Overview</span></p>
   </div>
 
   <div class="block h-40 bg-white m-3  w-full rounded-md">
