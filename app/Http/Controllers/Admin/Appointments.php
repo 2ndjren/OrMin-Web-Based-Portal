@@ -24,5 +24,23 @@ class Appointments extends Controller
             
         
     }
+    function Search_User($search){
+      $user=strtoupper($search);
+      if($user!==null){
+          $check=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->count();
+          $results=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->get();
+          if($check>0){
+              $data=[
+                  'match'=>$results,
+              ];
+              return response()->json($data);
+          }else{
+              return response()->json(['results'=>'No results found!']);
+          }
+      }else{
+          return response()->json(['results'=>'No results found!']);
+
+      }
+  }
    
 }

@@ -70,10 +70,40 @@ class Announcements extends Controller
         $poster=user::find($id);
         return response()->json($poster);
     }
+    // public function Find_Post($id){
+    //     $user=announcement::find($id);
+    //     $poster=$user->announcement;
+    //     return response()->json($poster);
+    // }
+
     public function Find_Post($id){
-        $user=user::find($id);
-        $poster=$user->announcement;
-        return response()->json($poster);
+        $announcement = Announcement::find($id);
+    
+        if (!$announcement) {
+            return response()->json(['error' => $id], 404);
+        }
+    
+        return response()->json($announcement);
     }
+
+
+    public function deleteAnnouncement($id){
+        $data=Announcement::where('id',$id)->delete();
+        if($data){
+            return response()->json(['success'=>'Membership successfully deleted!']);
+        }
+    }
+
+    
+public function repostAnnouncement($id)
+{
+    $announcement = Announcement::findOrFail($id);
+    $announcement->created_at = now(); // Set the published_at field to the current datetime
+    $announcement->save();
+
+    return response()->json(['message' => 'Announcement marked as latest']);
+
+}
+    
 
 }

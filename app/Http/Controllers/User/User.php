@@ -8,6 +8,7 @@ use App\Models\blood;
 use App\Models\insurance;
 use App\Models\user as ModelsUser;
 use App\Models\volunteers;
+use App\Models\announcement;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,14 +19,23 @@ class User extends Controller
 {
     //
     public function Home(){
+
+           // Fetch announcements from the database using the Announcement model
+        //  $announcement = Announcement::all(); // Fetch all announcements
+         $announcement = Announcement::paginate(3);
+
+           
         if(session("USER")){
-           return view('User.home');
+          // Pass the fetched announcements to the view
+          return view('User.home', ['announcement' => $announcement]);
         }
         elseif(session('ADMIN')||session('STAFF')){
             return redirect('dashboard');
         }
         else{
-            return view('User.home');
+           // Pass the fetched announcements to the view
+           return view('User.home', ['announcement' => $announcement]);
+
         }
     }
     

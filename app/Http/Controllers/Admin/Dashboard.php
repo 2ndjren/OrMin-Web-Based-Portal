@@ -30,12 +30,15 @@ class Dashboard extends Controller
     }
     public function Charity_Donations(){
       $year= date('Y');
-      $mon= date('m');
+      $today=date('Y-m-d');
+      $mon= date('m', strtotime($today));
       $annual=donations::whereYear('created_at',$year)->sum('donated_amount');
       $monthly=donations::whereMonth('created_at',$mon)->sum('donated_amount');
       $data=[
         'annual'=>$annual,
         'monthly'=>$monthly,
+        'year'=>$year,
+        'mon'=>$mon,
       ];
       return response()->json($data);
 

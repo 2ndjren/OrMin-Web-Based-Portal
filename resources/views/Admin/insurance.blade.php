@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="h-screen  px-10">
+<div class="h-auto  px-10">
 
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
@@ -847,15 +847,15 @@
                 console.log(response)
               },
               error: function(xhr, status, error) {
-          // Handle errors, if any
-          window.alert(xhr.responseText);
-        }
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+              }
             });
           }
 
         });
-        $.each(check.expired, function (index, field) { 
-          if(field.end_at===formattedDate && field.status==='ACTIVATED' && field.notified==='1') {
+        $.each(check.expired, function(index, field) {
+          if (field.end_at === formattedDate && field.status === 'ACTIVATED' && field.notified === '1') {
             $.ajax({
               type: "GET",
               url: "/notify-expired-account/" + field.id,
@@ -865,12 +865,12 @@
                 console.log("success")
               },
               error: function(xhr, status, error) {
-          // Handle errors, if any
-          window.alert(xhr.responseText);
-        }
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+              }
             });
 
-          }  
+          }
         });
 
       }
@@ -1329,22 +1329,26 @@
   }
 
   function Delete_Membership_Account() {
-    $(document).on('click', '.delete-membership-account-profile-btn', function() {
-      var id = $(this).data('id');
-      $.ajax({
-        type: "GET",
-        url: "/delete-membership-account-profile/" + id,
-        data: "data",
-        dataType: "json",
-        success: function(response) {
-          alert(response.success)
-          $('#membership-account-profile').empty();
-          $('#membership-account-profile-btns').empty();
-          $('#membership-account-profile-modal').removeClass('block');
-          $('#membership-account-profile-modal').addClass('hidden');
-        }
-      });
+    $(document).off('click', '.delete-membership-account-profile-btn').on('click', '.delete-membership-account-profile-btn', function() {
+  var id = $(this).data('id');
+
+  if (confirm('Are you sure you want to delete this record?')) {
+    $.ajax({
+      type: "GET",
+      url: "/delete-membership-account-profile/" + id,
+      dataType: "json",
+      success: function(response) {
+        alert(response.success)
+        $('#membership-account-profile').empty();
+        $('#membership-account-profile-btns').empty();
+        $('#membership-account-profile-modal').removeClass('block');
+        $('#membership-account-profile-modal').addClass('hidden');
+       
+      }
     });
+  };
+});
+
   }
 
   function Delete_Other_Acount(others) {
@@ -1477,7 +1481,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1506,23 +1510,23 @@
 
             var start = new Date(row.start_at);
 
-var startday = start.getDate(); 
-var startmonth = start.getMonth() + 1; 
-var startyear = start.getFullYear(); 
+            var startday = start.getDate();
+            var startmonth = start.getMonth() + 1;
+            var startyear = start.getFullYear();
 
-var end = new Date(row.end_at);
+            var end = new Date(row.end_at);
 
-var endday = end.getDate(); 
-var endmonth = end.getMonth() + 1; 
-var endyear = end.getFullYear(); 
-var months = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-var startmon = months[startmonth - 1];
-var endmon = months[endmonth - 1];
+            var endday = end.getDate();
+            var endmonth = end.getMonth() + 1;
+            var endyear = end.getFullYear();
+            var months = [
+              "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            var startmon = months[startmonth - 1];
+            var endmon = months[endmonth - 1];
 
-            return '<span class=" font-semibold text-xs  ">' +  startmon + ' ' + startday + ', ' + startyear + ' - ' + endyear + '</span>'
+            return '<span class=" font-semibold text-xs  ">' + startmon + ' ' + startday + ', ' + startyear + ' - ' + endyear + '</span>'
           }
         },
         {
@@ -1629,7 +1633,7 @@ var endmon = months[endmonth - 1];
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1680,7 +1684,7 @@ var endmon = months[endmonth - 1];
         success: function(response) {
           console.log(response)
           var left_details = "<div class='w-full'>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " "  + " " + response.lname + "</span></p>"
+          left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " " + " " + response.lname + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>AGE. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.age + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.gender + "</span></p>"
@@ -1735,7 +1739,7 @@ var endmon = months[endmonth - 1];
   }
 
 
- 
+
   function importExcel() {
     var formData = new FormData();
     formData.append('file', $('input[name="file"]')[0].files[0]);
@@ -1753,13 +1757,13 @@ var endmon = months[endmonth - 1];
         'X-CSRF-TOKEN': token // Include CSRF token in the header
       },
       success: function(response) {
+        // Active_Membership()
         console.log(response);
 
         $('#import-data-form-modal').addClass('hidden');
         window.alert("Import Successful!");
 
-      $('#activated-accounts').DataTable().ajax.reload(); // Reload DataTable
-             
+
       },
       error: function(xhr, status, error) {
         // Handle error response here
@@ -1774,4 +1778,3 @@ var endmon = months[endmonth - 1];
 </script>
 
 @endsection
-

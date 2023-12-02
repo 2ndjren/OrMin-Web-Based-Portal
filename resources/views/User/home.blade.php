@@ -6,10 +6,10 @@
 <div class="h-screen w-full overflow-y-auto ">
 
   <div class="bg-video-container" style="position: relative;">
-  <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
-  <source src="static/user/animated.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+    <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
+      <source src="static/user/animated.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
 
 
     <!-- Content goes here -->
@@ -94,45 +94,27 @@
     </div>
   </section>
 
-  <div class="max-w-full p-6 mx-auto bg-white rounded-md overflow-hidden shadow-md">
-    <div class="p-6 ">
-        <h2 class="text-2xl font-semibold mb-2 border-b-2 border-gray-300">View Latest Post from ORMIN Red Cross</h2>
-
-        <div class="max-h-screen overflow-y-auto border-b-2 border-gray-300">
-          
-            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-6 mb-2">
-              <div class="flex justify-center">
-                <iframe width="560" height="315" src="https://redcross.org.ph/wp-content/uploads/2023/09/373313159_677518164266726_5088723651220931343_n.mp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-
-                <p class="font-bold text-2xl mt-2">
-                  ON #INTERNATIONALDAYOFTHEDISAPPEARED, LET'S ALL REMEMBER THOSE WHO ARE STILL MISSING UP TO THIS TIME. </p>
-                <p class="text-xs text-gray-500">Posted on November 17, 2023 8:00 am</p>
-
-                <p class="text-md mt-2">Philippine Red Cross continues to reconnect families through its Restoring Family Links — a program of the Red Cross and Red Crescent Movement, more specifically the International Committee of the Red Cross Philippines and National Red Cross and Red Crescent Societies — involving activities that aim to prevent separation and disappearance, look for missing persons, restore and maintain contact between family members and clarify the fate of persons reported missing.</p>
-            
-            </div>
-            <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
-              <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
-              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-              <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-          </div>
-          <div class="bg-blue-100 border-x-4 border-red-500 text-gray-800 p-4 mb-2">
-            <p class="font-bold text-2xl ">Red Cross Blood Letting</p>
-            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
-            <p class="text-sm">Here goes the announcement content. It could be a brief description or important information you want to highlight.</p>
+  <section class="bg-slate-200 h-auto p-8">
+  <div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
+      @foreach($announcement as $announcements)
+      <div class="announcement-card">
+        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
+          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
+          <p class="text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
+          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
         </div>
-       
-
-            <!-- You can add more announcements as needed -->
-        </div>
+      </div>
+      @endforeach
     </div>
-</div>
+    <div id="paginationButtons" class="flex justify-center mt-8">
+      {{ $announcement->links() }} <!-- Display pagination links -->
+    </div>
+  </div>
+</section>
 
 
   <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
-
-
 
     <div class="h-screen p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
@@ -183,23 +165,6 @@
   </div>
 
 
-
-
-  <div class="h-screen p-6 md:p-28  bg-center bg-cover ease-in-out transition-opacity" style="background-image: url('https://scontent.fmnl30-3.fna.fbcdn.net/v/t1.6435-9/86408136_894556941000320_5054492052813774848_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=8bfeb9&_nc_aid=0&_nc_eui2=AeE0bFobkl3UMSmE0zaa4gJgiaooucyjQMqJqii5zKNAylsYme4GubZ_M21UxmCNQau66HrZZBQG79Dnbx0ZM1V-&_nc_ohc=4FDyUWntYKkAX_Y9fa9&_nc_ht=scontent.fmnl30-3.fna&oh=00_AfCFqUKpI1VIQQI-4nSdTA0Wo1WxROSOjCjXFBWUp8OZzQ&oe=653371D0')">
-    <div class="flex w-full bg-opacity-75">
-      <div class="md:w-1/2">
-        <!-- Content for the left side (Image side) -->
-      </div>
-      <div class="text-white md:w-1/2 space-y-4">
-        <div class="">
-          <p class="font-bold text-4xl md:text-6xl text-red-600">TRAIN with US!</p>
-        </div>
-        <div class="text-black text-lg md:text-2xl">
-          <p>Train your employees with the knowledge and skills they need for effective leadership in the event of an emergency. From First Aid and CPR training, to Lifeguard and EMT certification, The Philippine Red Cross has the emergency health and safety training and certification options available to suit your employees' needs.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <section class="h-screen bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
@@ -298,44 +263,58 @@
       </div>
     </div>
   </section>
-  <div class="footer h-1/4  bg-gray-700">
+  <div class="">
     @include('layout.user.footer')
   </div>
 
 </div>
 <script>
-  $(document).ready(function () {
-    Create_Feedback()
+  $(document).ready(function() {
+    Create_Feedback(),
+    showFullAnnouncement(fullText) 
   });
-  
-  function Create_Feedback(){
-        $('#create-feedback-form').submit(function (e) { 
-            e.preventDefault();
-            var formdata= new FormData($(this)[0]);
-            $.ajax({
-                type: "POST",
-                url: "{{url('share-feedback')}}",
-                data: formdata,
-                contentType: false,
-                 processData: false,
-                success: function (response) {
-                    if(response.success){
-                      $('#create-feedback-form')[0].reset()
-                      alert(response.success)
-                    }else if(response.failed){
-                      alert(response.failed)
-                    }else{
-                      alert('Something went wrong!')
-                    }
-                },
+
+  function Create_Feedback() {
+    $('#create-feedback-form').submit(function(e) {
+      e.preventDefault();
+      var formdata = new FormData($(this)[0]);
+      $.ajax({
+        type: "POST",
+        url: "{{url('share-feedback')}}",
+        data: formdata,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (response.success) {
+            $('#create-feedback-form')[0].reset()
+            alert(response.success)
+          } else if (response.failed) {
+            alert(response.failed)
+          } else {
+            alert('Something went wrong!')
+          }
+        },
         error: function(xhr, status, error) {
           // Handle errors, if any
           // window.alert(xhr.responseText);
         }
-            });
-            
-        });
-      }
+      });
+
+    });
+  }
+
+  function scrollToAnnouncementCards() {
+    const announcementCardsSection = document.getElementById('announcementCards');
+    if (announcementCardsSection) {
+      announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Call the function when the page finishes loading
+  window.addEventListener('load', scrollToAnnouncementCards);
+
+  function showFullAnnouncement(fullText) {
+    window.alert(fullText);}
 </script>
 <script>
   // Initialization for ES Users
@@ -349,6 +328,9 @@
     Carousel
   });
 </script>
+
+
+
 
 module.exports = {
 //...

@@ -36,5 +36,7 @@ class insurance extends Model
         'proof_of_payment',
         'OR#',
         'note',
+
+       
     ];
 }

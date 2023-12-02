@@ -3,7 +3,7 @@
 <title>Chats</title>
 <div class="py-2 px-10">
   <p class="text-4xl text-green-600 UPPERCASE">Messages</p>
-  <div class="h-screen">
+  <div class="h-auto">
     <div class=" h-full overflow-x-auto mt-3 p-5 rounded-md  space-y-2">
      
    

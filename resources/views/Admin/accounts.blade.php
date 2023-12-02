@@ -1,13 +1,13 @@
 @extends('layout.admin.layout')
 @section('accounts')
-<div class="py-2 px-10">
+<div class=" py-2 px-10">
   <p class="text-4xl text-green-600 UPPERCASE">Manage System Accounts</p>
   <div class="flex justify-end">
     <button type="button" id="open-create-account-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white">Create Account</button>
   </div>
 
 </div>
-<div class="  px-10">
+<div class=" h-auto px-10">
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5">
     <table id="verified-accounts" class="stripe hover  w-full ">

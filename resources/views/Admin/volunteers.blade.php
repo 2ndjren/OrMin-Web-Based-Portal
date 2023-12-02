@@ -7,7 +7,7 @@
     <button type="button" id="open-create-volunteer-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white"> Create Volunteer</button>
   </div>
 </div>
-<div class="h-screen  px-10">
+<div class="h-auto  px-10">
 
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">

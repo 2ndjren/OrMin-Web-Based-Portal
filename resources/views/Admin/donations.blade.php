@@ -2,7 +2,7 @@
 @section('donations')
 <title>Donations</title>
 
-<div class="py-10 px-10 h-screen ">
+<div class="py-10 px-10 h-auto">
 <div class="">
     <p class="text-center text-4xl text-green-600 UPPERCASE"><span class="bg-gray-100 px-10 py-2 rounded-md">Membership's Overview</span></p>
   </div>
@@ -25,7 +25,7 @@
     <div id="decline-membership-note" class="w-full">
       <div class="sm:h-screen lg:h-20 sm:block lg:hidden md:hidden"></div>
       <p class="font-semibold">Add Records</p>
-      <form id="create-donation-form"">
+      <form id="create-donation-form">
         @csrf
      <div class="sm:block md:flex lg:flex md:space-x-2   lg:space-x-2">
      <div class="mb-4 w-full">

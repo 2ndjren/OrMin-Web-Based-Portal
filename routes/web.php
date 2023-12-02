@@ -166,6 +166,18 @@ Route::get('posted-announcement',[Announcements::class,'Display_Posted_Announcem
 Route::get('posted-by/{id}',[Announcements::class,'Find_Who_post']);
 Route::get('post-announcements-history-details/{id}',[Announcements::class,'Find_Post']);
 
+Route::get('delete-announcement/{id}',[Announcements::class,'deleteAnnouncement']);
+
+Route::post('/mark-as-latest/{id}', [Announcements::class, 'repostAnnouncement'])->middleware('web');
+
+
+
+
+Route::get('appointments',[Appointments::class,'Appointments']);
+Route::get('search-user-appointment/{search}',[Appointments::class,'Search_User']);
+
+
+
 Route::get('feedbacks',[Feedbacks::class,'Feedbacks']);
 
 Route::get('reports',[Reports::class,'Reports']);

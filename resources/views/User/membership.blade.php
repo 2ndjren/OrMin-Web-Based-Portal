@@ -5,7 +5,7 @@
 
 <div class="h-screen w-full overflow-y-auto ">
 
-    <img class="object-cover w-full h-50" src="{{asset('static/user/home/mbg.jpg')}}" alt="apple watch photo" />
+    <img class="object-cover w-full h-auto" src="{{asset('static/user/home/mbg.jpg')}}" alt="apple watch photo" />
     <main class="grow">
 
         <section class="bg-cover bg-no-repeat py-10 bg-opacity-25" style="background-image: url('static/user/home/tbg.jpg')">

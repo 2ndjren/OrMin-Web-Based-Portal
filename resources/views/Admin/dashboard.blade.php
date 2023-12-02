@@ -8,9 +8,8 @@
 
 </div>
 
-<div class=" px-10 h-auto">
+<div class=" px-10">
 <div class="h-screen ">
-
   <div class="">
     <div class=" sm:block lg:flex w-full space-x-2">
         <div class="container mx-auto py-4 w-full">
