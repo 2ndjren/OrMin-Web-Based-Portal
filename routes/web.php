@@ -94,7 +94,7 @@ Route::get('donation-details/{id}',[Dashboard::class,'Donation_Data']);
 Route::get('membership',[Membership::class,'Insurance']);
 Route::get('membership-account-profile/{id}',[Membership::class,'Membership_Profile']);
 Route::get('delete-membership-account-profile/{id}',[Membership::class,'Delete_Membership_Profile']);
-Route::get('all-membership-account',[Membership::class,'Membership_Accounts']);
+Route::get('activated-membership-account',[Membership::class,'Membership_Accounts']);
 Route::post('create-membership-account',[Membership::class,'Create_Membership_Account']);
 Route::post('decline-membership',[Membership::class,'Decline_Membership']);
 Route::get('approve-membership/{id}',[Membership::class,'Approve_Membership']);
