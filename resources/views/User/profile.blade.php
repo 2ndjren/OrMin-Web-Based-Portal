@@ -6,7 +6,13 @@
   <div class="md:w-1/3  xl:w-1/3 sm:w-full p-10 bg-white shadow-md rounded-lg block space-y-5">
 
     <div class="flex justify-center">
-      <img src="{{session('USER')['user_profile']}}" alt="" class="h-40 w-auto shadow">
+      @if(session('USER'))
+      <img src="data:image/jpeg;base64,{{session('USER')['user_profile']}}" alt="Image" class="h-40 w-auto shadow">
+      @else
+      <p>No Image</p>
+      
+      @endif
+
     </div>
 
     <div class="text-xl text-gray-700 text-center font-bold">

@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('occupation_address');
             $table->string('phone_no');
             $table->string('role')->nullable();
-            $table->string('consent')->nullable();
+            $table->binary('consent')->nullable();
             $table->string('email');
             $table->date('expiration_date')->nullable();
             $table->string('privacy_agreement');

@@ -68,9 +68,10 @@ class Auth extends Controller
             if($user){
                 if(password_verify($password,$user->password)){
                     if($user->account_status=="VERIFIED"){
+                        $image=base64_encode($user->user_profile);
                         $data=[
                             'id'=>$user->id,
-                            'user_profile'=>$user->user_profile,
+                            'user_profile'=>$image,
                            'fname'=>$user->fname,
                            'mname'=>$user->mname,
                            'lname'=>$user->lname,
@@ -173,8 +174,9 @@ class Auth extends Controller
         $user->id=mt_rand(111111,999999);
         if($request->user_profile!=null){
 
-            $path=$request->file('user_profile')->store('public/user/profiles');
-            $user->user_profile=Storage::url($path);
+            $image=$request->file('user_profile');
+            $image_content=file_get_contents($image);
+            $user->user_profile=$image_content;
         }else{
         $user->user_profile='/storage/user/profiles/noprofile.png';
         }
@@ -205,14 +207,12 @@ class Auth extends Controller
                 return redirect()->back()->with('success','Please check your email to activate your account.');
             }
             else{
-                Storage::delete($path);
                 return redirect()->back()->with('failed','Email is invalid.');
 
             }
         }
         else{
             if( DB::rollBack()){
-                Storage::delete($path);
                 return redirect()->back()->with('failed','Somthing went wrong.');
 
             }

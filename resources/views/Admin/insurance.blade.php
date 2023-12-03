@@ -315,7 +315,7 @@
 
 <div id="show-membership-account-payment-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="membership-account-payment" class="block  p-10"></div>
+    <div id="membership-account-payment" class="block"></div>
 
   </div>
 </div>
@@ -795,9 +795,9 @@
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="decline-membership-note" class="w-full">
       <p class="font-semibold">State your reason on the text box!</p>
-      <form id="decline-membership-form"">
+      <form id="decline-membership-form">
         @csrf
-        <input id=" decline-id" type="hidden" name="id">
+        <input id="decline-id" type="text" name="id">
         <textarea placeholder="Write here..." class="border w-full" name="note" id="" cols="30" rows="5"></textarea>
         <div class="flex justify-end space-x-2">
           <button id="close-decline-membership-account-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
@@ -821,10 +821,24 @@
     Export_Data()
     ToPrint()
     Process_Print_Data()
-    setInterval(() => {
-      Account_To_Notified()
-    }, 5000);
+    // setInterval(() => {
+    //   Account_To_Notified()
+    // }, 5000);
 
+    $.ajax({
+      type: "GET",
+      url: "/all-membership-account",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        console.log(response)
+      },
+
+              error: function(xhr, status, error) {
+          // Handle errors, if any
+        console.log(xhr.responseText);
+        }
+    });
   });
 
   function Account_To_Notified() {
@@ -1297,6 +1311,8 @@
         dataType: "json",
         success: function(response) {
           if (response.success) {
+            $('#membership-accounts-table').empty()
+            Pending_Membership()
             alert(response.success)
           } else {
             alert(response.failed)
@@ -1374,7 +1390,8 @@
       data: "data",
       dataType: "json",
       success: function(response) {
-        var payment = "<img src=" + response.proof_of_payment + ">"
+        
+        var payment = "<img class='h-96 ' src='data:image/jpeg;base64,"+response.proof_of_payment+"'>"
         payment += "<div class='flex justify-end my-2'>"
         payment += "<button type='button' id='close-membership-payment' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
         payment += "<div>"
@@ -1422,6 +1439,8 @@
             $('#spinner').addClass('hidden')
             $('#create-membership-account')[0].reset()
             $('#success-message').text(response.success)
+            $('#membership-accounts-table').empty()
+            Pending_Membership()
             alert(response.success)
           } else if (response.failed) {
             $('#spinner').addClass('hidden')
@@ -1447,7 +1466,7 @@
         },
         error: function(xhr, status, error) {
           // Handle errors, if any
-          window.alert(xhr.responseText);
+          console.log(xhr.responseText);
         }
       });
     });
@@ -1470,13 +1489,14 @@
     let activated = new DataTable('#activated-accounts', {
       "responsive": true,
       "ajax": {
-        "url": "/activated-membership-account",
+        "url": "/all-membership-account",
         "type": "GET",
         "dataSrc": "activated",
       },
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
+            console.log(data);
             return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
@@ -1554,7 +1574,7 @@ var endmon = months[endmonth - 1];
     let pending = new DataTable('#pending-accounts', {
       "responsive": true,
       "ajax": {
-        "url": "/activated-membership-account",
+        "url": "/all-membership-account",
         "type": "GET",
         "dataSrc": "pending",
       },
@@ -1622,7 +1642,7 @@ var endmon = months[endmonth - 1];
     let others = new DataTable('#other-accounts', {
       "responsive": true,
       "ajax": {
-        "url": "/activated-membership-account",
+        "url": "/all-membership-account",
         "type": "GET",
         "dataSrc": "others",
       },
@@ -1711,7 +1731,8 @@ var endmon = months[endmonth - 1];
           right_details += "<p class='font-semibold text-gray-400 text-xs'>STATUS: <span class='text-gray-600  text-sm' id='profile-password'>" + response.status + "</span></p>"
           right_details += "<p class='font-semibold text-gray-400 text-xs'>TYPE OF PAYMENT: <span class='text-gray-600  text-sm' id='profile-password'>" + response.type_of_payment + "</span></p>"
           right_details += "<p class='font-semibold text-gray-400 text-xs'>PROOF OF PAYMENT:</p>"
-          right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn'  text-sm' id='profile-password'><img src=" + response.proof_of_payment + " class='h-32 w-auto'></button>"
+  
+          right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn'  text-sm' id='profile-password'><img src='data:image/jpeg;base64,"+response.proof_of_payment+"' class='h-32 w-auto'></button>"
 
           left_details += "<div>"
           var profile_btns = "<div class='flex space-x-2'>"
