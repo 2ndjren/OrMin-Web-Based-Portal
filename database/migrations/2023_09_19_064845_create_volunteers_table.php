@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('vol_id')->nullable();
             $table->string('u_id')->nullable();
             $table->string('e_id')->nullable();
-            $table->string('vol_profile')->nullable();
+            $table->binary('vol_profile')->nullable();
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');
@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('occupation_address');
             $table->string('phone_no');
             $table->string('role')->nullable();
-            $table->string('consent')->nullable();
+            $table->binary('consent')->nullable();
             $table->string('email');
             $table->date('expiration_date')->nullable();
             $table->string('privacy_agreement');

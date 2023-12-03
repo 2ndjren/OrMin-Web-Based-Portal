@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->text('note')->nullable();
             $table->string('donator_info')->nullable();
-            $table->string('donation_proof')->nullable();
+            $table->binary('donation_proof')->nullable();
             $table->string('status');
             $table->timestamps();
         });

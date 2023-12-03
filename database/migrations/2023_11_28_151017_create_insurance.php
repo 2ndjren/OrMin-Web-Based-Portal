@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('lname');
             $table->string('sname')->nullable();
             $table->string('blood_type')->nullable();
-            $table->string('age')->nullable();
+            $table->string('age');
+
             $table->string('gender')->nullable();
             $table->string('birthday');
             $table->string('municipality');
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->string('barangay_street')->nullable();
             $table->string('level');
             $table->string('amount')->nullable();
+
             $table->string('email')->nullable();
             $table->string('status');
             $table->date('start_at')->nullable();
@@ -36,7 +38,7 @@ return new class extends Migration
             $table->date('days_before_end')->nullable();
             $table->string('notified')->nullable();
             $table->string('type_of_payment');
-            $table->string('proof_of_payment')->nullable();
+            $table->binary('proof_of_payment')->nullable();
             $table->string('OR#')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
@@ -51,4 +53,3 @@ return new class extends Migration
         Schema::dropIfExists('insurance');
     }
 };
-
