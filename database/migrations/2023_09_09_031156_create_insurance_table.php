@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('mname')->nullable();
             $table->string('lname');
             $table->string('sname')->nullable();
-
             $table->string('blood_type')->nullable();
             $table->string('age');
 
@@ -30,7 +29,6 @@ return new class extends Migration
             $table->string('barangay')->nullable();
             $table->string('barangay_street')->nullable();
             $table->string('level');
-
             $table->string('amount')->nullable();
 
             $table->string('email')->nullable();
@@ -40,7 +38,7 @@ return new class extends Migration
             $table->date('days_before_end')->nullable();
             $table->string('notified')->nullable();
             $table->string('type_of_payment');
-            $table->string('proof_of_payment')->nullable();
+            $table->binary('proof_of_payment')->nullable();
             $table->string('OR#')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();

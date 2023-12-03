@@ -10,9 +10,9 @@
 <body>
   <div class="flex h-screen w-screen justify-center">
     <div class="">
-        @if ($mail['gender'] =="MALE")
+        @if ($mail['gender']=="MALE")
             <p>Good day Mr.{{$mail['lname']}}</p>
-        @else
+        @elseif ($mail['gender']=="FEMALE")
         <p>Good day Ms.{{$mail['lname']}}</p>
         @endif
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('user_profile')->nullable();
+            $table->binary('user_profile')->nullable();
             $table->string('fname');
             $table->string('mname');
             $table->string('lname');                      
