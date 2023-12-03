@@ -98,34 +98,26 @@ class Membership extends Controller
 
     }
     public function Membership_Profile($id){
-        $data = insurance::find($id);
-        $data->proof_of_payment = base64_encode($data->proof_of_payment);
+        $data=insurance::find($id);
         return response()->json($data);
-        // $data=insurance::find($id);
-        // return response()->json($data);
-    }public function Decline_Membership(Request $request){
-        $id = $request->id;
-        $note = $request->note;
-    
-        $insurance = insurance::find($id);
-    
-        if ($insurance) {
-            // Update 'note' and 'status' fields
-            $updated = $insurance->update([
-                'note' => $note,
-                'status' => 'DECLINED',
+    }
+    public function Decline_Membership(Request $request){
+        $id=$request->id;
+        if($request->note !=""){
+            $updated=insurance::where('id',$id)->update([
+                'note'=>$request->note,
+                'status'=>'DECLINED',
             ]);
+            if($updated){
+                return response()->json(['success'=>'Membership successfully declined!']);
+            }else{
+                return response()->json(['failed'=>'Sorry, Something went wrong!']);
     
-            if ($updated) {
-                return response()->json(['success' => 'Membership successfully declined!']);
-            } else {
-                return response()->json(['failed' => 'Sorry, something went wrong while updating!']);
             }
-        } else {
-            return response()->json(['failed' => 'Record not found']);
+        }else{
+            return response()->json(['failed'=>'Field is required!']);
         }
     }
-    
     public function Approve_Membership($id){
         DB::beginTransaction();
         $start=date('Y-m-d');
@@ -171,29 +163,15 @@ class Membership extends Controller
             return response()->json(['success'=>'Membership successfully deleted!']);
         }
     }
-    public function Membership_Accounts()
-    {
-        $activated = insurance::where('status', 'ACTIVATED')->get()->map(function ($item) {
-            $item->proof_of_payment = base64_encode($item->proof_of_payment);
-            return $item;
-        });
-    
-        $pending = insurance::where('status', 'PENDING')->get()->map(function ($item) {
-            $item->proof_of_payment = base64_encode($item->proof_of_payment);
-            return $item;
-        });
-    
-        $others = insurance::whereIn('status', ['EXPIRED', 'DECLINED'])->get()->map(function ($item) {
-            $item->proof_of_payment = base64_encode($item->proof_of_payment);
-            return $item;
-        });
-    
-        $data = [
-            'activated' => $activated,
-            'pending' => $pending,
-            'others' => $others
+    public function Membership_Accounts(){
+        $activated=insurance::where('status','ACTIVATED')->get();
+        $pending=insurance::where('status','PENDING')->get();
+        $others=insurance::whereIn('status',['EXPIRED','DECLINED'])->get();
+        $data=[
+            'activated'=>$activated,
+            'pending'=>$pending,
+            'others'=>$others
         ];
-    
         return response()->json($data);
     }
     public function Create_Membership_Account(Request $request){
@@ -237,9 +215,8 @@ class Membership extends Controller
         $create->barangay_street=strtoupper($request->barangay_street);
         $create->level=strtoupper($request->level);
         $create->type_of_payment=strtoupper($request->type_of_payment);
-        $image=$request->file('proof_of_payment');
-        $image_content=file_get_contents($image);
-        $create->proof_of_payment=$image_content;
+        $path=$request->file('proof_of_payment')->store('public/membership/payments');
+        $create->proof_of_payment=Storage::url($path);
         $create->amount=$request->amount;
         if($request->status=="Activated"){
             $start=date('Y-m-d');
