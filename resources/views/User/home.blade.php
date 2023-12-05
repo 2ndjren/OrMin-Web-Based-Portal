@@ -95,9 +95,9 @@
   </section>
 
   <section class="bg-slate-200 h-auto p-8">
-  <!-- <div class="container mx-auto py-8">
+  <div class="container mx-auto py-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
-      @foreach($announcement as $announcements)
+      <!-- @foreach($announcement as $announcements)
       <div class="announcement-card">
         <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
           <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
@@ -107,10 +107,11 @@
       </div>
       @endforeach
     </div>
-    <div id="paginationButtons" class="flex justify-center mt-8">
-      {{ $announcement->links() }} <!-- Display pagination links -->
-    </div>
-  </div> -->
+    <div id="paginationButtons" class="flex justify-center mt-8"> -->
+      <!-- {{ $announcement->links() }} -->
+       <!-- Display pagination links -->
+    <!-- </div> -->
+  </div>
 </section>
 
 
