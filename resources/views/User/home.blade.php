@@ -94,25 +94,6 @@
     </div>
   </section>
 
-  <section class="bg-slate-200 h-auto p-8">
-  <div class="container mx-auto py-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
-      <!-- @foreach($announcement as $announcements)
-      <div class="announcement-card">
-        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
-          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
-          <p class="text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
-        </div>
-      </div>
-      @endforeach
-    </div>
-    <div id="paginationButtons" class="flex justify-center mt-8"> -->
-      <!-- {{ $announcement->links() }} -->
-       <!-- Display pagination links -->
-    <!-- </div> -->
-  </div>
-</section>
 
 
   <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
