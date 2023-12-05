@@ -262,20 +262,23 @@ function Create_Account(verified){
         if(response.success){
           verified.ajax.reload()
           $('#create-account')[0].reset()
-          $('#success').removeClass('hidden')
-          $('#success').addClass('block')
-          $('#success-message').text(response.success)
+          alert(response.success)
         }else if(response.failed){
-          $('#failed').removeClass('hidden')
-          $('#failed').addClass('block')
-          $('#failed-message').text(response.failed)
+          alert(response.failed)
+
+        
+        }else if(response.errors.email){
+          alert(response.errors.email)
+          $.each(response.errors, function(field, errorMessage) {
+                      
+                      $('#'+field).addClass('border border-red-500');
+         });
+
         }else{
-          $('#failed').removeClass('hidden')
-          $('#failed').addClass('block')
           if(response.errors.email==="The email has already been taken."){
-            $('#failed-message').text(response.errors.email)
+            alert(response.errors.email)
           }else{
-            $('#failed-message').text('All fields are required!')  
+            alert('All fields are required!')  
           }
           $.each(response.errors, function(field, errorMessage) {
                       

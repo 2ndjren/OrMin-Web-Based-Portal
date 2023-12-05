@@ -175,6 +175,9 @@ Route::post('/mark-as-latest/{id}', [Announcements::class, 'repostAnnouncement']
 
 Route::get('appointments',[Appointments::class,'Appointments']);
 Route::get('search-user-appointment/{search}',[Appointments::class,'Search_User']);
+Route::get('set-user-app-details/{id}',[Appointments::class,'SetAppointment_Details']);
+Route::post('create-appointment',[Appointments::class,'Create_Appointment']);
+Route::get('scheduled-appointments',[Appointments::class,'Scheduled_Appointments']);
 
 
 

@@ -14,19 +14,25 @@
     <div id="ongoing-appointment" class="text-center"> 
       <span class="text-green-500 font-bold text-4xl text-center">Jared Philipps Baren</span>
     </div>
-  <div class="sm:block md:flex lg:flex">
+  </div>
+
+  <div class=" sm:block md:flex lg:flex  max-h-screen lg:space-x-2 sm:space-y-2 lg:space-y-0 lg:mb-2">
+    <div class="w-full bg-white rounded-md p-5  ">
+    <p class="font-semibold text-yellow-500 text-lg">Next</p>
     <div class="w-full"><div class="font-semibold text-blue-500  text-center">
     <span class="text-green-500 font-bold text-lg text-center">Jared Philipps Baren</span>
 
-    </div></div>
-  <div class="flex justify-center space-x-2 w-full ">
-      <button type="button" class="px-2 py-1 rounded-md bg-yellow-500 text-white font-semibold ">New</button>
-      <button type="button" class="px-2 py-1 rounded-md bg-green-500 text-white font-semibold ">Next</button>
     </div>
   </div>
+    </div>
+    <div class="sm:w-full lg:w-96 bg-white rounded-md p-5 ">
+    <div class="flex justify-center lg:space-x-2 w-full ">
+      <button type="button" id="open-create-app-modal" class="px-2 py-1 rounded-md bg-yellow-500 text-white font-semibold ">Create</button>
+      <button type="button" class="px-2 py-1 rounded-md bg-green-500 text-white font-semibold ">Next</button>
+    </div>
+    </div>
   </div>
-
-  <div class=" sm:block md:flex lg:flex  max-h-screen lg:space-x-2">
+  <div class=" sm:block md:flex lg:flex  max-h-screen sm:space-y-2 lg:space-y-0 lg:space-x-2 sm:mt-2">
     <div class="w-full bg-white rounded-md p-5  ">
       <p class="font-semibold text-lg text-green-500 text-center">Appointment List</p>
       <div id="app-list"></div>
@@ -43,33 +49,24 @@
 
 
 
-<div id="create-donation-record" class="  fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 h-96 mx-auto rounded-lg p-4 shadow-lg  ">
+<div id="create-appointment-modal" class=" hidden  fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/4 h-auto mx-auto rounded-lg p-4 shadow-lg  ">
     <div id="decline-membership-note" class="w-full">
       <div class="sm:h-screen lg:h-20 sm:block lg:hidden md:hidden"></div>
-      <p class="font-semibold">Create Appointment</p>
+      <p class="font-semibold text-center">Create Appointment</p>
       <div class="p-4 border-b">
         <input type="text" id="search" placeholder="Search..." class="w-full px-4 py-2 border rounded-full">
         <div  id="users" class="mt-1 hidden z-50">
-          <div  id="search-loading-spinner" class='hidden p-4 border-b-gray-200 border-l border-r border-t border-red-500 rounded-full animate-spin h-5 w-5'> </div>
-          <div id="results" class="rounded-md">
-
-           
-
+          <div  id="search-loading-spinner" class='hidden p-4  border-t border-red-500 rounded-full animate-spin h-5 w-5'> </div>
+          <div id="results" class="rounded-md h-72 overflow-y-auto">
           </div>
 
         </div>
       </div>
    
     </div>
-    <form id="create-donation-form">
+    <form class="hidden" id="create-app-form">
         @csrf
-
-        
-
-
-
-  
 
 
         <div class="flex justify-end space-x-2">
@@ -77,6 +74,9 @@
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Save</button>
         </div>
       </form>
+     <div class="flex justify-center">
+     <button class="close-create-app-btn bg-gray-500 mt-2 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+     </div> 
   </div>
 </div>
 
@@ -89,19 +89,67 @@
 
 
 
-<div id="decline-form-modal" class="fixed hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
-    <div id="donation-" class="block  p-10">
-      <form action="">
+<div id="set-appointment-modal" class="hidden fixed inset-0 flex items-center justify-center z-20  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-screen  lg:h-screen mx-auto shadow-lg ">
+  <div class="flex">
+    <div id="existing-appointment" class="h-auto"></div>
+  <div id="appointment" class="hidden  p-10">
+      <form id="create-appointment-form">
         @csrf
-        <p>Add note:</p>
-        <textarea class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  name="" id="" cols="30" rows="10"></textarea>
-        <div class="flex justify-center space-x-2"> 
-          <button type="button" class="p-2 bg-green-500 text-white font-semibold rounded-md">Cancel</button>
-          <button type="submit" class="p-2 bg-red-500 text-white font-semibold rounded-md">Proceed</button>
+        <p>Set now!</p>
+        <div  id="app-user-data"></div>
+        <div class="flex lg:space-x-2 sm:space-y-2 lg:space-y-0">
+            <div class="">
+              <p>Date</p>
+              <input type="date"  class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="app_date" id="">
+          </div>
+            <div class="">
+              <p>Time</p>
+              <select  class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="app_time" id="">
+              <option value="">Select</option>
+              <option value="8:30 AM">8:30 AM</option>
+              <option value="9:30 AM">9:30 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="2:00 PM">2:00 PM</option>
+              <option value="3:00 PM">3:00 PM</option>
+              <option value="4:00 PM">4:00 PM</option>      
+            </select>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="">
+            <p>Status</p>
+            <select  class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="status" id="">
+            <option value="">Select</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approve</option>
+          </select></div>
+        </div>
+        <input type="hidden" id="user-app-id" name="u_id" >
+        @if(session('ADMIN'))
+        <input type="hidden"  name="e_id"  value="{{session('ADMIN')['id']}}">
+        @elseif(session('STAFF'))
+        <input type="hidden"  name="e_id"  value="{{session('STAFF')['id']}}">
+        @endif
+        <textarea class="form-inputs mt-2 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Description!"  name="app_description" id="" cols="30" rows="5"></textarea>
+        <textarea class="form-inputs mt-2 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Add note(optional)!"  name="note" id="" cols="30" rows="5"></textarea>
+        <div class="flex justify-center space-x-2  mt-2"> 
+          <button type="button" id='close-set-app-modal' class="p-2 bg-green-500 text-white font-semibold rounded-md">Cancel</button>
+          <button type="submit" class="p-2 bg-red-500 text-white font-semibold rounded-md">Save</button>
         </div>
       </form>
     </div>
+    <div class="">
+
+    </div>
+    <div class="">
+      <div id="scheduled-appointment">
+
+      </div>
+    </div>
+  </div>
 
   </div>
 </div>
@@ -111,6 +159,7 @@
   $(document).ready(function () {
     Search_User()
     HandleSearch()
+    Appointment_Btn()
   });
   function Search_User(){
     $('#search').on('input', function () {
@@ -141,7 +190,7 @@
           $('#results').empty()
           if(data.match){
             $.each(data.match, function (index, field) { 
-            var results="<button type='button' data-id="+field.id+"  class='get-user chat_head_button p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
+            var results="<button type='button' data-id="+field.id+"  class='get-user set-ap-user-details p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
             results+="<div class='flex space-x-2'>"
             results+="<div>"
             if(field.vol_profile!==""){
@@ -171,5 +220,75 @@
             }
       });
   }
+  function Appointment_Btn(){
+    $('#open-create-app-modal').click(function (e) { 
+      e.preventDefault();
+      $('#create-appointment-modal').removeClass('hidden')
+      
+    });
+    $('.close-create-app-btn').click(function (e) { 
+      e.preventDefault();
+      $('#create-appointment-modal').addClass('hidden')
+      $('#create-app-form').addClass('hidden')
+      
+      $('#search').val("")
+      $('#results').empty()
+      $('#results').empty()
+        $('#inboxThreads').removeClass('hidden')
+        $('#users').addClass('hidden')
+      $('#create-app-form')[0].reset()
+      
+    });
+    $(document).on('click','.set-ap-user-details',function(){
+      var id=$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/set-user-app-details/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (user) {
+          console.log(user)  
+          if(user.check>0){
+            var existing="<div>"
+            existing="<p>"+user.user.existing.fname+"</p>"
+            existing="</div>"
+            $('#existing-appointment').append(existing); 
+              $('#set-appointment-modal').removeClass('hidden')
+            $('#create-appointment-modal').addClass('hidden')
+            
+          }else{
+            $('#set-appointment-modal').removeClass('hidden')
+          $('#create-appointment-modal').addClass('hidden')
+
+          }
+
+
+          
+        }
+      });
+    });
+    $('#close-set-app-modal').click(function (e) { 
+      e.preventDefault();
+      $('#set-appointment-modal').addClass('hidden')
+      $('#create-appointment-modal').removeClass('hidden')
+    });
+    $('#create-appointment-form').submit(function (e) { 
+      e.preventDefault();
+      var formdata= new FormData($(this)[0])
+      $.ajax({
+        type: "POST",
+        url: "{{url('create-appointment')}}",
+        data: formdata,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          console.log(response)
+          
+        }
+      });
+      
+    });
+  }
+
 </script>
 @endsection
