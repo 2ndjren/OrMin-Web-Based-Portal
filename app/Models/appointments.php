@@ -20,5 +20,15 @@ class appointments extends Model
         'status',
         'decline_info',
     ];
+    public function employee()
+    {
+        // Define the inverse of the relationship
+        return $this->belongsTo(appointments::class, 'e_id', 'id');
+    }
+    public function user()
+    {
+        // Define the inverse of the relationship
+        return $this->belongsTo(appointments::class, 'u_id', 'id');
+    }
     
 }

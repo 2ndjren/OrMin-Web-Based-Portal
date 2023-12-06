@@ -178,7 +178,7 @@ class Auth extends Controller
             $image_content=file_get_contents($image);
             $user->user_profile=$image_content;
         }else{
-        $user->user_profile='/storage/user/profiles/noprofile.png';
+        // $user->user_profile='/storage/user/profiles/noprofile.png';
         }
         $user->fname= strtoupper($request->fname);
         $user->mname=strtoupper($request->mname);

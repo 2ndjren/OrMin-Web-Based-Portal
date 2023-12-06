@@ -44,13 +44,17 @@ class Appointments extends Controller
   }
   public function SetAppointment_Details($id){
     $user=user::find($id);
-    $check=ModelsAppointments::where('id',$id)->where('status','APPROVED')->count();
-    $existing=ModelsAppointments::where('id',$id)->where('status','APPROVED')->first();
+    $check=ModelsAppointments::where('u_id',$id)->whereIn('status',['APPROVED','ONGOING','PENDING'])->count();
+    $existing=ModelsAppointments::where('u_id',$id)->whereIn('status',['APPROVED','ONGOING','PENDING'])->first();
+    $group=ModelsAppointments::select('app_date')->whereIn('status',['APPROVED','ONGOING'])->groupBy('app_date')->get();
+    $schedules=ModelsAppointments::select('app_date','app_time')->whereIn('status',['APPROVED','ONGOING'])->orderBy('app_date')->get();
     if($user!=null){
         $data=[
             'user'=>$user,
             'check'=>$check,
-            'existing'=>$existing,
+            'exist'=>$existing,
+            'sched'=>$schedules,
+            'group_sched'=>$group,
         ];
         return response()->json($data);
     }
@@ -60,6 +64,24 @@ class Appointments extends Controller
 
 
     
+  }
+  public function Appointments_Submitted(){
+    $ongoing=ModelsAppointments::where('status','ONGOING')->first();
+    $ongoing_user=user::where('id',$ongoing->u_id)->first();
+    $next=ModelsAppointments::where('status','APPROVED')->first();
+    $next_user=ModelsAppointments::where('u_id',$next->u_id);
+    $approved=ModelsAppointments::where('status','APPROVED')->skip(1)->take(10)->get();
+    $pending=ModelsAppointments::where('status','PENDING')->get();
+    $data=[
+        'ongoing_user'=>$ongoing_user,
+        'ongoing'=>$ongoing,
+        'next'=>$next,
+        'next_user'=>$next_user,
+        'approved'=>$approved,
+        'pending'=>$pending,
+      
+    ];
+    return response()->json($data);
   }
   public function Scheduled_Appointments(){
     $appointments=ModelsAppointments::select('app_date')->where('status','APPROVED')->orderBy('created_at','desc')->groupBy('app_date')->get();
@@ -78,7 +100,7 @@ class Appointments extends Controller
         ];
         $validator=Validator::make($request->all(),$rules);
         if($validator->fails()){
-            return response()->json(['errors'=> $validator->errors()]);
+            return response()->json(['failed'=>'All fields are required!']);
         }
         $id=mt_rand(111111111,999999999);
         $app=new ModelsAppointments();
@@ -88,7 +110,7 @@ class Appointments extends Controller
         $app->app_date=$request->app_date;
         $app->app_time=$request->app_time;
         $app->app_description=$request->app_description;
-        $app->status=$request->status;
+        $app->status=strtoupper($request->status);
         $app-> note=$request->note;
         $saved=$app->save();
         if($saved){

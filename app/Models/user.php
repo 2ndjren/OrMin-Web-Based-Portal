@@ -41,6 +41,16 @@ class user extends Model
     public function Chat_threads(){
         return $this->hasOne(chat_threads::class,'u_id','id');
     }
+    public function user()
+    {
+        // Define the inverse of the relationship
+        return $this->hasMany(appointments::class, 'u_id', 'id');
+    }
+    public function employee()
+    {
+        // Define the inverse of the relationship
+        return $this->hasMany(appointments::class, 'e_id', 'id');
+    }
 
 }
 
