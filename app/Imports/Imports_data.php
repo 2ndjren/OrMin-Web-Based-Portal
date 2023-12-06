@@ -38,7 +38,6 @@ class Imports_data implements ToModel, WithStartRow
             'birthday' => $formattedBirthday,
             'municipality' => $row[4],
             'status' => "ACTIVATED",
-            'age' => "Null",
             'type_of_payment' => $row[5],
             'start_at' => $formattedStartAt,
             'end_at' => $formattedEndAt,
