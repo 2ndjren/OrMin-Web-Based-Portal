@@ -141,7 +141,11 @@
 
                 <!-- Toggle Mobile Sidebar Button -->
                 <button id="sidebarToggle" class="lg:hidden block text-black text-2xl focus:outline-none p-3 rounded-full">&#9776;</button>
-                @yield('dashboard')
+     
+            </div>
+        </div>
+        <div class="">
+                       @yield('dashboard')
                 @yield('membership')
                 @yield('volunteers')
                 @yield('donations')
@@ -149,7 +153,6 @@
                 @yield('appointments')
                 @yield('chats')
                 @yield('accounts')
-            </div>
         </div>
     </div>
 

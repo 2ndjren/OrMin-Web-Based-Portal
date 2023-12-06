@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Insurance;
+use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -29,7 +29,7 @@ class Imports_data implements ToModel, WithStartRow
         $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
 
-        return new Insurance([
+        return new <i></i>nsurance([
             'id' => $id,
             'mem_id' => $row[9],
             'level' => $row[8], 
