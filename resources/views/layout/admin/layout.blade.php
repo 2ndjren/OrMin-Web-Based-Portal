@@ -20,7 +20,7 @@
 <body class="bg-gray-100">
     <div class="flex">
 
-       <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
+       <div class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
 
             <div class="border-b-2 border-gray-300 w-full text-xl p-4 flex flex-col items-center">
                 <img src="{{asset('static/user/home/logo.png')}}" alt="" width="100" />
@@ -69,10 +69,10 @@
                     </a></li>
 
             </ul>
-        </aside>
+</div>
 
         <!-- Main content area -->
-        <div class="flex-1 overflow-y-auto">
+       
             <!-- Header -->
             <header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
                 <!-- Header content -->
@@ -136,16 +136,13 @@
                 </ul>
             </div>
 
+            <div class="flex-1 overflow-y-auto">
             <!-- Content Area -->
             <div class="p-4">
 
                 <!-- Toggle Mobile Sidebar Button -->
                 <button id="sidebarToggle" class="lg:hidden block text-black text-2xl focus:outline-none p-3 rounded-full">&#9776;</button>
-     
-            </div>
-        </div>
-        <div class="">
-                       @yield('dashboard')
+                @yield('dashboard')
                 @yield('membership')
                 @yield('volunteers')
                 @yield('donations')
@@ -153,6 +150,7 @@
                 @yield('appointments')
                 @yield('chats')
                 @yield('accounts')
+            </div>
         </div>
     </div>
 
