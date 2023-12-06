@@ -72,7 +72,7 @@
 </div>
 
         <!-- Main content area -->
-       
+        <div class="flex-1 overflow-y-auto">
             <!-- Header -->
             <header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
                 <!-- Header content -->
@@ -136,7 +136,6 @@
                 </ul>
             </div>
 
-            <div class="flex-1 overflow-y-auto">
             <!-- Content Area -->
             <div class="p-4">
 
