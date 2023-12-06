@@ -387,8 +387,16 @@ var monthss = months[month - 1];
       dataType: "json",
       success: function (app) {
         console.log(app)
+      if(app.ongoing){
         $('#ongoing-appointment-user').text(app.ongoing_user.fname+" "+app.ongoing_user.lname)
         $('#ongoing-appointment-time').text(app.ongoing.app_date+" "+app.ongoing.app_time)
+      }
+      if(app.approve){
+        
+      }
+      if(app.pending){
+
+      }
         
         
       },
