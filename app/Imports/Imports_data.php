@@ -24,24 +24,28 @@ class Imports_data implements ToModel, WithStartRow
             $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : null;
             $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
 
-            // Extract the formula string from the cell
-            $dateString = $row[7]; // Assuming the formula '=EDATE(G2,12)' is in column H (index 7)
+            $dateString = $row[7]; // Assuming the formula '=EDATE(G12, 12)' is in column H (index 7)
 
             $endAt = null;
             if (!empty($dateString)) {
-                // Extract the cell reference (e.g., 'G2') from the formula string
                 preg_match('/\(([^\)]+)\)/', $dateString, $matches);
-                $cellReference = $matches[1]; // This will contain the dynamic cell reference (e.g., 'G2')
-
+                $cellReference = isset($matches[1]) ? $matches[1] : ''; // Extract the cell reference 'G12'
+            
+                // Extracting column and row indexes from the cell reference
+                preg_match('/([A-Z]+)(\d+)/', $cellReference, $referenceParts);
+                $columnIndex = isset($referenceParts[1]) ? $referenceParts[1] : ''; // Extract the column index ('G')
+                $rowIndex = isset($referenceParts[2]) ? intval($referenceParts[2]) : 0; // Extract the row index (12, 13, 14...)
+            
                 // Get the value of the dynamic cell based on the reference
-                $dynamicCellValue = $row[$cellReference]; // Assuming $row is an associative array
-
-                // Calculate the result of the formula manually
-                $dateTime = new DateTime($dynamicCellValue); // Create a DateTime object with the value of the dynamic cell
-                $dateTime->modify('+12 months'); // Add 12 months to the date
-
-                $endAt = $dateTime->format('Y-m-d'); // Format the date as needed
+                $dynamicCellValue = !empty($row[$columnIndex][$rowIndex]) ? $row[$columnIndex][$rowIndex] : null;
+            
+                if ($dynamicCellValue !== null) {
+                    $dateTime = new DateTime($dynamicCellValue); // Create a DateTime object with the value of the dynamic cell
+                    $dateTime->modify('+12 months'); // Add 12 months to the date
+                    $endAt = $dateTime->format('Y-m-d'); // Format the date as needed
+                }
             }
+            
 
             $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
