@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('lname');
             $table->string('sname')->nullable();
             $table->string('blood_type')->nullable();
-            $table->string('age');
+            $table->string('age')->nullable();
 
             $table->string('gender')->nullable();
             $table->string('birthday');
