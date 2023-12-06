@@ -29,7 +29,7 @@ class Imports_data implements ToModel, WithStartRow
         $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
 
-        return new <i></i>nsurance([
+        return new insurance([
             'id' => $id,
             'mem_id' => $row[9],
             'level' => $row[8], 
