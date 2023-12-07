@@ -296,7 +296,7 @@
     </body>
 <script>
     $(document).ready(function () {
-        Create();
+        // Create();
 
     });
 
@@ -317,14 +317,14 @@
       success: function (response) {
         if(response.success){
           $('#create-spinner').addClass('hidden')
-          console.log(response)
+        //   console.log(response)
 
           alert(response.success)
 
         $('#submit-form')[0].reset()
         
         }else if(response.errors){
-          console.log(response)
+        //   console.log(response)
           $.each(response.errors, function(field, errorMessage) {
                       
                       $('#'+field).addClass('border border-red-500');
