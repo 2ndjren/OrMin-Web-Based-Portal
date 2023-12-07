@@ -128,9 +128,9 @@ textarea.on('input', function () {
             results+="<div class='flex space-x-2'>"
             results+="<div>"
             if(field.vol_profile!==""){
-              results+="<img src="+field.user_profile+" class='h-10 w-10 rounded-full border-2 border-blue-500'>"
+              results+="<img src='data:image/jpeg;base64,"+field.user_profile+"' class='h-10 w-10 rounded-full border-2 border-blue-500'>"
             }else{
-              results+="<img src="+field.user_profile+" class='h-10 w-10 rounded-full border-2 border-blue-500'>"
+              results+="<img src='data:image/jpeg;base64,"+field.user_profile+"' class='h-10 w-10 rounded-full border-2 border-blue-500'>"
 
             }
             results+="</div>"
@@ -172,7 +172,7 @@ textarea.on('input', function () {
             success: function (data) {
               var user =" <button type='button' data-id="+chatData.u_id+" class='chat_head_button flex items-center w-full p-3 border rounded-lg'>"
                           user +=" <div class='flex'>"
-                          user +=" <img src="+data.user.user_profile+" class='w-12 h-12 mr-4 rounded-full'>"
+                          user +=" <img src='data:image/jpeg;base64,"+data.user.user_profile+"' class='w-12 h-12 mr-4 rounded-full'>"
                           user +=" <div class='flex-1 '>"
                           user +=" <div class='font-semibold text-left'>"+data.user.fname+" "+data.user.lname+"</div>"
                           if(chatData.status==="DELIVERED"){
@@ -237,7 +237,7 @@ textarea.on('input', function () {
         $.each(user.message, function (index, message) { 
          if(message.type=="USER"){
            var left="<div class='flex items-end'>"
-        left+="<img src="+user.user.user_profile+" alt='Left Avatar' class='w-8 h-8 mr-2 rounded-full'>"
+        left+="<img src='data:image/jpeg;base64,"+user.user.user_profile+"' alt='Left Avatar' class='w-8 h-8 mr-2 rounded-full'>"
         left+=" <div class='flex flex-col items-start max-w-xs'>"
         left+=" <div class='bg-blue-500 text-white p-4 rounded-lg leading-normal'>"
         left+="  <i class='far fa-user-circle mr-2'></i>"+message.message+""
