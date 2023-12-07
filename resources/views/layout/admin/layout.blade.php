@@ -18,7 +18,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <div class="flex max-h-screen">
+    <div class="flex h-screen">
 
        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
 
@@ -129,8 +129,8 @@
                         </a></li>
                     @endif
                     <li><a href="{{url('logout')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                            <i class="fa-solid fa-right-from-bracket mr-2"> </i> <span>Logout
-                                logout</span>
+                            <i class="fa-solid fa-right-from-bracket mr-2"> </i> <span>
+                                Logout</span>
                         </a></li>
 
                 </ul>

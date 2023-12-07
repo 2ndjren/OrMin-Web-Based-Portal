@@ -28,6 +28,7 @@ class Donations extends Controller
     }
     public function Donation_Data($id){
         $data=ModelsDonations::find($id);
+        $data->donation_proof=base64_encode($data->donation_proof);
         return response()->json($data);
     }
     public function Approve_Donation($id){
@@ -39,9 +40,19 @@ class Donations extends Controller
         }
     }
     public function Donated_Funds(){
-        $donated_funds= ModelsDonations::where('status','VERIFIED')->orderBy('created_at','desc')->get();
-        $pending_funds= ModelsDonations::where('status','PENDING')->orderBy('created_at','desc')->get();
-        $declined_funds= ModelsDonations::where('status','DECLINED')->orderBy('created_at','desc')->get();
+        $donated_funds= ModelsDonations::where('status','VERIFIED')->orderBy('created_at','desc')->get()->map(function ($item) {
+            $item->donation_proof = base64_encode($item->donation_proof);
+            return $item;
+        });
+        $pending_funds= ModelsDonations::where('status','PENDING')->orderBy('created_at','desc')->get()
+        ->map(function ($item) {
+            $item->donation_proof = base64_encode($item->donation_proof);
+            return $item;
+        });
+        $declined_funds= ModelsDonations::where('status','DECLINED')->orderBy('created_at','desc')->get()->map(function ($item) {
+            $item->donation_proof = base64_encode($item->donation_proof);
+            return $item;
+        });
         $data=[
             'verified'=>$donated_funds,
             'pending'=>$pending_funds,
@@ -51,7 +62,7 @@ class Donations extends Controller
     }
     public function Donation_Details($id){
         $details= ModelsDonations::find($id);
-
+        $details->donation_proof=base64_encode($details->donation_proof);
         $data=[
             'details'=>$details,
         ];
@@ -94,8 +105,9 @@ class Donations extends Controller
         $create->type=strtoupper($request->type);
         $create->donation_type=strtoupper($request->donation_type);
         $create->donator_info=$request->donator_info;
-        $path=$request->file('donation_proof')->store('public/donations/proof_of_payments');
-        $create->donation_proof=Storage::url($path);
+        $image=$request->file('donation_proof');
+        $image_content=file_get_contents($image);
+        $create->donation_proof=$image_content;
         $create->status='PENDING';
         $saved=$create->save();
         if($saved){
