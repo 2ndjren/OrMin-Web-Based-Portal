@@ -85,7 +85,11 @@ class Accounts extends Controller
         }
     }
     public function Verified_Accounts(){
-        $data= user::where('account_status','VERIFIED')->get();
+        $data= user::where('account_status','VERIFIED')->get()->map(function ($item) {
+            $item->proof_of_payment = base64_encode($item->proof_of_payment);
+            return $item;
+        });
+    
         return response()->json(['verified'=>$data]);
     }
     public function Account_Profile($id){

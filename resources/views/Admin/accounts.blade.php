@@ -303,7 +303,7 @@ function Verified_Accounts(){
         "ajax": {
             "url": "/verified-accounts",
             "type": "GET",
-            "dataSrc": "verified",
+            "dataSrc": "user",
         },
         "columns": [
             { 
