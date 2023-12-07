@@ -326,7 +326,7 @@
         url: "{{url('add-donation-record')}}",
         data: formdata,
         processData: false,
-        contentType: false,
+        contentType: false,Create_Donation
         success: function(response) {
           console.log(response)
           if (response.success) {
