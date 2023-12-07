@@ -208,7 +208,6 @@
       </div>
 
       <div class="">
-        @include('layout.user.modals')
         @include('layout.user.alerts')
         @include('layout.user.chat')
         @yield('home')
