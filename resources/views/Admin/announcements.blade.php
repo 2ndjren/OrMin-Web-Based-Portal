@@ -78,6 +78,9 @@
     $('#post-announcement-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0]);
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{ url('post-announcement') }}", // Fixed the typo here
@@ -85,6 +88,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             Announcements()
             Active_Post()
@@ -95,7 +100,8 @@
           }
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -113,6 +119,7 @@
 
   function Announcements() {
     $('#announcements-table').empty();
+
     $.ajax({
       type: "GET",
       url: "{{url('posted-announcement')}}",
@@ -259,12 +266,17 @@
     $(document).on('click', '.history_modal_btn', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/post-announcements-history-details/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response);
 
           var date = new Date(response.created_at);
@@ -311,20 +323,29 @@
             var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Fetch CSRF token value
 
             if (confirm('Mark this announcement as the latest?')) {
+              var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
               $.ajax({
                 type: 'POST',
                 url: '/mark-as-latest/' + announcementId,
                 headers: {
                   'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                 },
-                success: function(response) {
+                success: function(response) {   
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
+
                   console.log(response.message);
                   $('#post_announcement-modal').addClass('hidden');
                   // Reload or update UI elements here if needed
                   Announcements();
                   Active_Post();
                 },
-                error: function(xhr, status, error) {
+                error: function(xhr, status, error) {  
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
+
                   window.alert(xhr.responseText);
                 }
               });
@@ -339,10 +360,15 @@
 
             // Display a confirmation dialog before proceeding with deletion
             if (confirm('Are you sure you want to delete this announcement?')) {
+              var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
               $.ajax({
                 type: 'GET',
                 url: '/delete-announcement/' + announcementId,
                 success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                   // Handle success message or any UI updates upon successful deletion
                   console.log(response.message);
                   $('#post_announcement-modal').addClass('hidden');
@@ -351,7 +377,8 @@
                   Announcements()
                 },
                 error: function(xhr, status, error) {
-                  // Handle errors if the deletion fails
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                   window.alert(xhr.responseText);
                 }
               });

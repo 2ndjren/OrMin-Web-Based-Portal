@@ -256,6 +256,9 @@ function Create_Account(verified){
     $('#failed').addClass('hidden')
     $('#success').removeClass('block')
     $('#success').addClass('hidden')
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     $.ajax({
     type: 'POST',
     url: '{{url("create-account")}}',
@@ -263,6 +266,8 @@ function Create_Account(verified){
     processData: false,
     contentType: false,
     success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         if(response.success){
           verified.ajax.reload()
           $('#create-account')[0].reset()
@@ -352,6 +357,9 @@ function Reload_After_Delete(verified){
 
     // Check the user's choice
     if (confirmation) {
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       var id=$(this).data('id');
       $.ajax({
         type: "GET",
@@ -359,7 +367,8 @@ function Reload_After_Delete(verified){
         data: "data",
         dataType: "json",
         success: function (response) {
-          console.log(response)
+          submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         verified.ajax.reload()
           $('#user-profile').empty()
           $('#user-profile-btns').empty()
@@ -389,12 +398,17 @@ function Accounts_Btns(){
     $('#user-profile').empty()
         $('#user-profile-btns').empty()
     var id=$(this).data('id');
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     $.ajax({
       type: "GET",
       url: "/account-profile/"+id,
       data: "data",
       dataType: "json",
       success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         var left_details="<div class='w-full'>"
 
         left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.user.fname+" Profile</p>"

@@ -64,7 +64,7 @@
                         <i class="fas fa-users mr-2"></i> Accounts
                     </a></li>
                 @endif
-                <li><a href="{{url('logout')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                <li><a href="{{url('logout')}}" class="block hover:bg-red-600 mt-40 mb-10  hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                         <i class="fa-solid fa-right-from-bracket mr-2"></i> <span>Logout</span>
                     </a></li>
 
@@ -128,7 +128,7 @@
                             <i class="fas fa-users mr-2"></i> <span>Accounts</span>
                         </a></li>
                     @endif
-                    <li><a href="{{url('logout')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                    <li><a href="{{url('logout')}}" class="block mt-40 mb-10 hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-right-from-bracket mr-2"> </i> <span>
                                 Logout</span>
                         </a></li>

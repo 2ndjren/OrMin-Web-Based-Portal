@@ -112,7 +112,7 @@ class Volunteers extends Controller
             ];
         }else{
             $rules=[
-                'vol_profile'=>'required|image',
+                'vol_profile'=>'required|image|max:2500',
                 'fname'=>'required',
                 'mname'=>'required',
                 'lname'=>'required',

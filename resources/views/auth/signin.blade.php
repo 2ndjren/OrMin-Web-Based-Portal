@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="h-screen bg-cover bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
+  <div class="h-screen bg-cover opa bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
     <div class=" mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
         <!-- First Column -->
@@ -149,6 +149,9 @@
   function Send_Mail_Recovery_Verification() {
     $('#reset-account').submit(function(e) {
       e.preventDefault();
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       var formdata= new FormData($(this)[0])
       $.ajax({
         type: "POST",
@@ -157,6 +160,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+          submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             window.location.href="/email-reminder"

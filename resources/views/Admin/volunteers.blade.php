@@ -587,6 +587,9 @@
     $('#volunteer-export-data-form').submit(function (e) { 
       e.preventDefault();
       var formdata= new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     $.ajax({
       type: "POST",
       url: "{{url('post-volunteer')}}",
@@ -594,6 +597,8 @@
       processData: false,
       contentType: false,
       success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         if(response.success){
           alert(response.success)
           window.location.href="{{url('export-volunteer')}}"
@@ -604,7 +609,8 @@
         }
       },
       error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
     });
@@ -625,8 +631,9 @@
     $('#create-volunteer-record-form').submit(function (e) { 
       e.preventDefault();
     $('.form-inputs').removeClass('border-red-500')
-    $('#create-spinner').removeClass('hidden')
-
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       var formdata= new FormData($(this)[0])
       $.ajax({
       type: "POST",
@@ -635,6 +642,8 @@
       processData: false,
       contentType: false,
       success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         if(response.success){
           $('#create-spinner').addClass('hidden')
           console.log(response)
@@ -658,7 +667,8 @@
         }
       },
       error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
     });
@@ -698,6 +708,9 @@
     $('#approve-request-volunteer-form').submit(function (e) { 
       e.preventDefault();
       var formdata= new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('approve-volunteer-request')}}",
@@ -705,6 +718,8 @@
         processData: false,
         contentType: false,
         success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if(response.success){
             $('#volunteer-account-profile').empty();
             $('#volunteer-account-profile-btn').empty();
@@ -717,7 +732,8 @@
           }
         },
         error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
       });
@@ -727,6 +743,9 @@
     $('#decline-request-volunteer-form').submit(function (e) { 
       e.preventDefault();
       var formdata= new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('decline-volunteer-request')}}",
@@ -734,6 +753,8 @@
         processData: false,
         contentType: false,
         success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if(response.success){
             $('#volunteer-account-profile').empty();
             $('#volunteer-account-profile-btn').empty();
@@ -746,7 +767,8 @@
           }
         },
         error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
       });
@@ -765,6 +787,9 @@
       var formdata= new FormData($(this)[0])
       $('.form-inputs').removeClass(' border-red-500')
     $('#edit-spinner').removeClass('hidden')
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     
       $.ajax({
         type: "POST",
@@ -773,7 +798,8 @@
         processData: false,
         contentType: false,
         success: function (response) {
-          console.log(response)
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if(response.success){
           $('#edit-spinner').addClass('hidden')
           $('#edit-volunteer-records-modal').addClass('hidden')
@@ -795,7 +821,8 @@
         }
       },
       error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
       });
@@ -875,12 +902,17 @@ $(document).on('click','#close-view-consent',function () {
 });
 $(document).on('click','#delete_volunteer_declined_profile',function () {
   var id= $(this).data('id')
+  var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
   $.ajax({
     type: "GET",
     url: "/delete-volunteer-profile/"+id,
     data: "data",
     dataType: "json",
     success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
       if(response.success){
         $('#volunteer-account-profile').empty();
           $('#volunteer-account-profile-btn').empty();
@@ -893,7 +925,8 @@ $(document).on('click','#delete_volunteer_declined_profile',function () {
       
     },
     error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
   });
@@ -901,12 +934,17 @@ $(document).on('click','#delete_volunteer_declined_profile',function () {
 });
 $(document).on('click','#delete_volunteer_validated_profile',function () {
   var id= $(this).data('id')
+  var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
   $.ajax({
     type: "GET",
     url: "/delete-volunteer-profile/"+id,
     data: "data",
     dataType: "json",
     success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
       if(response.success){
         $('#volunteer-account-profile').empty();
           $('#volunteer-account-profile-btn').empty();
@@ -919,7 +957,8 @@ $(document).on('click','#delete_volunteer_validated_profile',function () {
       
     },
     error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
   });
@@ -930,6 +969,9 @@ $(document).on('click','#delete_volunteer_validated_profile',function () {
 $(document).on('click','.consent-view-btn',function () {
   $('#view-consent').empty()
        var id=$(this).data('id');
+       var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
 
        $.ajax({
         type: "GET",
@@ -937,7 +979,8 @@ $(document).on('click','.consent-view-btn',function () {
         data: "data",
         dataType: "json",
         success: function (response) {
-          console.log(response)
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           var consent="<div>"
           consent +="<img src='data:image/jpeg;base64,"+response.consent+"'>"
           consent+="<div class='flex justify-end my-2'>"
@@ -948,7 +991,8 @@ $(document).on('click','.consent-view-btn',function () {
           $('#view-consent-modal').removeClass('hidden')
         },
         error: function (xhr, status, error) {
-                // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
                 window.alert(xhr.responseText);
             }
        });
@@ -961,6 +1005,9 @@ $(document).on('click','.consent-view-btn',function () {
 function Update_Profile(){
   $(document).on('click','#edit-volunteer-profile',function () {
        var id=$(this).data('id');
+       var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
        $.ajax({
         
         type: "GET",
@@ -968,6 +1015,8 @@ function Update_Profile(){
         data: "data",
         dataType: "json",
         success: function (response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           $('#edit_id').val(response.id)
           $('#edit_vol_id').val(response.vol_id)
@@ -1101,13 +1150,17 @@ function Volunteer_Profile(){
     var id = $(this).data('id')
     $('#volunteer-account-profile').empty();
     $('#volunteer-account-profile-btn').empty();
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     var profile_details=$.ajax({
       type: "GET",
       url: "/volunteer_profile/"+id,
       data: "data",
       dataType: "json",
       success: function (response) {
-      console.log(response)
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
       var left_details="<div class='w-full'>"
           if(response.vol_profile!==null){
             left_details+="<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64,"+response.vol_profile+"'></div>"

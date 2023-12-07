@@ -990,6 +990,10 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
+
       $.ajax({
         type: "POST",
         url: "{{url('annual-report-print')}}",
@@ -997,6 +1001,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1013,7 +1019,8 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1025,7 +1032,10 @@
       localStorage.removeItem('monthly_report')
       localStorage.removeItem('ongoing_report')
 
+
       var formdata = new FormData($(this)[0])
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('monthly-report-print')}}",
@@ -1033,6 +1043,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1049,7 +1061,8 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1062,6 +1075,9 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('program-report-print')}}",
@@ -1069,6 +1085,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1087,7 +1105,9 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+          var submit=$(this);
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1100,6 +1120,9 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('municipality-report-print')}}",
@@ -1107,7 +1130,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          console.log(response)
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
 
             var muni = JSON.stringify(response.municipal_data.members)
@@ -1127,7 +1151,8 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1140,6 +1165,9 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('barangay-report-print')}}",
@@ -1147,6 +1175,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             var mem_data = JSON.stringify(response.barangay_data.members)
@@ -1164,7 +1194,8 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1245,6 +1276,9 @@
     $('#decline-membership-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('decline-membership')}}",
@@ -1252,6 +1286,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             alert(response.success)
@@ -1264,7 +1300,8 @@
           }
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1276,6 +1313,9 @@
     $('#membership-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('post-membership')}}",
@@ -1283,6 +1323,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             alert(response.success)
             window.location.href = "{{url('export-membership')}}"
@@ -1293,7 +1335,8 @@
           }
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1304,12 +1347,17 @@
   function Approve_Membership() {
     $(document).on('click', '.approve-membership-account-modal-btn', function() {
       var id = $(this).data('id')
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/approve-membership/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             $('#membership-accounts-table').empty()
             Pending_Membership()
@@ -1347,12 +1395,17 @@
   function Delete_Membership_Account() {
     $(document).on('click', '.delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/delete-membership-account-profile/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           alert(response.success)
           $('#membership-account-profile').empty();
           $('#membership-account-profile-btns').empty();
@@ -1366,12 +1419,17 @@
   function Delete_Other_Acount(others) {
     $(document).on('click', '.other-delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/delete-membership-account-profile/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           alert(response.success)
           $('#membership-account-profile').empty();
           $('#membership-account-profile-btns').empty();
@@ -1384,13 +1442,17 @@
   }
   $(document).on('click', '#view-membership-payment-btn', function() {
     var id = $(this).data('id');
+    var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
     $.ajax({
       type: "GET",
       url: "/membership-account-profile/" + id,
       data: "data",
       dataType: "json",
       success: function(response) {
-        
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
         var payment = "<img class='h-96 ' src='data:image/jpeg;base64,"+response.proof_of_payment+"'>"
         payment += "<div class='flex justify-end my-2'>"
         payment += "<button type='button' id='close-membership-payment' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
@@ -1425,8 +1487,10 @@
       $('#failed').addClass('hidden')
       $('#success').removeClass('block')
       $('#success').addClass('hidden')
-      $('#spinner').removeClass('hidden')
       var formdata = new FormData($(this)[0]);
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: '{{url("create-membership-account")}}',
@@ -1434,9 +1498,9 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          console.log(response);
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
-            $('#spinner').addClass('hidden')
             $('#create-membership-account')[0].reset()
             $('#success-message').text(response.success)
             $('#membership-accounts-table').empty()
@@ -1465,7 +1529,8 @@
           }
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(xhr.responseText);
         }
       });
@@ -1692,13 +1757,17 @@ var endmon = months[endmonth - 1];
   function Membership_Profile() {
     $(document).on('click', '.membership-profile-modal-btn', function() {
       var id = $(this).data('id')
+      var submit=$(this);
+      submit.prop('disabled',true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/membership-account-profile/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
-          console.log(response)
+      submit.prop('disabled',false)
+      submit.removeClass('opacity-50 cursor-not-allowed')
           var left_details = "<div class='w-full'>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " "  + " " + response.lname + "</span></p>"
           left_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
@@ -1763,6 +1832,7 @@ var endmon = months[endmonth - 1];
 
     // Get CSRF token from the meta tag
     var token = $('meta[name="csrf-token"]').attr('content');
+
 
     $.ajax({
       type: "POST",
