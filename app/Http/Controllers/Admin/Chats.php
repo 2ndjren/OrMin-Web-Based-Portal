@@ -207,6 +207,7 @@ class Chats extends Controller
         {
             $messages=chat_threads::whereIn('status',['SEEN','DELIVERED'])->orderBy('sent_at','desc')->get()->map(function ($item) {
                 $item->proof_image = base64_encode($item->proof_image);
+
                 return $item;
             });
             $data = [
@@ -222,7 +223,7 @@ class Chats extends Controller
             $userId=session('USER')['id'];
             
             $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get()->map(function ($item) {
-                $item->user_profile = base64_encode($item->user_profile);
+                $item->proof_image = base64_encode($item->proof_image);
                 return $item;
             });
             $check = chat::where('u_id', $userId)->with('user')->count();
