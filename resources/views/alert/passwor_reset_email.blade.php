@@ -8,7 +8,12 @@
 
 </head>
 <body>
-    <p class="text-center">Kindly Check your email to complete your password reset. Thank you!</p>
+   <div class="text-center">
+
+   <p class="text-center">Kindly Check your email to complete your password reset. Thank you!</p>
+    <a class="text-blue-500 underline" href="https://mail.google.com/">Check Now!</a>
+    <a class="underline text-center" href="{{url('signin')}}">Login</a>
+   </div>
     
 </body>
 </html>
