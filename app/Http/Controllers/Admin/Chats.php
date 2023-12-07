@@ -206,7 +206,7 @@ class Chats extends Controller
         if(session('ADMIN')|| session('STAFF'))
         {
             $messages=chat_threads::whereIn('status',['SEEN','DELIVERED'])->orderBy('sent_at','desc')->get()->map(function ($item) {
-                $item->proof_of_payment = base64_encode($item->proof_of_payment);
+                $item->proof_image = base64_encode($item->proof_image);
                 return $item;
             });
             $data = [
