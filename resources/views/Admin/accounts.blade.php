@@ -398,7 +398,7 @@ function Accounts_Btns(){
 
         left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.user.fname+" Profile</p>"
        if(response.user.user_profile!==null){
-        left_details+="<img class='p-3' src="+response.user.user_profile+" alt='image'>"
+        left_details+="<img class='p-3' src='data:image/jpeg;base64,"+response.user.user_profile+"' alt='image'>"
      " </div>"
        }else{
         left_details+="<img class='p-3' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='image'>"
