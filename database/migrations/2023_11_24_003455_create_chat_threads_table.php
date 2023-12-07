@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('chat_threads', function (Blueprint $table) {
             $table->string('u_id')->primary();
-            $table->string('prof_image');
+            $table->binary('prof_image');
             $table->text('message');
             $table->text('status');
             $table->dateTime('sent_at');

@@ -107,6 +107,8 @@ class Chats extends Controller
                 $user->user_profile=base64_encode($user->user_profile);
                    if($user){
                     $chat_threads->u_id=$user->id;
+                    // $image=$request->file('prof_image');
+                    $image_content=file_get_contents($user->user_profile);
                     $chat_threads->prof_image=$user->user_profile;
                     $chat_threads->message=$message;
                     $chat_threads->sent_at=Carbon::now();
@@ -140,7 +142,7 @@ class Chats extends Controller
                 
                 }else{
                 $user=user::find($request->u_id);
-                $user->user_profile=base64_encode($user->user_profile);
+                // $user->user_profile=base64_encode($user->user_profile);
                    if($user){
                     $chat_threads->u_id=$user->id;
                     $chat_threads->prof_image=$user->user_profile;
@@ -215,9 +217,13 @@ class Chats extends Controller
         if(session('USER'))
         {
             $userId=session('USER')['id'];
-            $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get();
+            
+            $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get()->map(function ($item) {
+                $item->user_profile = base64_encode($item->user_profile);
+                return $item;
+            });
             $check = chat::where('u_id', $userId)->with('user')->count();
-            $user->user_profile=base64_encode($user->user_profile);
+            // $user->user_profile=base64_encode($user->user_profile);
             if($check>0){
             
             $data = [
