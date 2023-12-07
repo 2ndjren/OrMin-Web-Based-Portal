@@ -203,7 +203,7 @@
             results+="<div class='flex space-x-2'>"
             results+="<div>"
             if(field.vol_profile!==""){
-              results+="<img src="+field.user_profile+" class='h-10 w-10 rounded-full border-2 border-blue-500'>"
+              results+="<img src=data:image/jpeg;base64,"+field.user_profile+" class='h-10 w-10 rounded-full border-2 border-blue-500'>"
             }else{
               results+="<img src=data:image/jpeg;base64,"+field.user_profile+" class='h-10 w-10 rounded-full border-2 border-blue-500'>"
 
