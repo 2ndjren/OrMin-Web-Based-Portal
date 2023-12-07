@@ -228,6 +228,7 @@ class Chats extends Controller
             });
             $check = chat::where('u_id', $userId)->with('user')->count();
             // $user->user_profile=base64_encode($user->user_profile);
+            
             if($check>0){
             
             $data = [

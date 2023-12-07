@@ -56,9 +56,9 @@
                 <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                 <i class="fa-solid fa-calendar-check mr-2"></i> <span>Appointments</span>
                     </a></li> -->
-                <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                <!-- <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                         <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
-                    </a></li>
+                    </a></li> -->
                 @if(session('ADMIN'))
                 <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                         <i class="fas fa-users mr-2"></i> Accounts
@@ -120,9 +120,9 @@
                     <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-bullhorn mr-2"></i> <span>Appointments</span>
                         </a></li> -->
-                    <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                    <!-- <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
-                        </a></li>
+                        </a></li> -->
                     @if(session('ADMIN'))
                     <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fas fa-users mr-2"></i> <span>Accounts</span>

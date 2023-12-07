@@ -135,7 +135,7 @@ Route::post('send-chat',[Chats::class,'Send_Message']);
 
 Route::get('user-messages',[Chats::class,'User_Messages']);
 Route::get('user-chat-profile/{id}',[Chats::class,'User_Profile']);
-Route::get('user-chat-conversation/{id}',[Chats::class,'Conversation']);
+Route::get('user-chat-conversation/{id}',[Chats::class,' ']);
 
 
 Route::get('donations',[Donations::class,'Donations']);
