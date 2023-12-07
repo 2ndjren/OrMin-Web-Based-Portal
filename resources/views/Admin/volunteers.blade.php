@@ -2,7 +2,7 @@
 @section('volunteers')
 <title>Volunteers</title>
 <div class="py-2 px-10">
-  <p class="text-4xl text-green-600 UPPERCASE">Manage Volunteers INFORMATION</p>
+  <p class="text-4xl text-green-600 UPPERCASE">Volunteers</p>
   <div class="flex justify-end">
     <button type="button" id="open-create-volunteer-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white"> Create Volunteer</button>
   </div>

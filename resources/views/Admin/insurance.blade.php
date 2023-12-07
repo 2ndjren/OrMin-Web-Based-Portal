@@ -2,7 +2,7 @@
 @section('membership')
 <title>Insurance</title>
 <div class="py-2 px-10">
-  <p class="text-4xl text-green-600 UPPERCASE">Membership Program</p>
+  <p class="text-4xl text-green-600 UPPERCASE">Membership</p>
   <div class="flex justify-end">
     <button type="button" id="open-create-membership-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white">Create Membership</button>
   </div>

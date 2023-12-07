@@ -137,8 +137,8 @@ class Membership extends Controller
         $updated=insurance::where('id',$id)->update([
             'status'=>'ACTIVATED',
             'start_at'=>$start,
-            'end_at'=>$start,
-            'days_before_end'=>$start,
+            'end_at'=>$end_at,
+            'days_before_end'=>$days_before_end,
         ]);
         if($updated){
             $started= new DateTime($start);
@@ -249,9 +249,9 @@ class Membership extends Controller
             $days_before_end=$before_end->modify('-15 days');
 
             $create->start_at=$start;
-            $create->end_at=$start;
+            $create->end_at=$end_at;
             // $create->days_before_end=$start;
-            $create->days_before_end=$start;
+            $create->days_before_end=$days_before_end;
             $create->notified='0';
         }else{
             $create->notified='0';
