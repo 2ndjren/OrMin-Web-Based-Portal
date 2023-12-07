@@ -31,7 +31,7 @@ class Chats extends Controller
             $check=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->count();
           
             $results=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->get()->map(function ($item) {
-                $item->proof_of_payment = base64_encode($item->proof_of_payment);
+                $item->user_profile = base64_encode($item->user_profile);
                 return $item;
             });
             if($check>0){
@@ -217,6 +217,7 @@ class Chats extends Controller
             $userId=session('USER')['id'];
             $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get();
             $check = chat::where('u_id', $userId)->with('user')->count();
+            $user->user_profile=base64_encode($user->user_profile);
             if($check>0){
             
             $data = [
