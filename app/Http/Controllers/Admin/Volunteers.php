@@ -139,7 +139,7 @@ class Volunteers extends Controller
         }
         $vol->vol_id=$request->vol_id;
         if($request->vol_profile!=null){
-            $image=$request->file('proof_of_payment');
+            $image=$request->file('vol_profile');
             $image_content=file_get_contents($image);
             $vol->vol_profile=$image_content;
         }
@@ -232,10 +232,11 @@ class Volunteers extends Controller
         $update= new ModelsVolunteers();
         
         if($request->file('edit_vol_profile')!=null){
-            $path=$request->file('edit_vol_profile')->store('public/admin/volunteer/profile');
+            $image=$request->file('vol_profile');
+            $image_content=file_get_contents($image);
             $updated= $update::where('id',$request->edit_id)->update([
                 'vol_id'=>$request->edit_vol_id,
-                'vol_profile'=>Storage::url($path),
+                'vol_profile'=>$image_content,
                 'fname'=>strtoupper($request->edit_fname),
                 'mname'=>strtoupper($request->edit_mname),
                 'lname'=>$request->edit_lname,
