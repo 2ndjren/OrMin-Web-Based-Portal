@@ -278,7 +278,7 @@ class Auth extends Controller
             $user->token=$new_token;
             $update=$user->save();
             if($update){
-                return view('Auth.password_reset');
+                return view('auth.password_reset');
             }
             else{
                 echo"mali";

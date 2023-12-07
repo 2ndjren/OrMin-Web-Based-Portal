@@ -160,7 +160,6 @@
           console.log(response)
           if (response.success) {
             window.location.href="/email-reminder"
-            
           } else {
             alert(response.failed)
            
