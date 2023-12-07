@@ -104,11 +104,11 @@ class Chats extends Controller
                 
                 }else{
                 $user=user::find(session('USER')['id']);
-                $user->user_profile=base64_encode($user->user_profile);
+                // $user->user_profile=base64_encode($user->user_profile);
                    if($user){
                     $chat_threads->u_id=$user->id;
                     // $image=$request->file('prof_image');
-                    $image_content=file_get_contents($user->user_profile);
+                    // $image_content=file_get_contents($user->user_profile);
                     $chat_threads->prof_image=$user->user_profile;
                     $chat_threads->message=$message;
                     $chat_threads->sent_at=Carbon::now();
