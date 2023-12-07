@@ -159,7 +159,7 @@
         success: function(response) {
           console.log(response)
           if (response.success) {
-            alert(response.success)
+            window.location.href="/email-reminder"
             
           } else {
             alert(response.failed)

@@ -30,6 +30,9 @@ class Auth extends Controller
             return view('auth.signin');   
         }
     }
+    public function Check_Reminder(){
+        return view('alert.passwor_reset_email');
+    }
     public function SignUp(){
         if(session('USER')){
             return view('User.profile');

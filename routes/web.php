@@ -45,6 +45,7 @@ Route::get('verify/{token}',[Auth::class,'Verify_Account']);
 Route::post('recover',[Auth::class,'Send_Email_Forgot_Password']);
 Route::get('recover/verify/{token}',[Auth::class,'Password_Reset']);
 Route::post('change-password',[Auth::class,'Change_Password']);
+Route::get('email-reminder',[Auth::class,'Check_Reminder']);
 // USERBASE 
 Route::get('/',[User::class,'Home']);
 Route::get('donate',[User::class,'Donate']);
