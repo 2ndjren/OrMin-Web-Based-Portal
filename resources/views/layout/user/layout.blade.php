@@ -95,9 +95,9 @@
                 <ul class="lg:flex"> <!-- Reduced space-x -->
               
 
-                  <li class="px-2 ">
+                  <!-- <li class="px-2 ">
                   <a class="bg-blue-900 rounded-xl shadow-sm px-5 py-2 hover:bg-yellow-600 text-white " href="{{url('profile')}}">{{session('USER')['fname']}}</a>
-                  </li>
+                  </li> -->
 
                   
                   
