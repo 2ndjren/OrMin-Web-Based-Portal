@@ -117,7 +117,7 @@
         <nav class="w-screen">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center">
-      <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" />
+      <!-- <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" /> -->
       <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN CHAPTER</span>
     </a>
             <button id="navbar-toggle" data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:text-red-600 hover:bg-white " aria-controls="navbar-dropdown" aria-expanded="false">
