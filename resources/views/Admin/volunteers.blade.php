@@ -939,7 +939,7 @@ $(document).on('click','.consent-view-btn',function () {
         success: function (response) {
           console.log(response)
           var consent="<div>"
-          consent +="<img src="+response.consent+">"
+          consent +="<img src='data:image/jpeg;base64,"+response.consent+"'>"
           consent+="<div class='flex justify-end my-2'>"
           consent+="<button type='button' id='close-view-consent' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
           consent+="</div>"
@@ -1110,7 +1110,7 @@ function Volunteer_Profile(){
       console.log(response)
       var left_details="<div class='w-full'>"
           if(response.vol_profile!==null){
-            left_details+="<div class='mx-auto h-auto w-full border'><img src="+response.vol_profile+"></div>"
+            left_details+="<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64,"+response.vol_profile+"'></div>"
           }else{
             left_details+="<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>"
           }
