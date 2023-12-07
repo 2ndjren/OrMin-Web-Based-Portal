@@ -84,7 +84,12 @@
     </div>
   </div>
 
-  
+  <div id="show-donation-details-modal" class="fixed hidden  inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
+    <div id="donation-details" class="block  p-10"></div>
+
+  </div>
+</div>
 </body>
 
 
@@ -100,7 +105,7 @@
     $('#forgot-account-btn').click(function(e) {
       e.preventDefault();
       $('#forgot-account-modal').removeClass('hidden');
-      $('#forgot-account-modal').removeClass('block');
+
     });
 
   }
