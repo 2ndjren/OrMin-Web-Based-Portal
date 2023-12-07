@@ -84,9 +84,31 @@
     </div>
   </div>
 
-  <div id="show-donation-details-modal" class="fixed hidden  inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
-    <div id="donation-details" class="block  p-10"></div>
+  <div id="password-reset-modal" class="fixed hidden  inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+
+  <div class="p-3">    
+    <form id="reset-account">
+      @csrf
+      
+      <div class="">
+        <p class="font-semibold text-lg">Forgot Account?</p>
+        <p class="mb-1 text-sm text-blue-500">Enter your email account here!</p>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+              <input type="text" value="{{old('email')}}" name="email"  id="floating_first_name" autoComplete="on" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2  dark:focus:border-blue-500 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('fname') is-invalid @enderror" placeholder=" " required />
+                  @error('fname')
+                  <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
+                  @enderror
+
+              <label for="floating_first_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                Email</label>
+            </div>
+      <div class="flex justify-center space-x-2">
+        <button type="button" id="close-forgot-account-btn" class="px-2 py-1 bg-blue-500 font-semibold text-white rounded-md">Back</button>
+      <button type="submit" class="px-2 py-1 bg-green-500 font-semibold text-white rounded-md">Submit</button>
+      </div>
+    </form></div>
 
   </div>
 </div>
@@ -104,7 +126,12 @@
   function ForgotButton() {
     $('#forgot-account-btn').click(function(e) {
       e.preventDefault();
-      $('#forgot-account-modal').removeClass('hidden');
+      $('#password-reset-modal').removeClass('hidden');
+
+    });
+    $('#close-forgot-account-btn').click(function(e) {
+      e.preventDefault();
+      $('#password-reset-modal').addClass('hidden');
 
     });
 
@@ -122,24 +149,28 @@
   function Send_Mail_Recovery_Verification() {
     $('#reset-account').submit(function(e) {
       e.preventDefault();
+      var formdata= new FormData($(this)[0])
       $.ajax({
-        method: "POST",
+        type: "POST",
         url: "{{url('recover')}}",
-        data: $(this).serialize(),
-        dataType: "json",
+        data: formdata,
+        processData: false,
+        contentType: false,
         success: function(response) {
-          console.log(response);
-          $('#response-show-message').removeClass('hidden')
-          $('#response-show-message').addClass('block')
+          console.log(response)
           if (response.success) {
-            $('#response-message').text(response.success);
-            $('#email').val("");
-
+            alert(response.success)
+            
           } else {
-            $('#response-message').text(response.failed);
+            alert(response.failed)
+           
 
           }
-        }
+        },
+      error: function(xhr, status, error) {
+        // Handle error response here
+        console.log(xhr.responseText);
+      }
       });
 
     });

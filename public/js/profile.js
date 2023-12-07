@@ -227,7 +227,7 @@ function Membership(){
     data: "data",
     dataType: "json",
     success: function (data) {
-      console.log(data)
+      // console.log(data)
       $('#membership-info').empty()
       if(data.results){
         var results="<div class=''>"
@@ -301,7 +301,7 @@ function Volunteer_Account(){
     data: "data",
     dataType: "json",
     success: function (response) {
-      console.log(response)
+      // console.log(response)
 
 
       var noid="<div class='h-96 w-auto bg-no-repeat mt-5 hidden plus-card' style='background-image:url("+response.vol_card+");'>";

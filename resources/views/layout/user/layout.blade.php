@@ -227,6 +227,12 @@
   </div>
   <!-- Include AOS JavaScript via CDN -->
   <script>
+    $(document).ready(function () {
+      
+    });
+    
+  </script>
+  <script>
     // JavaScript to toggle the mobile menu
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -272,36 +278,3 @@
 </body>
 
 </html>
-
-
-<!-- <div class="w-full flex justify-center">
-             <div class=" mr-20">
-              <a href="{{url('/')}}" class="flex" >
-              <img class="h-20" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" alt="">
-     
-              </a>
-              </div>
-             <div class=" h-16 py-8">
-              <a href="{{url('donate')}}" class="p-5" ><span class= "text-white p-2  hover:text-red-500 font-semibold hover:bg-white rounded-lg">Donate</span></a>
-              </div>
-
-              <div class=" h-16 py-8">
-              <a href="{{url('membership')}}" class="p-5" ><span class= "text-white p-2  hover:text-red-500 font-semibold hover:bg-white rounded-lg">Membership</span></a>
-              </div>
-
-             <div class=" h-16 py-8">
-              <a href="{{url('training')}}" class="p-5" ><span class= "text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">Training</span></a>
-              </div>
-             <div class=" h-16 py-8">
-              <a href="{{url('volunteer')}}" class="p-5" ><span class= "text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">Volunteer</span></a>
-              </div>
-             <div class=" h-16 py-8">
-              <a href="#" class="p-5" ><span class= "text-white p-2 hover:text-red-500 font-semibold hover:bg-white rounded-lg">About</span></a>
-              </div>
-            
-              <div class=" flex justify-end ">
-               <div class="pt-8">
-                <a class="bg-yellow-500 rounded-xl shadow-sm px-5 py-2 hover:bg-yellow-600 text-white" href="{{url('signin')}}">Sign In</a>
-               </div>
-              </div>
-          </div> -->

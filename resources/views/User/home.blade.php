@@ -252,8 +252,8 @@
 </div>
 <script>
   $(document).ready(function() {
-    Create_Feedback(),
-    showFullAnnouncement(fullText) 
+    Create_Feedback()
+    // showFullAnnouncement(fullText) 
   });
 
   function Create_Feedback() {
@@ -285,20 +285,20 @@
     });
   }
 
-  function scrollToAnnouncementCards() {
-    const announcementCardsSection = document.getElementById('announcementCards');
-    if (announcementCardsSection) {
-      announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  }
+  // function scrollToAnnouncementCards() {
+  //   const announcementCardsSection = document.getElementById('announcementCards');
+  //   if (announcementCardsSection) {
+  //     announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // }
 
-  // Call the function when the page finishes loading
-  window.addEventListener('load', scrollToAnnouncementCards);
+  // // Call the function when the page finishes loading
+  // window.addEventListener('load', scrollToAnnouncementCards);
 
-  function showFullAnnouncement(fullText) {
-    window.alert(fullText);}
+  // function showFullAnnouncement(fullText) {
+  //   window.alert(fullText);}
 </script>
-<script>
+<!-- <script>
   // Initialization for ES Users
 
   import {
@@ -309,15 +309,15 @@
   initTE({
     Carousel
   });
-</script>
+</script> -->
 
 
 
 
-module.exports = {
+<!-- module.exports = {
 //...
 plugins: [require("daisyui")],
-}
+} -->
 
 
 @endsection
