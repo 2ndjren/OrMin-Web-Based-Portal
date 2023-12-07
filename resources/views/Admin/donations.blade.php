@@ -4,7 +4,7 @@
 <div class="py-2 px-10">
   <p class="text-4xl text-green-600 UPPERCASE">Fundraising</p>
   <div class="flex justify-end">
-    <button type="button" id="create-donation-record-btn" class="p-3 rounded-md bg-green-600 font-semibold text-white">Create Membership</button>
+    <button type="button" id="create-donation-record-btn" class="p-3 rounded-md bg-green-600 font-semibold text-white">Add Donation Record</button>
   </div>
 </div>
 
