@@ -14,6 +14,9 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+                <th>Email</th>
                 <th>Role</th>
                 <th>Action</th>
                 <!-- Add more columns as needed -->
@@ -308,6 +311,15 @@ function Verified_Accounts(){
               "render":function(data,type,row){
                 return '<p class="text-gray-500 text-xs font-semibold">'+row.fname+' '+row.mname+' '+row.lname+'</p>'
               }
+            },
+            {
+              "data":"gender"
+            },
+            {
+              "data":"bday"
+            },
+            {
+              "data":"email"
             },
             {
               "data":null,
