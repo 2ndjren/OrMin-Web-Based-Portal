@@ -139,8 +139,9 @@ class Volunteers extends Controller
         }
         $vol->vol_id=$request->vol_id;
         if($request->vol_profile!=null){
-            $path=$request->file('vol_profile')->store('public/admin/volunteer/profile');
-            $vol->vol_profile=Storage::url($path);
+            $image=$request->file('proof_of_payment');
+            $image_content=file_get_contents($image);
+            $vol->vol_profile=$image_content;
         }
         $vol->fname=strtoupper($request->fname);
         $vol->mname=strtoupper($request->mname);
@@ -163,11 +164,12 @@ class Volunteers extends Controller
         }
         $vol->privacy_agreement="AGREE";
         if(session('USER')){
-            $path=$request->file('consent')->store('public/admin/volunteer/consent');
-            $vol->consent=Storage::url($path);
+            $image=$request->file('consent');
+            $image_content=file_get_contents($image);
+            $vol->consent=$image_content;
         }
         $vol->email=$request->email;
-        $vol->status="PENDING";
+        $vol->status="VALIDATED";
         $saved=$vol->save();
         if($saved){
             return response()->json(['success'=>'Volunteer record has been successfully saved!']);
