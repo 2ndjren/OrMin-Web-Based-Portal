@@ -396,9 +396,9 @@ function Accounts_Btns(){
       success: function (response) {
         var left_details="<div class='w-full'>"
 
-        left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.fname+" Profile</p>"
-       if(response.user_profile!==null){
-        left_details+="<img class='p-3' src="+response.user_profile+" alt='image'>"
+        left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.user.fname+" Profile</p>"
+       if(response.user.user_profile!==null){
+        left_details+="<img class='p-3' src="+response.user.user_profile+" alt='image'>"
      " </div>"
        }else{
         left_details+="<img class='p-3' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='image'>"
@@ -409,30 +409,30 @@ function Accounts_Btns(){
      var right_details ="<div class='w-full space-y-3'>"
      right_details+="<p class='text-lg font-bold text-blue-400'>Information</p>"
 
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>NAME: <span class='text-gray-600  text-sm' id='profile-name'>"+response.fname+" "+response.mname+" "+response.lname+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>AGE: <span class='text-gray-600  text-sm' id='profile-age'>"+response.age+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY: <span class='text-gray-600  text-sm' id='profile-bday'>"+response.bday+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER: <span class='text-gray-600  text-sm' id='profile-gender'>"+response.gender+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>CONTACT NO. : <span class='text-gray-600  text-sm' id='profile-phone_num'>"+response.phone_num+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL. : <span class='text-gray-600  text-sm' id='profile-email'>"+response.email+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>PASSWORD. : <span class='text-gray-600  text-sm' id='profile-password'>"+response.password+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>NAME: <span class='text-gray-600  text-sm' id='profile-name'>"+response.user.fname+" "+response.user.mname+" "+response.user.lname+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>AGE: <span class='text-gray-600  text-sm' id='profile-age'>"+response.user.age+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY: <span class='text-gray-600  text-sm' id='profile-bday'>"+response.user.bday+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER: <span class='text-gray-600  text-sm' id='profile-gender'>"+response.user.gender+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>CONTACT NO. : <span class='text-gray-600  text-sm' id='profile-phone_num'>"+response.user.phone_num+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL. : <span class='text-gray-600  text-sm' id='profile-email'>"+response.user.email+"</span></p>"
+       right_details += "<p class='font-semibold text-gray-400 text-xs'>PASSWORD. : <span class='text-gray-600  text-sm' id='profile-password'>"+response.user.password+"</span></p>"
        
-       if(response.account_status==='VERIFIED'){
-        right_details += "<p class='font-semibold text-gray-400 text-xs'>ACCOUNT STATUS. : <span class='text-white  text-xs bg-green-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.account_status+"</span></p>"
+       if(response.user.account_status==='VERIFIED'){
+        right_details += "<p class='font-semibold text-gray-400 text-xs'>ACCOUNT STATUS. : <span class='text-white  text-xs bg-green-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.account_status+"</span></p>"
        }else{
-        right_details += "<p class='font-semibold text-gray-400 text-xs'>ACCOUNT STATUS. : <span class='text-white  text-xs bg-gray-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.account_status+"</span></p>"
+        right_details += "<p class='font-semibold text-gray-400 text-xs'>ACCOUNT STATUS. : <span class='text-white  text-xs bg-gray-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.account_status+"</span></p>"
        }
-       if(response.type==="ADMIN"){
-        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-red-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.type+"</span></p>"
-       }else if(response.type==="STAFF"){
-        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-yellow-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.type+"</span></p>"
+       if(response.user.type==="ADMIN"){
+        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-red-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.type+"</span></p>"
+       }else if(response.user.type==="STAFF"){
+        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-yellow-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.type+"</span></p>"
        }else{
-        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-green-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.type+"</span></p>"
+        right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE. : <span class='text-white  text-xs bg-green-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.type+"</span></p>"
        }
     right_details += " </div>"
     var details_btns="<div class='flex space-x-2 justify-end'>"
     details_btns+="<button id='close-profile-modal-btn' type='button' class='bg-gray-500 p-2 rounded-md text-white  font-semibold '>Close</button>"
-    details_btns+="<button data-id="+response.id+"  type='button' class='delete-profile-btn bg-red-500 p-2 rounded-md text-white  font-semibold '>Delete</button>"
+    details_btns+="<button data-id="+response.user.id+"  type='button' class='delete-profile-btn bg-red-500 p-2 rounded-md text-white  font-semibold '>Delete</button>"
     details_btns+="<div>"
 
         $('#user-profile').append(left_details)
