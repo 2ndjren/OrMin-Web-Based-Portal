@@ -144,7 +144,7 @@ class Auth extends Controller
             'gender'=>'required',
             'phone_num'=>'required|numeric',
             'email'=>'required|unique:App\Models\user',
-            'password'=>'required',
+            'password'=>'required|min:8|confirmed',
         ];
         $message=[
             'user_profile.required'=>'Image is required',
