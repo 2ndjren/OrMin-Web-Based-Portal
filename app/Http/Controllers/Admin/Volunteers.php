@@ -23,9 +23,18 @@ class Volunteers extends Controller
         }
     }
     public function Volunteers_Table(){
-        $validated=ModelsVolunteers::where('status','VALIDATED')->get();
-        $pending=ModelsVolunteers::where('status','PENDING')->get();
-        $declined=ModelsVolunteers::where('status','DECLINED')->get();
+        $validated=ModelsVolunteers::where('status','VALIDATED')->get()->map(function ($item) {
+            $item->vol_profile = base64_encode($item->vol_profile);
+            return $item;
+        });
+        $pending=ModelsVolunteers::where('status','PENDING')->get()->map(function ($item) {
+            $item->vol_profile = base64_encode($item->vol_profile);
+            return $item;
+        });
+        $declined=ModelsVolunteers::where('status','DECLINED')->get()->map(function ($item) {
+            $item->vol_profile = base64_encode($item->vol_profile);
+            return $item;
+        });
         $data=[
             'validated'=>$validated,
             'pending'=>$pending,
