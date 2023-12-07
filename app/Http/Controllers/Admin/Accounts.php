@@ -89,7 +89,12 @@ class Accounts extends Controller
         return response()->json(['verified'=>$data]);
     }
     public function Account_Profile($id){
-        $data=user::find($id);
+        $user=user::find($id);
+        $user->user_profile=base64_encode($user->user_profile);
+        $data=[
+            'user'=>$user
+        ];
+        
         return response()->json($data);
     }
     public function Delete_Profile($id){
