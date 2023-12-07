@@ -8,7 +8,7 @@
 
 </head>
 <body>
-   <div class="text-center">
+   <div class="text-center mt-5">
 
    <p class="text-center">Kindly Check your email to complete your password reset. Thank you!</p>
     <a class="text-blue-500 underline" href="https://mail.google.com/">Check Now!</a>
