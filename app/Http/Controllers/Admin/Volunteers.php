@@ -242,7 +242,7 @@ class Volunteers extends Controller
         $update= new ModelsVolunteers();
         
         if($request->file('edit_vol_profile')!=null){
-            $image=$request->file('vol_profile');
+            $image=$request->file('edit_vol_profile');
             $image_content=file_get_contents($image);
             $updated= $update::where('id',$request->edit_id)->update([
                 'vol_id'=>$request->edit_vol_id,
