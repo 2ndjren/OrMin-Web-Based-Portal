@@ -23,7 +23,7 @@
        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
 
             <div class="border-b-2 border-gray-300 w-full text-xl p-4 flex flex-col items-center">
-                <img src="{{asset('static/user/home/logo.png')}}" alt="" width="100" />
+                <!-- <img src="{{asset('static/user/home/logo.png')}}" alt="" width="100" /> -->
 
                 @if(session('ADMIN'))
                 <h2 class="text-center font-bold">ADMINISTRATOR</h2>
