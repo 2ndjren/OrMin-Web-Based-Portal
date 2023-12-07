@@ -29,7 +29,11 @@ class Chats extends Controller
         $user=strtoupper($search);
         if($user!==null){
             $check=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->count();
-            $results=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->get();
+          
+            $results=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->get()->map(function ($item) {
+                $item->proof_of_payment = base64_encode($item->proof_of_payment);
+                return $item;
+            });
             if($check>0){
                 $data=[
                     'match'=>$results,
@@ -100,6 +104,7 @@ class Chats extends Controller
                 
                 }else{
                 $user=user::find(session('USER')['id']);
+                $user->user_profile=base64_encode($user->user_profile);
                    if($user){
                     $chat_threads->u_id=$user->id;
                     $chat_threads->prof_image=$user->user_profile;
@@ -135,6 +140,7 @@ class Chats extends Controller
                 
                 }else{
                 $user=user::find($request->u_id);
+                $user->user_profile=base64_encode($user->user_profile);
                    if($user){
                     $chat_threads->u_id=$user->id;
                     $chat_threads->prof_image=$user->user_profile;
@@ -169,6 +175,7 @@ class Chats extends Controller
         $user=user::find($id);
         $unseen=chat::where('u_id',$id)->where('notify','0')->where('status','DELIVERED')->count();
         $message=chat::where('u_id',$user->id)->orderBy('created_at','desc')->limit(1)->get();
+        $user->user_profile=base64_encode($user->user_profile);
         $data=[
             'user'=>$user,
             'message'=>$message,
@@ -184,7 +191,7 @@ class Chats extends Controller
         $thread_status=chat_threads::where('u_id',$id)->where('status','DELIVERED')->update(['status'=>'SEEN']);
         $seen=chat::where('u_id',$id)->where('status','DELIVERED')->update(['status'=>'SEEN']);
         $user=user::find($id);
-        
+        $user->user_profile=base64_encode($user->user_profile);
         $message=chat::where('u_id',$user->id)->orderBy('created_at','asc')->get();
         $data=[
             'user'=>$user,
@@ -211,6 +218,7 @@ class Chats extends Controller
             $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get();
             $check = chat::where('u_id', $userId)->with('user')->count();
             if($check>0){
+            
             $data = [
                 'user' => $user,
                 'check' => $check,
