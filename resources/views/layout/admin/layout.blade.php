@@ -18,7 +18,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <div class="flex">
+    <div class="flex max-h-screen">
 
        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
 

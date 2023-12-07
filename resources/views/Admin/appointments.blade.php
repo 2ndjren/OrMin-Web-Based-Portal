@@ -12,16 +12,16 @@
   <div class="bg-white w-full rounded-md p-5 mb-2 mt-2">
     <p class="font-semibold text-yellow-500 text-lg">Ongoing</p>
     <div id="ongoing-appointment" class="text-center"> 
-      <p id="ongoing-appointment-user" class="text-green-500 font-bold text-4xl text-center">No Ongoing Appointment</p>
-      <p id="ongoing-appointment-time" class="text-green-500 font-bold text-lg text-center">...</p>
+   
     </div>
   </div>
 
   <div class=" sm:block md:flex lg:flex  max-h-screen lg:space-x-2 sm:space-y-2 lg:space-y-0 lg:mb-2">
     <div class="w-full bg-white rounded-md p-5  ">
     <p class="font-semibold text-yellow-500 text-lg">Next</p>
-    <div class="w-full"><div class="font-semibold text-blue-500  text-center">
-    <span class="text-green-500 font-bold text-lg text-center">Jared Philipps Baren</span>
+    <div class="w-full">
+      <div id="next-app-user" class="font-semibold text-blue-500  text-center">
+   
 
     </div>
   </div>
@@ -89,11 +89,10 @@
 </div>
 
 
-
 <div id="set-appointment-modal" class="hidden fixed inset-0 flex items-center justify-center z-20  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-screen  lg:h-screen mx-auto shadow-lg ">
   <div class="flex">
-    <div id="existing-appointment" class="h-auto p-10 w-full"></div>
+    <div id="existing-appointment" class="h-auto p-10 hidden w-full"></div>
     <div id="appointment" class="hidden  p-10">
       <form id="create-appointment-form">
         @csrf
@@ -124,6 +123,7 @@
             <option value="">Select</option>
             <option value="Pending">Pending</option>
             <option value="Approved">Approve</option>
+            <option value="Ongoing">Ongoing</option>
           </select>
         </div>
         </div>
@@ -151,8 +151,11 @@
     </div>
     
   </div>
-  <div  class="close-modal-app hidden flex justify-center space-x-2  mt-2"> 
-          <button type="button"  class="close-set-app-modal p-2 bg-green-500 text-white font-semibold rounded-md">Back</button>
+  <div id="close-modal-app"  class=" hidden flex justify-center space-x-2  mt-2"> 
+          <button type="button"  class="close-set-app-modal  p-2 bg-green-500 text-white font-semibold rounded-md">Back</button>
+    </div>
+  <div id="close-user-app-details" class=" hidden flex justify-center space-x-2  mt-2"> 
+          <button type="button"  class="close-user-details p-2 bg-green-500 text-white font-semibold rounded-md">Back</button>
     </div>
 
   </div>
@@ -165,6 +168,7 @@
     HandleSearch()
     Appointment_Btn()
     Submitted_Appointments()
+    Approved_Pending()
   });
   function Search_User(){
     $('#search').on('input', function () {
@@ -195,7 +199,7 @@
           $('#results').empty()
           if(data.match){
             $.each(data.match, function (index, field) { 
-            var results="<button type='button' data-id="+field.id+"  class='get-user set-ap-user-details p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
+            var results="<button type='button' data-id="+field.id+"  class='get-user set-app-user-details show-user-details p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
             results+="<div class='flex space-x-2'>"
             results+="<div>"
             if(field.vol_profile!==""){
@@ -243,7 +247,7 @@
       $('#create-app-form')[0].reset()
       
     });
-    $(document).on('click','.set-ap-user-details',function(){
+    $(document).on('click','.set-app-user-details',function(){
       var id=$(this).data('id')
       $('#scheduled-appointment').empty()
       $.ajax({
@@ -278,7 +282,113 @@ var monthss = months[month - 1];
            
             $('#existing-appointment').append(existing); 
               $('#set-appointment-modal').removeClass('hidden')
-              $('.close-modal-app').removeClass('hidden')
+              $('#close-modal-app').removeClass('hidden')
+              $('#close-user-app-details').addClass('hidden')
+
+            $('#create-appointment-modal').addClass('hidden')
+            
+          }else if(user.check===0){
+            $('#app-user-data').empty(); 
+            $('#scheduled-appointment').empty()
+            var existing="<div>"
+            existing+="<p><span>Name:</span>"+user.user.fname+" "+user.user.lname+"</p>"
+            existing+="<p><span>Age:</span>"+user.user.age+"</p>"
+            var bday = new Date(user.user.bday);
+          var day = bday.getDate(); 
+          var month = bday.getMonth() + 1; 
+          var year = bday.getFullYear(); 
+          var months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ];
+
+var monthss = months[month - 1];
+            existing+="<p><span>Birthday: </span>"+monthss+" "+day+", "+year+"</p>"
+            existing+="<p><span>Gender: </span>"+user.user.gender+"</p>"
+            existing+="<p><span>Email: </span>"+user.user.email+"</p>"
+
+            existing+="</div>"
+            $('#app-user-data').append(existing); 
+            $('#appointment').removeClass('hidden')
+            $('#user-app-id').val(user.user.id);
+            
+          }
+          
+          var schedules="<div class='columns:3'>"
+          $.each(user.group_sched, function (index, sched_date) { 
+            var bday = new Date(sched_date.app_date);
+            var day = bday.getDate(); 
+            var month = bday.getMonth() + 1; 
+            var year = bday.getFullYear(); 
+            var months = [
+              "January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+            ];
+            var monthss = months[month - 1];
+
+         
+            schedules+="<div>"
+            schedules+="<div>"
+            schedules+="<p>"+monthss+" "+day+", "+year+"</p>"
+            $.each(user.sched, function (index, field) { 
+              if(sched_date.app_date===field.app_date){
+               schedules+="<div class='pl-10'>"
+              schedules+="<p>"+field.app_time+"</p>"
+              schedules+="</div>"
+            }
+            schedules+="</div>"
+             
+            });
+             
+            schedules+="</div>"
+         
+          });
+          schedules+="</div>"
+            $('#scheduled-appointment').append(schedules)
+          
+          $('#set-appointment-modal').removeClass('hidden')
+        $('#create-appointment-modal').addClass('hidden')
+        }
+      });
+    });
+    $(document).on('click','.ongoing-app-user-details',function(){
+      var id=$(this).data('id')
+      $('#scheduled-appointment').empty()
+      $.ajax({
+        type: "GET",
+        url: "/set-user-app-details/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (user) {
+          console.log(user)  
+          if(user.check>0){
+            var existing="<div>"
+            existing+="<p><span>Name: </span>"+user.user.fname+" "+user.user.lname+"</p>"
+            existing+="<p><span>Age: </span>"+user.user.age+"</p>"
+            var bday = new Date(user.user.bday);
+          var day = bday.getDate(); 
+          var month = bday.getMonth() + 1; 
+          var year = bday.getFullYear(); 
+          var months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+          ];
+
+var monthss = months[month - 1];
+            existing+="<p><span>Birthday: </span>"+monthss+" "+day+", "+year+"</p>"
+            existing+="<p><span>Gender: </span>"+user.user.gender+"</p>"
+            existing+="<p><span>Email: </span>"+user.user.email+"</p>"
+            existing+="<p><span>Date: </span>"+user.exist.app_date+"</p>"
+            existing+="<p><span>Time: </span>"+user.exist.app_time+"</p>"
+            existing+="<p><span>Status: </span>"+user.exist.status+"</p>"
+
+            existing+="</div>"
+           
+            $('#existing-appointment').append(existing); 
+              $('#set-appointment-modal').removeClass('hidden')
+              $('#close-modal-app').addClass('hidden')
+              $('#close-user-app-details').removeClass('hidden')
+
             $('#create-appointment-modal').addClass('hidden')
             
           }else if(user.check===0){
@@ -352,6 +462,13 @@ var monthss = months[month - 1];
       $('#set-appointment-modal').addClass('hidden')
       $('#create-appointment-modal').removeClass('hidden')
     });
+    $('.close-user-details').click(function (e) { 
+      e.preventDefault();
+      $('#app-user-data').empty(); 
+      $('#existing-appointment').empty(); 
+      $('#set-appointment-modal').addClass('hidden')
+      // $('#create-appointment-modal').removeClass('hidden')
+    });
     $('#create-appointment-form').submit(function (e) { 
       e.preventDefault();
       var formdata= new FormData($(this)[0])
@@ -387,11 +504,30 @@ var monthss = months[month - 1];
       dataType: "json",
       success: function (app) {
         console.log(app)
-      if(app.ongoing){
-        $('#ongoing-appointment-user').text(app.ongoing_user.fname+" "+app.ongoing_user.lname)
-        $('#ongoing-appointment-time').text(app.ongoing.app_date+" "+app.ongoing.app_time)
+      if(app.ongoing!==null){
+        var on_meeting="<button class='ongoing-app-user-details' data-id="+app.ongoing.u_id+"  type='button' id='ongoing-appointment'>"
+        on_meeting+="<p id='ongoing-appointment-user' class='text-green-500 font-bold text-4xl text-center'>"+app.ongoing_user.fname+" "+app.ongoing_user.lname+"</p>"
+        on_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-lg text-center'>"+app.ongoing.app_date+", "+app.ongoing.app_time+"</p>"
+        on_meeting+="</button>"
+        $('#ongoing-appointment').append(on_meeting)
+      }else{
+        var on_meeting="<button class='set-app-user-details'  type='button'>"
+        on_meeting+="<p id='ongoing-appointment-user' class='text-green-500 font-bold text-4xl text-center'>...</p>"
+        on_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-lg text-center'>...</p>"
+        on_meeting+="</button>"
+        $('#ongoing-appointment').append(on_meeting)
+
       }
-      if(app.approve){
+      if(app.next!==null){
+        var next_meeting="<button class='set-app-user-details' data-id="+app.next.u_id+"  type='button' id='ongoing-appointment'>"
+        next_meeting+="<p id='next-app-user' class='text-green-500 font-bold text-lg text-center'>"+app.next_user.fname+" "+app.next_user.lname+"</p>"
+        next_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-sm text-center'>"+app.next.app_date+", "+app.next.app_time+"</p>"
+        next_meeting+="</button>"
+        $('#next-app-user').append(next_meeting)
+      }else{
+        var on_meeting="<button class='set-app-user-details' type='button'>"
+        on_meeting+="<p id='next-app-user' class='text-green-500 font-bold text-md text-center'>...</p>"
+        $('#next-app-user').append(on_meeting)
         
       }
       if(app.pending){
@@ -402,7 +538,45 @@ var monthss = months[month - 1];
       },
       error: function(xhr, status, error) {
         // Handle error response here
-        window.alert(xhr.responseText);
+        console.log(xhr.responseText);
+      }
+    });
+  }
+  function Approved_Pending(){
+    $.ajax({
+      type: "GET",
+      url: "/submitted-appointments",
+      data: "data",
+      dataType: "json",
+      success: function (app) {
+        console.log(app)
+        if(app.approved>0){
+          $.each(app.approved, function (index, field) { 
+          var app_list="<div class='text-center'>"
+        app_list+="<p>"+field.app_time+"</p>"
+        app_list+="</div>"
+        $('#app-list').append(app_list)
+        });
+        }else{
+          var app_list="<div class='text-center'>"
+        app_list+="<p>No results found!</p>"
+        app_list+="</div>"
+        $('#app-list').append(app_list)
+        }
+        if(app.pending>0){
+        $.each(app.pending, function (index, field) { 
+                  var app_list="<div class='text-center'>"
+                app_list+="<p>No results found!</p>"
+                app_list+="</div>"
+                $('#app-request').append(app_list)
+                });
+        }else{
+          var app_list="<div class='text-center'>"
+                app_list+="<p>No results found!</p>"
+                app_list+="</div>"
+                $('#app-request').append(app_list)
+        }
+        
       }
     });
   }

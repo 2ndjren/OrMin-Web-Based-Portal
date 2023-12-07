@@ -67,10 +67,19 @@ class Appointments extends Controller
   }
   public function Appointments_Submitted(){
     $ongoing=ModelsAppointments::where('status','ONGOING')->first();
-    $ongoing_user=user::where('id',$ongoing->u_id)->first();
     $next=ModelsAppointments::where('status','APPROVED')->first();
-    $next_user=ModelsAppointments::where('u_id',$next->u_id);
-    $approved=ModelsAppointments::where('status','APPROVED')->skip(1)->take(10)->get();
+    if(!empty($ongoing)){
+        $ongoing_user=user::where('id',$ongoing->u_id)->first();
+    }else{
+        $ongoing_user="No ongoing meeting!";
+    }
+    if(!empty($next)){
+        $next_user=user::where('id',$next->u_id)->first();
+    }else{
+        $next_user="Waiting";
+    }
+
+$approved=ModelsAppointments::where('status','APPROVED')->skip(1)->take(10)->get();
     $pending=ModelsAppointments::where('status','PENDING')->get();
     $data=[
         'ongoing_user'=>$ongoing_user,
@@ -93,6 +102,7 @@ class Appointments extends Controller
   }
 
   public function Create_Appointment(Request $request){ 
+  
         $rules=[
         'app_date'=>'required',
             'app_time'=>'required',
@@ -102,22 +112,48 @@ class Appointments extends Controller
         if($validator->fails()){
             return response()->json(['failed'=>'All fields are required!']);
         }
-        $id=mt_rand(111111111,999999999);
-        $app=new ModelsAppointments();
-        $app->id=$id;
-        $app->u_id=$request->u_id;
-        $app->e_id=$request->e_id;
-        $app->app_date=$request->app_date;
-        $app->app_time=$request->app_time;
-        $app->app_description=$request->app_description;
-        $app->status=strtoupper($request->status);
-        $app-> note=$request->note;
-        $saved=$app->save();
-        if($saved){
-            return response()->json(['success'=>'Appointment successfully created!']);
+        if($request->status=="Ongoing"){
+            $check=ModelsAppointments::where('status',$request->status)->update([
+                'status'=>'ONGOING',
+            ]);
+            if($check){
+                $id=mt_rand(111111111,999999999);
+                $app=new ModelsAppointments();
+                $app->id=$id;
+                $app->u_id=$request->u_id;
+                $app->e_id=$request->e_id;
+                $app->app_date=$request->app_date;
+                $app->app_time=$request->app_time;
+                $app->app_description=$request->app_description;
+                $app->status=strtoupper($request->status);
+                $app-> note=$request->note;
+                $saved=$app->save();
+                if($saved){
+                    return response()->json(['success'=>'Appointment successfully created!']);
+                }else{
+                    return response()->json(['failed'=>'Appointment failed to create due to unkown error']);
+                }
+            }
+            
         }else{
-            return response()->json(['failed'=>'Appointment failed to create due to unkown error']);
+            $id=mt_rand(111111111,999999999);
+            $app=new ModelsAppointments();
+            $app->id=$id;
+            $app->u_id=$request->u_id;
+            $app->e_id=$request->e_id;
+            $app->app_date=$request->app_date;
+            $app->app_time=$request->app_time;
+            $app->app_description=$request->app_description;
+            $app->status=strtoupper($request->status);
+            $app-> note=$request->note;
+            $saved=$app->save();
+            if($saved){
+                return response()->json(['success'=>'Appointment successfully created!']);
+            }else{
+                return response()->json(['failed'=>'Appointment failed to create due to unkown error']);
+            }
         }
+     
 
     }
    
