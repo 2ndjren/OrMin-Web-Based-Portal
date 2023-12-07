@@ -30,7 +30,7 @@ class Appointments extends Controller
           $check=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->count();
           ;
           $results=user::where('account_status','VERIFIED')->where('type','USER')->where('fname','LIKE','%'.$user.'%')->orWhere('lname','LIKE','%'.$user.'%')->get()->map(function ($item) {
-            $item->proof_of_payment = base64_encode($item->proof_of_payment);
+            $item->user_profile = base64_encode($item->user_profile);
             return $item;
         });
 
