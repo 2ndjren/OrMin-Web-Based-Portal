@@ -15,10 +15,16 @@ class Imports_data implements ToModel, WithStartRow
         return 3; // Start importing from the 2nd row (row index 1)
     }
 
+    protected $category;
 
     public function model(array $row)
     {
-        $category=$row[0][0];
+        // Set the 'level' value from the first row's first column
+        if (empty($this->category) && !empty($row[0])) {
+            $this->category = $row[0];
+            return null; // Skip the first row as it's a header
+        }
+
         // Check if any data exists in the row before attempting to process
         if (!empty($row[1])) {
             $id = mt_rand(111111111, 999999999);
@@ -34,7 +40,7 @@ class Imports_data implements ToModel, WithStartRow
             return new insurance([
                 'id' => $id,
                 'mem_id' => $row[8],
-                'level' => $category,
+                'level' => $this->category,
                 'fname' => $row[1],
                 'lname' => $row[2],
                 'birthday' => $formattedBirthday,
