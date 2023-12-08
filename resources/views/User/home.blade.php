@@ -1,3 +1,4 @@
+User
 @extends('layout.user.layout')
 @section('home')
 
@@ -27,7 +28,7 @@
                   <p class="text-gray-800 font-bold text-2xl xl:text-4xl text-shadow-sm">PHILIPPINE</p>
                   <p class="text-blue-800 font-bold text-4xl xl:text-6xl text-shadow-sm transition-transform ease-in-out transform hover:scale-110"><span class="text-red-700">RED CROSS</span> ASSOCIATION</p>
                   <p class="text-gray-800 text-2xl xl:text-5xl font-bold ">Oriental Mindoro Chapter</p>
-                  <p class="text-gray-800 text-md xl:text-xl font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
+                  <p class="text-gray-800 text-md font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
 
                   <button class="bg-blue-800 hover:bg-red-700 text-white font-bold mt-4 py-4 px-6 rounded transition-transform ease-in-out transform hover:scale-110">
                     Get Involved!
@@ -72,7 +73,7 @@
   </div>
 
 
-  <section class="h-screen flex items-center justify-center py-6 md:py-12" id="services">
+  <section class="bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
 
@@ -96,33 +97,36 @@
 
 
 
-  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
+  <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
 
-    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
-      <div class="w-auto pb-4 md:pb-0 flex items-center justify-center">
+    <div class="h-screen p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+      <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
-      <div class="w-auto flex flex-col justify-center items-center md:items-start px-4 md:px-10">
-        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-left" data-aos="fade-up">
+      <div class="w-full md:w-2/3 space-y-4 md:space-y-6 px-4 md:px-10">
+        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-right" data-aos="fade-up">
           SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
         </h1>
-        <div class="text-white text-center md:text-left md:text-xl xl:text-xl">
-          The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe, and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
+        <div class="text-white text-center md:text-right md:text-xl">
+          The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
         </div>
-        <div class="text-center md:text-left mt-4">
-          <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
-            DONATE BLOOD!
-          </a>
+        <div class="text-center md:text-right">
+          <ul class="mt-4">
+            <li>
+              <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
+                DONATE BLOOD!
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
 
-  </section>
 
-  
-  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12 ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+  <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
     <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
@@ -141,12 +145,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
 
 
 
-  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/vol.jpg')">
+  <section class="h-screen bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
       <div class="flex justify-start">
         <div class="px-15 py-24 lg:w-3/4">
