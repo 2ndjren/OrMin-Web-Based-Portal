@@ -30,6 +30,40 @@ class Imports_data implements ToModel, WithStartRow
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
+            // Get the level value from the row
+    $level = strtoupper($row[8] ?? ''); // Assuming level is in the 9th column (index 8)
+
+    // Set default amount
+    $amount = 0;
+
+    
+    // Determine the amount based on the level
+    switch ($level) {
+        case 'CLASSIC':
+            $amount = 60;
+            break;
+        case 'BRONZE':
+            $amount = 150;
+            break;
+        case 'SILVER':
+            $amount = 300;
+            break;
+        case 'GOLD':
+            $amount = 500;
+            break;
+        case 'PLATINUM':
+            $amount = 1000;
+            break;
+        case 'SENIOR':
+            $amount = 300;
+            break;
+        case 'SENIOR PLUS':
+            $amount = 350;
+            break;
+        default:
+            // Handle other cases or set a default amount
+            break;
+    }
             return new insurance([
                 'id' => $id,
                 'mem_id' => $row[9],
@@ -43,6 +77,7 @@ class Imports_data implements ToModel, WithStartRow
                 'start_at' => $formattedStartAt,
                 'end_at' => $formattedEndAt,
                 'OR#' => $row[10],
+                'amount' => $amount, // Set the determined amount based on level
             ]);
         }
 
