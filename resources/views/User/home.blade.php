@@ -116,8 +116,7 @@
   </div>
 
 
-  <div class="bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
+  <div class="bg-center bg-no-repeat bg-cover ease-in-out transition-opacity  bg-green-600 bg-opacity-75" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
@@ -133,7 +132,6 @@
         <div class="w-full md:w-1/2 flex justify-center py-4 md:py-10">
           <img class="border-4 border-white shadow-md bg-center bg-cover bg-no-repeat h-48 md:h-1/2" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/376370625_239587185277034_3826957384081035787_n-f265f1e7.jpeg" alt="">
         </div>
-      </div>
     </div>
   </div>
 
