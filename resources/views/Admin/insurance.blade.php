@@ -1399,39 +1399,38 @@
   }
 
   function Delete_Membership_Account() {
-    $(document).on('click', '.delete-membership-account-profile-btn', function() {
-      var id = $(this).data('id');
+  $(document).one('click', '.delete-membership-account-profile-btn', function() {
+    var id = $(this).data('id');
   
+    if (confirm('Are you sure you want to delete this record?')) {
+      var submit = $(this);
+      submit.prop('disabled', true);
+      submit.addClass('opacity-50 cursor-not-allowed');
       
-
-      if (confirm('Are you sure you want to delete this record?')) {
-              var submit=$(this);
-      submit.prop('disabled',true)
-      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
         url: "/delete-membership-account-profile/" + id,
         data: "data",
         dataType: "json",
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
-          alert(response.success)
+          submit.prop('disabled', false);
+          submit.removeClass('opacity-50 cursor-not-allowed');
+          alert(response.success);
           $('#membership-account-profile').empty();
           $('#membership-account-profile-btns').empty();
           $('#membership-account-profile-modal').removeClass('block');
           $('#membership-account-profile-modal').addClass('hidden');
         }
       });
-    };
-    });
-  }
+    }
+  });
+}
+
 
   function Delete_Other_Acount(others) {
     $(document).on('click', '.other-delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
-
-      if (confirm('Are you sure you want to delete this record?')) {
+      
       var submit=$(this);
       submit.prop('disabled',true)
       submit.addClass('opacity-50 cursor-not-allowed')
@@ -1451,7 +1450,6 @@
           others.ajax.reload()
         }
       });
-    };
     });
   }
   $(document).on('click', '#view-membership-payment-btn', function() {

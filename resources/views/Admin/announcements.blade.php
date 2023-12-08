@@ -78,8 +78,8 @@
     $('#post-announcement-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0]);
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -88,8 +88,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             Announcements()
             Active_Post()
@@ -100,8 +100,8 @@
           }
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -212,8 +212,8 @@
         var monthName = months[month - 1];
 
         var activePost = "<p class=' text-lg font-semibold uppercase'>" + post.title + "</p>";
-      
-    
+
+
 
         if (response.current[0].e_id !== null) {
           $.ajax({
@@ -223,21 +223,21 @@
             dataType: "json",
             success: function(user) {
               console.log(user);
-     
-                if (user.id === post.e_id) {
-                  activePost = "<p class=''>" + user.id + "</p>" + activePost;
-                } else {
 
-                  if (user.type == 'ADMIN') {
-                    activePost += "<p class='text-left text-sm text-green-500  font-semibold'>Head Administrator</p>"
-                  } else if (user.type === 'STAFF') {
-                    activePost += "<p class='text-left text-sm text-yellow-500  font-semibold'>STAFF</p>"
-                  } else {
-                    activePost += "<p class='text-left text-sm text-yellow-500  font-semibold'>Head Administrator</p>"
-                  }
+              if (user.id === post.e_id) {
+                activePost = "<p class=''>" + user.id + "</p>" + activePost;
+              } else {
+
+                if (user.type == 'ADMIN') {
+                  activePost += "<p class='text-left text-sm text-green-500  font-semibold'>Head Administrator</p>"
+                } else if (user.type === 'STAFF') {
+                  activePost += "<p class='text-left text-sm text-yellow-500  font-semibold'>STAFF</p>"
+                } else {
+                  activePost += "<p class='text-left text-sm text-yellow-500  font-semibold'>Head Administrator</p>"
                 }
-                activePost += "<p class='text-left text-gray-500 text-xs'> " + monthName + " " + day + "," + year + "</p> ";
-                activePost += "<p>" + post.announcement + "</p>";
+              }
+              activePost += "<p class='text-left text-gray-500 text-xs'> " + monthName + " " + day + "," + year + "</p> ";
+              activePost += "<p>" + post.announcement + "</p>";
 
               $('#active-accouncement').append(activePost);
             },
@@ -250,7 +250,7 @@
           $('#active-accouncement').append(activePost);
         }
 
-       
+
 
       },
       error: function(xhr, status, error) {
@@ -266,8 +266,8 @@
     $(document).on('click', '.history_modal_btn', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
@@ -275,8 +275,8 @@
         data: "data",
         dataType: "json",
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response);
 
           var date = new Date(response.created_at);
@@ -323,18 +323,18 @@
             var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Fetch CSRF token value
 
             if (confirm('Mark this announcement as the latest?')) {
-              var submit=$(this);
-      submit.prop('disabled',true)
-      submit.addClass('opacity-50 cursor-not-allowed')
+              var submit = $(this);
+              submit.prop('disabled', true)
+              submit.addClass('opacity-50 cursor-not-allowed')
               $.ajax({
                 type: 'POST',
                 url: '/mark-as-latest/' + announcementId,
                 headers: {
                   'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                 },
-                success: function(response) {   
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+                success: function(response) {
+                  submit.prop('disabled', false)
+                  submit.removeClass('opacity-50 cursor-not-allowed')
 
                   console.log(response.message);
                   $('#post_announcement-modal').addClass('hidden');
@@ -342,9 +342,9 @@
                   Announcements();
                   Active_Post();
                 },
-                error: function(xhr, status, error) {  
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+                error: function(xhr, status, error) {
+                  submit.prop('disabled', false)
+                  submit.removeClass('opacity-50 cursor-not-allowed')
 
                   window.alert(xhr.responseText);
                 }
@@ -360,15 +360,15 @@
 
             // Display a confirmation dialog before proceeding with deletion
             if (confirm('Are you sure you want to delete this announcement?')) {
-              var submit=$(this);
-      submit.prop('disabled',true)
-      submit.addClass('opacity-50 cursor-not-allowed')
+              var submit = $(this);
+              submit.prop('disabled', true)
+              submit.addClass('opacity-50 cursor-not-allowed')
               $.ajax({
                 type: 'GET',
                 url: '/delete-announcement/' + announcementId,
                 success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+                  submit.prop('disabled', false)
+                  submit.removeClass('opacity-50 cursor-not-allowed')
                   // Handle success message or any UI updates upon successful deletion
                   console.log(response.message);
                   $('#post_announcement-modal').addClass('hidden');
@@ -377,8 +377,8 @@
                   Announcements()
                 },
                 error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+                  submit.prop('disabled', false)
+                  submit.removeClass('opacity-50 cursor-not-allowed')
                   window.alert(xhr.responseText);
                 }
               });
