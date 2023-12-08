@@ -1399,10 +1399,12 @@
   }
 
   function Delete_Membership_Account() {
+
+
   $(document).one('click', '.delete-membership-account-profile-btn', function() {
-    var id = $(this).data('id');
-  
     if (confirm('Are you sure you want to delete this record?')) {
+
+    var id = $(this).data('id');
       var submit = $(this);
       submit.prop('disabled', true);
       submit.addClass('opacity-50 cursor-not-allowed');
@@ -1424,7 +1426,8 @@
       });
     }
   });
-}
+} 
+
 
 
   function Delete_Other_Acount(others) {
