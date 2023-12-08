@@ -3,8 +3,9 @@
 
 
 
-  <div class="h-screen bg-video-container" style="position: relative;">
+<div class="h-screen w-full overflow-y-auto ">
 
+  <div class="bg-video-container" style="position: relative;">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
       <source src="static/user/animated.webm" type="video/webm">
       Your browser does not support the video tag.
@@ -13,7 +14,6 @@
 
     <!-- Content goes here -->
     <div class=" h-auto shadow-lg relative">
-
 
       <div class=" bg-white bg-opacity-50">
         <div class=" xl:p-8 xl:py-24 p-2">
@@ -61,6 +61,8 @@
 
 
 
+
+
   <div class="h-screen bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
@@ -70,8 +72,7 @@
   </div>
 
 
-
-  <section class="h-screen bg-white" id="services">
+  <section class="bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
 
@@ -144,6 +145,7 @@
       </div>
     </div>
   </div>
+
 
 
 
@@ -246,9 +248,8 @@
   <div class="">
     @include('layout.user.footer')
   </div>
+
 </div>
-
-
 <script>
   $(document).ready(function() {
     Create_Feedback()
