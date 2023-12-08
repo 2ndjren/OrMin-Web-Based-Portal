@@ -64,7 +64,7 @@
   </div>
 
 
-  <section class="bg-white" id="services">
+  <section class="h-auto bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
 
@@ -88,8 +88,8 @@
 
 
 
-  <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
-    <div class="h-auto p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+  <div class="bg-cover bg-no-repeat h-auto py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
+    <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -116,8 +116,8 @@
   </div>
 
 
-  <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class="h-auto p-4 md:p-28 bg-green-600 bg-opacity-75">
+  <div class="h-auto bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+    <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
