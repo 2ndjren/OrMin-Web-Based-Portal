@@ -189,7 +189,7 @@
                     <a href="/signin" class="flex items-center justify-between w-full p-4 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
                   </li>
 
-                  <li>
+                  <li class= "md:mx-2 lg:mx-3 xl:mx-4 mx-auto">
                   <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
 
                   </li>
