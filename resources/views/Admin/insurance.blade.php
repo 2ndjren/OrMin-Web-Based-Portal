@@ -808,6 +808,12 @@
   </div>
 </div>
 
+<!-- Loading Page -->
+<div id="loading-page" class="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-50 hidden">
+  <!-- You can customize the loading animation or message here -->
+  <div class="text-white text-xl">Loading...</div>
+</div>
+
 
 <script>
   $(document).ready(function() {
@@ -1827,6 +1833,8 @@ var endmon = months[endmonth - 1];
 
  
   function importExcel() {
+    document.getElementById('loading-page').classList.remove('hidden');
+
     var formData = new FormData();
     formData.append('file', $('input[name="file"]')[0].files[0]);
 
@@ -1844,6 +1852,7 @@ var endmon = months[endmonth - 1];
         'X-CSRF-TOKEN': token // Include CSRF token in the header
       },
       success: function(response) {
+        document.getElementById('loading-page').classList.add('hidden');
         console.log(response);
 
         $('#import-data-form-modal').addClass('hidden');
