@@ -16,7 +16,7 @@
 <body class="">
   <div class="flex w-auto overflow-y-hidden ">
     <div class="flex-wrap w-full xl:fixed">
-      <div class="flex p-2 h-auto w-auto bg-red-600  border-b-4 border-gray-400">
+      <div class="flex p-2 h-25 w-full bg-red-600  border-b-4 border-gray-400">
 
         @if (session('USER'))
 
@@ -190,7 +190,7 @@
                     <a href="/signin" class="flex items-center justify-between w-full p-4 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
                   </li>
 
-                  <li class="m-auto sm:my-2">
+                  <li class="m-auto">
                     <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
 
                   </li>

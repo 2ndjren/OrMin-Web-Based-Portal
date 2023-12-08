@@ -72,7 +72,7 @@
   </div>
 
 
-  <section class="bg-white" id="services">
+  <section class="h-screen flex items-center justify-center py-6 md:py-12" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
 
@@ -98,32 +98,37 @@
 
   <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
 
-<div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
-  <div class="w-full md:w-1/3 pb-4 md:pb-0 flex items-center justify-center">
-    <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
-      <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
+      <div class="w-auto pb-4 md:pb-0 flex items-center justify-center">
+        <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
+          <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="w-auto flex flex-col justify-center items-center md:items-start px-4 md:px-10">
+        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-left" data-aos="fade-up">
+          SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
+        </h1>
+        <div class="text-white text-center md:text-left md:text-xl xl:text-4xl ">
+          The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe, and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
+        </div>
+        <div class="text-center md:text-left mt-4">
+          <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
+            DONATE BLOOD!
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="w-full md:w-2/3 flex flex-col justify-center items-center md:items-start px-4 md:px-10">
-    <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-left" data-aos="fade-up">
-      SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
-    </h1>
-    <div class="text-white text-center md:text-left md:text-xl">
-      The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe, and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
-    </div>
-    <div class="text-center md:text-left mt-4">
-      <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
-        DONATE BLOOD!
-      </a>
-    </div>
-  </div>
-</div>
 
-</section>
+  </section>
 
+  
+  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12 ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
 
-  <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
+    
+    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
+   
+
+    <!-- <div class="p-4 md:p-28 bg-green-600 bg-opacity-75"> -->
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
@@ -141,13 +146,15 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
 
 
 
-  <section class="h-screen bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/vol.jpg')">
+    <!-- <div class="max-w-6xl mx-auto px-4 sm:px-6 relative"> -->
+    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
+
       <div class="flex justify-start">
         <div class="px-15 py-24 lg:w-3/4">
           <div class="w-full">
@@ -174,7 +181,9 @@
 
   <section class='bg-gray-900' id="about">
 
-    <div class="mx-auto max-w-5xl px-6 py-16 text-center">
+    <!-- <div class="mx-auto max-w-5xl px-6 py-16 text-center"> -->
+    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
+
       {{-- <div class="py-12 md:py-15 border-t border-gray-800"> --}}
 
       <div class="max-w-4xl mx-auto text-center">
