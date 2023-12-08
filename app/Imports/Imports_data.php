@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Insurance;
+use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\ToArray;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
@@ -53,7 +53,7 @@ class Imports_data implements ToArray, WithStartRow
             ];
         }
 
-        Insurance::insert($data);
+        insurance::insert($data);
     }
 
     public function startRow(): int
