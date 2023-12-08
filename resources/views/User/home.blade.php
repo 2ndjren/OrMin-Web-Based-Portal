@@ -2,7 +2,7 @@
 @section('home')
 
 
-<div class="h-screen flex justify-center items-center overflow-y-auto">
+
   <div class="h-screen bg-video-container" style="position: relative;">
 
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
