@@ -1884,9 +1884,8 @@ var endmon = months[endmonth - 1];
       },
       error: function(xhr, status, error) {
         // Handle error response here
-        document.getElementById('loading-page').classList.add('hidden');
-
         window.alert(xhr.responseText);
+        document.getElementById('loading-page').classList.add('hidden');
       }
     });
   }

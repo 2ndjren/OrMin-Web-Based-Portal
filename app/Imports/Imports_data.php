@@ -1,8 +1,13 @@
 <?php
+
+namespace App\Imports;
+
 use App\Models\Insurance;
 use Maatwebsite\Excel\Concerns\ToArray;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Maatwebsite\Excel\Concerns\ToModel;
+
 
 class Imports_data implements ToArray, WithStartRow
 {
