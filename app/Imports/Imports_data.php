@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\Insurance;
+use App\Models\insurance;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
@@ -35,7 +35,7 @@ class Imports_data implements ToModel, WithStartRow
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
-            return new Insurance([
+            return new insurance([
                 'mem_id' => $row[8],
                 'level' => $this->level, // Set the CLASSIC value obtained from the first row
                 'fname' => $row[1],
