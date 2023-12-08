@@ -16,7 +16,7 @@
 </head>
 
 <body class="flex justify-center items-center h-screen">
-  <div class="h-screen bg-cover opa bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
+  <div class="h-screen bg-cover bg-no-repeat bg-opacity-50" style="background-image: url('static/user/home.png')">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2 ">
       <!-- First Column -->
       <div class="flex items-center w-full justify-center md:h-screen h-auto p-4">
