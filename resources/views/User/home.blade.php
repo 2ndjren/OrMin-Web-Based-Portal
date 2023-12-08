@@ -116,8 +116,8 @@
   </div>
 
 
-  <div class="bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class=" bg-green-600 bg-opacity-75">
+  <div class="bg-center bg-no-repeat bg-cover h-auto ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+    <div class="h-auto bg-green-600 bg-opacity-75">
       <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/3 pb-4 md:pb-0">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
