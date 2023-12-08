@@ -1430,7 +1430,7 @@
           $('#membership-account-profile-modal').removeClass('block');
           $('#membership-account-profile-modal').addClass('hidden');
 
-          $('#activated-accounts').DataTable().ajax.reload(); // Assuming you're using DataTables
+          // $('#activated-accounts').DataTable().ajax.reload(); // Assuming you're using DataTables
 
           
         }
@@ -1880,9 +1880,6 @@ var endmon = months[endmonth - 1];
 
         $('#import-data-form-modal').addClass('hidden');
         window.alert("Import Successful!");
-
-          // Reload the table data
-          activatedTable.ajax.reload();
              
       },
       error: function(xhr, status, error) {
