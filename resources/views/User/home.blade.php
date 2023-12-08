@@ -4,7 +4,7 @@
 
 
 
-<div class="h-auto w-full overflow-y-auto ">
+<div class="w-full overflow-y-auto ">
 
     <!-- <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
       <source src="static/user/animated.webm" type="video/webm">
