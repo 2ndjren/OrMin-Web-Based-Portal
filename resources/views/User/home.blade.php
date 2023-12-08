@@ -5,7 +5,8 @@
 
 <div class="h-screen w-full overflow-y-auto ">
 
-  <div class="bg-video-container" style="position: relative;">
+  <div class="h-screen flex items-center justify-center py-6 md:py-12 bg-video-container" style="position: relative;">
+
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
       <source src="static/user/animated.webm" type="video/webm">
       Your browser does not support the video tag.
@@ -27,7 +28,7 @@
                   <p class="text-gray-800 font-bold text-2xl xl:text-4xl text-shadow-sm">PHILIPPINE</p>
                   <p class="text-blue-800 font-bold text-4xl xl:text-6xl text-shadow-sm transition-transform ease-in-out transform hover:scale-110"><span class="text-red-700">RED CROSS</span> ASSOCIATION</p>
                   <p class="text-gray-800 text-2xl xl:text-5xl font-bold ">Oriental Mindoro Chapter</p>
-                  <p class="text-gray-800 text-md font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
+                  <p class="text-gray-800 text-md xl:text-2xl lg:text=xl font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
 
                   <button class="bg-blue-800 hover:bg-red-700 text-white font-bold mt-4 py-4 px-6 rounded transition-transform ease-in-out transform hover:scale-110">
                     Get Involved!
