@@ -5,8 +5,7 @@
 
 <div class="h-screen w-full overflow-y-auto ">
 
-  <div class="h-screen flex items-center justify-center py-6 md:py-12 bg-video-container" style="position: relative;">
-
+  <div class="bg-video-container" style="position: relative;">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
       <source src="static/user/animated.webm" type="video/webm">
       Your browser does not support the video tag.
@@ -28,7 +27,7 @@
                   <p class="text-gray-800 font-bold text-2xl xl:text-4xl text-shadow-sm">PHILIPPINE</p>
                   <p class="text-blue-800 font-bold text-4xl xl:text-6xl text-shadow-sm transition-transform ease-in-out transform hover:scale-110"><span class="text-red-700">RED CROSS</span> ASSOCIATION</p>
                   <p class="text-gray-800 text-2xl xl:text-5xl font-bold ">Oriental Mindoro Chapter</p>
-                  <p class="text-gray-800 text-md xl:text-2xl lg:text=xl font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
+                  <p class="text-gray-800 text-md xl:text-xl font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
 
                   <button class="bg-blue-800 hover:bg-red-700 text-white font-bold mt-4 py-4 px-6 rounded transition-transform ease-in-out transform hover:scale-110">
                     Get Involved!
@@ -109,7 +108,7 @@
         <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-left" data-aos="fade-up">
           SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
         </h1>
-        <div class="text-white text-center md:text-left md:text-xl xl:text-4xl ">
+        <div class="text-white text-center md:text-left md:text-xl xl:text-xl">
           The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe, and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
         </div>
         <div class="text-center md:text-left mt-4">
@@ -124,12 +123,7 @@
 
   
   <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12 ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-
-    
-    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
-   
-
-    <!-- <div class="p-4 md:p-28 bg-green-600 bg-opacity-75"> -->
+    <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
@@ -153,9 +147,7 @@
 
 
   <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/vol.jpg')">
-    <!-- <div class="max-w-6xl mx-auto px-4 sm:px-6 relative"> -->
-    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
-
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
       <div class="flex justify-start">
         <div class="px-15 py-24 lg:w-3/4">
           <div class="w-full">
@@ -182,9 +174,7 @@
 
   <section class='bg-gray-900' id="about">
 
-    <!-- <div class="mx-auto max-w-5xl px-6 py-16 text-center"> -->
-    <div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
-
+    <div class="mx-auto max-w-5xl px-6 py-16 text-center">
       {{-- <div class="py-12 md:py-15 border-t border-gray-800"> --}}
 
       <div class="max-w-4xl mx-auto text-center">
