@@ -811,7 +811,7 @@
 <!-- Loading Page -->
 <div id="loading-page" class="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-70 hidden">
   <!-- You can customize the loading animation or message here -->
-  <div class="text-white text-2xl font-bold">Loading...</div>
+  <div class="text-white text-2xl">Loading...</div>
 </div>
 
 
