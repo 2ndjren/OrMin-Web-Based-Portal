@@ -116,9 +116,10 @@
   </div>
 
 
-  <div class="bg-no-repeat bg-cover h-auto bg-green-600 bg-opacity-75" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-      <div class="flex flex-col-reverse md:flex-row w-full">
-        <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
+  <div class="bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+    <div class=" bg-green-600 bg-opacity-75">
+      <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+        <div class="w-full md:w-1/3 pb-4 md:pb-0">
           <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
           <div class="space-y-2">
             <p class="text-white font-semibold">Joining the Philippine Red Cross Membership Program gives individuals a sense of self-worth as you extend help to the most vulnerable Filipinos.</p>
@@ -132,111 +133,113 @@
         <div class="w-full md:w-1/2 flex justify-center py-4 md:py-10">
           <img class="border-4 border-white shadow-md bg-center bg-cover bg-no-repeat h-48 md:h-1/2" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/376370625_239587185277034_3826957384081035787_n-f265f1e7.jpeg" alt="">
         </div>
+      </div>
     </div>
   </div>
 
 
 
 
-  <section class="h-auto bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
-      <div class="flex justify-start">
-        <div class="px-15 py-24 lg:w-3/4">
-          <div class="w-full">
-            <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-white" data-aos="fade-up">
-              BE ONE OF US,<span class="text-red-600"> BE A VOLUNTEER!</span>
-            </h1>
-            <div class="text-white text-xl">
-              Volunteer Service Office handles programs aim at encouraging people to become an army of volunteers of the Philippine Red Cross (PRC) by sharing their resources, time, and efforts to alleviate human suffering.
-              It takes active charge of the administration, development, growth, and effective mobilization of volunteers in all aspects of PRC services within the chapter’s jurisdiction in particular and/or the whole country.
-            </div>
 
-            <ul class="mt-8">
-              <li>
-                <a href="/auth/signin" class="bg-blue-600 text-xl hover:bg-white text-white font-bold hover:text-black py-2 px-4 rounded">
-                  REGISTER NOW!
-                </a>
-              </li>
-            </ul>
+<section class="h-auto bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+    <div class="flex justify-start">
+      <div class="px-15 py-24 lg:w-3/4">
+        <div class="w-full">
+          <h1 class="md:text-4xl  xl:text-6xl text-4xl font-bold mb-4 text-white" data-aos="fade-up">
+            BE ONE OF US,<span class="text-red-600"> BE A VOLUNTEER!</span>
+          </h1>
+          <div class="text-white text-xl">
+            Volunteer Service Office handles programs aim at encouraging people to become an army of volunteers of the Philippine Red Cross (PRC) by sharing their resources, time, and efforts to alleviate human suffering.
+            It takes active charge of the administration, development, growth, and effective mobilization of volunteers in all aspects of PRC services within the chapter’s jurisdiction in particular and/or the whole country.
           </div>
+
+          <ul class="mt-8">
+            <li>
+              <a href="/auth/signin" class="bg-blue-600 text-xl hover:bg-white text-white font-bold hover:text-black py-2 px-4 rounded">
+                REGISTER NOW!
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
-
-  <section class='h-auto bg-gray-900' id="about">
-
-    <div class="mx-auto max-w-5xl px-6 py-16 text-center">
-      {{-- <div class="py-12 md:py-15 border-t border-gray-800"> --}}
-
-      <div class="max-w-4xl mx-auto text-center">
-        <div class="text-2xl font-architects-daughter text-red-600 mb-2">MISSION & VISION</div>
-        <p class="text-xl text-gray-500">A Red Cross that</p>
-        <h1 class="font-bold text-5xl text-red-600 mb-4 mt-6">Always FIRST, Always Ready, Always THERE.</h1>
-        <p class="text-xl text-gray-200">Philippine Red Cross has truly become the premier humanitarian organization in the country,
-          committed to provide quality life-saving services that protect the life and dignity especially of indigent Filipinos in vulnerable situations.</p>
-
-        <ul class="mt-4">
-          <li>
-            <a href="/get-started" class="btn p-3 text-white bg-red-800 hover:bg-red-500 p-xl mt-10 rounded-xl w-60 h-12">READ MORE...</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </section>
-
-  <section class="bg-white">
-    <div class="mx-auto max-w-5xl px-6 py-16 text-center">
-      <div class="flex flex-col items-center justify-center">
-        <h2 class="text-3xl font-semibold text-gray-800">About Us</h2>
-        <div class="w-24 border-b-4 border-red-400"></div>
-      </div>
-      <p class="mt-4 text-gray-600">
-
-      <h2 class="text-red-600 text-xl font-bold">Philippine Red Cross Mindoro Oriental Chapter.</h2>
-      <p> 2010: By virtue of Republic Act 10072, the organization is now known as the Philippine Red Cross (PRC). The humanitarian organization used to involved only in providing
-        blood and disaster-related activities, as well as short-term remedies. Now it also focuses on holistic approcahes to uplift the condition of the most vulnerable, and provide a wider array of humanitarian services.</p><br>
-      <p>The Philippine Red Cross (PRC) is a humanitarian organization in the Philippines that provides a wide range of services and assistance to those in need. It is a member of the International Red Cross and Red Crescent Movement, which is a global network of organizations dedicated to alleviating human suffering, protecting human dignity, and promoting peace.
-        <br />
-        <br />
-        The Philippine Red Cross operates at both the national and local levels. At the local level, there are various chapters and branches of the organization spread across different cities and provinces in the Philippines. These local branches work closely with communities to deliver essential services and programs. They provide assistance during emergencies and disasters, conduct blood donation drives, offer first aid and healthcare training, conduct youth and volunteer programs, and provide various humanitarian services to vulnerable individuals and communities.
-        <br />
-        <br />
-        The local Philippine Red Cross chapters play a crucial role in responding to local needs and implementing initiatives that are tailored to the specific requirements of their respective areas. They work in coordination with the national headquarters of the Philippine Red Cross to ensure effective and efficient delivery of services and support to those in need throughout the country.
-      </p>
-
-      </p>
-
-      {{-- <img class="mt-16 h-80 w-full rounded-md object-cover object-center shadow" src="https://source.unsplash.com/collection/190727/300x300" /> --}}
-    </div>
-  </section>
-
-
-  <section class="bg-gray-200 text-gray-200  py-10" id="contact">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6  ">
-      <div class="relative bg-red-800 py-10 px-8 md:py-30 md:px-6" data-aos="fade-up">
-        <div class="relative flex flex-col lg:flex-row justify-between items-center">
-          <div class="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
-            <h3 class="text-4xl font-bold text-white mb-2">SHARE YOUR FEEDBACK.</h3>
-            <p class="text-xl text-purple-200">Help us improve our service by providing your feedback.</p>
-          </div>
-          <form id="create-feedback-form" class="w-full">
-            @csrf
-            <div>
-              <textarea name="message" cols="10" rows="3" placeholder="message" class="mt-3 w-full rounded-xl border border-gray-300 p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
-            </div>
-            <div class="flex justify-center">
-              <button type="submit" class="rounded-xl bg-yellow-400 px-8 py-2 text-white">Submit</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="">
-    @include('layout.user.footer')
   </div>
+</section>
+
+<section class='h-auto bg-gray-900' id="about">
+
+  <div class="mx-auto max-w-5xl px-6 py-16 text-center">
+    {{-- <div class="py-12 md:py-15 border-t border-gray-800"> --}}
+
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-2xl font-architects-daughter text-red-600 mb-2">MISSION & VISION</div>
+      <p class="text-xl text-gray-500">A Red Cross that</p>
+      <h1 class="font-bold text-5xl text-red-600 mb-4 mt-6">Always FIRST, Always Ready, Always THERE.</h1>
+      <p class="text-xl text-gray-200">Philippine Red Cross has truly become the premier humanitarian organization in the country,
+        committed to provide quality life-saving services that protect the life and dignity especially of indigent Filipinos in vulnerable situations.</p>
+
+      <ul class="mt-4">
+        <li>
+          <a href="/get-started" class="btn p-3 text-white bg-red-800 hover:bg-red-500 p-xl mt-10 rounded-xl w-60 h-12">READ MORE...</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<section class="bg-white">
+  <div class="mx-auto max-w-5xl px-6 py-16 text-center">
+    <div class="flex flex-col items-center justify-center">
+      <h2 class="text-3xl font-semibold text-gray-800">About Us</h2>
+      <div class="w-24 border-b-4 border-red-400"></div>
+    </div>
+    <p class="mt-4 text-gray-600">
+
+    <h2 class="text-red-600 text-xl font-bold">Philippine Red Cross Mindoro Oriental Chapter.</h2>
+    <p> 2010: By virtue of Republic Act 10072, the organization is now known as the Philippine Red Cross (PRC). The humanitarian organization used to involved only in providing
+      blood and disaster-related activities, as well as short-term remedies. Now it also focuses on holistic approcahes to uplift the condition of the most vulnerable, and provide a wider array of humanitarian services.</p><br>
+    <p>The Philippine Red Cross (PRC) is a humanitarian organization in the Philippines that provides a wide range of services and assistance to those in need. It is a member of the International Red Cross and Red Crescent Movement, which is a global network of organizations dedicated to alleviating human suffering, protecting human dignity, and promoting peace.
+      <br />
+      <br />
+      The Philippine Red Cross operates at both the national and local levels. At the local level, there are various chapters and branches of the organization spread across different cities and provinces in the Philippines. These local branches work closely with communities to deliver essential services and programs. They provide assistance during emergencies and disasters, conduct blood donation drives, offer first aid and healthcare training, conduct youth and volunteer programs, and provide various humanitarian services to vulnerable individuals and communities.
+      <br />
+      <br />
+      The local Philippine Red Cross chapters play a crucial role in responding to local needs and implementing initiatives that are tailored to the specific requirements of their respective areas. They work in coordination with the national headquarters of the Philippine Red Cross to ensure effective and efficient delivery of services and support to those in need throughout the country.
+    </p>
+
+    </p>
+
+    {{-- <img class="mt-16 h-80 w-full rounded-md object-cover object-center shadow" src="https://source.unsplash.com/collection/190727/300x300" /> --}}
+  </div>
+</section>
+
+
+<section class="bg-gray-200 text-gray-200  py-10" id="contact">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6  ">
+    <div class="relative bg-red-800 py-10 px-8 md:py-30 md:px-6" data-aos="fade-up">
+      <div class="relative flex flex-col lg:flex-row justify-between items-center">
+        <div class="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
+          <h3 class="text-4xl font-bold text-white mb-2">SHARE YOUR FEEDBACK.</h3>
+          <p class="text-xl text-purple-200">Help us improve our service by providing your feedback.</p>
+        </div>
+        <form id="create-feedback-form" class="w-full">
+          @csrf
+          <div>
+            <textarea name="message" cols="10" rows="3" placeholder="message" class="mt-3 w-full rounded-xl border border-gray-300 p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" class="rounded-xl bg-yellow-400 px-8 py-2 text-white">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="">
+  @include('layout.user.footer')
+</div>
 
 </div>
 <script>
