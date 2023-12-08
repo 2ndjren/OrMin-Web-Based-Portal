@@ -14,17 +14,17 @@
 </head>
 
 <body class="">
-  <div class="flex w-screen overflow-y-hidden ">
-    <div class="flex-wrap w-full xl:fixed">
-      <div class="flex p-2 h-25 w-full bg-red-600  border-b-4 border-gray-400">
-        @if (session('USER'))
-        
+<div class="flex flex-col md:flex-row w-screen overflow-y-hidden">
+    <div class="flex flex-col md:flex-row w-full md:fixed">
+      <div class="flex p-2 h-25 w-full bg-red-600 border-b-4 border-gray-400">
+       @if (session('USER'))
+
         <nav class="w-screen">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="/" class="flex items-center">
-      <!-- <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" /> -->
-      <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN CHAPTER</span>
-    </a>
+          <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center">
+              <!-- <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" /> -->
+              <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN CHAPTER</span>
+            </a>
 
             <button id="navbar-toggle" data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:text-red-800 hover:bg-white " aria-controls="navbar-dropdown" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
@@ -36,12 +36,12 @@
             <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
               <ul class="flex flex-col font-lg font-bold p-4 md:p-0 mt-4  md:flex-row md:space-x-14 md:mt-0">
 
-              <li>
+                <li>
                   <a href="/" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Home</a>
                 </li>
 
                 <li>
-                  <button  id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Donate <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Donate <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                     </svg></button>
                   <!-- Dropdown menu -->
@@ -71,15 +71,15 @@
 
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                       <li>
-                        <a href="{{url('user/membership')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
+                        <a href="{{url('user/membership')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Membership</a>
                       </li>
 
                       <li>
-                        <a href="{{url('user/training')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
+                        <a href="{{url('user/training')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seminars and Training</a>
                       </li>
 
                       <li>
-                        <a href="{{url('user/volunteer')}}"  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
+                        <a href="{{url('user/volunteer')}}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Volunteer</a>
                       </li>
 
                     </ul>
@@ -93,14 +93,14 @@
                 </li>
 
                 <ul class="lg:flex"> <!-- Reduced space-x -->
-              
+
 
                   <!-- <li class="px-2 ">
                   <a class="bg-blue-900 rounded-xl shadow-sm px-5 py-2 hover:bg-yellow-600 text-white " href="{{url('profile')}}">{{session('USER')['fname']}}</a>
                   </li> -->
 
-                  
-                  
+
+
                 </ul>
 
 
@@ -115,11 +115,11 @@
         @else
 
         <nav class="w-screen">
-  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="/" class="flex items-center">
-      <!-- <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" /> -->
-      <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN CHAPTER</span>
-    </a>
+          <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center">
+              <!-- <img class="h-20" src="{{ asset('static/carrr.png') }}" alt="" /> -->
+              <span class="self-center text-2xl font-bold text-white px-4">PRC ORMIN CHAPTER</span>
+            </a>
             <button id="navbar-toggle" data-collapse-toggle="navbar-dropdown" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:text-red-600 hover:bg-white " aria-controls="navbar-dropdown" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
               <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -129,7 +129,7 @@
 
             <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
               <ul class="flex flex-col font-lg font-bold p-4 md:p-0 mt-4  md:flex-row md:space-x-14 md:mt-0">
-              <li>
+                <li>
                   <a href="/" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-white hover:bg-white hover:text-red-700">Home</a>
                 </li>
                 <li>
@@ -185,15 +185,15 @@
                 </li>
 
                 <ul class="lg:flex"> <!-- Reduced space-x -->
-                <li class= "m-auto">
+                  <li class="m-auto">
                     <a href="/signin" class="flex items-center justify-between w-full p-4 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
                   </li>
 
-                  <li class= "m-auto">
-                  <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
+                  <li class="m-auto">
+                    <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
 
                   </li>
-                  
+
                 </ul>
 
 
@@ -206,8 +206,12 @@
 
         @endif
       </div>
+      <div class="md:w-1/4 md:flex-shrink-0">
+        <!-- Spacer for small screens to prevent overlapping content -->
+      </div>
 
-      <div class="">
+
+      <div class="w-full md:w-3/4">
         @include('layout.user.alerts')
         @include('layout.user.chat')
         @yield('home')
@@ -227,14 +231,14 @@
   </div>
   <!-- Include AOS JavaScript via CDN -->
   <script>
-    $(document).ready(function () {
-      
+    $(document).ready(function() {
+
     });
-    
   </script>
+
+
   <script>
     // JavaScript to toggle the mobile menu
-
     document.addEventListener('DOMContentLoaded', function() {
       const button = document.getElementById('navbar-toggle');
       const menu = document.getElementById('navbar-dropdown');
@@ -246,7 +250,6 @@
       const dropdownButtonServicesMenu = document.getElementById('dropdownButtonServicesMenu');
 
       dropdownButton.addEventListener('click', () => {
-        // Close dropdownButtonServicesMenu if open
         if (!dropdownButtonServicesMenu.classList.contains('hidden')) {
           dropdownButtonServicesMenu.classList.add('hidden');
         }
@@ -254,7 +257,6 @@
       });
 
       dropdownButtonServices.addEventListener('click', () => {
-        // Close dropdownMenu if open
         if (!dropdownMenu.classList.contains('hidden')) {
           dropdownMenu.classList.add('hidden');
         }
@@ -262,7 +264,6 @@
       });
 
       button.addEventListener('click', function() {
-        // Close both dropdown menus if open
         if (!dropdownMenu.classList.contains('hidden')) {
           dropdownMenu.classList.add('hidden');
         }
