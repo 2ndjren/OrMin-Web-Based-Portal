@@ -26,51 +26,62 @@ class Imports_data implements ToModel, WithStartRow
             $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
             $endAt = !empty($row[7]) && is_numeric($row[7]) ? Date::excelToTimestamp($row[7]) : null;
 
-            $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
+            // Assuming $row[3] contains the birthday value
+            $birthday = null;
+
+            if (!empty($row[3])) {
+                if (is_numeric($row[3])) {
+                    $birthday = Date::excelToTimestamp($row[3]);
+                } else {
+                    // Handle string values by setting a default date
+                    $birthday = strtotime('0000-00-00');
+                }
+            }
+
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
             // Get the level value from the row
-    $level = strtoupper($row[8] ?? ''); // Assuming level is in the 9th column (index 8)
+            $level = strtoupper($row[8] ?? ''); // Assuming level is in the 9th column (index 8)
 
-    // Set default amount
-    $amount = 0;
+            // Set default amount
+            $amount = 0;
 
-    
-    // Determine the amount based on the level
-    switch ($level) {
-        case 'CLASSIC':
-            $amount = 60;
-            break;
-        case 'BRONZE':
-            $amount = 150;
-            break;
-        case 'SILVER':
-            $amount = 300;
-            break;
-        case 'GOLD':
-            $amount = 500;
-            break;
-        case 'PLATINUM':
-            $amount = 1000;
-            break;
-        case 'SENIOR':
-            $amount = 300;
-            break;
-        case 'SENIOR PLUS':
-            $amount = 350;
-            break;
-        default:
-            // Handle other cases or set a default amount
-            break;
-    }
+
+            // Determine the amount based on the level
+            switch ($level) {
+                case 'CLASSIC':
+                    $amount = 60;
+                    break;
+                case 'BRONZE':
+                    $amount = 150;
+                    break;
+                case 'SILVER':
+                    $amount = 300;
+                    break;
+                case 'GOLD':
+                    $amount = 500;
+                    break;
+                case 'PLATINUM':
+                    $amount = 1000;
+                    break;
+                case 'SENIOR':
+                    $amount = 300;
+                    break;
+                case 'SENIOR PLUS':
+                    $amount = 350;
+                    break;
+                default:
+                    // Handle other cases or set a default amount
+                    break;
+            }
             return new insurance([
                 'id' => $id,
                 'mem_id' => $row[9],
                 'level' => $row[8],
                 'fname' => $row[1],
                 'lname' => $row[2],
-                'birthday' => $formattedBirthday,
+                'birthday' => $birthday,
                 'municipality' => $row[4],
                 'status' => "ACTIVATED",
                 'type_of_payment' => $row[5],
