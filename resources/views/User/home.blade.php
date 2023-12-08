@@ -96,33 +96,30 @@
 
 
 
-  <section class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
+  <section class="bg-cover bg-no-repeat h-screen flex items-center justify-center py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
 
-    <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
-      <div class="w-full md:w-1/3 pb-4 md:pb-0">
-        <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
-          <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="w-full md:w-2/3 space-y-4 md:space-y-6 px-4 md:px-10">
-        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-right" data-aos="fade-up">
-          SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
-        </h1>
-        <div class="text-white text-center md:text-right md:text-xl">
-          The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
-        </div>
-        <div class="text-center md:text-right">
-          <ul class="mt-4">
-            <li>
-              <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
-                DONATE BLOOD!
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
+<div class="p-4 md:p-10 flex flex-col md:flex-row w-full">
+  <div class="w-full md:w-1/3 pb-4 md:pb-0 flex items-center justify-center">
+    <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
+      <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
-  </section>
+  </div>
+  <div class="w-full md:w-2/3 flex flex-col justify-center items-center md:items-start px-4 md:px-10">
+    <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-left" data-aos="fade-up">
+      SHARE LIFE,<span class="text-red-600 block md:inline"> GIVE BLOOD!</span>
+    </h1>
+    <div class="text-white text-center md:text-left md:text-xl">
+      The National Blood Services is the Philippine Red Cross’ arm that delivers adequate, safe, and quality blood supply to the most vulnerable. Through its 88 blood service facilities nationwide, the PRC has been the leading provider of blood and blood products in the country. The PRC continuously promotes voluntary non-remunerated blood donation to attain adequacy.
+    </div>
+    <div class="text-center md:text-left mt-4">
+      <a href="donate#blood" class="bg-yellow-600 hover:bg-white text-black font-bold hover:text-red-600 py-2 px-4 border-4 hover:border-transparent rounded">
+        DONATE BLOOD!
+      </a>
+    </div>
+  </div>
+</div>
+
+</section>
 
 
   <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
