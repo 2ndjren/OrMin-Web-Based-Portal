@@ -1429,6 +1429,10 @@
           $('#membership-account-profile-btns').empty();
           $('#membership-account-profile-modal').removeClass('block');
           $('#membership-account-profile-modal').addClass('hidden');
+
+          $('#activated-accounts').DataTable().ajax.reload(); // Assuming you're using DataTables
+
+          
         }
       });
     }
@@ -1841,6 +1845,8 @@ var endmon = months[endmonth - 1];
           $('#membership-account-profile-btns').append(profile_btns);
           $('#membership-account-profile-modal').removeClass('hidden');
           $('#membership-account-profile-modal').addClass('block');
+
+
         }
       });
     });
@@ -1875,7 +1881,8 @@ var endmon = months[endmonth - 1];
         $('#import-data-form-modal').addClass('hidden');
         window.alert("Import Successful!");
 
-      $('#activated-accounts').DataTable().ajax.reload(); // Reload DataTable
+          // Reload the table data
+          activatedTable.ajax.reload();
              
       },
       error: function(xhr, status, error) {
