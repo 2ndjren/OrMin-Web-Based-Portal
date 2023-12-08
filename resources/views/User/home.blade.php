@@ -3,7 +3,7 @@
 
 
 
-<div class="h-auto w-full overflow-y-auto ">
+<div class="h-screen w-full overflow-y-auto ">
 
   <div class="bg-video-container" style="position: relative;">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
