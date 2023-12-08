@@ -116,7 +116,7 @@
   </div>
 
 
-  <div class="h-auto bg-center bg-no-repeat bg-cover  py-6 md:py-12" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+  <div class="bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
     <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
