@@ -1,19 +1,21 @@
-
+User
 @extends('layout.user.layout')
 @section('home')
 
 
 
-<div class="w-full">
+<div class="h-screen w-full overflow-y-auto ">
 
-    <!-- <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
+  <div class="bg-video-container" style="position: relative;">
+    <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
       <source src="static/user/animated.webm" type="video/webm">
       Your browser does not support the video tag.
-    </video> -->
+    </video>
 
 
     <!-- Content goes here -->
     <div class=" h-auto shadow-lg relative">
+
       <div class=" bg-white bg-opacity-50">
         <div class=" xl:p-8 xl:py-24 p-2">
           <div class="flex flex-col lg:flex-row">
@@ -25,7 +27,7 @@
                   <p class="text-gray-800 font-bold text-2xl xl:text-4xl text-shadow-sm">PHILIPPINE</p>
                   <p class="text-blue-800 font-bold text-4xl xl:text-6xl text-shadow-sm transition-transform ease-in-out transform hover:scale-110"><span class="text-red-700">RED CROSS</span> ASSOCIATION</p>
                   <p class="text-gray-800 text-2xl xl:text-5xl font-bold ">Oriental Mindoro Chapter</p>
-                  <p class="text-gray-800 text-md xl:text-2xl font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
+                  <p class="text-gray-800 text-md font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
 
                   <button class="bg-blue-800 hover:bg-red-700 text-white font-bold mt-4 py-4 px-6 rounded transition-transform ease-in-out transform hover:scale-110">
                     Get Involved!
@@ -48,9 +50,13 @@
     </div>
 
 
+  </div>
 
 
-  <div class="h-auto bg-gray-400">
+
+
+
+  <div class="h-screen bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -59,9 +65,10 @@
   </div>
 
 
-  <section class="h-auto bg-white" id="services">
+  <section class="bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
+
         {{-- {/* Section header */} --}}
         <div class="max-w-3xl mx-auto text-center pb-12 md:pb-20" data-aos="fade-up">
           <h2 class="text-5xl font-bold text-black pb-4">Save Lives. Join the Red Cross.</h2>
@@ -73,6 +80,8 @@
               <a href="/auth/signin" class="btn text-white bg-red-500 hover:bg-red-800 px-6  py-3 rounded-xl">JOIN US</a>
             </li>
           </ul>
+
+
         </div>
       </div>
     </div>
@@ -80,9 +89,9 @@
 
 
 
-  <div class="bg-cover bg-no-repeat h-auto py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
+  <div class="bg-cover bg-no-repeat h-screen py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
 
-    <div class="h-auto p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+    <div class="h-screen p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -109,7 +118,7 @@
   </div>
 
 
-  <div class="h-auto bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
+  <div class="h-screen bg-center bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
     <div class="p-4 md:p-28 bg-green-600 bg-opacity-75">
       <div class="flex flex-col-reverse md:flex-row w-full">
         <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
@@ -133,7 +142,7 @@
 
 
 
-  <section class="h-auto bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
+  <section class="h-screen bg-cover bg-no-repeat py-12 " style="background-image: url('static/user/home/vol.jpg')">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
       <div class="flex justify-start">
         <div class="px-15 py-24 lg:w-3/4">
