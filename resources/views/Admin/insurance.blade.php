@@ -809,9 +809,9 @@
 </div>
 
 <!-- Loading Page -->
-<div id="loading-page" class="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-50 hidden">
+<div id="loading-page" class="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-70 hidden">
   <!-- You can customize the loading animation or message here -->
-  <div class="text-white text-xl">Loading...</div>
+  <div class="text-white text-2xl font-bold">Loading...</div>
 </div>
 
 
@@ -1401,7 +1401,11 @@
   function Delete_Membership_Account() {
     $(document).on('click', '.delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
-      var submit=$(this);
+  
+      
+
+      if (confirm('Are you sure you want to delete this record?')) {
+              var submit=$(this);
       submit.prop('disabled',true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
@@ -1419,12 +1423,15 @@
           $('#membership-account-profile-modal').addClass('hidden');
         }
       });
+    };
     });
   }
 
   function Delete_Other_Acount(others) {
     $(document).on('click', '.other-delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
+
+      if (confirm('Are you sure you want to delete this record?')) {
       var submit=$(this);
       submit.prop('disabled',true)
       submit.addClass('opacity-50 cursor-not-allowed')
@@ -1444,6 +1451,7 @@
           others.ajax.reload()
         }
       });
+    };
     });
   }
   $(document).on('click', '#view-membership-payment-btn', function() {
