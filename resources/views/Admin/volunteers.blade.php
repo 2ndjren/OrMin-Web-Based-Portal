@@ -22,6 +22,9 @@
   <div class="">
 
       <div class=" flex justify-end">
+
+      <button id="open-import-volunteer-modal-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
+
         <button id="open-export-volunteer-modal-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
       </div>
 

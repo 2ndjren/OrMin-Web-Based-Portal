@@ -186,11 +186,11 @@
 
                 <ul class="lg:flex"> <!-- Reduced space-x -->
                 <li>
-                    <a href="/signin" class="flex items-center justify-between w-full p-3 px-3 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
+                    <a href="/signin" class="flex items-center justify-between w-full p-4 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
                   </li>
 
-                  <li class="px-2 ">
-                  <a href="/signup" class="flex items-center justify-between w-full p-3 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
+                  <li>
+                  <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
 
                   </li>
                   

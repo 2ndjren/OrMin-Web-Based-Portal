@@ -60,10 +60,10 @@
 
 
 
-        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Import Data</button>
+        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
         <button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
-        <button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Print</button>
+        <button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-red-500 text-white font-semibold " type="button">Print</button>
       </div>
       @endif
 
