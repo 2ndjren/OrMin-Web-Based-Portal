@@ -1,37 +1,28 @@
 <?php
 
 namespace App\Imports;
+
 use App\Models\insurance;
-use Maatwebsite\Excel\Concerns\ToArray;
+use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class Imports_data implements ToArray, WithStartRow
+class Imports_data implements ToModel, WithStartRow
 {
-    public function array(array $array)
+
+    public function startRow(): int
     {
-        if (empty($array)) {
-            // Handle case when Excel file has no data
-            return;
-        }
+        return 3; // Start importing from the 2nd row (row index 1)
+    }
 
-        $data = [];
-        $category = null;
 
-        // Loop through the rows to find the 'level' value in the first column of the first row
-        foreach ($array as $index => $row) {
-            if ($index === 0) {
-                $category = $row[0] ?? null; // Retrieve the 'level' value from the first row and first column
-                break; // Break the loop after finding the 'level' value
-            }
-        }
-
-        // Start reading from the third row (excluding first and second rows)
-        for ($i = 2; $i < count($array); $i++) {
-            $row = $array[$i];
+    public function model(array $row)
+    {
+        $category=$row[0][0];
+        // Check if any data exists in the row before attempting to process
+        if (!empty($row[1])) {
             $id = mt_rand(111111111, 999999999);
 
-            // Assuming your columns' references start from column A (index 0)
             $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : null;
             $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
             $endAt = !empty($row[7]) && is_numeric($row[7]) ? Date::excelToTimestamp($row[7]) : null;
@@ -40,10 +31,10 @@ class Imports_data implements ToArray, WithStartRow
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
 
-            $data[] = [
+            return new insurance([
                 'id' => $id,
                 'mem_id' => $row[8],
-                'level' => $category, // Assign the retrieved 'level' value
+                'level' => $category,
                 'fname' => $row[1],
                 'lname' => $row[2],
                 'birthday' => $formattedBirthday,
@@ -53,14 +44,10 @@ class Imports_data implements ToArray, WithStartRow
                 'start_at' => $formattedStartAt,
                 'end_at' => $formattedEndAt,
                 'OR#' => $row[9],
-            ];
+            ]);
         }
 
-        insurance::insert($data);
-    }
-
-    public function startRow(): int
-    {
-        return 3; // Start reading from the third row
+        // Return null if the row is empty or missing crucial data
+        return null;
     }
 }
