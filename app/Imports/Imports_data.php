@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Imports;
-
 use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\ToArray;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-use Maatwebsite\Excel\Concerns\ToModel;
-
 
 class Imports_data implements ToArray, WithStartRow
 {
@@ -19,18 +16,24 @@ class Imports_data implements ToArray, WithStartRow
         }
 
         $data = [];
+        $category = null;
 
-        // Get the value for the 'level' column (assuming it's in the first row and first column)
-        $category = $array[0][0] ?? 'NULL'; // Set a default value if needed
+        // Loop through the rows to find the 'level' value in the first column of the first row
+        foreach ($array as $index => $row) {
+            if ($index === 0) {
+                $category = $row[0] ?? null; // Retrieve the 'level' value from the first row and first column
+                break; // Break the loop after finding the 'level' value
+            }
+        }
 
         // Start reading from the third row (excluding first and second rows)
-        foreach ($array as $row) {
+        for ($i = 2; $i < count($array); $i++) {
+            $row = $array[$i];
             $id = mt_rand(111111111, 999999999);
 
             // Assuming your columns' references start from column A (index 0)
             $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : null;
             $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
-
             $endAt = !empty($row[7]) && is_numeric($row[7]) ? Date::excelToTimestamp($row[7]) : null;
 
             $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
@@ -40,7 +43,7 @@ class Imports_data implements ToArray, WithStartRow
             $data[] = [
                 'id' => $id,
                 'mem_id' => $row[8],
-                'level' => $category, // Static value for the entire sheet
+                'level' => $category, // Assign the retrieved 'level' value
                 'fname' => $row[1],
                 'lname' => $row[2],
                 'birthday' => $formattedBirthday,
