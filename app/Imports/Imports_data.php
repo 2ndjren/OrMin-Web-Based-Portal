@@ -3,41 +3,40 @@
 namespace App\Imports;
 
 use App\Models\insurance;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class Imports_data implements ToModel, WithStartRow
+class Imports_data implements ToModel
 {
-    protected $level; // Variable to store the CLASSIC value
 
-    public function startRow(): int
-    {
-        return 3; // Start importing from the 3rd row (row index 2)
-    }
+    // public function startRow(): int
+    // {
+    //     return 3; // Start importing from the 2nd row (row index 1)
+    // }
+
 
     public function model(array $row)
     {
-        // Get the CLASSIC value from the first row, first column
-        if (empty($this->level) && isset($row[0])) {
-            $this->level = $row[0];
-            return null; // Skip processing the header row
-        }
-
+        // Get the value from the first cell of the row (assuming it's in the first column)
+        $category = $row[0] ?? null;
+    
         // Check if any data exists in the row before attempting to process
         if (!empty($row[1])) {
-            $birthday = !empty($row[3]) ? Date::excelToTimestamp($row[3]) : null;
-            $startAt = !empty($row[6]) ? Date::excelToTimestamp($row[6]) : null;
-            $endAt = !empty($row[7]) ? Date::excelToTimestamp($row[7]) : null;
-
+            $id = mt_rand(111111111, 999999999);
+    
+            $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : null;
+            $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
+            $endAt = !empty($row[7]) && is_numeric($row[7]) ? Date::excelToTimestamp($row[7]) : null;
+    
             $formattedBirthday = $birthday !== null ? date('Y-m-d', $birthday) : null;
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
-
+    
             return new insurance([
+                'id' => $id,
                 'mem_id' => $row[8],
-                'level' => $this->level, // Set the CLASSIC value obtained from the first row
+                'level' => $category,
                 'fname' => $row[1],
                 'lname' => $row[2],
                 'birthday' => $formattedBirthday,
@@ -49,8 +48,9 @@ class Imports_data implements ToModel, WithStartRow
                 'OR#' => $row[9],
             ]);
         }
-
+    
         // Return null if the row is empty or missing crucial data
         return null;
     }
+    
 }
