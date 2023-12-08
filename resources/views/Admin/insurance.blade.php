@@ -1399,9 +1399,7 @@
   }
 
   function Delete_Membership_Account() {
-
-
-  $(document).one('click', '.delete-membership-account-profile-btn', function() {
+  $(document).on('click', '.delete-membership-account-profile-btn', function() {
     if (confirm('Are you sure you want to delete this record?')) {
 
     var id = $(this).data('id');
@@ -1422,7 +1420,13 @@
           $('#membership-account-profile-btns').empty();
           $('#membership-account-profile-modal').removeClass('block');
           $('#membership-account-profile-modal').addClass('hidden');
-        }
+        },
+        error: function(xhr, status, error) {
+                  submit.prop('disabled', false)
+                  submit.removeClass('opacity-50 cursor-not-allowed')
+                  window.alert(xhr.responseText);
+                }
+     
       });
     }
   });
