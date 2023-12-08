@@ -14,10 +14,11 @@
 </head>
 
 <body class="">
-<div class="flex flex-col md:flex-row w-screen overflow-y-hidden">
-    <div class="flex flex-col md:flex-row w-full md:fixed">
-      <div class="flex p-2 h-25 w-full bg-red-600 border-b-4 border-gray-400">
-       @if (session('USER'))
+  <div class="flex w-auto overflow-y-hidden ">
+    <div class="flex-wrap w-full xl:fixed">
+      <div class="flex p-2 h-auto w-auto bg-red-600  border-b-4 border-gray-400">
+
+        @if (session('USER'))
 
         <nav class="w-screen">
           <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -189,7 +190,7 @@
                     <a href="/signin" class="flex items-center justify-between w-full p-4 bg-blue-800 hover:bg-white hover:text-blue-800 text-white font-bold rounded ">LOGIN</a>
                   </li>
 
-                  <li class="m-auto">
+                  <li class="m-auto sm:my-2">
                     <a href="/signup" class="flex items-center justify-between w-full p-4 bg-white hover:text-white hover:bg-red-800 text-red-800 font-bold rounded ">SIGNUP</a>
 
                   </li>
@@ -206,12 +207,8 @@
 
         @endif
       </div>
-      <div class="md:w-1/4 md:flex-shrink-0">
-        <!-- Spacer for small screens to prevent overlapping content -->
-      </div>
 
-
-      <div class="w-full md:w-3/4">
+      <div class="">
         @include('layout.user.alerts')
         @include('layout.user.chat')
         @yield('home')
@@ -236,7 +233,7 @@
     });
   </script>
 
-
+  
   <script>
     // JavaScript to toggle the mobile menu
     document.addEventListener('DOMContentLoaded', function() {
