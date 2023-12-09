@@ -741,7 +741,10 @@
                 </svg>
               </div>
             </div>
+
+
           </div>
+
           <div class="flex justify-end space-x-2">
             <button id="close-export-date-form-modal-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
             <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Proceed</button>
@@ -754,7 +757,6 @@
 
   </div>
 </div>
-
 
 <div id="import-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
@@ -787,13 +789,6 @@
   </div>
 
 </div>
-
-
-<!-- start preview -->
-<!-- Modal -->
-
-
-<!-- end preview -->
 
 
 <div id="decline-membership-account-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
