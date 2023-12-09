@@ -1306,7 +1306,9 @@
 
 
   function importExcelVol() {
+
     document.getElementById('loading-page').classList.remove('hidden');
+    
     var formData = new FormData();
     formData.append('file', $('input[name="file"]')[0].files[0]);
 

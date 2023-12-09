@@ -20,7 +20,7 @@ class Imports_data_vol implements ToModel, WithStartRow
     public function model(array $row)
     {
         // Check if the row has the expected number of columns
-        $expectedColumnCount = 4; // Define the expected number of columns
+        $expectedColumnCount = 5; // Define the expected number of columns
     
         if (count($row) !== $expectedColumnCount) {
             throw new \Exception("Error: Row doesn't have $expectedColumnCount columns as expected.");
