@@ -195,9 +195,9 @@ Route::post('share-feedback',[Feedback::class,'Create_Feedback']);
 
 
 // IMPORT
-Route::post('/import_membership_excel_file', [Imports::class, 'import_membership_excel_file'])->name('import');
+Route::post('/import_membership_excel_file', [Imports::class, 'import_membership_excel_file'])->name('import_membership_excel_file');
 
-Route::post('/import_volunteer_excel_file', [Imports::class, 'import_volunteers_excel_file'])->name('import');
+Route::post('/import_volunteers_excel_file', [Imports::class, 'import_volunteers_excel_file'])->name('import_volunteers_excel_file');
 
 
 
