@@ -586,7 +586,7 @@
 </div>
 
 
-<div id="import-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+<div id="import-vol-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
@@ -639,6 +639,12 @@
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
+  $('#open-import-modal-form-btn').click(function(e) {
+      e.preventDefault();
+      $('#import-vol-modal').removeClass('hidden');
+
+    });
+    
   function Export_Data() {
     $('#close-export-volunteer-modal-btn').click(function(e) {
       e.preventDefault();
@@ -652,14 +658,8 @@
 
     });
 
-    $('#open-import-modal-form-btn').click(function(e) {
-      e.preventDefault();
-      $('#import-data-form-modal').removeClass('hidden');
-      window.alert('hello');
-    // $('#import-data-form-modal').addClass('block')
+  
 
-
-    });
     $('#volunteer-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
