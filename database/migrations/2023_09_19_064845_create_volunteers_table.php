@@ -43,9 +43,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrbaEZ9ekHl1IhCeRLEUJWfG19PwKlGJW7RYAphoH/Tflsxu9Clf6Ar44Tc/HcvIFdimEgkghoUmugiOcA55svJXJ1eMCudlvLQuJtnCRVKuUyIpNAdlU+wLl3OAClM4n0lWsutTE+o8N9DN3jL4vtJ4UNVmz2VPhzxrh+ScKXQKmRDy+8dF3aEBg+92YDP0DAeFav4PJLgut6azWGeS4BWYs4kyOlMOgbg6vobcKYmTcmYB9xTVaGh0YvfmfdPMZFIZNjn2Pu7FxbBq/ZHxwVKYqwrZCKRiRVA0vcIMVJIX92dSmWAvz5sMAKGQuqMf5kUGODMKZOPTsLzCqwTMRV u825376463@sg-nme-web595.main-hosting.eu
     public function down(): void
     {
         Schema::dropIfExists('volunteers');
