@@ -1308,7 +1308,7 @@
 
     $.ajax({
       type: "POST",
-      url: "{{ route('import_volunteer_excel_file') }}",
+      url: "{{ route('import_volunteers_excel_file') }}",
       data: formData,
       processData: false,
       contentType: false,
