@@ -127,7 +127,7 @@ class Auth extends Controller
 
             }
             else{
-                return redirect()->back()->with('failed','Account does not exist in out database!'); 
+                return redirect()->back()->with('failed','Account does not exist!'); 
             }
 
             }
