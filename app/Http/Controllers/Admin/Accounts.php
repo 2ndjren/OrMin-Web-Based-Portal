@@ -85,7 +85,7 @@ class Accounts extends Controller
         }
     }
     public function Verified_Accounts(){
-        $data= user::where('account_status','VERIFIED')->get()->map(function ($item) {
+        $data= user::whereIn('account_status',['VERIFIED','PENDING'])->get()->map(function ($item) {
             $item->user_profile = base64_encode($item->user_profile);
             return $item;
         });
