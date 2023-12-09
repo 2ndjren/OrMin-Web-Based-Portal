@@ -50,8 +50,4 @@ class Membership_Export implements FromCollection,ShouldAutoSize
         ];
     }
 }
-    
-  
 
-
-}
