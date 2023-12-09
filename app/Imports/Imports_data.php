@@ -6,6 +6,7 @@ use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Datetime;
 
 class Imports_data implements ToModel, WithStartRow
 {
@@ -22,31 +23,28 @@ class Imports_data implements ToModel, WithStartRow
         if (!empty($row[1])) {
             $id = mt_rand(111111111, 999999999);
 
-            $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : null;
+            $birthday = !empty($row[3]) && is_numeric($row[3]) ? Date::excelToTimestamp($row[3]) : strtotime('0000-00-00');
             $startAt = !empty($row[6]) && is_numeric($row[6]) ? Date::excelToTimestamp($row[6]) : null;
             $endAt = !empty($row[7]) && is_numeric($row[7]) ? Date::excelToTimestamp($row[7]) : null;
 
-            // Assuming $row[3] contains the birthday value
-            $birthday = null;
-
-            if (!empty($row[3])) {
-                if (is_numeric($row[3])) {
-                    $birthday = Date::excelToTimestamp($row[3]);
-                } else {
-                    // Handle string values by setting a default date
-                    $birthday = strtotime('0000-00-00');
-                }
-            }
-
+          
+            $formatBirthday =  $birthday !== null ? date('Y-m-d', $birthday) : null;
             $formattedStartAt = $startAt !== null ? date('Y-m-d', $startAt) : null;
             $formattedEndAt = $endAt !== null ? date('Y-m-d', $endAt) : null;
+
+            // Calculate age from the birthday
+        $age = null;
+        if ($formatBirthday !== null) {
+            $birthdate = new DateTime($formatBirthday);
+            $currentDate = new DateTime();
+            $age = $birthdate->diff($currentDate)->y;
+        }
 
             // Get the level value from the row
             $level = strtoupper($row[8] ?? ''); // Assuming level is in the 9th column (index 8)
 
             // Set default amount
             $amount = 0;
-
 
             // Determine the amount based on the level
             switch ($level) {
@@ -81,19 +79,22 @@ class Imports_data implements ToModel, WithStartRow
                 'level' => $row[8],
                 'fname' => $row[1],
                 'lname' => $row[2],
-                'birthday' => $birthday,
+                'age' => $age,
+                'birthday' => $formatBirthday,
                 'municipality' => $row[4],
+                'amount' => $amount, // Set the determined amount based on level
                 'status' => "ACTIVATED",
-                'type_of_payment' => $row[5],
                 'start_at' => $formattedStartAt,
                 'end_at' => $formattedEndAt,
+                'type_of_payment' => $row[5],
                 'OR#' => $row[10],
-                'amount' => $amount, // Set the determined amount based on level
             ]);
+
+           } else {
+           
+    // Return an error message if the row is empty or missing crucial data
+            return new \Exception("Error: Please ensure the Excel file matches the required format for importing.");
         }
-
-        // Return null if the row is empty or missing crucial data
-        return "Error: Please ensure the Excel file matches the required format for importing.";
-
     }
+
 }
