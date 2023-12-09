@@ -126,6 +126,7 @@
 
 
 
+
 <div id="view-consent-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50 ">
   <div class="modal-container bg-white sm:w-full h-5/6  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg overflow-y-auto ">
     <div id="view-consent"></div>
@@ -591,27 +592,12 @@
 
 
 
+<div id="import-vol-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+    <div class="block  p-3">
+   
 
-
-
-
-<div id="import-vol-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
-    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
-
-      <div class="container mx-auto p-2 text-center relative">
-        <!-- Logo positioned on top center of the header -->
-        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
-
-        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
-        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
-      </div>
-    </header>
-
-    <div class="p-4">
-
-
-      <form id="importForm" enctype="multipart/form-data">
+    <form id="importForm" enctype="multipart/form-data">
         @csrf
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
@@ -621,11 +607,13 @@
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
         </div>
       </form>
+
     </div>
 
   </div>
-
 </div>
+
+
 
 
 <!-- Loading Page -->
@@ -651,8 +639,8 @@
 
   $('#open-import-modal-form-btn').click(function(e) {
     e.preventDefault();
-    $('#export-data-form-modal').removeClass('hidden')
-    $('#export-data-form-modal').addClass('block')
+    $('#import-vol-modal').removeClass('hidden')
+    $('#import-vol-modal').addClass('block')
 
   });
 
