@@ -143,7 +143,8 @@ Route::get('donations',[Donations::class,'Donations']);
 Route::post('add-donation-record',[Donations::class,'Create_Donation']);
 Route::get('donation-records',[Donations::class,'Donated_Funds']);
 Route::get('donation-details/{id}',[Donations::class,'Donation_Details']);
-Route::get('approve-donation/{id}',[Donations::class,'Approve_Donation']);
+Route::post('approve-donation',[Donations::class,'Approve_Donation']);
+Route::post('decline-donation',[Donations::class,'Decline_Donation']);
 
 
 

@@ -46,9 +46,9 @@
                         <i class="fa-solid fa-handshake-angle mr-2"></i> <span>Volunteers</span>
                     </a></li>
                 @if(session('ADMIN'))
-                <!-- <li><a href="{{url('donations')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
+                <li><a href="{{url('donations')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                         <i class="fa-solid fa-hand-holding-dollar mr-2"></i> <span>Donations</span>
-                    </a></li> -->
+                    </a></li>
                 @endif
                 <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                         <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
@@ -109,10 +109,10 @@
                     <li><a href="{{url('volunteers')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-handshake-angle mr-2"></i> <span>Volunteers</span>
                         </a></li>
-                    <!-- @if(session('ADMIN'))
+                    @if(session('ADMIN'))
                     <li><a href="{{url('donations')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-hand-holding-dollar mr-2"></i> <span>Donations</span>
-                        </a></li> -->
+                        </a></li>
                     @endif
                     <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>

@@ -7,7 +7,6 @@ export default {
     "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
-    extend: {},
     screens: {
       'sm': '576px',
       // => @media (min-width: 576px) { ... }
@@ -18,6 +17,7 @@ export default {
       'lg': '1440px',
       // => @media (min-width: 1440px) { ... }
     },
+    extend: {},
   },
   plugins: [
     require("@tailwindcss/forms")
@@ -26,6 +26,4 @@ export default {
   plugins: [require("tw-elements/dist/plugin.cjs")]
   
 }
-
-
 
