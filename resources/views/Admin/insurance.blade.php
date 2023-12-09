@@ -836,14 +836,14 @@
       url: "/all-membership-account",
       data: "data",
       dataType: "json",
-      success: function (response) {
+      success: function(response) {
         console.log(response)
       },
 
-              error: function(xhr, status, error) {
-          // Handle errors, if any
+      error: function(xhr, status, error) {
+        // Handle errors, if any
         console.log(xhr.responseText);
-        }
+      }
     });
   });
 
@@ -867,15 +867,15 @@
                 console.log(response)
               },
               error: function(xhr, status, error) {
-          // Handle errors, if any
-          window.alert(xhr.responseText);
-        }
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+              }
             });
           }
 
         });
-        $.each(check.expired, function (index, field) { 
-          if(field.end_at===formattedDate && field.status==='ACTIVATED' && field.notified==='1') {
+        $.each(check.expired, function(index, field) {
+          if (field.end_at === formattedDate && field.status === 'ACTIVATED' && field.notified === '1') {
             $.ajax({
               type: "GET",
               url: "/notify-expired-account/" + field.id,
@@ -885,12 +885,12 @@
                 console.log("success")
               },
               error: function(xhr, status, error) {
-          // Handle errors, if any
-          window.alert(xhr.responseText);
-        }
+                // Handle errors, if any
+                window.alert(xhr.responseText);
+              }
             });
 
-          }  
+          }
         });
 
       }
@@ -996,8 +996,8 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
 
       $.ajax({
@@ -1007,8 +1007,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1025,8 +1025,8 @@
 
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1040,7 +1040,7 @@
 
 
       var formdata = new FormData($(this)[0])
-      submit.prop('disabled',false)
+      submit.prop('disabled', false)
       submit.removeClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1049,8 +1049,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1067,8 +1067,8 @@
 
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1081,8 +1081,8 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1091,8 +1091,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
 
@@ -1111,9 +1111,9 @@
 
         },
         error: function(xhr, status, error) {
-          var submit=$(this);
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          var submit = $(this);
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1126,8 +1126,8 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1136,8 +1136,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
 
             var muni = JSON.stringify(response.municipal_data.members)
@@ -1157,8 +1157,8 @@
 
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1171,8 +1171,8 @@
       localStorage.removeItem('ongoing_report')
 
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1181,8 +1181,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             var mem_data = JSON.stringify(response.barangay_data.members)
@@ -1200,8 +1200,8 @@
 
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1282,8 +1282,8 @@
     $('#decline-membership-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1292,8 +1292,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             alert(response.success)
@@ -1306,8 +1306,8 @@
           }
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1319,8 +1319,8 @@
     $('#membership-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1329,8 +1329,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             alert(response.success)
             window.location.href = "{{url('export-membership')}}"
@@ -1341,8 +1341,8 @@
           }
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
@@ -1353,8 +1353,8 @@
   function Approve_Membership() {
     $(document).on('click', '.approve-membership-account-modal-btn', function() {
       var id = $(this).data('id')
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
@@ -1362,8 +1362,8 @@
         data: "data",
         dataType: "json",
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             $('#membership-accounts-table').empty()
             Pending_Membership()
@@ -1399,45 +1399,45 @@
   }
 
   function Delete_Membership_Account() {
-  $(document).on('click', '.delete-membership-account-profile-btn', function(e) {
-    e.stopImmediatePropagation(); // Prevents multiple event bindings
-    
-    var id = $(this).data('id');
-    var submit = $(this);
-    
-    if (submit.data('confirmed') === 'true') {
-      submit.removeData('confirmed');
-      return; // If already confirmed, exit the function
-    }
-    
-    if (confirm('Are you sure you want to delete this record?')) {
-      submit.data('confirmed', 'true'); // Set a flag that confirmation has been made
-      
-      submit.prop('disabled', true);
-      submit.addClass('opacity-50 cursor-not-allowed');
-      
-      $.ajax({
-        type: "GET",
-        url: "/delete-membership-account-profile/" + id,
-        data: "data",
-        dataType: "json",
-        success: function(response) {
-          submit.prop('disabled', false);
-          submit.removeClass('opacity-50 cursor-not-allowed');
-          alert(response.success);
-          $('#membership-account-profile').empty();
-          $('#membership-account-profile-btns').empty();
-          $('#membership-account-profile-modal').removeClass('block');
-          $('#membership-account-profile-modal').addClass('hidden');
+    $(document).on('click', '.delete-membership-account-profile-btn', function(e) {
+      e.stopImmediatePropagation(); // Prevents multiple event bindings
 
-          // $('#activated-accounts').DataTable().ajax.reload(); // Assuming you're using DataTables
+      var id = $(this).data('id');
+      var submit = $(this);
 
-          
-        }
-      });
-    }
-  });
-}
+      if (submit.data('confirmed') === 'true') {
+        submit.removeData('confirmed');
+        return; // If already confirmed, exit the function
+      }
+
+      if (confirm('Are you sure you want to delete this record?')) {
+        submit.data('confirmed', 'true'); // Set a flag that confirmation has been made
+
+        submit.prop('disabled', true);
+        submit.addClass('opacity-50 cursor-not-allowed');
+
+        $.ajax({
+          type: "GET",
+          url: "/delete-membership-account-profile/" + id,
+          data: "data",
+          dataType: "json",
+          success: function(response) {
+            submit.prop('disabled', false);
+            submit.removeClass('opacity-50 cursor-not-allowed');
+            alert(response.success);
+            $('#membership-account-profile').empty();
+            $('#membership-account-profile-btns').empty();
+            $('#membership-account-profile-modal').removeClass('block');
+            $('#membership-account-profile-modal').addClass('hidden');
+
+            // $('#activated-accounts').DataTable().ajax.reload(); // Assuming you're using DataTables
+
+
+          }
+        });
+      }
+    });
+  }
 
 
 
@@ -1445,9 +1445,9 @@
   function Delete_Other_Acount(others) {
     $(document).on('click', '.other-delete-membership-account-profile-btn', function() {
       var id = $(this).data('id');
-      
-      var submit=$(this);
-      submit.prop('disabled',true)
+
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
@@ -1455,8 +1455,8 @@
         data: "data",
         dataType: "json",
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           alert(response.success)
           $('#membership-account-profile').empty();
           $('#membership-account-profile-btns').empty();
@@ -1469,18 +1469,18 @@
   }
   $(document).on('click', '#view-membership-payment-btn', function() {
     var id = $(this).data('id');
-    var submit=$(this);
-      submit.prop('disabled',true)
-      submit.addClass('opacity-50 cursor-not-allowed')
+    var submit = $(this);
+    submit.prop('disabled', true)
+    submit.addClass('opacity-50 cursor-not-allowed')
     $.ajax({
       type: "GET",
       url: "/membership-account-profile/" + id,
       data: "data",
       dataType: "json",
       success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
-        var payment = "<img class='h-96 ' src='data:image/jpeg;base64,"+response.proof_of_payment+"'>"
+        submit.prop('disabled', false)
+        submit.removeClass('opacity-50 cursor-not-allowed')
+        var payment = "<img class='h-96 ' src='data:image/jpeg;base64," + response.proof_of_payment + "'>"
         payment += "<div class='flex justify-end my-2'>"
         payment += "<button type='button' id='close-membership-payment' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
         payment += "<div>"
@@ -1515,8 +1515,8 @@
       $('#success').removeClass('block')
       $('#success').addClass('hidden')
       var formdata = new FormData($(this)[0]);
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
@@ -1525,8 +1525,8 @@
         processData: false,
         contentType: false,
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
             $('#create-membership-account')[0].reset()
             $('#success-message').text(response.success)
@@ -1556,8 +1556,8 @@
           }
         },
         error: function(xhr, status, error) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(xhr.responseText);
         }
       });
@@ -1589,7 +1589,7 @@
           "data": null,
           "render": function(data, type, row) {
             console.log(data);
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1618,23 +1618,23 @@
 
             var start = new Date(row.start_at);
 
-var startday = start.getDate(); 
-var startmonth = start.getMonth() + 1; 
-var startyear = start.getFullYear(); 
+            var startday = start.getDate();
+            var startmonth = start.getMonth() + 1;
+            var startyear = start.getFullYear();
 
-var end = new Date(row.end_at);
+            var end = new Date(row.end_at);
 
-var endday = end.getDate(); 
-var endmonth = end.getMonth() + 1; 
-var endyear = end.getFullYear(); 
-var months = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-];
-var startmon = months[startmonth - 1];
-var endmon = months[endmonth - 1];
+            var endday = end.getDate();
+            var endmonth = end.getMonth() + 1;
+            var endyear = end.getFullYear();
+            var months = [
+              "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            var startmon = months[startmonth - 1];
+            var endmon = months[endmonth - 1];
 
-            return '<span class=" font-semibold text-xs  ">' +  startmon + ' ' + startday + ', ' + startyear + ' - ' + endyear + '</span>'
+            return '<span class=" font-semibold text-xs  ">' + startmon + ' ' + startday + ', ' + startyear + ' - ' + endyear + '</span>'
           }
         },
         {
@@ -1741,7 +1741,7 @@ var endmon = months[endmonth - 1];
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1784,8 +1784,8 @@ var endmon = months[endmonth - 1];
   function Membership_Profile() {
     $(document).on('click', '.membership-profile-modal-btn', function() {
       var id = $(this).data('id')
-      var submit=$(this);
-      submit.prop('disabled',true)
+      var submit = $(this);
+      submit.prop('disabled', true)
       submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "GET",
@@ -1793,78 +1793,78 @@ var endmon = months[endmonth - 1];
         data: "data",
         dataType: "json",
         success: function(response) {
-      submit.prop('disabled',false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
-      var left_details = "<div class='w-full'>";
-left_details += getDetail("NAME", response.fname + " " + response.lname);
-left_details += getDetail("BIRTHDAY", response.birthday);
-left_details += getDetail("AGE", response.age);
-left_details += getDetail("GENDER", response.gender);
-left_details += getDetail("BLOOD TYPE", response.blood_type);
-left_details += getDetail("ADDRESS", response.barangay_street + " BRGY. " + response.barangay + " " + response.municipality);
-left_details += getDetail("EMAIL", response.email);
-left_details += "</div>";
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
+          var left_details = "<div class='w-full'>";
+          left_details += getDetail("NAME", response.fname + " " + response.lname);
+          left_details += getDetail("BIRTHDAY", response.birthday);
+          left_details += getDetail("AGE", response.age);
+          left_details += getDetail("GENDER", response.gender);
+          left_details += getDetail("BLOOD TYPE", response.blood_type);
+          left_details += getDetail("ADDR/ORG/CO", response.response.municipality);
+          left_details += getDetail("EMAIL", response.email);
+          left_details += "</div>";
 
-var right_details = "<div class='w-full'>";
-right_details += getDetail("MEMBERSHIP ID", response.mem_id);
-if (response.level) {
-  right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
-}
-right_details += getDetail("PRICE", response.amount + ".00 PESOS");
-right_details += getDetail("STATUS", response.status);
-right_details += getDetail("TYPE OF PAYMENT", response.type_of_payment);
-if (response.proof_of_payment) {
-  right_details += "<p class='font-semibold text-gray-400 text-xs'>PROOF OF PAYMENT:</p>";
-  right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64," + response.proof_of_payment + "' class='h-32 w-auto'></button>";
-}
-right_details += "</div>";
+          var right_details = "<div class='w-full'>";
+          right_details += getDetail("MEMBERSHIP ID", response.mem_id);
+          if (response.level) {
+            right_details += "<p class='font-semibold text-gray-400 text-md'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 m-2 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
+          }
+          right_details += getDetail("PRICE", response.amount + ".00 PESOS");
+          right_details += getDetail("STATUS", response.status);
+          right_details += getDetail("TYPE OF PAYMENT", response.type_of_payment);
+          if (response.proof_of_payment) {
+            right_details += "<p class='font-semibold text-gray-400 text-md'>PROOF OF PAYMENT:</p>";
+            right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64," + response.proof_of_payment + "' class='h-32 w-auto'></button>";
+          }
+          right_details += "</div>";
 
-var profile_btns = "<div class='flex space-x-2'>";
-profile_btns += "<button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>";
+          var profile_btns = "<div class='flex space-x-2'>";
+          profile_btns += "<button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>";
 
-if (response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED") {
-  profile_btns += "<button type='button' data-id=" + response.id + " class='" + getDeleteButtonClass(response.status) + " p-2 bg-red-500 text-white rounded-md'>Delete</button>";
-}
-profile_btns += "</div>";
+          if (response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED") {
+            profile_btns += "<button type='button' data-id=" + response.id + " class='" + getDeleteButtonClass(response.status) + " p-2 bg-red-500 text-white rounded-md'>Delete</button>";
+          }
+          profile_btns += "</div>";
 
-// Function to generate details if not null or empty
-function getDetail(label, value) {
-  if (value !== null && value !== undefined && value !== "") {
-    return "<p class='font-semibold text-gray-400 text-xs'>" + label + ": <span class='text-gray-600 text-sm' id='profile-password'>" + value + "</span></p>";
-  }
-  return "";
-}
+          // Function to generate details if not null or empty
+          function getDetail(label, value) {
+            if (value !== null && value !== undefined && value !== "") {
+              return "<p class='font-semibold text-gray-400 text-md'>" + label + ": <span class='m-2 text-gray-600 text-xl' id='profile-password'>" + value + "</span></p>";
+            }
+            return "";
+          }
 
-// Function to determine badge color based on membership level
-function getProgramBadgeColor(level) {
-  switch (level) {
-    case "CLASSIC":
-      return "bg-blue-500";
-    case "BRONZE":
-      return "bg-orange-900";
-    case "SILVER":
-      return "bg-gray-400";
-    case "GOLD":
-      return "bg-yellow-500";
-    case "PLATINUM":
-      return "bg-red-500";
-    case "SENIOR":
-      return "bg-green-500";
-    case "SENIOR PLUS":
-      return "bg-purple-900";
-    default:
-      return "";
-  }
-}
+          // Function to determine badge color based on membership level
+          function getProgramBadgeColor(level) {
+            switch (level) {
+              case "CLASSIC":
+                return "bg-blue-500";
+              case "BRONZE":
+                return "bg-orange-900";
+              case "SILVER":
+                return "bg-gray-400";
+              case "GOLD":
+                return "bg-yellow-500";
+              case "PLATINUM":
+                return "bg-red-500";
+              case "SENIOR":
+                return "bg-green-500";
+              case "SENIOR PLUS":
+                return "bg-purple-900";
+              default:
+                return "";
+            }
+          }
 
-// Function to get delete button class based on status
-function getDeleteButtonClass(status) {
-  if (status === "ACTIVATED") {
-    return "delete-membership-account-profile-btn";
-  } else {
-    return "other-delete-membership-account-profile-btn";
-  }
-}
+          // Function to get delete button class based on status
+          function getDeleteButtonClass(status) {
+            if (status === "ACTIVATED") {
+              return "delete-membership-account-profile-btn";
+            } else {
+              return "other-delete-membership-account-profile-btn";
+            }
+          }
 
           $('#membership-account-profile').append(left_details);
           $('#membership-account-profile').append(right_details);
@@ -1880,7 +1880,7 @@ function getDeleteButtonClass(status) {
   }
 
 
- 
+
   function importExcel() {
     document.getElementById('loading-page').classList.remove('hidden');
 
@@ -1906,7 +1906,7 @@ function getDeleteButtonClass(status) {
 
         $('#import-data-form-modal').addClass('hidden');
         window.alert("Import Successful!");
-             
+
       },
       error: function(xhr, status, error) {
         // Handle error response here
