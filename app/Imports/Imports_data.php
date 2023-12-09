@@ -93,6 +93,7 @@ class Imports_data implements ToModel, WithStartRow
         }
 
         // Return null if the row is empty or missing crucial data
-        return null;
+        return "Error: Please ensure the Excel file matches the required format for importing.";
+
     }
 }
