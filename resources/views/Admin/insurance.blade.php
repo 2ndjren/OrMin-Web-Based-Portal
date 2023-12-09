@@ -1793,77 +1793,66 @@
         data: "data",
         dataType: "json",
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
-          var left_details = "<div class='w-full'>";
-          left_details += getDetail("NAME", response.fname + " " + response.lname);
-          left_details += getDetail("BIRTHDAY", response.birthday);
-          left_details += getDetail("AGE", response.age);
-          left_details += getDetail("GENDER", response.gender);
-          left_details += getDetail("BLOOD TYPE", response.blood_type);
-          left_details += getDetail("ADDR/ORG/CO", response.municipality);
-          left_details += getDetail("EMAIL", response.email);
-          left_details += "</div>";
+          submit.prop('disabled', false);
+          submit.removeClass('opacity-50 cursor-not-allowed');
 
-          var right_details = "<div class='w-full'>";
-          right_details += getDetail("MEMBERSHIP ID", response.mem_id);
-          if (response.level) {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 m-2 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
-          }
-          right_details += getDetail("PRICE", response.amount + ".00 PESOS");
-          right_details += getDetail("STATUS", response.status);
-          right_details += getDetail("TYPE OF PAYMENT", response.type_of_payment);
-          if (response.proof_of_payment) {
-            right_details += "<p class='font-semibold text-gray-400 text-md'>PROOF OF PAYMENT:</p>";
-            right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64," + response.proof_of_payment + "' class='h-32 w-auto'></button>";
-          }
-          right_details += "</div>";
+          var left_details = `
+  <div class='w-full'>
+    ${getDetail("NAME", response.fname + " " + response.lname)}
+    ${getDetail("BIRTHDAY", response.birthday)}
+    ${getDetail("AGE", response.age)}
+    ${getDetail("GENDER", response.gender)}
+    ${getDetail("BLOOD TYPE", response.blood_type)}
+    ${getDetail("ADDR/ORG/CO", response.municipality)}
+    ${getDetail("EMAIL", response.email)}
+  </div>
+`;
 
-          var profile_btns = "<div class='flex space-x-2'>";
-          profile_btns += "<button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>";
+          var right_details = `
+  <div class='w-full'>
+    ${getDetail("MEMBERSHIP ID", response.mem_id)}
+    ${response.level ? `<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white ${getProgramBadgeColor(response.level)} p-1 m-2 rounded-full text-sm' id='profile-password'>${response.level}</span></p>` : ''}
+    ${getDetail("PRICE", response.amount + ".00 PESOS")}
+    ${getDetail("STATUS", response.status)}
+    ${getDetail("TYPE OF PAYMENT", response.type_of_payment)}
+    ${response.proof_of_payment ? `<p class='font-semibold text-gray-400 text-md'>PROOF OF PAYMENT:</p>
+    <button class='text-gray-600' data-id='${response.id}' id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64,${response.proof_of_payment}' class='h-32 w-auto'></button>` : ''}
+  </div>
+`;
 
-          if (response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED") {
-            profile_btns += "<button type='button' data-id=" + response.id + " class='" + getDeleteButtonClass(response.status) + " p-2 bg-red-500 text-white rounded-md'>Delete</button>";
-          }
-          profile_btns += "</div>";
+          var profile_btns = `
+  <div class='flex space-x-2'>
+    <button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>
+    ${response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED" ? `<button type='button' data-id='${response.id}' class='${getDeleteButtonClass(response.status)} p-2 bg-red-500 text-white rounded-md'>Delete</button>` : ''}
+  </div>
+`;
 
-          // Function to generate details if not null or empty
           function getDetail(label, value) {
             if (value !== null && value !== undefined && value !== "") {
-              return "<p class='font-semibold text-gray-400 text-xs'>" + label + ": <span class='m-2 text-gray-800 text-base' id='profile-password'>" + value + "</span></p>";
+              return `
+      <p class='font-semibold text-gray-400 text-xs'>
+        ${label}: <span class='m-2 text-gray-800 text-base' id='profile-password'>${value}</span>
+      </p>
+    `;
             }
             return "";
           }
 
-          // Function to determine badge color based on membership level
           function getProgramBadgeColor(level) {
-            switch (level) {
-              case "CLASSIC":
-                return "bg-blue-500";
-              case "BRONZE":
-                return "bg-orange-900";
-              case "SILVER":
-                return "bg-gray-400";
-              case "GOLD":
-                return "bg-yellow-500";
-              case "PLATINUM":
-                return "bg-red-500";
-              case "SENIOR":
-                return "bg-green-500";
-              case "SENIOR PLUS":
-                return "bg-purple-900";
-              default:
-                return "";
-            }
+            const badgeColors = {
+              "CLASSIC": "bg-blue-500",
+              "BRONZE": "bg-orange-900",
+              "SILVER": "bg-gray-400",
+              "GOLD": "bg-yellow-500",
+              "PLATINUM": "bg-red-500",
+              "SENIOR": "bg-green-500",
+              "SENIOR PLUS": "bg-purple-900"
+            };
+            return badgeColors[level] || "";
           }
 
-          // Function to get delete button class based on status
           function getDeleteButtonClass(status) {
-            if (status === "ACTIVATED") {
-              return "delete-membership-account-profile-btn";
-            } else {
-              return "other-delete-membership-account-profile-btn";
-            }
+            return status === "ACTIVATED" ? "delete-membership-account-profile-btn" : "other-delete-membership-account-profile-btn";
           }
 
           $('#membership-account-profile').append(left_details);
