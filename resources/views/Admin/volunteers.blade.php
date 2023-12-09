@@ -614,7 +614,7 @@
         @csrf
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
-        <div class="flex justify-end space-x-2">
+        <div class="flex justify-end mt-3 space-x-2">
           <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
 
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
@@ -653,6 +653,13 @@
     $('#import').removeClass('hidden');
 });
 
+$('#close-import-modal-form-btn').click(function(e) {
+    e.preventDefault();
+    $('#import').addClass('hidden');
+    $('#import')[0].reset();
+
+});
+
   function Export_Data() {
     $('#close-export-volunteer-modal-btn').click(function(e) {
       e.preventDefault();
@@ -665,12 +672,7 @@
       $('#export-data-form-modal').removeClass('hidden');
 
     });
-    // $('#open-import-modal-form-btn').click(function(e) {
-    //   e.preventDefault();
-    //   $('#import-data-form-modal').removeClass('hidden');
-    // $('#import-data-form-modal').addClass('block')
-
-    // });
+  
     $('#volunteer-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
