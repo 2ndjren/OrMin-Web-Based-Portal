@@ -659,7 +659,7 @@
   $('#close-import-modal-form-btn').click(function(e) {
     e.preventDefault();
     $('#import').addClass('hidden');
-  
+
 
   });
 
@@ -945,13 +945,21 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            let fullName = (row.fname || '') + ' ' + (row.mname || '') + ' ' + (row.lname || '');
+            if (fullName.trim() !== '') {
+              return '<p class="text-gray-500 text-xs font-semibold">' + fullName + '</p>';
+            }
+            return '';
           }
         },
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<span class=" font-semibold text-xs  ">' + row.barangay_street + ' ' + row.barangay + ' ' + row.municipal + ',' + row.province + '</span>'
+            let address = (row.barangay_street || '') + ' ' + (row.barangay || '') + ' ' + (row.municipal || '') + ',' + (row.province || '');
+            if (address.trim() !== '') {
+              return '<span class="font-semibold text-xs">' + address + '</span>';
+            }
+            return '';
           }
         },
         {
@@ -960,10 +968,14 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            if (row.id !== null) {
+              return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            }
+            return '';
           }
         }
       ],
+
     });
     $(document).on('click', '#approve-volunteer-request-btn', function() {
 
@@ -1308,7 +1320,7 @@
   function importExcelVol() {
 
     document.getElementById('loading-page').classList.remove('hidden');
-    
+
     var formData = new FormData();
     formData.append('file', $('input[name="file"]')[0].files[0]);
 
@@ -1328,7 +1340,7 @@
         document.getElementById('loading-page').classList.add('hidden');
         console.log(response);
 
-        $('#import-data-form-modal').addClass('hidden');
+        $('#import').addClass('hidden');
         window.alert("Data imported successfully!");
 
       },
