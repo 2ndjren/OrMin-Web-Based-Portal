@@ -625,7 +625,7 @@
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
         <div class="flex justify-end space-y-2 space-x-2">
-          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Backs</button>
 
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
         </div>
