@@ -592,19 +592,31 @@
 
 
 
-<div id="import-vol-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="membership-account-payment" class="block  p-3">
-   sjdjsdk
 
-    
+
+
+
+
+<div id="importVolunteers" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
+  
+    <div class="p-4">
+
+      <form id="importForm" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="file" accept=".xlsx,.xls" required>
+
+        <div class="flex justify-end space-x-2">
+          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
+        </div>
+      </form>
     </div>
 
   </div>
+
 </div>
-
-
-<!--  -->
 
 
 <!-- Loading Page -->
@@ -630,8 +642,8 @@
 
   $('#open-import-modal-form-btn').click(function(e) {
     e.preventDefault();
-    $('#import-vol-modal').removeClass('hidden')
-    $('#import-vol-modal').addClass('block')
+    $('#importVolunteers').removeClass('hidden')
+    $('#importVolunteers').addClass('block')
 
   });
 
