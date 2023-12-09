@@ -790,35 +790,8 @@
 
 
 <!-- start preview -->
+<!-- Modal -->
 
-<div class="modal" tabindex="-1" role="dialog" id="previewModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Preview Information</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!-- Preview content will be displayed here -->
-        <div id="previewContent"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- Export buttons for different file types -->
-        <label for="fileType" class="block text-gray-700 text-sm font-bold mb-2">Export as:</label>
-        <select id="fileType" name="fileType" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <option value="csv">CSV</option>
-          <option value="xlsx">XLSX</option>
-          <option value="docx">DOCX</option>
-          <!-- Add more file types as needed -->
-        </select>
-        <!-- Add more export buttons for different file types as needed -->
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- end preview -->
 
@@ -1348,7 +1321,7 @@
   }
 
   function Export_Data() {
-    $('#membership-export-data-formtttt').submit(function(e) {
+    $('#membership-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
       var submit = $(this);
@@ -1941,102 +1914,6 @@
   // Close modal when the "Back" button is clicked
   $('#close-import-modal-form-btn').on('click', function() {
     $('#import-data-form-modal').addClass('hidden');
-  });
-
-
-
-
-  $('#membership-export-data-form').submit(function(e) {
-    e.preventDefault();
-
-    var formData = new FormData($(this)[0]);
-    var fileType = $('#fileType').val();
-
-    // For this example, assuming data to preview
-    var Name = $('#fname').val();
-    var Birthday = $('#birthday').val();
-    var level = $('#level').val();
-
-    var previewHTML = `
-    <p><strong>Name:</strong> ${Name}</p>
-    <p><strong>Birthday:</strong> ${Birthday}</p>
-    <p><strong>Level:</strong> ${level}</p>
-    <p><strong>File Type:</strong> ${fileType}</p>
-    <!-- Add more data as needed -->
-  `;
-
-    $('#previewContent').html(previewHTML);
-    $('#previewModal').modal('show');
-
-    // Handle export button click within the preview modal
-    $('#exportPreviewBtn').click(function() {
-      $('#previewModal').modal('hide');
-      // Assuming the 'exportBtn' triggers the export in the same way
-      var formdata = new FormData($('#membership-export-data-form')[0]);
-      var submit = $(this);
-      submit.prop('disabled', true);
-      submit.addClass('opacity-50 cursor-not-allowed');
-
-      $.ajax({
-        type: "POST",
-        url: "{{url('post-membership')}}",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-          submit.prop('disabled', false);
-          submit.removeClass('opacity-50 cursor-not-allowed');
-          if (response.success) {
-            alert(response.success);
-            window.location.href = "{{url('export-membership')}}";
-          } else {
-            alert(response.failed);
-          }
-        },
-        error: function(xhr, status, error) {
-          submit.prop('disabled', false);
-          submit.removeClass('opacity-50 cursor-not-allowed');
-          window.alert(xhr.responseText);
-        }
-      });
-    });
-  });
-
-  // Handle direct export button click outside of the preview modal
-  $('#exportBtn').click(function() {
-  
-    var selectedFileType = $('#fileType').val();
-    alert('Exporting as ' + selectedFileType.toUpperCase() + '...');
-
-    var formdata = new FormData($(this)[0])
-    var submit = $(this);
-    submit.prop('disabled', true)
-    submit.addClass('opacity-50 cursor-not-allowed')
-    $.ajax({
-      type: "POST",
-      url: "{{url('post-membership')}}",
-      data: formdata,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        submit.prop('disabled', false)
-        submit.removeClass('opacity-50 cursor-not-allowed')
-        if (response.success) {
-          alert(response.success)
-          window.location.href = "{{url('export-membership')}}"
-
-        } else {
-          alert(response.failed)
-
-        }
-      },
-      error: function(xhr, status, error) {
-        submit.prop('disabled', false)
-        submit.removeClass('opacity-50 cursor-not-allowed')
-        window.alert(xhr.responseText);
-      }
-    });
-
   });
 </script>
 
