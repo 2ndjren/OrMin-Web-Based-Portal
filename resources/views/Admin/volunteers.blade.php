@@ -1264,52 +1264,66 @@
         success: function(response) {
           submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
-          var left_details = "<div class='w-full'>"
+          var left_details = "<div class='w-full'>";
           if (response.vol_profile !== null) {
-            left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>"
+            left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>";
           } else {
-            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>"
+            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>";
           }
-          left_details += "<div>"
-          var right_details = "<div class='w-full p-5 border'>"
-          right_details += "<p class='text-3xl text-red-500 font-semibold text-center mb-3'>Volunteer Profile</p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ID : <span class='text-gray-600  text-sm' id='profile-password'>" + response.vol_id + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>EXPIRATION DATE  : <span class='text-gray-600  text-sm' id='profile-password'>" + response.expiration_date + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>NAME : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " " + response.mname + " " + response.lname + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER : <span class='text-gray-600  text-sm' id='profile-password'>" + response.gender + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>NATIONALITY : <span class='text-gray-600  text-sm' id='profile-password'>" + response.nationality + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>CIVIL STATUS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.civil_status + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ADDRESS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.barangay_street + " " + response.barangay + ", " + response.municipal + " " + response.province + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE : <span class='text-gray-600  text-sm' id='profile-password'>" + response.role + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>OCCUPATION : <span class='text-gray-600  text-sm' id='profile-password'>" + response.occupation + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>WORK ADDRESS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.occupation_address + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>PHONE NO. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.phone_no + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL : <span class='text-gray-600  text-sm' id='profile-password'>" + response.email + "</span></p>"
+          left_details += "</div>";
+
+          var right_details = "<div class='w-full p-5 border'>";
+          right_details += "<p class='text-3xl text-red-500 font-semibold text-center mb-3'>Volunteer Profile</p>";
+
+          // Check each field before appending to right_details
+          function appendDetail(label, value) {
+            if (value !== null && value.trim() !== '') {
+              right_details += "<p class='font-semibold text-gray-400 text-xs'>" + label + " : <span class='text-gray-600 text-sm' id='profile-password'>" + value + "</span></p>";
+            }
+          }
+
+          appendDetail("ID", response.vol_id);
+          appendDetail("EXPIRATION DATE", response.expiration_date);
+          appendDetail("NAME", response.fname + " " + response.mname + " " + response.lname);
+          appendDetail("BIRTHDAY", response.birthday);
+          appendDetail("GENDER", response.gender);
+          appendDetail("NATIONALITY", response.nationality);
+          appendDetail("CIVIL STATUS", response.civil_status);
+          appendDetail("ADDRESS", response.barangay_street + " " + response.barangay + ", " + response.municipal + " " + response.province);
+          appendDetail("ROLE", response.role);
+          appendDetail("OCCUPATION", response.occupation);
+          appendDetail("WORK ADDRESS", response.occupation_address);
+          appendDetail("PHONE NO.", response.phone_no);
+          appendDetail("EMAIL", response.email);
+
           if (response.consent !== null) {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>CONSENT : <button  data-id=" + response.id + " class='consent-view-btn  text-white bg-gray-500 font-semibold rounded-md p-2'>Show</button></p>"
+            right_details += "<p class='font-semibold text-gray-400 text-xs'>CONSENT : <button data-id=" + response.id + " class='consent-view-btn text-white bg-gray-500 font-semibold rounded-md p-2'>Show</button></p>";
           }
-          right_details += "</div>"
-          var volunteer_profile_btn = "<div class='space-x-2 mt-2'>"
-          volunteer_profile_btn += "<button id='close-volunteer-profile' class='text-white bg-gray-500 font-semibold rounded-md p-2'>Close</button>"
+
+          right_details += "</div>";
+
+          var volunteer_profile_btn = "<div class='space-x-2 mt-2'>";
+          volunteer_profile_btn += "<button id='close-volunteer-profile' class='text-white bg-gray-500 font-semibold rounded-md p-2'>Close</button>";
+
           if (response.status === "PENDING") {
             $('#approve-id').val(response.id);
             $('#decline-id').val(response.id);
-            volunteer_profile_btn += "<button id='approve-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-green-500 font-semibold rounded-md p-2'>Approve</button>"
-            volunteer_profile_btn += "<button id='decline-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-red-500 font-semibold rounded-md p-2'>Decline</button>"
+            volunteer_profile_btn += "<button id='approve-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-green-500 font-semibold rounded-md p-2'>Approve</button>";
+            volunteer_profile_btn += "<button id='decline-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-red-500 font-semibold rounded-md p-2'>Decline</button>";
           } else if (response.status === "VALIDATED") {
-            volunteer_profile_btn += "<button type='button'  data-id=" + response.id + " id='edit-volunteer-profile' class=' text-white bg-yellow-500 font-semibold rounded-md p-2'>Edit</button>"
-            volunteer_profile_btn += "<button type='button'  data-id=" + response.id + " id='delete_volunteer_validated_profile' class=' text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>"
+            volunteer_profile_btn += "<button type='button' data-id=" + response.id + " id='edit-volunteer-profile' class='text-white bg-yellow-500 font-semibold rounded-md p-2'>Edit</button>";
+            volunteer_profile_btn += "<button type='button' data-id=" + response.id + " id='delete_volunteer_validated_profile' class='text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>";
           } else {
-            volunteer_profile_btn += "<button  data-id=" + response.id + " id='delete_volunteer_declined_profile'  class=' text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>"
-
+            volunteer_profile_btn += "<button data-id=" + response.id + " id='delete_volunteer_declined_profile' class='text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>";
           }
-          volunteer_profile_btn += "<div>"
+
+          volunteer_profile_btn += "</div>";
 
           $('#volunteer-account-profile').append(left_details);
           $('#volunteer-account-profile').append(right_details);
           $('#volunteer-account-profile-btn').append(volunteer_profile_btn);
           $('#volunteer-account-profile-modal').removeClass('hidden');
+
         }
       });
     });
