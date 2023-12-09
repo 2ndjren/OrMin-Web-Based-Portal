@@ -634,6 +634,7 @@
     Update_Profile()
     Update_User_Profiel()
     Export_Data()
+    importExcel()
   });
 
   function toUpperCaseFirst(str) {
@@ -652,10 +653,11 @@
       $('#export-data-form-modal').removeClass('hidden');
 
     });
+
     $('#open-import-modal-form-btn').click(function(e) {
       e.preventDefault();
       $('#import-data-form-modal').removeClass('hidden');
-    $('#import-data-form-modal').addClass('block')
+    // $('#import-data-form-modal').addClass('block')
 
 
     });
