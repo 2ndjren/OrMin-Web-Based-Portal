@@ -1284,40 +1284,60 @@
 
           appendDetail("ID", response.vol_id);
           appendDetail("EXPIRATION DATE", response.expiration_date);
-          appendDetail("NAME", response.fname + " " + response.mname + " " + response.lname);
+          // Construct the full name based on conditions
+          var fullName = "";
+          if (response.fname !== null) {
+            fullName += response.fname;
+          }
+          if (response.mname !== null) {
+            if (fullName !== "") {
+              fullName += " " + response.mname;
+            } else {
+              fullName += response.mname;
+            }
+          }
+          if (response.lname !== null) {
+            if (fullName !== "") {
+              fullName += " " + response.lname;
+            } else {
+              fullName += response.lname;
+            }
+          }
+
+          appendDetail("NAME", fullName);
           appendDetail("BIRTHDAY", response.birthday);
           appendDetail("GENDER", response.gender);
           appendDetail("NATIONALITY", response.nationality);
           appendDetail("CIVIL STATUS", response.civil_status);
-          
-          // Construct the address based on conditions
-var fullAddress = "";
-if (response.barangay_street !== null) {
-    fullAddress += response.barangay_street;
-}
-if (response.barangay !== null) {
-    if (fullAddress !== "") {
-        fullAddress += " " + response.barangay;
-    } else {
-        fullAddress += response.barangay;
-    }
-}
-if (response.municipal !== null) {
-    if (fullAddress !== "") {
-        fullAddress += ", " + response.municipal;
-    } else {
-        fullAddress += response.municipal;
-    }
-}
-if (response.province !== null) {
-    if (fullAddress !== "") {
-        fullAddress += " " + response.province;
-    } else {
-        fullAddress += response.province;
-    }
-}
 
-appendDetail("ADDRESS", fullAddress);
+          // Construct the address based on conditions
+          var fullAddress = "";
+          if (response.barangay_street !== null) {
+            fullAddress += response.barangay_street;
+          }
+          if (response.barangay !== null) {
+            if (fullAddress !== "") {
+              fullAddress += " " + response.barangay;
+            } else {
+              fullAddress += response.barangay;
+            }
+          }
+          if (response.municipal !== null) {
+            if (fullAddress !== "") {
+              fullAddress += ", " + response.municipal;
+            } else {
+              fullAddress += response.municipal;
+            }
+          }
+          if (response.province !== null) {
+            if (fullAddress !== "") {
+              fullAddress += " " + response.province;
+            } else {
+              fullAddress += response.province;
+            }
+          }
+
+          appendDetail("ADDRESS", fullAddress);
           appendDetail("ROLE", response.role);
           appendDetail("OCCUPATION", response.occupation);
           appendDetail("WORK ADDRESS", response.occupation_address);
