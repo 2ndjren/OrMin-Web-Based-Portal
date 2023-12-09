@@ -1805,6 +1805,7 @@
     ${getDetail("BLOOD TYPE", response.blood_type)}
     ${getDetail("ADDR/ORG/CO", response.municipality)}
     ${getDetail("EMAIL", response.email)}
+    
   </div>
 `;
 
@@ -1815,6 +1816,7 @@
     ${getDetail("PRICE", response.amount + ".00 PESOS")}
     ${getDetail("STATUS", response.status)}
     ${getDetail("TYPE OF PAYMENT", response.type_of_payment)}
+    ${getDetail("OFFICIAL RECEIPT", response['OR#'])}
     ${response.proof_of_payment ? `<p class='font-semibold text-gray-400 text-md'>PROOF OF PAYMENT:</p>
     <button class='text-gray-600' data-id='${response.id}' id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64,${response.proof_of_payment}' class='h-32 w-auto'></button>` : ''}
   </div>
