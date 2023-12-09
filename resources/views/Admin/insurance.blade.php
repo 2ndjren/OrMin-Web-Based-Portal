@@ -1235,7 +1235,7 @@
   });
   $('#open-export-modal-form-btn').click(function(e) {
     e.preventDefault();
-    $('#C').removeClass('hidden')
+    $('#export-data-form-modal').removeClass('hidden')
     $('#export-data-form-modal').addClass('block')
 
   });
