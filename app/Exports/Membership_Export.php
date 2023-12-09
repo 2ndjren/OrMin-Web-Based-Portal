@@ -23,8 +23,33 @@ class Membership_Export implements FromCollection,ShouldAutoSize
 
     public function collection()
     {
-        return $this->data;
+        // Adding auto-incremented column
+        $collection = $this->data->map(function ($item, $key) {
+            return array_merge(['No.' => $key + 1], $item->toArray());
+        });
+
+        return $collection;
     }
+
+    public function headings(): array
+    {
+        // Define headers here
+        return [
+            'N0',
+            'FIRST NAME',
+            'LAST NAME',
+            'BIRTHDAY',
+            'ADDR/ORG/CO',
+            'PAYMENT',
+            'DATE OF REGISTRATION',
+            'VALIDITY END',
+            'PROGRAM',
+            'PRC ID',
+            'OR#',
+
+        ];
+    }
+}
     
   
 
