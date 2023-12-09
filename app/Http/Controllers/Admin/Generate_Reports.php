@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class Generate_Reports extends Controller
 {
     //
@@ -64,23 +65,29 @@ class Generate_Reports extends Controller
 
     }
 
+
     public function Export_Membership(){
-        $level=session('Export_Membership')['level'];
-        $status=session('Export_Membership')['status'];
-        $year=session('Export_Membership')['year'];
-        if($status=="DECLINED" || $status=="PENDING"){
-            $collection = insurance::select('mem_id','fname','mname','lname','birthday','barangay_street','barangay','municipality','level')->where('level',$level)->where('status', $status)->where('created_at','LIKE','%'.$year.'%')->get();
-            return Excel::download(new Membership_Export($collection), 'Membership.xlsx');
-
-        }else{
-            $collection = insurance::select('mem_id','fname','mname','lname','birthday','barangay_street','barangay','municipality','level')->where('level',$level)->where('status',$status)->where('start_at','LIKE','%'.$year.'%')->get();
-            return Excel::download(new Membership_Export($collection), 'Membership.xlsx');
-
+        $level = session('Export_Membership')['level'];
+        $status = session('Export_Membership')['status'];
+        $year = session('Export_Membership')['year'];
+    
+        if ($status == "DECLINED" || $status == "PENDING") {
+            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level', 'mem_id', 'OR#')
+                ->where('level', $level)
+                ->where('status', $status)
+                ->where('created_at', 'LIKE', '%' . $year . '%')
+                ->get();
+        } else {
+            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level', 'mem_id', 'OR#')
+                ->where('level', $level)
+                ->where('status', $status)
+                ->where('start_at', 'LIKE', '%' . $year . '%')
+                ->get();
         }
-
-   
-
+    
+        return Excel::download(new Membership_Export($collection), 'PRC ORMIN_Membership.xlsx');
     }
+
     public function Volunteer_exportFilteredData(Request $request)
     {
         session()->forget('Export_Volunteer');

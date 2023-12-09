@@ -58,8 +58,6 @@
       @if(session('ADMIN'))
       <div class=" flex justify-end space-x-2">
 
-
-
         <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
         <button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
@@ -751,35 +749,12 @@
           </div>
 
         </form>
-
-
-
-      </div>
-      <!-- Preview area for exported data -->
-      <div id="previewArea"></div>
-
-
-
-      <!-- File type selector -->
-      <div class="mt-4">
-        <label for="fileType" class="block text-gray-700 text-sm font-bold mb-2">Export as:</label>
-        <select id="fileType" name="fileType" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <option value="csv">CSV</option>
-          <option value="xlsx">XLSX</option>
-          <!-- Add more file types as needed -->
-        </select>
       </div>
 
-      <!-- Buttons -->
-      <div class="flex justify-end mt-4">
-        <button id="previewExportBtn" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md mr-2">Preview</button>
-        <button id="exportBtn" class="bg-green-500 text-white font-semibold py-2 px-4 rounded-md">Export</button>
-      </div>
     </div>
+
   </div>
 </div>
-
-
 
 <div id="import-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
@@ -1258,7 +1233,7 @@
   });
   $('#open-export-modal-form-btn').click(function(e) {
     e.preventDefault();
-    $('#C').removeClass('hidden')
+    $('#export-data-form-modal').removeClass('hidden')
     $('#export-data-form-modal').addClass('block')
 
   });
@@ -1907,7 +1882,7 @@
 
     $.ajax({
       type: "POST",
-      url: "{{ route('import') }}",
+      url: "{{ route('import_membership_excel_file') }}",
       data: formData,
       processData: false,
       contentType: false,
