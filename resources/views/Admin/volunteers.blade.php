@@ -969,7 +969,7 @@
           "data": null,
           "render": function(data, type, row) {
             if (row.id !== null) {
-              return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+              return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
             }
             return '';
           }
@@ -1191,7 +1191,7 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
           }
         }
       ],
@@ -1238,7 +1238,7 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
           }
         }
       ],
