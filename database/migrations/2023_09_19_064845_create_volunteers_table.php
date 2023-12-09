@@ -18,34 +18,34 @@ return new class extends Migration
             $table->string('e_id')->nullable();
             $table->binary('vol_profile')->nullable();
             $table->string('fname');
-            $table->string('mname');
-            $table->string('lname');
-            $table->string('occupation');
-            $table->string('birthday');
-            $table->string('gender');
-            $table->string('nationality');
-            $table->string('civil_status');
-            $table->string('province');
+            $table->string('mname')->nullable();
+            $table->string('lname')->nullable();
+            $table->string('occupation')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('civil_status')->nullable();
+            $table->string('province')->nullable();
             $table->string('municipal');
-            $table->string('barangay');
+            $table->string('barangay')->nullable();
             $table->string('barangay_street')->nullable();
-            $table->string('postal_code');
-            $table->string('occupation_address');
-            $table->string('phone_no');
-            $table->string('role')->nullable();
+            $table->string('postal_code')->nullable();
+            $table->string('occupation_address')->nullable();
+            $table->string('phone_no')->nullable();
+            $table->string('role');
             $table->binary('consent')->nullable();
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->date('expiration_date')->nullable();
-            $table->string('privacy_agreement');
+            $table->string('privacy_agreement')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
-            $table->string('status');
+            $table->string('status')->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
-     */
+     */ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrbaEZ9ekHl1IhCeRLEUJWfG19PwKlGJW7RYAphoH/Tflsxu9Clf6Ar44Tc/HcvIFdimEgkghoUmugiOcA55svJXJ1eMCudlvLQuJtnCRVKuUyIpNAdlU+wLl3OAClM4n0lWsutTE+o8N9DN3jL4vtJ4UNVmz2VPhzxrh+ScKXQKmRDy+8dF3aEBg+92YDP0DAeFav4PJLgut6azWGeS4BWYs4kyOlMOgbg6vobcKYmTcmYB9xTVaGh0YvfmfdPMZFIZNjn2Pu7FxbBq/ZHxwVKYqwrZCKRiRVA0vcIMVJIX92dSmWAvz5sMAKGQuqMf5kUGODMKZOPTsLzCqwTMRV u825376463@sg-nme-web595.main-hosting.eu
     public function down(): void
     {
         Schema::dropIfExists('volunteers');

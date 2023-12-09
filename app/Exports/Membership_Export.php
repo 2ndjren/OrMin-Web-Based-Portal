@@ -6,8 +6,7 @@ use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use PhpParser\Node\Expr\Cast\Int_;
-use Ramsey\Uuid\Type\Integer;
+
 
 class Membership_Export implements FromCollection,ShouldAutoSize
 {
@@ -21,15 +20,17 @@ class Membership_Export implements FromCollection,ShouldAutoSize
         $this->data = $data;
     }
 
+  
     public function collection()
-    {
-        // Adding auto-incremented column
-        $collection = $this->data->map(function ($item, $key) {
-            return array_merge(['No.' => $key + 1], $item->toArray());
-        });
+{
+    // Ensure the $this->data is a collection
+    $collection = collect($this->data)->map(function ($item, $key) {
+        return array_merge(['No.' => $key + 1], $item->toArray());
+    });
 
-        return $collection;
-    }
+    return $collection;
+}
+
 
     public function headings(): array
     {
