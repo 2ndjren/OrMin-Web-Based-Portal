@@ -26,7 +26,7 @@
         <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
         <button id="open-export-volunteer-modal-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
-        
+
       </div>
 
     </div>
@@ -36,18 +36,19 @@
 
 
 <div id="export-data-form-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-  <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-<div class="container mx-auto p-2 text-center relative">
-  <!-- Logo positioned on top center of the header -->
-  <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-  <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
-  <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
-</div>
-</header>
-    <div id="membership-account-payment" class="block  p-3">
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
+
+    <div id="membership-account-payment" class="block  p-4">
       <form id="volunteer-export-data-form">
         @csrf
         <div class="mb-4 w-full ">
@@ -136,23 +137,23 @@
 
 
 <div id="import" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-  <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
-<div class="container mx-auto p-2 text-center relative">
-  <!-- Logo positioned on top center of the header -->
-  <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
-  <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
-  <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
-</div>
-</header>
-    <div  class="block  p-3">
-    <form>
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
+    <div class="block p-4">
+      <form>
         @csrf
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
-        <div class="flex justify-end space-x-2">
+        <div class="flex justify-end mt-2 space-x-2">
           <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
 
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
@@ -653,14 +654,14 @@
   $('#open-import-modal-form-btn').click(function(e) {
     e.preventDefault();
     $('#import').removeClass('hidden');
-});
+  });
 
-$('#close-import-modal-form-btn').click(function(e) {
+  $('#close-import-modal-form-btn').click(function(e) {
     e.preventDefault();
     $('#import').addClass('hidden');
     $('#import')[0].reset();
 
-});
+  });
 
   function Export_Data() {
     $('#close-export-volunteer-modal-btn').click(function(e) {
@@ -674,7 +675,7 @@ $('#close-import-modal-form-btn').click(function(e) {
       $('#export-data-form-modal').removeClass('hidden');
 
     });
-  
+
     $('#volunteer-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
@@ -1303,7 +1304,7 @@ $('#close-import-modal-form-btn').click(function(e) {
 
   }
 
-  
+
 
   function importExcel() {
     document.getElementById('loading-page').classList.remove('hidden');
@@ -1343,7 +1344,6 @@ $('#close-import-modal-form-btn').click(function(e) {
   $('#close-import-modal-form-btn').on('click', function() {
     $('#import-data-form-modal').addClass('hidden');
   });
-
 </script>
 
 
