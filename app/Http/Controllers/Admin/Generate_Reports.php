@@ -72,13 +72,13 @@ class Generate_Reports extends Controller
         $year = session('Export_Membership')['year'];
     
         if ($status == "DECLINED" || $status == "PENDING") {
-            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level, mem_id, OR#')
+            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level', 'mem_id', 'OR#')
                 ->where('level', $level)
                 ->where('status', $status)
                 ->where('created_at', 'LIKE', '%' . $year . '%')
                 ->get();
         } else {
-            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level, mem_id, OR#')
+            $collection = insurance::select('fname','lname','birthday', 'municipality','type_of_payment','start_at','end_at','level', 'mem_id', 'OR#')
                 ->where('level', $level)
                 ->where('status', $status)
                 ->where('start_at', 'LIKE', '%' . $year . '%')
