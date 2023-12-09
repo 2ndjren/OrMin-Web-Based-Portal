@@ -1801,7 +1801,7 @@
           left_details += getDetail("AGE", response.age);
           left_details += getDetail("GENDER", response.gender);
           left_details += getDetail("BLOOD TYPE", response.blood_type);
-          left_details += getDetail("ADDR/ORG/CO", response.response.municipality);
+          left_details += getDetail("ADDR/ORG/CO", response.municipality);
           left_details += getDetail("EMAIL", response.email);
           left_details += "</div>";
 
