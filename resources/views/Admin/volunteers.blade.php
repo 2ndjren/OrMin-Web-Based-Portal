@@ -125,87 +125,18 @@
 
 
 
-<div id="export" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+<div id="import" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
     <div  class="block  p-3">
-      <form >
+    <form>
         @csrf
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Municipality</label>
-          <div class="relative">
-            <select id="municipal" name="municipal" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="PUERTO GALERA">PUERTO GALERA</option>
-              <option value="SAN TEODORO">SAN TEODORO</option>
-              <option value="BACO">BACO</option>
-              <option value="CALAPAN CITY">CALAPAN CITY</option>
-              <option value="NAUJAN">NAUJAN</option>
-              <option value="VICTORIA">VICTORIA</option>
-              <option value="SOCCORO">SOCCORO</option>
-              <option value="POLA">POLA</option>
-              <option value="PINAMALAYAN">PINAMALAYAN</option>
-              <option value="GLORIA">GLORIA</option>
-              <option value="BANSUD">BANSUD</option>
-              <option value="BONGABONG">BONGABONG</option>
-              <option value="ROXAS">ROXAS</option>
-              <option value="MANSALAY">MANSALAY</option>
-              <option value="BULALACAO">BULALACAO</option>
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-        </div>
-        <div class="mb-4 w-full">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Barangay</label>
-          <input id="barangay" name="barangay" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Profile Status</label>
-          <div class="relative">
-            <select id="status" name="status" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="VALIDATED">VALIDATED</option>
-              <option value="EXPIRED">EXPIRED</option>
-              <option value="PENDING">PENDING</option>
-              <option value="DECLINED">DECLINED</option>
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-        </div>
-        <div class="mb-4 w-full ">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="country">Year</label>
-          <div class="relative">
-            <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-              <option value="">Select </option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
-
-            </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M5.293 7.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4z" />
-              </svg>
-            </div>
-          </div>
-
-
-        </div>
+        <input type="file" name="file" accept=".xlsx,.xls" required>
 
         <div class="flex justify-end space-x-2">
-          <button id="close-export-volunteer-modal-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
-          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="submit">Export</button>
-        </div>
+          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
 
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
+        </div>
       </form>
     </div>
 
@@ -679,7 +610,7 @@
 <div id="importVolunteers" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
     <div class="p-4">
-      <form id="importForm">
+      <form>
         @csrf
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
@@ -719,7 +650,7 @@
 
   $('#open-import-modal-form-btn').click(function(e) {
     e.preventDefault();
-    $('#export').removeClass('hidden');
+    $('#import').removeClass('hidden');
 });
 
   function Export_Data() {
