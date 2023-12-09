@@ -609,12 +609,22 @@
 
 <div id="importVolunteers" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
+  <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+<div class="container mx-auto p-2 text-center relative">
+  <!-- Logo positioned on top center of the header -->
+  <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+  <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+  <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+</div>
+</header>
     <div class="p-4">
       <form>
         @csrf
         <input type="file" name="file" accept=".xlsx,.xls" required>
 
-        <div class="flex justify-end mt-3 space-x-2">
+        <div class="flex justify-end space-y-2 space-x-2">
           <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
 
           <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
