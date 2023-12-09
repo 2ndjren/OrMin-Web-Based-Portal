@@ -23,11 +23,10 @@
 
       <div class=" flex justify-end space-x-2">
 
-
         <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
         <button id="open-export-volunteer-modal-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
-        
+
       </div>
 
     </div>
@@ -36,9 +35,20 @@
 
 
 
-<div id="export-data-form-modal" class="fixed   hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="membership-account-payment" class="block  p-3">
+<div id="export-data-form-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
+
+    <div id="membership-account-payment" class="block  p-4">
       <form id="volunteer-export-data-form">
         @csrf
         <div class="mb-4 w-full ">
@@ -122,6 +132,38 @@
 
   </div>
 </div>
+
+
+
+
+<div id="import" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
+    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
+
+      <div class="container mx-auto p-2 text-center relative">
+        <!-- Logo positioned on top center of the header -->
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
+        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
+      </div>
+    </header>
+    <div class="block p-4">
+      <form>
+        @csrf
+        <input type="file" name="file" accept=".xlsx,.xls" required>
+
+        <div class="flex justify-end mt-2 space-x-2">
+          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
+
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcelVol()">Import</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
 
 
 
@@ -586,37 +628,6 @@
 </div>
 
 
-<div id="import-data-form-modal" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
-    <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
-
-      <div class="container mx-auto p-2 text-center relative">
-        <!-- Logo positioned on top center of the header -->
-        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
-
-        <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
-        <p class="text-white text-sm font-semibold">JP RIZAL, CAPITOL COMPLEX, CALAPAN CITY</p>
-      </div>
-    </header>
-
-    <div class="p-4">
-
-
-      <form id="importForm" enctype="multipart/form-data">
-        @csrf
-        <input type="file" name="file" accept=".xlsx,.xls" required>
-
-        <div class="flex justify-end space-x-2">
-          <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
-
-          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
-
-</div>
 
 
 <!-- Loading Page -->
@@ -640,6 +651,18 @@
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
+  $('#open-import-modal-form-btn').click(function(e) {
+    e.preventDefault();
+    $('#import').removeClass('hidden');
+  });
+
+  $('#close-import-modal-form-btn').click(function(e) {
+    e.preventDefault();
+    $('#import').addClass('hidden');
+
+
+  });
+
   function Export_Data() {
     $('#close-export-volunteer-modal-btn').click(function(e) {
       e.preventDefault();
@@ -652,13 +675,7 @@
       $('#export-data-form-modal').removeClass('hidden');
 
     });
-    $('#open-import-modal-form-btn').click(function(e) {
-      e.preventDefault();
-      $('#import-data-form-modal').removeClass('hidden');
-    $('#import-data-form-modal').addClass('block')
 
-
-    });
     $('#volunteer-export-data-form').submit(function(e) {
       e.preventDefault();
       var formdata = new FormData($(this)[0])
@@ -928,13 +945,21 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            let fullName = (row.fname || '') + ' ' + (row.mname || '') + ' ' + (row.lname || '');
+            if (fullName.trim() !== '') {
+              return '<p class="text-gray-500 text-xs font-semibold">' + fullName + '</p>';
+            }
+            return '';
           }
         },
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<span class=" font-semibold text-xs  ">' + row.barangay_street + ' ' + row.barangay + ' ' + row.municipal + ',' + row.province + '</span>'
+            let address = (row.barangay_street || '') + ' ' + (row.barangay || '') + ' ' + (row.municipal || '') + ',' + (row.province || '');
+            if (address.trim() !== '') {
+              return '<span class="font-semibold text-xs">' + address + '</span>';
+            }
+            return '';
           }
         },
         {
@@ -943,10 +968,14 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            if (row.id !== null) {
+              return '<button class="volunteer-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            }
+            return '';
           }
         }
       ],
+
     });
     $(document).on('click', '#approve-volunteer-request-btn', function() {
 
@@ -1235,61 +1264,123 @@
         success: function(response) {
           submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
-          var left_details = "<div class='w-full'>"
+          var left_details = "<div class='w-full'>";
           if (response.vol_profile !== null) {
-            left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>"
+            left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>";
           } else {
-            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>"
+            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>";
           }
-          left_details += "<div>"
-          var right_details = "<div class='w-full p-5 border'>"
-          right_details += "<p class='text-3xl text-red-500 font-semibold text-center mb-3'>Volunteer Profile</p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ID : <span class='text-gray-600  text-sm' id='profile-password'>" + response.vol_id + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>EXPIRATION DATE  : <span class='text-gray-600  text-sm' id='profile-password'>" + response.expiration_date + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>NAME : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " " + response.mname + " " + response.lname + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER : <span class='text-gray-600  text-sm' id='profile-password'>" + response.gender + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>NATIONALITY : <span class='text-gray-600  text-sm' id='profile-password'>" + response.nationality + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>CIVIL STATUS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.civil_status + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ADDRESS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.barangay_street + " " + response.barangay + ", " + response.municipal + " " + response.province + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>ROLE : <span class='text-gray-600  text-sm' id='profile-password'>" + response.role + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>OCCUPATION : <span class='text-gray-600  text-sm' id='profile-password'>" + response.occupation + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>WORK ADDRESS : <span class='text-gray-600  text-sm' id='profile-password'>" + response.occupation_address + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>PHONE NO. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.phone_no + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL : <span class='text-gray-600  text-sm' id='profile-password'>" + response.email + "</span></p>"
+          left_details += "</div>";
+
+          var right_details = "<div class='w-full p-5 border'>";
+          right_details += "<p class='text-3xl text-red-500 font-semibold text-center mb-3'>Volunteer Profile</p>";
+
+          // Check each field before appending to right_details
+          function appendDetail(label, value) {
+            if (value !== null && value.trim() !== '') {
+              right_details += "<p class='font-semibold text-gray-400 text-xs'>" + label + " : <span class='text-gray-600 text-sm' id='profile-password'>" + value + "</span></p>";
+            }
+          }
+
+          appendDetail("ID", response.vol_id);
+          appendDetail("EXPIRATION DATE", response.expiration_date);
+          // Construct the full name based on conditions
+          var fullName = "";
+          if (response.fname !== null) {
+            fullName += response.fname;
+          }
+          if (response.mname !== null) {
+            if (fullName !== "") {
+              fullName += " " + response.mname;
+            } else {
+              fullName += response.mname;
+            }
+          }
+          if (response.lname !== null) {
+            if (fullName !== "") {
+              fullName += " " + response.lname;
+            } else {
+              fullName += response.lname;
+            }
+          }
+
+          appendDetail("NAME", fullName);
+          appendDetail("BIRTHDAY", response.birthday);
+          appendDetail("GENDER", response.gender);
+          appendDetail("NATIONALITY", response.nationality);
+          appendDetail("CIVIL STATUS", response.civil_status);
+
+          // Construct the address based on conditions
+          var fullAddress = "";
+          if (response.barangay_street !== null) {
+            fullAddress += response.barangay_street;
+          }
+          if (response.barangay !== null) {
+            if (fullAddress !== "") {
+              fullAddress += " " + response.barangay;
+            } else {
+              fullAddress += response.barangay;
+            }
+          }
+          if (response.municipal !== null) {
+            if (fullAddress !== "") {
+              fullAddress += ", " + response.municipal;
+            } else {
+              fullAddress += response.municipal;
+            }
+          }
+          if (response.province !== null) {
+            if (fullAddress !== "") {
+              fullAddress += " " + response.province;
+            } else {
+              fullAddress += response.province;
+            }
+          }
+
+          appendDetail("ADDRESS", fullAddress);
+          appendDetail("ROLE", response.role);
+          appendDetail("OCCUPATION", response.occupation);
+          appendDetail("WORK ADDRESS", response.occupation_address);
+          appendDetail("PHONE NO.", response.phone_no);
+          appendDetail("EMAIL", response.email);
+
           if (response.consent !== null) {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>CONSENT : <button  data-id=" + response.id + " class='consent-view-btn  text-white bg-gray-500 font-semibold rounded-md p-2'>Show</button></p>"
+            right_details += "<p class='font-semibold text-gray-400 text-xs'>CONSENT : <button data-id=" + response.id + " class='consent-view-btn text-white bg-gray-500 font-semibold rounded-md p-2'>Show</button></p>";
           }
-          right_details += "</div>"
-          var volunteer_profile_btn = "<div class='space-x-2 mt-2'>"
-          volunteer_profile_btn += "<button id='close-volunteer-profile' class='text-white bg-gray-500 font-semibold rounded-md p-2'>Close</button>"
+
+          right_details += "</div>";
+
+          var volunteer_profile_btn = "<div class='space-x-2 mt-2'>";
+          volunteer_profile_btn += "<button id='close-volunteer-profile' class='text-white bg-gray-500 font-semibold rounded-md p-2'>Close</button>";
+
           if (response.status === "PENDING") {
             $('#approve-id').val(response.id);
             $('#decline-id').val(response.id);
-            volunteer_profile_btn += "<button id='approve-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-green-500 font-semibold rounded-md p-2'>Approve</button>"
-            volunteer_profile_btn += "<button id='decline-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-red-500 font-semibold rounded-md p-2'>Decline</button>"
+            volunteer_profile_btn += "<button id='approve-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-green-500 font-semibold rounded-md p-2'>Approve</button>";
+            volunteer_profile_btn += "<button id='decline-volunteer-request-btn' data-id=" + response.id + " class='text-white bg-red-500 font-semibold rounded-md p-2'>Decline</button>";
           } else if (response.status === "VALIDATED") {
-            volunteer_profile_btn += "<button type='button'  data-id=" + response.id + " id='edit-volunteer-profile' class=' text-white bg-yellow-500 font-semibold rounded-md p-2'>Edit</button>"
-            volunteer_profile_btn += "<button type='button'  data-id=" + response.id + " id='delete_volunteer_validated_profile' class=' text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>"
+            volunteer_profile_btn += "<button type='button' data-id=" + response.id + " id='edit-volunteer-profile' class='text-white bg-yellow-500 font-semibold rounded-md p-2'>Edit</button>";
+            volunteer_profile_btn += "<button type='button' data-id=" + response.id + " id='delete_volunteer_validated_profile' class='text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>";
           } else {
-            volunteer_profile_btn += "<button  data-id=" + response.id + " id='delete_volunteer_declined_profile'  class=' text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>"
-
+            volunteer_profile_btn += "<button data-id=" + response.id + " id='delete_volunteer_declined_profile' class='text-white bg-red-500 font-semibold rounded-md p-2'>Delete</button>";
           }
-          volunteer_profile_btn += "<div>"
+
+          volunteer_profile_btn += "</div>";
 
           $('#volunteer-account-profile').append(left_details);
           $('#volunteer-account-profile').append(right_details);
           $('#volunteer-account-profile-btn').append(volunteer_profile_btn);
           $('#volunteer-account-profile-modal').removeClass('hidden');
+
         }
       });
     });
 
   }
 
-  
 
-  function importExcel() {
+  function importExcelVol() {
+
     document.getElementById('loading-page').classList.remove('hidden');
 
     var formData = new FormData();
@@ -1297,7 +1388,6 @@
 
     // Get CSRF token from the meta tag
     var token = $('meta[name="csrf-token"]').attr('content');
-
 
     $.ajax({
       type: "POST",
@@ -1312,10 +1402,11 @@
         document.getElementById('loading-page').classList.add('hidden');
         console.log(response);
 
-        $('#import-data-form-modal').addClass('hidden');
-        window.alert("Import Successful!");
+        $('#import').addClass('hidden');
+        window.alert("Data imported successfully!");
 
       },
+
       error: function(xhr, status, error) {
         // Handle error response here
         window.alert("Error: Please ensure the Excel file matches the required format for importing.");
@@ -1327,7 +1418,6 @@
   $('#close-import-modal-form-btn').on('click', function() {
     $('#import-data-form-modal').addClass('hidden');
   });
-
 </script>
 
 

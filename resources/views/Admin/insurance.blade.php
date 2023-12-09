@@ -1879,7 +1879,6 @@
     // Get CSRF token from the meta tag
     var token = $('meta[name="csrf-token"]').attr('content');
 
-
     $.ajax({
       type: "POST",
       url: "{{ route('import_membership_excel_file') }}",
