@@ -12,9 +12,9 @@
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
     <div class="">
-      <button id="validated-volunteers-btn" class="p-2 rounded-md text-white bg-green-500">Active Volunteers</button>
+      <button id="validated-volunteers-btn" class="p-2 rounded-md text-white bg-blue-500">Active Volunteers</button>
       <button id="pending-volunteers-btn" class="p-2 rounded-md text-white bg-green-500">Pending Applications</button>
-      <button id="others-volunteers-btn" class="p-2 rounded-md text-white bg-green-500">Others</button>
+      <button id="others-volunteers-btn" class="p-2 rounded-md text-white bg-red-500">Others</button>
     </div>
     <div id="volunteers-table" class="block w-full">
 

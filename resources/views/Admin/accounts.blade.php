@@ -19,6 +19,7 @@
                 <th>Birthday</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>status</th>
                 <th>Action</th>
                 <!-- Add more columns as needed -->
             </tr>
@@ -327,6 +328,8 @@ function Verified_Accounts(){
             {
               "data":"email"
             },
+            
+          
             {
               "data":null,
               "render": function(data,type,row){
@@ -340,9 +343,12 @@ function Verified_Accounts(){
               }
             },
             {
+              "data":"account_status"
+            },
+            {
                 "data": null,
                 "render": function (data, type, row) {
-                    return '<button class="profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+                    return '<button class="profile-modal-btn text-sm font-semibold bg-yellow-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
                 }
             }
         ],

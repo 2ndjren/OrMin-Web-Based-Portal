@@ -13,9 +13,9 @@
 
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
     <div class="">
-      <button id="activated-membership-btn" class="p-2 rounded-md text-white bg-green-500">Ongoing</button>
-      <button id="pending-membership-btn" class="p-2 rounded-md text-white bg-green-500">Applications</button>
-      <button id="other-membership-btn" class="p-2 rounded-md text-white bg-green-500">More</button>
+      <button id="activated-membership-btn" class="p-2 rounded-md text-white bg-blue-500">Ongoing</button>
+      <button id="pending-membership-btn" class="p-2 rounded-md text-white bg-green-500">Pending Applications</button>
+      <button id="other-membership-btn" class="p-2 rounded-md text-white bg-red-500">More</button>
     </div>
     <div id="membership-accounts-table" class="block w-full">
 
@@ -55,15 +55,14 @@
           </div>
         </div>
       </div>
-      @if(session('ADMIN'))
+
       <div class=" flex justify-end space-x-2">
 
-        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
+<button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
-        <button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
-        <button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-red-500 text-white font-semibold " type="button">Print</button>
-      </div>
-      @endif
+<button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
+<button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-yellow-500 text-white font-semibold " type="button">Print</button>
+</div>
 
     </div>
   </div>
@@ -171,7 +170,7 @@
                 <option value="Bansud">Bansud</option>
                 <option value="Bongabong">Bongabong</option>
                 <option value="Bulalacao">Bulalacao</option>
-                <option value="Calapan">Calapan</option>
+                <option value="Calapan City">Calapan City</option>
                 <option value="Gloria">Gloria</option>
                 <option value="Mansalay">Mansalay</option>
                 <option value="Naujan">Naujan</option>
@@ -257,9 +256,8 @@
             <div class="relative">
               <select id="type_of_payment" name="type_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Select </option>
-                <option value="Gcash">Gcash</option>
-                <option value="Paymaya">Paymaya</option>
-                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Gcash">Gcash Express</option>
+                <option value="Paymaya">Cash on hand</option>
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -322,7 +320,7 @@
 
 <!-- Print Modal  -->
 <div id="create-report-print-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-70 ">
-  <div class="modal-container bg-white sm:w-full lg:w-3/5 mx-auto rounded-lg shadow-lg ">
+  <div class="modal-container bg-white sm:w-full lg:w-1/4 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
       <div class="container mx-auto p-2 text-center relative">
@@ -1036,10 +1034,10 @@
       localStorage.removeItem('monthly_report')
       localStorage.removeItem('ongoing_report')
 
-
+      var submit = $(this);
+      submit.prop('disabled', true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       var formdata = new FormData($(this)[0])
-      submit.prop('disabled', false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('monthly-report-print')}}",
@@ -1297,6 +1295,8 @@
             alert(response.success)
             $('#decline-membership-form')[0].reset()
             $('#decline-membership-account-modal').addClass('hidden')
+            $('#membership-accounts-table').empty()
+            Pending_Membership()
           } else if (response.failed) {
             alert(response.failed)
           } else {
@@ -1638,7 +1638,7 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="membership-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            return '<button class="membership-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
           }
         }
       ],
@@ -1704,7 +1704,7 @@
           "data": null,
           "render": function(data, type, row) {
             var actions = '<div class="flex space-x-2">'
-            actions += '<button class="membership-profile-modal-btn text-sm font-semibold bg-yellow-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            actions += '<button class="membership-profile-modal-btn text-sm font-semibold bg-yellow-500 rounded-md text-white px-5 py-2" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
             actions += '<button class="approve-membership-account-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Approve</button>';
             actions += '<button class="decline-membership-account-modal-btn text-sm font-semibold bg-red-500 rounded-md text-white p-2" data-id="' + row.id + '">Declined</button>';
             actions += '</div>'
@@ -1771,7 +1771,7 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="membership-profile-modal-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Profile</button>';
+            return '<button class="membership-profile-modal-btn text-sm font-semibold bg-yellow-500 rounded-md text-white px-5 py-1" data-id="' + row.id + '"><i class="fa-solid fa-user"></i></button>';
           }
         }
       ],

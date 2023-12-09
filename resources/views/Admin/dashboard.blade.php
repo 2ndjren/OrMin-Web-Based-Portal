@@ -20,11 +20,11 @@
             <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">DONATIONS</p>
             <div class="sm:flex lg:flex">
             <div class="w-full text-center">
-              <p><i class="fa-solid fa-money-bill-1-wave text-green-500 text-4xl"> <span id="annual-donation-sum">0</span></i></p>
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="annual-donation-sum">0</span></i></p>
                 <p class=" font-semibold text-blue-500">Annual</p>
               </div>
               <div class="w-full text-center">
-              <p><i class="fa-solid fa-money-bill-1-wave text-green-500 text-4xl"> <span id="monthly-donation-sum">0</span></i></p>
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="monthly-donation-sum">0</span></i></p>
                 <p class=" font-semibold text-blue-500">Monthly</p>
               </div>
             </div>
@@ -92,7 +92,7 @@
                @if(session('STAFF'))
                <div class="sm:block lg:flex w-full space-x-2 my-2">
                  <div class="container mx-auto py-4 bg-white p-4">
-                 <p class="text-blue-500 font-semibold text-4xl text-center pb-2 ">MEMBERSHIP PROGRAM</p>
+                 <p class="text-blue-500 font-semibold text-3xl text-center pb-2 ">MEMBERSHIP PROGRAM</p>
                  <hr>
                  <div class="flex">
                   <div class="text-center w-full">

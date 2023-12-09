@@ -26,32 +26,40 @@ class Donations extends Controller
             return redirect('signin');
         }
     }
-    public function Decline_Donation(Request $request){
-        $updated=ModelsDonations::where('id',$request->id)->update([
-            'status'=>'DECLINED',
-            'note'=>$request->note
-        ]);
-        if($updated){
-            return response()->json(['success'=> 'Declined successfull!']);
-        }else{
-            return response()->json(['failed'=> 'Something went wrong!']);
-        }
-    }
+
     public function Donation_Data($id){
         $data=ModelsDonations::find($id);
         $data->donation_proof=base64_encode($data->donation_proof);
         return response()->json($data);
     }
-    public function Approve_Donation(Request $request){
-        $updated=ModelsDonations::where('id',$request->id)->update([
-            'status'=>'VERIFIED',
-            'note'=>$request->note
-        ]);
-        if($updated){
-            return response()->json(['success'=> 'Donation approve successfull!']);
+    public function Change_Status_Donation(Request $request){
+      if($request->note!=null){
+        if($request->status=='VERIFIED'){
+            $updated=ModelsDonations::where('id',$request->id)->update([
+                'status'=>$request->status,
+                'note'=>$request->note
+            ]);
+            if($updated){
+                return response()->json(['success'=> 'Donation approve successfull!']);
+            }else{
+                return response()->json(['failed'=> 'Somthing went wrong!']);
+            }
         }else{
-            return response()->json(['failed'=> 'Somthing went wrong!']);
+            $updated=ModelsDonations::where('id',$request->id)->update([
+                'status'=>$request->status,
+                'note'=>$request->note
+            ]);
+            if($updated){
+                return response()->json(['success'=> 'Declined successfull!']);
+            }else{
+                return response()->json(['failed'=> 'Somthing went wrong!']);
+            }
         }
+      }else{
+        return response()->json(['failed'=> 'Add note is required!']);
+
+      }
+       
     }
     public function Donated_Funds(){
         $donated_funds= ModelsDonations::where('status','VERIFIED')->orderBy('created_at','desc')->get()->map(function ($item) {

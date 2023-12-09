@@ -13,9 +13,9 @@
   
   <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
   <div class="">
-      <button id="verified-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Donation</button>
+      <button id="verified-donation-table-btn" class="p-2 rounded-md text-white bg-blue-500">Donation</button>
       <button id="pending-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Submitted Donation</button>
-      <button id="other-donation-table-btn" class="p-2 rounded-md text-white bg-green-500">Others</button>
+      <button id="other-donation-table-btn" class="p-2 rounded-md text-white bg-red-500">Others</button>
     </div>
   <div id="donations-tables" class="block w-full">
 
@@ -179,8 +179,11 @@
 </div>
 
 <div id="show-donation-details-modal" class="fixed  hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg shadow-lg ">
-    <div id="donation-details" class="block  p-4"></div>
+  <div class="modal-container bg-white sm:w-1/4  lg:w-1/4  rounded-lg shadow-lg mx-5 ">
+    <div class="px-4 py-3">
+      <p class="text-2xl text-center font-semibold text-green-500">Donation Information</p>
+    </div>
+    <div id="donation-details" class="block  px-10 py-3"></div>
 
   </div>
 </div>
@@ -195,7 +198,9 @@
 <div id="note-modal" class="hidden  fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg  ">
     <form id="donation-note-form">
-    <input type="text" name="id" id="donation-id">
+      @csrf
+    <input type="hidden" name="id" id="donation-id">
+    <input type="hidden" name="status" id="donation-status">
     <div class="mb-4 w-full">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Add note</label>
             <textarea rows="2" cols="10"  name="note" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ></textarea>
@@ -255,7 +260,6 @@
         dataType: "json",
         success: function (response) {
           var details="<div>"
-          details+="<p class='font-semibold'>Donation Details</p>"
           if(response.details.type==='0')
           {
             details+="<p> <span class='font-semibold'>Identity:</span>Anonymous</p>"
@@ -263,7 +267,7 @@
             details+="<p> <span class='font-semibold'>Name:</span> "+response.details.fname+" "+response.details.lname+"</p>"
             details+="<p> <span class='font-semibold'>Municipality:</span> "+response.details.municipality_city+"</p>"
           }
-          details+="<p> <span class='font-semibold'>Amount:</span> "+response.details.donated_amount+"</p>"
+          details+="<p> <span class='font-semibold'>Donated Amount:</span> "+response.details.donated_amount+"</p>"
           details+="<button class='donation-proof-btn' type='button' data-id="+response.details.id+">"
           details+="<div>"
           details+="<p> <span class='font-semibold'>Proof of donation:</span></p>"
@@ -273,7 +277,7 @@
 
           details+="<p> <span class='font-semibold'>Donated at:</span> "+response.details.created_at+"</p>"
 
-        details+="<div class='flex justify-end space-x-2'>"
+        details+="<div class='flex justify-center mt-3 space-x-2'>"
         if(response.details.status==="PENDING"){
 
           details+="<button type='button' id='approve-donation-btn' data-id="+response.details.id+" class=' px-2 py-1  rounded-md bg-green-500 text-white font-semibold'>Accept</button>"
@@ -337,11 +341,13 @@
     $(document).on('click','#approve-donation-btn',function(){
       var id=$(this).data('id')
       $('#donation-id').val(id);
+      $('#donation-status').val('VERIFIED');
       $('#note-modal').removeClass('hidden');
     });
     $(document).on('click','#decline-donation-btn',function(){
       var id=$(this).data('id')
       $('#donation-id').val(id);
+      $('#donation-status').val('DECLINED');
       $('#note-modal').removeClass('hidden');
     });
     $('#close-note-modal').click(function (e) { 
@@ -356,7 +362,7 @@
     submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
-        url: "{{url('add-donation-record')}}",
+        url: "{{url('change-donation-status')}}",
         data: formdata,
         processData: false,
         contentType: false,
@@ -365,7 +371,8 @@
         submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
-            $('#create-donation-form')[0].reset();
+            $('#donation-note-form')[0].reset();
+      $('#note-modal').addClass('hidden');
             alert(response.success)
 
           } else {
@@ -374,7 +381,8 @@
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+          submit.prop('disabled', false)
+        submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });
