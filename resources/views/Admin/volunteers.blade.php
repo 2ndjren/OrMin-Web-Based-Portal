@@ -36,7 +36,7 @@
 
 
 <div id="export-data-form-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+  <div class="modal-container bg-white sm:w-full  lg:w-3/5 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
       <div class="container mx-auto p-2 text-center relative">
@@ -137,7 +137,7 @@
 
 
 <div id="import" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg shadow-lg ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
     <header class="border-b-2 border-gray-500 relative bg-cover bg-center" style="background-image: url('https://t3.ftcdn.net/jpg/04/42/06/34/360_F_442063430_OjLo5sHK0twuUk2hCGWpjLphEHiLcamL.jpg');">
 
       <div class="container mx-auto p-2 text-center relative">
@@ -156,7 +156,7 @@
         <div class="flex justify-end mt-2 space-x-2">
           <button id="close-import-modal-form-btn" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Back</button>
 
-          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcel()">Import</button>
+          <button class="bg-green-500 font-semibold text-white p-2 rounded-md" type="button" onclick="importExcelVol()">Import</button>
         </div>
       </form>
     </div>
@@ -1305,16 +1305,13 @@
   }
 
 
-
-  function importExcel() {
+  function importExcelVol() {
     document.getElementById('loading-page').classList.remove('hidden');
-
     var formData = new FormData();
     formData.append('file', $('input[name="file"]')[0].files[0]);
 
     // Get CSRF token from the meta tag
     var token = $('meta[name="csrf-token"]').attr('content');
-
 
     $.ajax({
       type: "POST",
@@ -1330,9 +1327,10 @@
         console.log(response);
 
         $('#import-data-form-modal').addClass('hidden');
-        window.alert("Import Successful!");
+        window.alert("Data imported successfully!");
 
       },
+
       error: function(xhr, status, error) {
         // Handle error response here
         window.alert("Error: Please ensure the Excel file matches the required format for importing.");
