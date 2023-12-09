@@ -1801,20 +1801,20 @@
           left_details += getDetail("AGE", response.age);
           left_details += getDetail("GENDER", response.gender);
           left_details += getDetail("BLOOD TYPE", response.blood_type);
-          left_details += getDetail("ADDRESS", response.barangay_street + " BRGY. " + response.barangay + " " + response.municipality);
+          left_details += getDetail("ADDR/ORG/CO", response.municipality);
           left_details += getDetail("EMAIL", response.email);
           left_details += "</div>";
 
           var right_details = "<div class='w-full'>";
           right_details += getDetail("MEMBERSHIP ID", response.mem_id);
           if (response.level) {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
+            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 m-2 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
           }
           right_details += getDetail("PRICE", response.amount + ".00 PESOS");
           right_details += getDetail("STATUS", response.status);
           right_details += getDetail("TYPE OF PAYMENT", response.type_of_payment);
           if (response.proof_of_payment) {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROOF OF PAYMENT:</p>";
+            right_details += "<p class='font-semibold text-gray-400 text-md'>PROOF OF PAYMENT:</p>";
             right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64," + response.proof_of_payment + "' class='h-32 w-auto'></button>";
           }
           right_details += "</div>";
@@ -1830,7 +1830,7 @@
           // Function to generate details if not null or empty
           function getDetail(label, value) {
             if (value !== null && value !== undefined && value !== "") {
-              return "<p class='font-semibold text-gray-400 text-xs'>" + label + ": <span class='text-gray-600 text-sm' id='profile-password'>" + value + "</span></p>";
+              return "<p class='font-semibold text-gray-400 text-xs'>" + label + ": <span class='m-2 text-gray-800 text-base' id='profile-password'>" + value + "</span></p>";
             }
             return "";
           }
