@@ -36,7 +36,7 @@
 
 
 
-<div id="export-data-form-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+<div id="importVolunteers" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="membership-account-payment" class="block  p-3">
       <form id="volunteer-export-data-form">
@@ -587,17 +587,7 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-<div id="importVolunteers" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+<div id="importVolunteerss" class="fixed hidden  px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/3 mx-auto rounded-lg shadow-lg ">
   
     <div class="p-4">
@@ -640,12 +630,13 @@
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
-  $('#open-import-modal-form-btn').click(function(e) {
-    e.preventDefault();
-    $('#importVolunteers').removeClass('hidden')
-    $('#importVolunteers').addClass('block')
-
-  });
+  $(document).ready(function() {
+    $('#open-import-modal-form-btn').click(function(e) {
+        e.preventDefault();
+        $('#importVolunteers').removeClass('hidden');
+        $('#importVolunteers').addClass('block');
+    });
+});
 
   function Export_Data() {
     $('#close-export-volunteer-modal-btn').click(function(e) {
