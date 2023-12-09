@@ -615,7 +615,6 @@
     </div>
 
   </div>
-
 </div>
 
 
@@ -634,7 +633,6 @@
     Update_Profile()
     Update_User_Profiel()
     Export_Data()
-    importExcel()
   });
 
   function toUpperCaseFirst(str) {
@@ -657,6 +655,7 @@
     $('#open-import-modal-form-btn').click(function(e) {
       e.preventDefault();
       $('#import-data-form-modal').removeClass('hidden');
+      window.alert('hello');
     // $('#import-data-form-modal').addClass('block')
 
 
