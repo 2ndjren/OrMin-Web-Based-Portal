@@ -1,3 +1,4 @@
+
 @extends('layout.user.user_profile')
 @section('profile')
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
@@ -37,11 +38,15 @@
       </div>
     </div>
 
+    <div class=" flex justify-center items-center">
+    <button id="edit-profile-details" data-id="{{session('USER')['id']}}" type="button" class="text-cyan-500 ml-2"><span>Edit Profile</span> <i class="fa-solid fa-user-pen ml-2"></i> </button>
 
-    <div class="text-2xl flex justify-center items-center">
-      <a class="text-red-500" href="{{url('logout')}}"><i class="fa-solid fa-right-to-bracket"></i> </a>
-      <button type="button" class="text-cyan-500 ml-2"><i class="fa-solid fa-user-pen"></i> </button>
     </div>
+    <div class=" flex justify-center items-center">
+      <a class="text-red-500" href="{{url('logout')}}"><span>Sign out</span><i class="fa-solid fa-right-to-bracket ml-2"></i></a>
+
+    </div>
+
 
   </div>
 
@@ -50,7 +55,6 @@
     <div class="">
       <button id="appointment-container-btn" class="px-5 py-2  bg-blue-900 rounded-t-md text-white hover:border-b-4 hover:border-white  hover:bg-white hover:text-blue-900    "><i class="fa-solid fa-calendar-check"></i></button>
       <button id="volunteer-container-btn" class="px-5 py-2 bg-blue-900 rounded-t-md text-white hover:border-b-4 hover:border-white hover:bg-white hover:text-blue-900   "><i class="fa-solid fa-handshake-angle"></i> </button>
-      <button id="blood-container-btn" class="px-5 py-2 bg-blue-900 rounded-t-md text-white hover:border-b-4 hover:border-white hover:bg-white hover:text-blue-900 "><i class="fa-solid fa-heart"></i> </button>
       <button id="membership-container-btn" class="px-5 py-2 bg-blue-900 rounded-t-md text-white hover:border-b-4 hover:border-white hover:bg-white hover:text-blue-900   "><i class="fa-solid fa-shield-halved"></i> </button>
 
     </div>
@@ -60,38 +64,25 @@
       <div class=" bg-gray-200 p-3">
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
-      <div class="sm:block md:block lg:flex xl:flex 2xl:flex w-full h-5/6 pt-10">
-        <div class="sm:w-full md:w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2 sm:h-auto md:h-auto  lg:border-r-2 xl:border-r-2 2xl:border-r-2 lg:border-gray-400 xl:border-gray-400 2xl:border-gray-400  lg:shadow-md  lg:h-full xl:h-full 2xl:h-full p-5 ">
-          <div class="sm:h-auto md:h-auto lg:h-1/2 xl:h-1/2 2x:h-1/2   lg:shadow-md  xl:shadow-md 2xl:shadow-md py-2">
-            <p class="text-sm font-bold text-cyan-500">MY MEETING</p>
-            
-            <div class="" id="My_Appointments">
-
-            </div>
-
-          </div>
-          <div class=" sm:h-1/2 md:h-auto lg:h-1/2 xl:h-1/2 2x:h-1/2 py-2 sm:overflow-y-auto ">
-            <p class="text-sm font-bold text-cyan-500">HISTORY</p>
-            <table id="My_Appointments_History" class=" w-full text-left">
-              <thead class="text-sm text-gray-600">
-                <tr>
-                  <th>DATE</th>
-                  <th>STATUS</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-
-          </div>
-
-        </div>
-
-        <div class="sm:w-1/2 md:w-full lg:w-1/2 xl:w-1/2 2xl:w-1/2 sm:h-5/6  md:h-1/2 lg:h-full xl:h-full 2xl:h-full p-5 sm:mt-5 md:mt-5 ">
-          <p class="text-sm font-bold text-cyan-500 mb-3">OCCUPIED SCHEDULES</p>
-          <div id="Scheduled_Appointments" class="justify-center inline-block  space-y-4 ">
-          </div>
-        </div>
+      <div class=" my-2">
+        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a>
       </div>
+      <div class="">
+        <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+
+          
     </div>
 
 
@@ -130,7 +121,7 @@
   </div>
     </div>
 
-    <div class="h-96">
+    <div class="sm:h-96 lg:h-0">
 
     </div>
 
@@ -183,7 +174,7 @@
                 <option value="Bansud">Bansud</option>
                 <option value="Bongabong">Bongabong</option>
                 <option value="Bulalacao">Bulalacao</option>
-                <option value="Calapan">Calapan</option>
+                <option value="Calapan City">Calapan City</option>
                 <option value="Gloria">Gloria</option>
                 <option value="Mansalay">Mansalay</option>
                 <option value="Naujan">Naujan</option>
@@ -238,9 +229,7 @@
         <p class="text-sm">Payment Method</p>
     <select id="type_of_payment" name="type_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                 <option value="">Select </option>
-                <option value="Gcash">Gcash</option>
-                <option value="Paymaya">Paymaya</option>
-                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Gcash">Gcash Express </option>
               </select>
     </div>
     <div class="">
@@ -260,13 +249,184 @@
   </div>
 </div>
 
+<div id="edit-profile-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg ">
+    <div id="decline-membership-note" class="w-full">
+      <p class="font-semibold text-center text-blue-500 text-xl">Update Profile</p>
+      <form id="edit-user-profile-form" enctype="multipart/form-data">
+        @csrf
+      
+        <label class="block text-gray-700 text-sm font-bold mb-2 text-center" for="name">Current Profile</label>
+        <div class="w-full ">
+        <div class="mx-auto w-full" id="current-profile-picture"></div>
+        </div>
+        <input id="edit-id" type="hidden" name="id">
+       <div class=" flex space-x-2">
+        <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Change Profile</label>
+            <input accept="image/*" id="user_profile"   name="user_profile" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file">
+          </div>
+       <div class="w-full">
+       <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Image Preview</label>
+
+       <div id="imagePreview"></div>
+       </div>
+
+       </div>
+        <div class="flex space-x-2">
+       
+
+        <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">First Name</label>
+            <input id="edit-fname" name="fname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Middle Name</label>
+            <input id="edit-mname" name="mname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+          <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Last Name</label>
+            <input id="edit-lname" name="lname" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+        </div>
+        <div class="flex space-x-2">
+        <div class="mb-4 w-full ">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Mobile No.</label>
+            <input id="edit-phone_num" name="phone_num" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+          </div>
+
+       <div class="mb-4 w-full ">
+           <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Birthday</label>
+           <input id="edit-bday" name="bday" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date">
+         </div>
+       </div>
+        
+        <div class="flex justify-end space-x-2">
+          <button id="close-edit-profile-modal" class="bg-gray-500 font-semibold text-white p-2 rounded-md" type="button">Cancel</button>
+          <button class="bg-blue-500 font-semibold text-white p-2 rounded-md" type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function () {
     SelectInsuranceLevel()
     Close_Membership_form()
     Open_Membership_form()
     Create_Membership_Account()
+    Edit_Profile()
+    MyAppointments()
+    Show_My_Appointment()
   });
+
+
+  function Edit_Profile(){
+    $('#close-edit-profile-modal').click(function (e) { 
+      e.preventDefault();
+
+      $('#edit-user-profile-form')[0].reset()
+      $('#edit-profile-modal').addClass('hidden')
+
+      
+    });
+$('#edit-profile-details').click(function (e) { 
+  e.preventDefault();
+  var id=$(this).data('id')
+  $.ajax({
+    type: "GET",
+    url: "user-edit/"+id,
+    data: "data",
+    dataType: "json",
+    success: function (user) {
+ 
+      $('#current-profile-picture').empty()
+
+      var profile="<img  class='mx-auto h-32 border-2 border-blue-500' src='data:image/jpeg;base64,"+user.user_profile+"'>"
+      $('#current-profile-picture').append(profile)
+      $('#edit-fname').val(user.fname);
+      $('#edit-mname').val(user.mname);
+      $('#edit-lname').val(user.lname);
+      $('#edit-id').val(user.id);
+      $('#edit-phone_num').val(user.phone_num);
+      $('#edit-bday').val(user.bday);
+      $('#edit-profile-modal').removeClass('hidden')
+    }
+  });
+});
+}
+
+$('#edit-user-profile-form').submit(function (e) { 
+  e.preventDefault();
+  var formData= new FormData($(this)[0])
+  var submit = $(this);
+      submit.prop('disabled', true)
+      submit.addClass('opacity-50 cursor-not-allowed')
+  $.ajax({
+    type: "POST",
+    url: "/update-user-profile",
+    data: formData,
+      processData: false,
+      contentType: false,
+    success: function (response) {
+      if(response.success){
+        alert(response.success)
+        submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
+      }else{
+        alert(response.failed)
+        submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
+      }
+      
+    },
+    error: function(xhr, status, error) {
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
+          console.log(xhr.responseText);
+        }
+  });
+  
+});
+function Show_My_Appointment(){
+  $(document).on('click','.appointment-btn',function(){
+    var id=$(this).data('id')
+    $.ajax({
+      type: "GET",
+      url: "/my-appointments-details/"+id,
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        console.log(response)
+      }
+    });
+  })
+  
+}
+function MyAppointments(){
+  $.ajax({
+    type: "GET",
+    url: "/my-appointments",
+    data: "data",
+    dataType: "json",
+    success: function (response) {
+      console.log(response)
+      if(response!==null){
+        $.each(response, function (index, field) { 
+          var datalist="<tr>"
+           datalist+="<td><button class='appointment-btn' type='button' data-id='"+field.id+"'>"+field.app_date+"</button></td>"
+           datalist+="<td>"+field.app_time+"</td>"
+           datalist+="<td>"+field.status+"</td>"
+           datalist+="<tr>"
+         $('#appointment-table tbody').append(datalist);
+        });
+      }
+    }
+  });
+
+}
+
 function SelectInsuranceLevel(){
         $(document).ready(function () {
         var productValues = {
@@ -304,6 +464,9 @@ function SelectInsuranceLevel(){
         $('#create-membership-account').submit(function (e) { 
           e.preventDefault();
           var formdata = new FormData($(this)[0])
+          var submit = $(this);
+      submit.prop('disabled', true)
+      submit.addClass('opacity-50 cursor-not-allowed')
       $.ajax({
         type: "POST",
         url: "{{url('create-user-membership')}}",
@@ -311,6 +474,8 @@ function SelectInsuranceLevel(){
         processData: false,
         contentType: false,
         success: function(response) {
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           console.log(response)
           if (response.success) {
             $('#membership-modal').addClass('hidden')
@@ -323,7 +488,8 @@ function SelectInsuranceLevel(){
 
         },
         error: function(xhr, status, error) {
-          // Handle errors, if any
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
           window.alert(xhr.responseText);
         }
       });

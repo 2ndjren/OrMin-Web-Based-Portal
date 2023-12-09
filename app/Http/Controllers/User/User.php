@@ -29,6 +29,98 @@ class User extends Controller
             return view('User.home');
         }
     }
+    public function Appointment(){
+        return view('User.appointment');
+    }
+    public function Create_User_Appointment(Request $request){
+        $rules=[
+            'app_date'=>'required',
+            'app_time'=>'required',
+            'app_description'=>'required',
+        ];
+        $validator=Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return response()->json(['failed'=>'All fields are required!']);
+        }
+        $id=mt_rand(11111111,999999999);
+        $create= new appointments();
+        $create->u_id=session('USER')['id'];
+        $create->id=$id;
+        $create->app_date=$request->app_date;
+        $create->app_time=$request->app_time;
+        $create->app_description=$request->app_description;
+        $create->status="PENDING";
+        $saved=$create->save();
+        if($saved){
+            return response()->json(['success'=>'Appointment successfully submitted!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+        }
+        
+
+    }
+
+    public function Edit_User_Profile($id){
+        $user= ModelsUser::find($id);
+        $user->user_profile=base64_encode($user->user_profile);
+        return response()->json($user);
+    }
+    public function User_Update_Profile(Request $request){
+        $rule=[
+            'fname'=>'required',
+            'mname'=>'required',
+            'lname'=>'required',
+            'phone_num'=>'required',
+            'user_profile'=>'image|max:2500',
+            'bday'=>'required|date|before_or_equal:' .now()->subYears(15)->format('Y-m-d'),
+        ];
+        $validator= Validator::make($request->all(),$rule);
+        if($validator->fails()){
+            return response()->json(['failed'=>'All fields are required, dont leave it blank!']);
+        }
+        $image=$request->file('user_profile');
+        if($image!=null){
+        $image_content=file_get_contents($image);
+            $updated=ModelsUser::where('id',$request->id)->update([
+                'fname'=>strtoupper($request->fname),
+                'mname'=>strtoupper($request->mname),
+                'lname'=>strtoupper($request->lname),
+                'bday'=>$request->bday,
+                'phone_num'=>$request->phone_num,
+                'user_profile'=>$image_content,
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Update successfull']);
+            }else{
+                return response()->json(['failed'=>'No changes yet!']);
+            }
+        }else{
+            $updated=ModelsUser::where('id',$request->id)->update([
+                'fname'=>strtoupper($request->fname),
+                'mname'=>strtoupper($request->mname),
+                'lname'=>strtoupper($request->lname),
+                'bday'=>$request->bday,
+                'phone_num'=>$request->phone_num,
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Update successfull']);
+            }else{
+                return response()->json(['failed'=>'No changes yet!']);
+            }
+        }
+      
+    }
+
+
+    public function User_Appointments(){
+        $myapp=appointments::where('u_id',session('USER')['id'])->orderBy('updated_at','desc')->get();
+        return response()->json($myapp);
+    }
+    public function User_Appointment_Details($id){
+        $user= appointments::find($id);
+        return response()->json($user);
+    }
+
     
     //
     public function Donate(){
@@ -79,7 +171,7 @@ class User extends Controller
         }
     }
     public function MyAppointmentHistory(){
-        $data=appointments::where('u_id',session('USER')['id'])->whereIn('status',['DECLINED','DONE'])->get();
+        $data=appointments::where('u_id',session('USER')['id'])->get();
         if($data){
             return response()->json($data);
            }
@@ -210,8 +302,9 @@ class User extends Controller
         $create->barangay_street=strtoupper($request->barangay_street);
         $create->level=strtoupper($request->level);
         $create->type_of_payment=strtoupper($request->type_of_payment);
-        $path=$request->file('proof_of_payment')->store('public/membership/payments');
-        $create->proof_of_payment=Storage::url($path);
+        $image=$request->file('proof_of_payment');
+        $image_content=file_get_contents($image);
+        $create->proof_of_payment=$image_content;
         $create->amount=$request->amount;
         $create->notified='0';   
         $create->email=session('USER')['email'];

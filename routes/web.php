@@ -46,6 +46,7 @@ Route::post('recover',[Auth::class,'Send_Email_Forgot_Password']);
 Route::get('recover/verify/{token}',[Auth::class,'Password_Reset']);
 Route::post('change-password',[Auth::class,'Change_Password']);
 Route::get('email-reminder',[Auth::class,'Check_Reminder']);
+Route::get('email-check',[Auth::class,'Email_Check']);
 // USERBASE 
 Route::get('/',[User::class,'Home']);
 Route::get('donate',[User::class,'Donate']);
@@ -53,11 +54,16 @@ Route::get('profile',[User::class,'User_Profile']);
 Route::post('send-message',[RTC::class,'Send_Message']);
 Route::get('scheduled-appointments',[User::class,'AppointmentSchedules']);
 Route::get('scheduled-appointment-time/{app_date}',[User::class,'ListofTimeinAscheduledDate']);
-Route::get('my-appointment',[User::class,'MySchedule']);
-Route::get('my-appointment-history',[User::class,'MyAppointmentHistory']);
-Route::get('my-appointment-details/{id}',[User::class,'ViewMyAppointmentDetails']);
-Route::get('myinsurance',[User::class,'MyInsurance']);
+Route::get('user-appointment',[User::class,'Appointment']);
+Route::get('user-appointment-history',[User::class,'MyAppointmentHistory']);
+// Route::get('user-appointment',[User::class,'MySchedule']);
+Route::get('user-appointment-details/{id}',[User::class,'ViewMyAppointmentDetails']);
+Route::get('userinsurance',[User::class,'MyInsurance']);
+
 // USER INSURANCE 
+Route::post('create-user-appointment',[User::class,'Create_User_Appointment']);
+Route::get('my-appointments',[User::class,'User_Appointments']);
+Route::get('my-appointments-details/{id}',[User::class,'User_Appointment_Details']);
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);
 Route::get('my-blood-donation-history',[User::class,'blood_history']);
 Route::post('create-user-membership',[User::class,'Create_Membership_Account']);
@@ -69,6 +75,8 @@ Route::post('submit-volunteer-form',[User_Volunteers::class,'Submit_Volunteer'])
 
 
 
+Route::get('user-edit/{id}',[User::class,'Edit_User_Profile']);
+Route::post('update-user-profile',[User::class,'User_Update_Profile']);
 Route::get('user/membership/',[User::class,'Membership']);
 Route::get('user/training',[User::class,'Training']);
 Route::get('user/volunteer',[User::class,'Volunteer']);

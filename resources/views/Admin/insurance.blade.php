@@ -268,6 +268,7 @@
 
           </div>
           <div class="mb-4 w-full">
+            <div id="imagePreview"></div>
             <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Proof of Payment</label>
             <input id="proof_of_payment" name="proof_of_payment" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="file">
           </div>
@@ -823,6 +824,7 @@
     Export_Data()
     ToPrint()
     Process_Print_Data()
+    ImagePreview()
     // setInterval(() => {
     //   Account_To_Notified()
     // }, 5000);
@@ -842,6 +844,39 @@
       }
     });
   });
+
+  function ImagePreview(){
+      // Function to display the selected image preview or remove if input is empty
+      function displayImagePreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#imagePreview').html('<img src="' + e.target.result + '" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />');
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Remove the preview if no file is selected or input is empty
+            $('#imagePreview').empty();
+        }
+    }
+    
+    // Trigger the displayImagePreview function when a file is selected or input changes
+    $('#proof_of_payment').change(function() {
+        displayImagePreview(this);
+    });
+    
+    // Handle clearing the input (manually or via script)
+    $('#proof_of_payment').on('click', function() {
+        // Check if the input is empty when clicked
+        if (!$(this).val()) {
+            // Remove the preview if the input is empty
+            $('#imagePreview').empty();
+        }
+    });
+  
+}
 
   function Account_To_Notified() {
     $.ajax({
@@ -1003,12 +1038,12 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+        
           console.log(response)
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
 
-            console.log(response.annual)
             alert(response.success)
             localStorage.setItem('annual_report', JSON.stringify(response.annual))
             localStorage.setItem('ongoing_report', 'annual')
@@ -1016,6 +1051,8 @@
 
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1045,12 +1082,9 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
-          console.log(response)
           if (response.success) {
-
-            console.log(response.monthly)
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             localStorage.setItem('monthly_report', JSON.stringify(response.monthly))
             localStorage.setItem('ongoing_report', 'monthly')
@@ -1058,6 +1092,8 @@
 
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1087,10 +1123,9 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
-          console.log(response)
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
 
             const Program = localStorage.setItem('membership_program_levels', JSON.stringify(response.program.level))
             const level_progam = localStorage.setItem('membership_programlevels', response.program.program)
@@ -1102,6 +1137,8 @@
 
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1132,10 +1169,9 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
-
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             var muni = JSON.stringify(response.municipal_data.members)
 
             var Program = localStorage.setItem('municipality_records', muni)
@@ -1148,6 +1184,8 @@
 
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1177,10 +1215,9 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
-          console.log(response)
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             var mem_data = JSON.stringify(response.barangay_data.members)
             var Program = localStorage.setItem('barangay_records', mem_data)
             var muncipality = localStorage.setItem('municipality_name_data', response.barangay_data.municipality)
@@ -1191,6 +1228,8 @@
 
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1288,18 +1327,21 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
-          console.log(response)
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             $('#decline-membership-form')[0].reset()
             $('#decline-membership-account-modal').addClass('hidden')
             $('#membership-accounts-table').empty()
             Pending_Membership()
           } else if (response.failed) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert('Network error!')
           }
         },
@@ -1327,13 +1369,15 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             window.location.href = "{{url('export-membership')}}"
 
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
 
           }
@@ -1360,15 +1404,22 @@
         data: "data",
         dataType: "json",
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             $('#membership-accounts-table').empty()
             Pending_Membership()
             alert(response.success)
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
+        },
+        error: function(xhr, status, error) {
+          submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
+          window.alert(xhr.responseText);
         }
       });
     });
@@ -1453,9 +1504,9 @@
         data: "data",
         dataType: "json",
         success: function(response) {
+          alert(response.success)
           submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
-          alert(response.success)
           $('#membership-account-profile').empty();
           $('#membership-account-profile-btns').empty();
           $('#membership-account-profile-modal').removeClass('block');
@@ -1523,28 +1574,37 @@
         processData: false,
         contentType: false,
         success: function(response) {
-          submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+    
           if (response.success) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             $('#create-membership-account')[0].reset()
             $('#success-message').text(response.success)
             $('#membership-accounts-table').empty()
             Pending_Membership()
             alert(response.success)
           } else if (response.failed) {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             $('#spinner').addClass('hidden')
 
             $('#failed').removeClass('hidden')
             $('#failed').addClass('block')
             $('#failed-message').text(response.failed)
           } else {
+            submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
             $('#spinner').addClass('hidden')
 
             $('#failed').removeClass('hidden')
             $('#failed').addClass('block')
             if (response.errors.email === "The email has already been taken.") {
+              submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
               $('#failed-message').text(response.errors.email)
             } else {
+              submit.prop('disabled', false)
+          submit.removeClass('opacity-50 cursor-not-allowed')
               $('#failed-message').text('All fields are required!')
             }
             $.each(response.errors, function(field, errorMessage) {
@@ -1821,7 +1881,7 @@
 `;
 
           var profile_btns = `
-  <div class='flex space-x-2'>
+  <div class='flex space-x-2'> 
     <button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>
     ${response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED" ? `<button type='button' data-id='${response.id}' class='${getDeleteButtonClass(response.status)} p-2 bg-red-500 text-white rounded-md'>Delete</button>` : ''}
   </div>
@@ -1878,6 +1938,7 @@
 
     // Get CSRF token from the meta tag
     var token = $('meta[name="csrf-token"]').attr('content');
+
 
     $.ajax({
       type: "POST",

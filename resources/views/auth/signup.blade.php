@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="{{asset('js/jquery.js')}}"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
 
   <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
@@ -115,7 +114,7 @@
               <label for="gender" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Gender</label>
               <select name='gender' autoComplete="on" id="gender" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('gender') is-invalid @enderror" placeholder=" " required />
-              <option class='text-gray-500'>---Choose here---</option>
+              <option value="" class='text-gray-500'>---Choose here---</option>
               <option value="Male">Male</option>
               <option value='Female'>Female</option>
               </select>
@@ -128,11 +127,19 @@
           </div>
 
 
-          <div class="grid grid-cols-1 md:gap-2">
+          <div class="grid grid-cols-2 md:gap-2">
             <div class="relative z-0 w-full mb-6 group  ">
-              <input type="file" autoComplete="on" value="{{old('user_profile')}}" name="user_profile" id="profile" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('user_profile') is-invalid @enderror" placeholder=" " required />
-              <label for="profile" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+              
+              <input type="file"id="user-profile" autoComplete="on" value="{{old('user_profile')}}" name="user_profile" id="profile" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('user_profile') is-invalid @enderror" placeholder=" " required />
+              <label for="profile"  class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Upload your ID picture here</label>
+            </div>
+            <div class="relative z-0 w-full mb-6 group">
+            <div class="mb-2" id="imagePreview"></div>
+              
+
+              <label for="floating_last_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                Image Preview</label>
             </div>
 
           </div>
@@ -172,9 +179,7 @@
             </div>
             <div class="relative z-0 w-full mb-6 group  ">
               <input type="password" autoComplete="on" value="{{old('password')}}" name="password_confirmation" id="pass" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-300 appearance-none  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer @error('password') is-invalid @enderror" placeholder=" " required/>
-                  <!-- @error('password')
-                  <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
-                  @enderror -->
+     
               <label for="pass" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white  px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                 Confirm Password</label>
             </div>
@@ -207,19 +212,40 @@
 </html>
 
 
-
-<!-- 
+<script>
+  $(document).ready(function () {
+    ImagePreview()
+  });
+    function ImagePreview(){
+      // Function to display the selected image preview or remove if input is empty
+      function displayImagePreview(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                $('#imagePreview').html('<img src="' + e.target.result + '" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />');
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Remove the preview if no file is selected or input is empty
+            $('#imagePreview').empty();
+        }
+    }
+    
+    // Trigger the displayImagePreview function when a file is selected or input changes
+    $('#user-profile').change(function() {
+        displayImagePreview(this);
+    });
+    
+    // Handle clearing the input (manually or via script)
+    $('#user-profile').on('click', function() {
+        // Check if the input is empty when clicked
+        if (!$(this).val()) {
+            // Remove the preview if the input is empty
+            $('#imagePreview').empty();
+        }
+    });
   
-
-         
-             
-                <div class="flex-grow">
-                  <label class="text-sm text-gray-400" for="">Password <br></label>
-                  <input value="{{old('password')}}" name="password" type="password" class="text-green-600 py-1 rounded-sm @error('password') is-invalid @enderror">
-                  @error('password')
-                  <p class="text-sm text-red-500 pt-1 pl-2"><sup><i>{{$message}}</i></sup></p>
-                  @enderror
-                </div>
-              </div>
-
-            </form> -->
+}
+</script>

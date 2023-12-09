@@ -33,6 +33,10 @@ class Auth extends Controller
     public function Check_Reminder(){
         return view('alert.passwor_reset_email');
     }
+    public function Email_Check(){
+        return view('alert.email_check');
+
+    }
     public function SignUp(){
         if(session('USER')){
             return view('User.profile');
@@ -207,7 +211,7 @@ class Auth extends Controller
             $mail_sent=Mail::to($request->email)->send(new  Send_Email_Verification($mail));
             if($mail_sent){
                 DB::commit();
-                return redirect()->back()->with('success','Please check your email to activate your account.');
+                return redirect('email-check');
             }
             else{
                 return redirect()->back()->with('failed','Email is invalid.');

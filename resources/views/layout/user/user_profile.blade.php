@@ -14,7 +14,6 @@
     <div class="flex h-screen w-screen fixed bg-gray-200 ">
    
         <div class="block h-full w-full ">
-            <div class="w-full h-10 bg-red-500 shadow-lg"></div>
             <div class=" p-10 h-full w-full overflow-y-auto ">
                 @yield('profile')
             </div>
