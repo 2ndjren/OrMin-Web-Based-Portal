@@ -8,15 +8,15 @@
 
 </div>
 
-<div class=" px-10">
+<div class=" sm:px=3 lg:px-10">
 <div class="h-screen ">
   <div class="">
     <div class=" sm:block lg:flex w-full space-x-2">
         <div class="container mx-auto py-4 w-full">
           <div class=" rounded-lg p-4 gap">
-            <div class="container mx-auto py-4 shadow-lg bg-white p-4 sm:block lg:flex">
+            <div class="container mx-auto sm:py-0 lg:py-4 sm:shadow-none lg:shadow-lg :lg:bg-white   p-4 sm:space-y-5 lg:space-y-0 sm:mb-2 sm:block lg:flex">
 
-            <div class="w-full">
+            <div class="w-full sm:py-4 sm:shadow-lg sm:bg-white sm:mb-2 lg:mb-0">
             <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">DONATIONS</p>
             <div class="sm:flex lg:flex">
             <div class="w-full text-center">
@@ -30,7 +30,7 @@
             </div>
 
             </div>
-            <div class="w-full">
+            <div class="w-full sm:py-4 sm:shadow-lg sm:bg-white">
 
             <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">ACCOUNTS</p>
             <div class="flex">
@@ -80,7 +80,7 @@
                   <canvas id="sales_per_program"></canvas>
 
                  </div>
-                  <div class="container mx-auto py-4 w-96  bg-white lg:mt-0 sm:mt-5">
+                  <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
                       <div class=" p-4"> 
                         <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
                           <canvas id="Memberships_Overall_Counts"></canvas>
