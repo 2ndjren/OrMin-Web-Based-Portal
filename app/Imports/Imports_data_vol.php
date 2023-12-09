@@ -19,7 +19,14 @@ class Imports_data_vol implements ToModel, WithStartRow
 
     public function model(array $row)
     {
-        // Check if any data exists in the row before attempting to process
+        // Check if the row has the expected number of columns
+        $expectedColumnCount = 4; // Define the expected number of columns
+    
+        if (count($row) !== $expectedColumnCount) {
+            throw new \Exception("Error: Row doesn't have $expectedColumnCount columns as expected.");
+        }
+    
+        // If the row has the expected number of columns, proceed with processing
         if (!empty($row[1])) {
             $id = mt_rand(111111111, 999999999);
            
@@ -29,12 +36,10 @@ class Imports_data_vol implements ToModel, WithStartRow
                 'phone_no' => $row[2],
                 'municipal'  => $row[3],
                 'role'  => $row[4],
-
+                'status' => 'VALIDATED',
             ]);
-
-           } else {
-           
-    // Return an error message if the row is empty or missing crucial data
+        } else {
+            // Return an error message if the row is empty or missing crucial data
             return new \Exception("Error: Please ensure the Excel file matches the required format for importing.");
         }
     }

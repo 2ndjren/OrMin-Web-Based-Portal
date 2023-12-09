@@ -659,7 +659,7 @@
   $('#close-import-modal-form-btn').click(function(e) {
     e.preventDefault();
     $('#import').addClass('hidden');
-    $('#import')[0].reset();
+  
 
   });
 
