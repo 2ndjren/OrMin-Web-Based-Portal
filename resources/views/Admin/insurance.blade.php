@@ -1795,51 +1795,77 @@ var endmon = months[endmonth - 1];
         success: function(response) {
       submit.prop('disabled',false)
       submit.removeClass('opacity-50 cursor-not-allowed')
-          var left_details = "<div class='w-full'>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>NAME. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.fname + " "  + " " + response.lname + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>BIRTHDAY. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.birthday + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>AGE. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.age + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.gender + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>BLOOD TYPE. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.blood_type + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>ADDRESS. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.barangay_street + " BRGY. " + response.barangay + " " + response.municipality + "</span></p>"
-          left_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL. : <span class='text-gray-600  text-sm' id='profile-password'>" + response.email + "</span></p>"
-          left_details += "<div>"
-          var right_details = "<div class='w-full'>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>MEMBERSHIP ID: <span class='text-gray-600  text-sm' id='profile-password'>" + response.mem_id + "</span></p>"
-          if (response.level === "CLASSIC") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-blue-500 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
-          } else if (response.level === "BRONZE") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-orange-900 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
-          } else if (response.level === "SILVER") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-gray-400 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
-          } else if (response.level === "GOLD") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-yellow-500 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
-          } else if (response.level === "PLATINUM") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-red-500 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
+      var left_details = "<div class='w-full'>";
+left_details += getDetail("NAME", response.fname + " " + response.lname);
+left_details += getDetail("BIRTHDAY", response.birthday);
+left_details += getDetail("AGE", response.age);
+left_details += getDetail("GENDER", response.gender);
+left_details += getDetail("BLOOD TYPE", response.blood_type);
+left_details += getDetail("ADDRESS", response.barangay_street + " BRGY. " + response.barangay + " " + response.municipality);
+left_details += getDetail("EMAIL", response.email);
+left_details += "</div>";
 
-          } else if (response.level === "SENIOR") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-green-500 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
+var right_details = "<div class='w-full'>";
+right_details += getDetail("MEMBERSHIP ID", response.mem_id);
+if (response.level) {
+  right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white " + getProgramBadgeColor(response.level) + " p-1 rounded-full text-sm' id='profile-password'>" + response.level + "</span></p>";
+}
+right_details += getDetail("PRICE", response.amount + ".00 PESOS");
+right_details += getDetail("STATUS", response.status);
+right_details += getDetail("TYPE OF PAYMENT", response.type_of_payment);
+if (response.proof_of_payment) {
+  right_details += "<p class='font-semibold text-gray-400 text-xs'>PROOF OF PAYMENT:</p>";
+  right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn' text-sm' id='profile-password'><img src='data:image/jpeg;base64," + response.proof_of_payment + "' class='h-32 w-auto'></button>";
+}
+right_details += "</div>";
 
-          } else if (response.level === "SENIOR PLUS") {
-            right_details += "<p class='font-semibold text-gray-400 text-xs'>PROGRAM: <span class='text-white bg-purple-900 p-1 rounded-full  text-sm' id='profile-password'>" + response.level + "</span></p>"
-          }
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>PRICE: <span class='text-gray-600  text-sm' id='profile-password'>" + response.amount + ".00 PESOS</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>STATUS: <span class='text-gray-600  text-sm' id='profile-password'>" + response.status + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>TYPE OF PAYMENT: <span class='text-gray-600  text-sm' id='profile-password'>" + response.type_of_payment + "</span></p>"
-          right_details += "<p class='font-semibold text-gray-400 text-xs'>PROOF OF PAYMENT:</p>"
-  
-          right_details += "<button class='text-gray-600' data-id=" + response.id + " id='view-membership-payment-btn'  text-sm' id='profile-password'><img src='data:image/jpeg;base64,"+response.proof_of_payment+"' class='h-32 w-auto'></button>"
+var profile_btns = "<div class='flex space-x-2'>";
+profile_btns += "<button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>";
 
-          left_details += "<div>"
-          var profile_btns = "<div class='flex space-x-2'>"
-          profile_btns += "<button type='button' id='close-membership-profile-modal-btn' class='p-2 bg-gray-500 text-white rounded-md'>Close</button>"
-          if (response.status === "ACTIVATED") {
-            profile_btns += "<button type='button'  data-id=" + response.id + " class='delete-membership-account-profile-btn p-2 bg-red-500 text-white rounded-md'>Delete</button>"
-            profile_btns += "<div>"
-          } else if (response.status === "DECLINED" || response.status === "EXPIRED") {
-            profile_btns += "<button type='button'  data-id=" + response.id + " class='other-delete-membership-account-profile-btn p-2 bg-red-500 text-white rounded-md'>Delete</button>"
-            profile_btns += "<div>"
-          }
+if (response.status === "ACTIVATED" || response.status === "DECLINED" || response.status === "EXPIRED") {
+  profile_btns += "<button type='button' data-id=" + response.id + " class='" + getDeleteButtonClass(response.status) + " p-2 bg-red-500 text-white rounded-md'>Delete</button>";
+}
+profile_btns += "</div>";
+
+// Function to generate details if not null or empty
+function getDetail(label, value) {
+  if (value !== null && value !== undefined && value !== "") {
+    return "<p class='font-semibold text-gray-400 text-xs'>" + label + ": <span class='text-gray-600 text-sm' id='profile-password'>" + value + "</span></p>";
+  }
+  return "";
+}
+
+// Function to determine badge color based on membership level
+function getProgramBadgeColor(level) {
+  switch (level) {
+    case "CLASSIC":
+      return "bg-blue-500";
+    case "BRONZE":
+      return "bg-orange-900";
+    case "SILVER":
+      return "bg-gray-400";
+    case "GOLD":
+      return "bg-yellow-500";
+    case "PLATINUM":
+      return "bg-red-500";
+    case "SENIOR":
+      return "bg-green-500";
+    case "SENIOR PLUS":
+      return "bg-purple-900";
+    default:
+      return "";
+  }
+}
+
+// Function to get delete button class based on status
+function getDeleteButtonClass(status) {
+  if (status === "ACTIVATED") {
+    return "delete-membership-account-profile-btn";
+  } else {
+    return "other-delete-membership-account-profile-btn";
+  }
+}
+
           $('#membership-account-profile').append(left_details);
           $('#membership-account-profile').append(right_details);
           $('#membership-account-profile-btns').append(profile_btns);
