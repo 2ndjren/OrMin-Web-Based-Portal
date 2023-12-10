@@ -47,7 +47,7 @@
       "ajax": {
         "url": "/feedback/all",
         "type": "GET",
-        "dataSrc": "feedback" // Assuming "feedback" is the key containing the data array in your response
+        "dataSrc": "data" // Assuming "feedback" is the key containing the data array in your response
       },
       "columns": [{
           "data": null,
