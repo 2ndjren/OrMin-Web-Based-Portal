@@ -14,7 +14,7 @@
 </div>
 
 <div id="show-feedback-details-modal" class="fixed hidden inset-0 flex items-center justify-center z-10 bg-black bg-opacity-50 overflow-y-auto">
-  <div class="modal-container bg-white w-auto p-4 rounded-lg shadow-lg mx-5">
+  <div class="modal-container bg-white w-1/4 p-4 rounded-lg shadow-lg mx-5">
     <div class="px-4 py-3">
       <p class="text-2xl text-center font-semibold text-green-500">Feedback's Overview</p>
     </div>
