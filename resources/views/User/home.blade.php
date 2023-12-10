@@ -86,12 +86,11 @@
             Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
           </h3>
           <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-          
-          
-          <button type="button" onclick="loadAndShowAnnouncementModal('{{ $announcements->id }}')" class="history_modal_btn border border-blue-500 w-full rounded-md p-3 flex hover:text-white hover:bg-green-500 h-20">Read More</button>
-  
-
-
+       <!-- Create a form to submit the announcement ID to a controller -->
+       <form action="{{ route('announcement.show', $announcements->id) }}" method="GET">
+                            @csrf
+                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+                        </form>
         </div>
       </div>
       @endforeach
@@ -291,9 +290,7 @@
   $(document).ready(function() {
     Create_Feedback()
     showFullAnnouncement(fullText) 
-    Open_Post_Modal_View()
   });
-
 
   function Create_Feedback() {
     $('#create-feedback-form').submit(function(e) {
@@ -337,145 +334,27 @@
 
 
 
- 
-    function loadAndShowAnnouncementModal() {
+    
 
-$(document).on('click', '.history_modal_btn', function(e) {
-  e.preventDefault();
-  var id = $(this).data('id');
-  var submit = $(this);
-  submit.prop('disabled', true)
-  submit.addClass('opacity-50 cursor-not-allowed')
-  $.ajax({
-    type: "GET",
-    url: "/post-announcements-history-details/" + id,
-    data: "data",
-    dataType: "json",
-    success: function(response) {
-      submit.prop('disabled', false)
-      submit.removeClass('opacity-50 cursor-not-allowed')
-      console.log(response);
-
-      var date = new Date(response.created_at);
-
-      var day = date.getDate();
-      var month = date.getMonth() + 1;
-      var year = date.getFullYear();
-      var months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
-      var monthName = months[month - 1];
-
-      // Assuming 'response' contains the data you want to display
-      // Update the content inside the modal
-      var modalContent = "<h2 class='text-center text-2xl font-semibold uppercase border-b-2 border-gray-500'>" + response.title + "</h2>";
-      modalContent += "<p class='text-left text-blue-500 text-xs hover:text-white'> " + monthName + " " + day + "," + year + "</p>";
-      modalContent += "<p class='text-md justify py-2 mt-2'>" + response.announcement + "</p>";
-
-      // Buttons for "CANCEL", "REPOST", and "DELETE"
-      modalContent += "<div class='flex justify-end  border-t-2 border-slate-400'>";
-      modalContent += "<button class='btn-cancel p-2  mt-2 rounded-md text-white bg-gray-500 mr-4'>CANCEL</button>";
-      modalContent += "<button class='btn-repost p-2 mt-2 rounded-md text-white bg-green-500 mr-4' data-id='" + response.id + "'>REPOST</button>";
-      modalContent += "<button class='btn-delete p-2 mt-2 rounded-md text-white bg-red-500' data-id='" + response.id + "'>DELETE</button>";
-
-      modalContent += "</div>";
-
-      // Replace 'response.description' with the actual data properties
-
-      // Set the modal's content with the retrieved data
-      $('.modal-container').html(modalContent);
-
-      // Show the modal
-      $('#post_announcement-modal').removeClass('hidden');
-
-      // Event listener for the CANCEL button to close the modal
-      $('.btn-cancel').on('click', function() {
-        $('#post_announcement-modal').addClass('hidden');
-      });
-
-      // Event listener for the REPOST button (handle reposting functionality)
-      $('.btn-repost').on('click', function() {
-        var announcementId = $(this).data('id');
-        var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Fetch CSRF token value
-
-        if (confirm('Mark this announcement as the latest?')) {
-          var submit = $(this);
-          submit.prop('disabled', true)
-          submit.addClass('opacity-50 cursor-not-allowed')
-          $.ajax({
-            type: 'POST',
-            url: '/mark-as-latest/' + announcementId,
-            headers: {
-              'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-            },
-            success: function(response) {
-              submit.prop('disabled', false)
-              submit.removeClass('opacity-50 cursor-not-allowed')
-
-              console.log(response.message);
-              $('#post_announcement-modal').addClass('hidden');
-              // Reload or update UI elements here if needed
-              Announcements();
-              Active_Post();
-            },
-            error: function(xhr, status, error) {
-              submit.prop('disabled', false)
-              submit.removeClass('opacity-50 cursor-not-allowed')
-
-              window.alert(xhr.responseText);
-            }
-          });
-        }
-      });
+  function loadAndShowAnnouncementModal(id) {
+    // AJAX request to fetch the full announcement content
+    $.ajax({
+      type: 'GET',
+      url: '/announcement/' + id, // Replace with your route for fetching the full announcement
+      success: function(response) {
+        // Load content into the modal body
+        $('#announcementModal .modal-body').html(response);
+        // Show the modal
+        $('#announcementModal').modal('show');
+      },
+      error: function(error) {
+        console.error('Error fetching announcement:', error);
+      }
+    });
+  }
+</script>
 
 
-
-      // Event listener for the DELETE button (handle deletion functionality)
-      $('.btn-delete').on('click', function() {
-        var announcementId = $(this).data('id');
-
-        // Display a confirmation dialog before proceeding with deletion
-        if (confirm('Are you sure you want to delete this announcement?')) {
-          var submit = $(this);
-          submit.prop('disabled', true)
-          submit.addClass('opacity-50 cursor-not-allowed')
-          $.ajax({
-            type: 'GET',
-            url: '/delete-announcement/' + announcementId,
-            success: function(response) {
-              submit.prop('disabled', false)
-              submit.removeClass('opacity-50 cursor-not-allowed')
-              // Handle success message or any UI updates upon successful deletion
-              console.log(response.message);
-              $('#post_announcement-modal').addClass('hidden');
-
-              // Reload announcements-table after successful deletion
-              Announcements()
-            },
-            error: function(xhr, status, error) {
-              submit.prop('disabled', false)
-              submit.removeClass('opacity-50 cursor-not-allowed')
-              window.alert(xhr.responseText);
-            }
-          });
-        }
-
-
-      });
-
-
-
-    },
-    error: function(xhr, status, error) {
-      // Handle errors, if any
-      window.alert(xhr.responseText);
-
-    }
-  });
-
-});
-}
 
     
     
