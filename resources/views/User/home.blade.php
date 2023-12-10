@@ -68,23 +68,13 @@
    
    <!-- Add this to your Blade template or HTML file -->
 
-<div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($announcements as $announcement)
-            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
-                <p class="text-gray-600 mb-4 announcement-content">
-                    {{ $announcement->content }}
-                </p>
-                <button class="read-more-btn text-blue-500 hover:underline focus:outline-none">
-                    Read More
-                </button>
-            </div>
-        @endforeach
+<<div class="container mx-auto p-4" id="announcement-container">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="announcements">
+        <!-- Announcements will be dynamically loaded here -->
     </div>
 
     <!-- Pagination -->
-    <div class="mt-4">
+    <div class="mt-4" id="pagination-links">
         {{ $announcements->links() }}
     </div>
 </div>
