@@ -410,10 +410,10 @@ class User extends Controller
 
     
 
-    public function Announcement($announcementId) {
+    public function Announcement($id) {
         if (session("USER")) {
             // Fetch the specific announcement by ID using the Announcement model
-            $announcement = Announcement::find($announcementId);
+            $announcement = Announcement::find($id);
     
             if ($announcement) {
                 // Pass the fetched announcement to the view
@@ -428,6 +428,8 @@ class User extends Controller
             return redirect('/');
         }
     }
+
+    
     
    
 }
