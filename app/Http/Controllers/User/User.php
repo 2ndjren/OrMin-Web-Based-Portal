@@ -40,6 +40,23 @@ class User extends Controller
     public function Appointment(){
         return view('User.appointment');
     }
+    public function Register_Volunteer(){
+        if(session('USER')){
+            $check1=volunteers::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','VALIDATED'])->count();
+            $check2=volunteers::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])->where('lname',session('USER')['lname'])->where('birthday',session('USER')['bday'])->count();
+            if($check1>0){
+                return redirect('profile');
+            }else if($check2>0){
+                return redirect('profile');
+                
+            }else{
+                return view('User.register_volunteer');
+            }
+        }else{
+            return redirect('signin');
+        }
+        
+    }
     public function Scheduled_Appointements()
     {
         $checker = appointments::whereIn('status', ['PENDING', 'APPROVED', 'ONGOING'])->count();
