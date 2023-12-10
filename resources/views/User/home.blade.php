@@ -296,7 +296,7 @@
     function fetchAnnouncements(page = 1) {
         $.ajax({
             type: "POST",
-            url: "{{ route('getAllAnnouncements') }}", // Replace with your actual route
+            url: "{{ route('view_announcement') }}", // Replace with your actual route
             data: { page: page }, // Send page number if paginated
             success: function(response) {
                 const announcementsContainer = $('#announcements');
