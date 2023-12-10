@@ -1,8 +1,6 @@
 
 @extends('layout.user.user_profile')
 @section('profile')
-
-<title>PRC ORMIN| {{session('USER')['fname']}}</title>
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
 
 <div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 h-screen w-full">
@@ -347,7 +345,7 @@
   <div class="modal-container bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="decline-membership-note" class="w-full">
       <p class="font-semibold text-center text-blue-500 ">Volunteer Virtual Card</p>
-      <div id="myappointment-details">
+      <div id="myappointment-details" style="background-image: url('public/static/');">
 
       </div>
 
@@ -670,7 +668,7 @@ function SelectInsuranceLevel(){
           success: function (response) {
             console.log(response)
             if(response.results){
-             $('# register-as-volunteer-btn').removeClass('hidden')
+             $('#register-as-volunteer-btn').removeClass('hidden')
 
             }else{
               var left="<div class='p-2 w-full'>"
