@@ -65,44 +65,17 @@
 
 
    <section class="h-auto bg-white">
-   <div class="container mx-auto py-8">
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <!-- Announcement Card 1 -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <div class="p-6">
-        <h2 class="font-bold text-xl mb-4">Announcement 1</h2>
-        <p class="text-gray-700 leading-relaxed">
-          Content of announcement 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </p>
-        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
-      </div>
+   <div class="container mx-auto p-4">
+    <div id="announcements" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Announcement cards will be dynamically loaded here -->
     </div>
 
-    <!-- Announcement Card 2 -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <div class="p-6">
-        <h2 class="font-bold text-xl mb-4">Announcement 2</h2>
-        <p class="text-gray-700 leading-relaxed">
-          Content of announcement 2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
-      </div>
+    <!-- Pagination -->
+    <div id="pagination" class="mt-4">
+        <!-- Pagination links will be loaded here -->
     </div>
-
-    <!-- Announcement Card 3 -->
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <div class="p-6">
-        <h2 class="font-bold text-xl mb-4">Announcement 3</h2>
-        <p class="text-gray-700 leading-relaxed">
-          Content of announcement 3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
-        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
-      </div>
-    </div>
-  </div>
 </div>
 
-   
   </section>
 
 
@@ -315,6 +288,43 @@
 
     });
   }
+
+
+
+  $(document).ready(function() {
+    // Function to fetch announcements using AJAX
+    function fetchAnnouncements(page = 1) {
+        $.ajax({
+            type: "POST",
+            url: "{{ route('getAllAnnouncement') }}", // Replace with your actual route
+            data: { page: page }, // Send page number if paginated
+            success: function(response) {
+                const announcementsContainer = $('#announcements');
+                announcementsContainer.empty();
+
+                response.data.forEach(announcement => {
+                    const announcementCard = `
+                        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                            <h2 class="text-xl font-semibold mb-2">${announcement.title}</h2>
+                            <p class="text-gray-600 mb-4 announcement-content">${announcement.content}</p>
+                        </div>
+                    `;
+                    announcementsContainer.append(announcementCard);
+                });
+
+                const paginationContainer = $('#pagination');
+                paginationContainer.html(response.links);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching announcements:', error);
+            }
+        });
+    }
+
+    // Call the fetchAnnouncements function when the page loads
+    fetchAnnouncements();
+});
+
 
 </script>
 
