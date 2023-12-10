@@ -4,7 +4,7 @@
 
 <title>Welcome to PRC ORMIN</title>
 <div class="h-screen w-full overflow-y-auto ">
-  <div class="py-4">
+  <div class="sm:py-8 sm:my-8">
   <div class="bg-video-container relative w-full h-screen">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
         <source src="static/user/animated.webm" type="video/webm">
