@@ -1,7 +1,7 @@
 @extends('layout.admin.layout')
 @section('dashboard')
 
-<title>PRC ORMIN | Dashboard</title>
+<title>PRC ORMIN|Dashboard</title>
 <div class="py-2 px-10">
   <p class="text-3xl text-green-600 ">Dashboard</p>
   <div class="flex justify-end">

@@ -2,7 +2,7 @@
 @section('home')
 
 
-
+<title>Welcome to PRC ORMIN</title>
 <div class="h-screen w-full overflow-y-auto ">
 
   <div class="bg-video-container" style="position: relative;">
@@ -39,7 +39,7 @@
             <div class="lg:w-1/3  xl-w-1/4 p-8  xl:justify-start">
               <!-- Content for the smaller column goes here -->
               <div class="flex justify-center">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="560" height="400" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
 
             </div>
@@ -58,7 +58,7 @@
   <div class=" bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
-        <iframe width="840" height="auto" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="840" height="473"  src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>

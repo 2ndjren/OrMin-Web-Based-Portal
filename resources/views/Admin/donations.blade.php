@@ -1,6 +1,6 @@
 @extends('layout.admin.layout')
 @section('donations')
-<title>Donations</title>
+<title>PRC ORMIN|Donations</title>
 <div class="py-2 px-10">
   <p class="text-4xl text-green-600 UPPERCASE">Fundraising</p>
   <div class="flex justify-end">

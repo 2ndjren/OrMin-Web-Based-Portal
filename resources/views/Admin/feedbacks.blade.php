@@ -1,9 +1,9 @@
 @extends('layout.admin.layout')
 @section('feedbacks')
 
-<title>PRC ORMIN | User's Feedbacks</title>
+<title>PRC ORMIN|User's Feedbacks</title>
 <div class="py-2 px-10">
-  <p class="text-2xl text-green-600">Manage User's Feedback</p>
+  <p class="text-3xl text-green-600">Manage User's Feedback</p>
 </div>
 
 <div class="py-10 px-10 h-auto">

@@ -2,7 +2,7 @@
 @section('membership')
 
 
-
+<title>PRC ORMIN|Membership</title>
 <div class="h-screen w-full overflow-y-auto ">
 
     <img class="object-cover w-full h-auto" src="{{asset('static/user/home/mbg.jpg')}}" alt="apple watch photo" />

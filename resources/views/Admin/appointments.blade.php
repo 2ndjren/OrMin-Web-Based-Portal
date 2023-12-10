@@ -2,10 +2,10 @@
 @include('layout.admin.modals.appointment')
 
 @section('appointments')
-<title>Appointments</title>
+<title>PRC ORMIN|Appointments</title>
 
 <div class="py-2 px-10">
-  <p class="text-4xl text-green-600 UPPERCASE">Appointments</p>
+  <p class="text-3xl text-green-600 UPPERCASE">Manage Appointments</p>
   <div class="flex justify-end">
   </div>
 

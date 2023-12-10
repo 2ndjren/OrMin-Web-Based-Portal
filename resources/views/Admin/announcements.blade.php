@@ -1,8 +1,8 @@
 @extends('layout.admin.layout')
 @section('announcements')
-<title>Insurance</title>
+<title>PRC ORMIN|Announcement</title>
 <div class="py-2 px-10">
-  <p class="text-4xl text-green-600 UPPERCASE">Announcements</p>
+  <p class="text-3xl text-green-600 UPPERCASE">Manage Announcement</p>
 
 </div>
 
