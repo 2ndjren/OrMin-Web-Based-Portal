@@ -35,15 +35,20 @@
 
   <script>
     $(document).ready(function() {
-     
+      Donation_Btn()
+      Verified_Donations()
       getAll()
 
     });
 
 
+  
 
 
-    function getAll() {
+
+
+
+    function Verified_Donations() {
       var feedback_records = "<table id ='feedback-table' class='stripe hover w-full h-auto '>"
       feedback_records += "<thead>"
       feedback_records += "<tr>"
@@ -55,7 +60,7 @@
       feedback_records += " <tbody> "
       feedback_records += " </tbody>"
       feedback_records += " </table>"
-      $('#feedback-tables').append(feedback_records)
+      $('#feedback-table').append(feedback_records)
       let others = new DataTable('#feedback-table', {
         "responsive": true,
         "ajax": {
