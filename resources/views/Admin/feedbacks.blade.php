@@ -28,7 +28,8 @@
   });
 
   function getAll() {
-    var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
+    
+    var activated_table = "<table id='tableFeedback' class='stripe hover  w_full '>"
     feedback_records += "<thead>";
     feedback_records += "<tr>";
     feedback_records += "<th>Feedback</th>";
@@ -41,7 +42,7 @@
     feedback_records += "</table>";
     $('#feedback-table').append(feedback_records);
 
-    let dataTable = new DataTable('#feedback-table-container', {
+    let dataTable = new DataTable('#tableFeedback', {
       "responsive": true,
       "ajax": {
         "url": "/feedback/all",
