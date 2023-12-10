@@ -1,6 +1,8 @@
 
 @extends('layout.user.user_profile')
 @section('profile')
+
+<title>PRC ORMIN| {{session('USER')['fname']}}</title>
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
 
 <div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 h-screen w-full">

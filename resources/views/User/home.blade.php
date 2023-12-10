@@ -2,20 +2,17 @@
 @section('home')
 
 
-
+<title>Welcome to PRC ORMIN</title>
 <div class="h-screen w-full overflow-y-auto ">
+  <div class=" bg-white bg-opacity-50 h-auto">
+    <div class="bg-video-container relative w-full h-auto">
+      <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
+        <source src="static/user/animated.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
 
-  <div class="bg-video-container" style="position: relative;">
-    <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
-      <source src="static/user/animated.webm" type="video/webm">
-      Your browser does not support the video tag.
-    </video>
-
-
-    <!-- Content goes here -->
-    <div class=" h-screen shadow-lg relative">
-
-      <div class=" bg-white bg-opacity-50">
+      <!-- Content goes here -->
+      <div class="shadow-lg relative">
         <div class=" xl:p-8 xl:py-24 p-2">
           <div class="flex flex-col lg:flex-row">
             <!-- Larger left-side column (for screens larger than lg) -->
@@ -39,7 +36,7 @@
             <div class="lg:w-1/3  xl-w-1/4 p-8  xl:justify-start">
               <!-- Content for the smaller column goes here -->
               <div class="flex justify-center">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe width="560" height="400" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
 
             </div>
@@ -47,21 +44,67 @@
         </div>
       </div>
     </div>
-
-
   </div>
-
-
 
 
 
   <div class=" bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="840" height="473" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>
+
+
+
+
+
+  <div id="post_announcement-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-20 bg-black bg-opacity-50">
+    <div class="modal-container bg-slate-200 max-w-3/4 lg:mx-10 min-w-auto max-h-3/4 min-h-auto overflow-y-auto rounded-lg p-8 shadow-lg">
+
+
+      <!-- <div id="membership-account-profile" class="flex"></div>
+      <div id="membership-account-profile-btns" class="flex justify-end"></div> -->
+
+    </div>
+  </div>
+
+  <!-- Your existing announcement section with 'Read More' buttons -->
+  <section class="bg-slate-200 h-auto p-8">
+    <div class="container mx-auto py-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
+        @foreach($announcement as $announcements)
+        <div class="announcement-card">
+          <div class="p-4 border bg-white rounded-md shadow-md w-auto">
+            <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
+            <h3 class="text-xs text-gray-500 mb-2">
+              Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
+            </h3>
+            <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
+            <!-- Create a form to submit the announcement ID to a controller -->
+            <form action="{{ route('announcement', $announcements->id) }}" method="GET">
+              @csrf
+              <button type="submit" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+            </form>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      <div id="paginationButtons" class="flex justify-center mt-8">
+        {{ $announcement->links() }} <!-- Display pagination links -->
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
 
 
   <section class="h-auto bg-white" id="services">
@@ -79,8 +122,6 @@
               <a href="/auth/signin" class="btn text-white bg-red-500 hover:bg-red-800 px-6  py-3 rounded-xl">JOIN US</a>
             </li>
           </ul>
-
-
         </div>
       </div>
     </div>
@@ -244,7 +285,7 @@
 <script>
   $(document).ready(function() {
     Create_Feedback()
-    // showFullAnnouncement(fullText) 
+    showFullAnnouncement(fullText)
   });
 
   function Create_Feedback() {
@@ -276,39 +317,46 @@
     });
   }
 
-  // function scrollToAnnouncementCards() {
-  //   const announcementCardsSection = document.getElementById('announcementCards');
-  //   if (announcementCardsSection) {
-  //     announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }
+  // Function to scroll to the announcement section
+  function scrollToAnnouncementCards() {
+    const announcementCardsSection = document.getElementById('announcementCards');
+    if (announcementCardsSection) {
+      announcementCardsSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  }
 
-  // // Call the function when the page finishes loading
-  // window.addEventListener('load', scrollToAnnouncementCards);
+  // Call the function when the page finishes loading
+  window.addEventListener('load', scrollToAnnouncementCards);
 
-  // function showFullAnnouncement(fullText) {
-  //   window.alert(fullText);}
+
+
+
+
+  function loadAndShowAnnouncementModal(id) {
+    // AJAX request to fetch the full announcement content
+    $.ajax({
+      type: 'GET',
+      url: '/announcement/' + id, // Replace with your route for fetching the full announcement
+      success: function(response) {
+        // Load content into the modal body
+        $('#announcementModal .modal-body').html(response);
+        // Show the modal
+        $('#announcementModal').modal('show');
+      },
+      error: function(error) {
+        console.error('Error fetching announcement:', error);
+      }
+    });
+  }
 </script>
-<!-- <script>
-  // Initialization for ES Users
-
-  import {
-    Carousel,
-    initTE,
-  } from "tw-elements";
-
-  initTE({
-    Carousel
-  });
-</script> -->
 
 
 
 
-<!-- module.exports = {
-//...
-plugins: [require("daisyui")],
-} -->
+
+</script>
 
 
 @endsection

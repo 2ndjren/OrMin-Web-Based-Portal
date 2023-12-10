@@ -1,8 +1,8 @@
 @extends('layout.admin.layout')
 @section('volunteers')
-<title>Volunteers</title>
+<title>PRC ORMIN|Volunteers</title>
 <div class="py-2 px-10">
-  <p class="text-4xl text-green-600 UPPERCASE">Volunteers</p>
+  <p class="text-3xl text-green-600 UPPERCASE">Manage Volunteers</p>
   <div class="flex justify-end">
     <button type="button" id="open-create-volunteer-modal" class="p-3 rounded-md bg-green-600 font-semibold text-white"> Create Volunteer</button>
   </div>

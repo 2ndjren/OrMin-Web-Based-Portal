@@ -1,5 +1,6 @@
 @extends('layout.user.layout')
 @section('donate')
+<title>PRC ORMIN|Donation</title>
 <div class="h-screen w-full overflow-y-auto space-y-5 ">
 
 <img class="object-cover w-full h-50" src="{{asset('static/user/home/cbg.png')}}" alt="apple watch photo" />

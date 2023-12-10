@@ -1,8 +1,7 @@
 @extends('layout.user.layout')
 @section('training')
 
-
-
+<title>PRC ORMIN|Trainings</title>
 <div class="h-screen w-full overflow-y-auto text-gray-700 ">
 
 

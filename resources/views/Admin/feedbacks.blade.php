@@ -1,9 +1,9 @@
 @extends('layout.admin.layout')
 @section('feedbacks')
 
-<title>PRC ORMIN | User's Feedbacks</title>
+<title>PRC ORMIN|User's Feedbacks</title>
 <div class="py-2 px-10">
-  <p class="text-2xl text-green-600">Manage User's Feedback</p>
+  <p class="text-3xl text-green-600">Manage User's Feedback</p>
 </div>
 
 <div class="py-10 px-10 h-auto">
@@ -28,7 +28,7 @@
   $(document).ready(function() {
     getAll();
     Feedback_Btn();
-    reloadDataTable();
+    // reloadDataTable();
   });
 
   function getAll() {
@@ -82,10 +82,12 @@
     $(document).on('click', '.show-feedback-details-btn ', function() {
       $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
     });
+
+    return dataTable;
   }
 
-  function reloadDataTable() {
-  var dataTable = $('#feedback-table-container');
+ // Function to reload DataTable
+function reloadDataTable(dataTable) {
   dataTable.ajax.reload();
 }
 
@@ -148,6 +150,7 @@
 
     // Event listener for the DELETE button (handle deletion functionality)
     $(document).on('click', '#delete-btn', function() {
+      
         var feedbackID = $(this).data('id');
 
         // Display a confirmation dialog before proceeding with deletion
@@ -165,7 +168,7 @@
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                    reloadDataTable();
+                     reloadDataTable(dataTable);
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);
@@ -175,6 +178,7 @@
             });
         }
     });
+
 }
 </script>
 @endsection
