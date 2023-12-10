@@ -31,6 +31,14 @@
   });
 
   function getAll() {
+
+    var feedbackTable = $('#feedback-table-container').DataTable();
+
+if (feedbackTable) {
+    feedbackTable.destroy();
+}
+
+
     var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
 
     feedback_records += "<thead>";
