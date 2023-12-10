@@ -54,7 +54,7 @@
                         <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
                     </a></li>
 
-                    <li><a href="{{url('user-feedback')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
+                    <li><a href="{{url('feedback/all')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                         <i class="fa-solid fa-bullhorn mr-2"></i> <span>Feedback</span>
                     </a></li>
                 <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
@@ -119,6 +119,9 @@
                         </a></li>
                     @endif
                     <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                            <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
+                        </a></li>
+                        <li><a href="{{url('feedback/all')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
                         </a></li>
                     <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
