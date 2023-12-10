@@ -49,17 +49,29 @@ class Volunteers extends Controller
     }
     public function Approve_Volunteer_Request(Request $request){
         $rules =[
-            'expiration_date'=>'required'
+            'expiration_date'=>'required',
+            'vol_id'=>'required'
         ];
         $validator=Validator::make($request->all(),$rules);
         if($validator->fails()){
             return response()->json(['failed'=>'Field are required!']);
         }
         $approve= new ModelsVolunteers();
+       if(session('ADMIN')){
         $approved= $approve::where('id',$request->approve_id)->update([
             'expiration_date'=>$request->expiration_date,
+            'vol_id'=>$request->vol_id,
+            'e_id'=>session('ADMIN')['id'],
             'status'=>'VALIDATED',
         ]);
+       }else if(session('STAFF')){
+        $approved= $approve::where('id',$request->approve_id)->update([
+            'expiration_date'=>$request->expiration_date,
+            'vol_id'=>$request->vol_id,
+            'e_id'=>session('STAFF')['id'],
+            'status'=>'VALIDATED',
+        ]);
+       }
         if($approved){
             return response()->json(['success'=>'Request successfully approved!']);
         }else{

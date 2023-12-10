@@ -614,6 +614,10 @@
           <p class="text-blue-500 font-semibol text-center">Set expiration date</p>
           <input id="expiration_date" name="expiration_date" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date">
         </div>
+        <div class="mb-4 w-full ">
+          <p class="text-blue-500 font-semibol text-center">Volunteer ID</p>
+          <input id="vol_id" name="vol_id" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text">
+        </div>
         <div class="flex justify-end">
           <div class="">
             <button type="button" id="close-approve-volunteer-request-modal" class="font-semibold p-2 text-white bg-gray-500 rounded-md">Close</button>
@@ -817,6 +821,7 @@
             $('#volunteer-account-profile-btn').empty();
             $('#volunteer-account-profile-modal').addClass('hidden');
             $('#volunteer-request-approve-modal').addClass('hidden')
+            Pending_Volunteer_Applications()
             window.alert(response.success)
           } else {
             alert(response.failed)

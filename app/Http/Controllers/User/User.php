@@ -30,7 +30,29 @@ class User extends Controller
         }
     }
     public function Appointment(){
-        return view('User.appointment');
+        if(session("USER")){
+            return view('User.appointment');
+         }
+         elseif(session('ADMIN')||session('STAFF')){
+             return redirect('dashboard');
+         }
+         else{
+             return redirect('signin');
+         }
+    }
+    public function Register_Volunteer(){
+        if(session('USER')['id']){
+            $check1=volunteers::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','VALIDATED'])->count();
+            $check2=volunteers::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])->where('lname',session('USER')['lname'])->where('birthday',session('USER')['bday'])->whereIn('status',['PENDING','VALIDATED'])->count();
+            if($check1>0){
+                return redirect('profile');
+            }else if($check2>0){
+                return redirect('profile');
+            }else{
+                return view('User.register_volunteer');
+            }
+
+        }
     }
     public function Scheduled_Appointements(){
         $checker=appointments::whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
@@ -396,6 +418,91 @@ class User extends Controller
     public function Volunteer(){
         return view('User.volunteer');
     }
+
+
+
+    public function Create_User_Volunteer(Request $request){
+        $rules=[
+            'fname'=>'required',
+            'mname'=>'required',
+            'lname'=>'required',
+            'occupation'=>'required',
+            'birthday'=>'required',
+            'gender'=>'required',
+            'nationality'=>'required',
+            'civil_status'=>'required',
+            'municipal'=>'required',
+            'barangay'=>'required',
+            'barangay_street'=>'required',
+            'postal_code'=>'required',
+            'role'=>'required',
+            'phone_no'=>'required',
+            'email'=>'required',
+        ];
+        $validator=Validator::make($request->all(),$rules);
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+        $create= new volunteers();
+        if(session('USER')['id']){
+            $create->u_id=session('USER')['id'];
+        }$id=mt_rand(111111111,999999999);
+        $create->id=$id;
+        $create->fname=strtoupper($request->fname);
+        $create->mname=strtoupper($request->mname);
+        $create->lname=strtoupper($request->lname);
+        $create->occupation=strtoupper($request->occupation);
+        $create->birthday=$request->birthday;
+        $create->gender=strtoupper($request->gender);
+        $create->nationality=strtoupper($request->nationality);
+        $create->civil_status=strtoupper($request->civil_status);
+        $create->province='ORIENTAL MINDORO';
+        $create->municipal=strtoupper($request->municipal);
+        $create->barangay=strtoupper($request->barangay);
+        $create->barangay_street=strtoupper($request->barangay_street);
+        $create->postal_code=$request->postal_code;
+        $create->role=strtoupper($request->role);
+        $create->occupation_address=strtoupper($request->occupation_address);
+        $create->phone_no=$request->phone_no;
+        $create->email=$request->email;
+        $create->status='PENDING';
+        $create->privacy_agreement='YES';
+        $saved=$create->save();
+        if($saved){
+            return response()->json(['success'=>'Submitted successfully']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+
+        }
+
+    }
+    public function User_Volunteer_Record(){
+        if(session('USER')['id']){
+            $check1=volunteers::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','VALIDATED'])->count();
+            $data1=volunteers::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','VALIDATED'])->first();
+            $check2=volunteers::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])->where('lname',session('USER')['lname'])->where('birthday',session('USER')['bday'])->whereIn('status',['PENDING','VALIDATED'])->count();
+            $data2=volunteers::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])->where('lname',session('USER')['lname'])->where('birthday',session('USER')['bday'])->whereIn('status',['PENDING','VALIDATED'])->first();
+            if($check1>0){
+                return response()->json($data1);
+            }else if($check2>0){
+                return response()->json($data2);
+            }else{
+                return response()->json(['results'=>'Register now!']);
+            }
+
+        }
+    }
+    public function Show_My_Volunteer_Card($id){
+        $check=volunteers::where('id',$id)->count();
+        $mydata=volunteers::where('id',$id)->first();
+        if($check>0){
+        return response()->json($mydata);
+
+        }else{
+        return response()->json(['success'=>'Something went wrong!']);
+
+        }
+        }
 
     
    

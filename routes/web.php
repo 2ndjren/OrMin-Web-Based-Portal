@@ -78,6 +78,10 @@ Route::get('volunteer-details-card',[User::class,'Volunteer_Details']);
 Route::post('submit-volunteer-form',[User_Volunteers::class,'Submit_Volunteer']);
 
 
+Route::get('register-volunteer',[User::class,'Register_Volunteer']);
+Route::post('create-user-volunteer',[User::class,'Create_User_Volunteer']);
+Route::get('registered-details-volunteer',[User::class,'User_Volunteer_Record']);
+Route::get('my-voluntee-card/{id}',[User::class,'Show_My_Volunteer_Card']);
 
 
 

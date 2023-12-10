@@ -93,7 +93,10 @@
         <p class="text-cyan-600 font-bold text-xl">VOLUNTEER</p>
 
       </div>
-      <div id="volunteer-details">
+      <div id="register-as-volunteer-btn" class="hidden flex justify-center my-20">
+        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('register-volunteer')}}">Register</a>
+      </div>
+      <div class="sm:block lg:flex mt-2" id="volunteer-details">
 
       </div>
 
@@ -338,6 +341,17 @@
 
 
 
+<div id="my-volunteer-card-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+    <div id="decline-membership-note" class="w-full">
+      <p class="font-semibold text-center text-blue-500 ">Volunteer Virtual Card</p>
+      <div id="myappointment-details">
+
+      </div>
+
+    </div>
+  </div>
+</div>
 
 
 
@@ -354,6 +368,8 @@
     Show_My_Appointment()
     Check_Existing_Appointment()
     Appointment_Btn()
+    Volunter_Record()
+    Show_My_Volunteer_Card()
   });
 
 
@@ -641,6 +657,63 @@ function SelectInsuranceLevel(){
         }
       });
         });
+      }
+
+      function Volunter_Record(){
+        $.ajax({
+          type: "GET",
+          url: "/registered-details-volunteer",
+          data: "data",
+          dataType: "json",
+          success: function (response) {
+            console.log(response)
+            if(response.results){
+             $('# register-as-volunteer-btn').removeClass('hidden')
+
+            }else{
+              var left="<div class='p-2 w-full'>"
+              left+="<div class='flex w-full space-x-2'>"
+              left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-500 ml-2 '>"+response.vol_id+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Expiration: <span class='text-gray-500 ml-2 '>"+response.expiration_date+"</span><p>"
+              left+="</div>"
+              left+="<p class='font-semibold text-blue-500'>Role: <span class='text-gray-500 ml-2 '>"+response.role+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Name: <span class='text-gray-500 ml-2 '>"+response.fname+" "+response.mname+" "+response.lname+"</span><p>"
+              left+="<div class='flex w-full space-x-2'>"
+              left+="<p class='font-semibold text-blue-500 w-full'>Birthday: <span class='text-gray-500 ml-2 '>"+response.birthday+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Gender: <span class='text-gray-500 ml-2 '>"+response.gender+"</span><p>"
+              left+="</div>"
+              left+="<p class='font-semibold text-blue-500'>Phone No: <span class='text-gray-500 ml-2 '>"+response.phone_no+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Civil Status: <span class='text-gray-500 ml-2 '>"+response.civil_status+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Address: <span class='text-gray-500 ml-2 '>"+response.barangay_street+", "+response.barangay+", "+response.municipal+", "+response.province+"</span><p>"
+              left+="</div>"
+              $('#volunteer-details').append(left)
+              var right="<div class='w-full'>"
+              right+="<button type='button' data-id='"+response.id+"' id='show-my-volunteer-card' class='hover:underline text-lg'><i class='fa-solid fa-id-card text-xl mr-2'></i> My ID</button>"
+              right+="</div>"
+              $('#volunteer-details').append(right)
+            }
+          }
+        });
+      }
+
+      function Show_My_Volunteer_Card(){
+        $(document).on('click','#show-my-volunteer-card',function(){
+          var id =$(this).data('id')
+          $.ajax({
+            type: "GET",
+            url: "/my-voluntee-card/"+id,
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+              console.log(response)
+              if(response.results){
+                alert(response.results)
+              }else{
+                $('#my-volunteer-card-modal').removeClass('hidden')
+              }
+            }
+          });
+        })
       }
 
 </script>
