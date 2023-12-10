@@ -182,7 +182,7 @@ Route::get('posted-announcement',[Announcements::class,'Display_Posted_Announcem
 Route::get('posted-by/{id}',[Announcements::class,'Find_Who_post']);
 Route::get('post-announcements-history-details/{id}',[Announcements::class,'Find_Post']);
 
-Route::get('announcement/{id}', [User::class, 'Announcement'])->name('announcement.show');
+Route::get('announcement/{id}', [User::class, 'Announcement']);
 
 
 
