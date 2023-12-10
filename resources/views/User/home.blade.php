@@ -4,17 +4,15 @@
 
 <title>Welcome to PRC ORMIN</title>
 <div class="h-screen w-full overflow-y-auto ">
-  <div class="">
-  <div class="bg-video-container relative w-full h-auto">
-    <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
+  <div class=" bg-white bg-opacity-50 h-auto">
+    <div class="bg-video-container relative w-full h-auto">
+      <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
         <source src="static/user/animated.webm" type="video/webm">
         Your browser does not support the video tag.
-    </video>
+      </video>
 
-    <!-- Content goes here -->
-    <div class=" h-screen shadow-lg relative">
-
-      <div class=" bg-white bg-opacity-50">
+      <!-- Content goes here -->
+      <div class="shadow-lg relative">
         <div class=" xl:p-8 xl:py-24 p-2">
           <div class="flex flex-col lg:flex-row">
             <!-- Larger left-side column (for screens larger than lg) -->
@@ -46,17 +44,16 @@
         </div>
       </div>
     </div>
-    </div>
-
   </div>
 
-  <div class="bg-slate-200 h-auto p-8">
+
+  <div class="bg-slate-400 h-auto p-8">
   </div>
 
   <div class=" bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
-        <iframe width="840" height="473"  src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="840" height="473" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -75,37 +72,37 @@
     </div>
   </div>
 
-<!-- Your existing announcement section with 'Read More' buttons -->
-<section class="bg-slate-200 h-auto p-8">
-  <div class="container mx-auto py-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
-      @foreach($announcement as $announcements)
-      <div class="announcement-card">
-        <div class="p-4 border bg-white rounded-md shadow-md w-auto">
-          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
-          <h3 class="text-xs text-gray-500 mb-2">
-            Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
-          </h3>
-          <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-       <!-- Create a form to submit the announcement ID to a controller -->
-       <form action="{{ route('announcement.show', $announcements->id) }}" method="GET">
-                            @csrf
-                            <button type="submit" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
-                        </form>
+  <!-- Your existing announcement section with 'Read More' buttons -->
+  <section class="bg-slate-200 h-auto p-8">
+    <div class="container mx-auto py-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
+        @foreach($announcement as $announcements)
+        <div class="announcement-card">
+          <div class="p-4 border bg-white rounded-md shadow-md w-auto">
+            <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
+            <h3 class="text-xs text-gray-500 mb-2">
+              Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
+            </h3>
+            <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
+            <!-- Create a form to submit the announcement ID to a controller -->
+            <form action="{{ route('announcement.show', $announcements->id) }}" method="GET">
+              @csrf
+              <button type="submit" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+            </form>
+          </div>
         </div>
+        @endforeach
       </div>
-      @endforeach
+      <div id="paginationButtons" class="flex justify-center mt-8">
+        {{ $announcement->links() }} <!-- Display pagination links -->
+      </div>
     </div>
-    <div id="paginationButtons" class="flex justify-center mt-8">
-      {{ $announcement->links() }} <!-- Display pagination links -->
-    </div>
-  </div>
-</section>
+  </section>
 
 
 
 
-  
+
 
 
 
@@ -290,7 +287,7 @@
 <script>
   $(document).ready(function() {
     Create_Feedback()
-    showFullAnnouncement(fullText) 
+    showFullAnnouncement(fullText)
   });
 
   function Create_Feedback() {
@@ -326,7 +323,9 @@
   function scrollToAnnouncementCards() {
     const announcementCardsSection = document.getElementById('announcementCards');
     if (announcementCardsSection) {
-      announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
+      announcementCardsSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   }
 
@@ -335,7 +334,7 @@
 
 
 
-    
+
 
   function loadAndShowAnnouncementModal(id) {
     // AJAX request to fetch the full announcement content
@@ -357,8 +356,8 @@
 
 
 
-    
-    
+
+
 </script>
 
 
