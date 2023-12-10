@@ -50,7 +50,8 @@
 
   </div>
 
-
+  <div class="bg-slate-200 h-auto p-8">
+  </div>
 
   <div class=" bg-gray-400">
     <div class="p-20">
@@ -75,7 +76,7 @@
   </div>
 
 <!-- Your existing announcement section with 'Read More' buttons -->
-<section class="bg-slate-200 h-auto sm:mt-16 p-8">
+<section class="bg-slate-200 h-auto p-8">
   <div class="container mx-auto py-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
       @foreach($announcement as $announcements)
