@@ -5,7 +5,7 @@
 <title>PRC ORMIN|Announcement</title>
 
 <h2 class="text-2xl text-gray-400 mb-2">PRC ORMIN | Announcement | {{ $announcement->id }}</h2>
-
+eeeeee
 <section class="bg-slate-200 py-8">
   <div class="container mx-auto">
     <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
@@ -30,20 +30,10 @@
     @include('layout.user.footer')
   </div>
 
-<script>
+  <script>
   function goBack() {
-    // AJAX request to navigate back to the "/" route
-    $.ajax({
-      type: 'GET',
-      url: '/', // Replace with your route for the home page
-      success: function(response) {
-        // Replace the content of the current page with the fetched content
-        document.querySelector('body').innerHTML = response;
-      },
-      error: function(error) {
-        console.error('Error navigating back:', error);
-      }
-    });
+    // Navigate back in the browser's history
+    window.history.back();
   }
 </script>
 

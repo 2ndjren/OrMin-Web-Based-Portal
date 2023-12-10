@@ -413,7 +413,7 @@ class User extends Controller
     public function Announcement($id)
     {
         // Fetch the announcement based on the provided ID
-        $announcement = Announcement::find($id); // This will return null if no matching announcement is found
+        $announcement = announcement::find($id); // This will return null if no matching announcement is found
     
         if (!$announcement) {
             // Handle the case when the announcement is not found
