@@ -55,9 +55,9 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            const maxLength = 100; // Define your maximum length
+            const maxLength = 70; // Define your maximum length
             const trimmedMessage = row.message.length > maxLength ? row.message.substring(0, maxLength) + '...' : row.message;
-            return '<p class="text-gray-600 text-xs font-semibold">' + trimmedMessage + '</p>';
+            return '<p class="text-gray-700 text-sm font-semibold">' + trimmedMessage + '</p>';
           }
         },
         {
