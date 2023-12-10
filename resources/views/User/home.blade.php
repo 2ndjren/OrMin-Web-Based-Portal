@@ -4,7 +4,7 @@
 
 <title>Welcome to PRC ORMIN</title>
 <div class="h-screen w-full overflow-y-auto ">
-  <div class="sm:py-8 sm:my-8">
+  <div class="">
   <div class="bg-video-container relative w-full h-screen">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
         <source src="static/user/animated.webm" type="video/webm">
@@ -298,24 +298,19 @@
   }
 
   // Function to scroll to the announcement section
-  function scrollToAnnouncement() {
-        const announcementSection = document.getElementById('announcementCards');
-        if (announcementSection) {
-            announcementSection.scrollIntoView({ behavior: 'smooth' });
-        }
+  function scrollToAnnouncementCards() {
+    const announcementCardsSection = document.getElementById('announcementCards');
+    if (announcementCardsSection) {
+      announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
     }
+  }
 
-    // Listen for clicks on the pagination links and scroll to the announcement section
-    const paginationLinks = document.querySelectorAll('#paginationButtons a');
-    paginationLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const page = this.getAttribute('href').split('page=')[1];
-            // Make your AJAX call here if needed for pagination
-            // For demonstration purposes, just scrolling to the section
-            scrollToAnnouncement();
-        });
-    });
+  // Call the function when the page finishes loading
+  window.addEventListener('load', scrollToAnnouncementCards);
+
+  function showFullAnnouncement(fullText) {
+    window.alert(fullText);}
+    
 </script>
 
 
