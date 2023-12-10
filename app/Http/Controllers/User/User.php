@@ -412,15 +412,16 @@ class User extends Controller
 
     public function Announcement($id)
     {
-        try {
-            // Fetch the announcement based on the provided ID
-            $announcement = Announcement::findOrFail($id); // Assuming 'id' is the primary key of the Announcement model
-
-            // Return the announcement content in a view
-            return view('User.announcement', compact('announcement'));
-        } catch (\Exception $e) {
+        // Fetch the announcement based on the provided ID
+        $announcement = Announcement::find($id); // This will return null if no matching announcement is found
+    
+        if (!$announcement) {
             // Handle the case when the announcement is not found
             abort(404, 'Announcement not found');
         }
+    
+        // Return the announcement content in a view
+        return view('User.announcement', compact('announcement'));
     }
+    
 }
