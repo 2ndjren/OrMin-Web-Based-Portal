@@ -105,7 +105,7 @@
                     </a>
                 </li>
             </ul>
-            <div class="text-gray-400 text-sm mr-4">&copy; OrminPRC. All rights reserved.</div>
+            <div class="text-gray-400 text-sm mr-4">&copy; PRC ORMIN. All rights reserved 2023. | 3J MINSU |</div>
         </div>
     </div>
 </footer>

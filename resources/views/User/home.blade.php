@@ -51,7 +51,27 @@
 
   </div>
 
-
+  <section class="bg-slate-200 h-auto p-8">
+  <div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
+      @foreach($announcement as $announcements)
+      <div class="announcement-card">
+        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
+          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
+          <h3 class="text-gray-500  mb-2">
+    Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
+</h3>
+          <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
+          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+          </div>
+      </div>
+      @endforeach
+    </div>
+    <div id="paginationButtons" class="flex justify-center mt-8">
+      {{ $announcement->links() }} <!-- Display pagination links -->
+    </div>
+  </div>
+</section>
 
 
 
@@ -64,24 +84,7 @@
   </div>
 
 
-  <section class="bg-slate-200 h-auto p-8">
-  <div class="container mx-auto py-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
-      @foreach($announcement as $announcements)
-      <div class="announcement-card">
-        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
-          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
-          <p class="text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
-          </div>
-      </div>
-      @endforeach
-    </div>
-    <div id="paginationButtons" class="flex justify-center mt-8">
-      {{ $announcement->links() }} <!-- Display pagination links -->
-    </div>
-  </div>
-</section>
+
 
 
 
