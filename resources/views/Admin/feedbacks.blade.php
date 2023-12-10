@@ -85,7 +85,7 @@
   }
 
   function reloadDataTable() {
-  let dataTable = $('#feedback-table-container').DataTable();
+  var dataTable = $('#feedback-table-container');
   dataTable.ajax.reload();
 }
 
