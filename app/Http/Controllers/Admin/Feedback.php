@@ -10,15 +10,20 @@ class Feedback extends Controller
 {
     //
 
-    public function Feedback(){
-        if(session('USER')){
+    public function Feedback()
+    {
+        if (session('USER')) {
             return redirect('/');
-        }else if(session('STAFF') || session('ADMIN')){
-            return view('Admin.feedbacks');
-        }else{
+        } else if (session('STAFF') || session('ADMIN')) {
+            // Fetch all feedback data from the 'feedback' table
+            $data = ModelFeedback::all();
+    
+            return view('Admin.feedbacks', ['feedback' => $data]);
+        } else {
             return redirect('signin');
         }
     }
+    
 
     public function Create_Feedback(Request $request)  {
         $message=$request->message;
@@ -43,11 +48,4 @@ class Feedback extends Controller
 
     }
 
-    public function getAllFeedback()
-    {
-        // Fetch all feedback data from the 'feedback' table
-        $data = ModelFeedback::all();
-
-        return response()->json(['feedback' => $data], 200);
-    }
 }

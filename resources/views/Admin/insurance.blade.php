@@ -58,11 +58,11 @@
 
       <div class=" flex justify-end space-x-2">
 
-<button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
+        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
 
-<button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
-<button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-yellow-500 text-white font-semibold " type="button">Print</button>
-</div>
+        <button id="open-export-modal-form-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
+        <button id="open-reports-modal-form-btn" class="p-2 rounded-lg bg-yellow-500 text-white font-semibold " type="button">Print</button>
+      </div>
 
     </div>
   </div>
@@ -845,38 +845,38 @@
     });
   });
 
-  function ImagePreview(){
-      // Function to display the selected image preview or remove if input is empty
-      function displayImagePreview(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                $('#imagePreview').html('<img src="' + e.target.result + '" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />');
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            // Remove the preview if no file is selected or input is empty
-            $('#imagePreview').empty();
+  function ImagePreview() {
+    // Function to display the selected image preview or remove if input is empty
+    function displayImagePreview(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $('#imagePreview').html('<img src="' + e.target.result + '" alt="Profile Image" style="max-width: 200px; max-height: 200px;" />');
         }
+
+        reader.readAsDataURL(input.files[0]);
+      } else {
+        // Remove the preview if no file is selected or input is empty
+        $('#imagePreview').empty();
+      }
     }
-    
+
     // Trigger the displayImagePreview function when a file is selected or input changes
     $('#proof_of_payment').change(function() {
-        displayImagePreview(this);
+      displayImagePreview(this);
     });
-    
+
     // Handle clearing the input (manually or via script)
     $('#proof_of_payment').on('click', function() {
-        // Check if the input is empty when clicked
-        if (!$(this).val()) {
-            // Remove the preview if the input is empty
-            $('#imagePreview').empty();
-        }
+      // Check if the input is empty when clicked
+      if (!$(this).val()) {
+        // Remove the preview if the input is empty
+        $('#imagePreview').empty();
+      }
     });
-  
-}
+
+  }
 
   function Account_To_Notified() {
     $.ajax({
@@ -1038,11 +1038,11 @@
         processData: false,
         contentType: false,
         success: function(response) {
-        
+
           console.log(response)
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
 
             alert(response.success)
             localStorage.setItem('annual_report', JSON.stringify(response.annual))
@@ -1052,7 +1052,7 @@
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1084,7 +1084,7 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             localStorage.setItem('monthly_report', JSON.stringify(response.monthly))
             localStorage.setItem('ongoing_report', 'monthly')
@@ -1093,7 +1093,7 @@
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1125,7 +1125,7 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
 
             const Program = localStorage.setItem('membership_program_levels', JSON.stringify(response.program.level))
             const level_progam = localStorage.setItem('membership_programlevels', response.program.program)
@@ -1138,7 +1138,7 @@
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1171,7 +1171,7 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             var muni = JSON.stringify(response.municipal_data.members)
 
             var Program = localStorage.setItem('municipality_records', muni)
@@ -1185,7 +1185,7 @@
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1217,7 +1217,7 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             var mem_data = JSON.stringify(response.barangay_data.members)
             var Program = localStorage.setItem('barangay_records', mem_data)
             var muncipality = localStorage.setItem('municipality_name_data', response.barangay_data.municipality)
@@ -1229,7 +1229,7 @@
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
 
@@ -1329,7 +1329,7 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             $('#decline-membership-form')[0].reset()
             $('#decline-membership-account-modal').addClass('hidden')
@@ -1337,11 +1337,11 @@
             Pending_Membership()
           } else if (response.failed) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert('Network error!')
           }
         },
@@ -1371,13 +1371,13 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.success)
             window.location.href = "{{url('export-membership')}}"
 
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
 
           }
@@ -1406,13 +1406,13 @@
         success: function(response) {
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             $('#membership-accounts-table').empty()
             Pending_Membership()
             alert(response.success)
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             alert(response.failed)
           }
         },
@@ -1574,10 +1574,10 @@
         processData: false,
         contentType: false,
         success: function(response) {
-    
+
           if (response.success) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             $('#create-membership-account')[0].reset()
             $('#success-message').text(response.success)
             $('#membership-accounts-table').empty()
@@ -1585,7 +1585,7 @@
             alert(response.success)
           } else if (response.failed) {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             $('#spinner').addClass('hidden')
 
             $('#failed').removeClass('hidden')
@@ -1593,18 +1593,18 @@
             $('#failed-message').text(response.failed)
           } else {
             submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+            submit.removeClass('opacity-50 cursor-not-allowed')
             $('#spinner').addClass('hidden')
 
             $('#failed').removeClass('hidden')
             $('#failed').addClass('block')
             if (response.errors.email === "The email has already been taken.") {
               submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+              submit.removeClass('opacity-50 cursor-not-allowed')
               $('#failed-message').text(response.errors.email)
             } else {
               submit.prop('disabled', false)
-          submit.removeClass('opacity-50 cursor-not-allowed')
+              submit.removeClass('opacity-50 cursor-not-allowed')
               $('#failed-message').text('All fields are required!')
             }
             $.each(response.errors, function(field, errorMessage) {

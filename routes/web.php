@@ -192,9 +192,7 @@ Route::get('submitted-appointments',[Appointments::class,'Appointments_Submitted
 
 
 
-
-Route::get('user-feedback',[Feedback::class,'Feedback']);
-Route::get('feedback/all',[Feedback::class,'getAllFeedback']);
+Route::get('feedback/all',[Feedback::class,'Feedback']);
 
 
 Route::get('reports',[Reports::class,'Reports']);
