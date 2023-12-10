@@ -1,5 +1,5 @@
 @extends('layout.admin.layout')
-@section('feedback')
+@section('feedbacks')
 
 <title>PRC ORMIN | Feedback</title>
 <div class="py-2 px-10">
