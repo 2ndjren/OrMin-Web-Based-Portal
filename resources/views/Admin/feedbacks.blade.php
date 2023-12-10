@@ -14,7 +14,7 @@
 </div>
 
 <div id="show-feedback-details-modal" class="fixed hidden inset-0 flex items-center justify-center z-10 bg-black bg-opacity-50 overflow-y-auto">
-  <div class="modal-container bg-white w-auto p-4 rounded-lg shadow-lg mx-5">
+  <div class="modal-container bg-white w-auto max-w-5/8 p-4 rounded-lg shadow-lg mx-5">
     <div class="px-4 py-3">
       <p class="text-2xl text-center font-semibold text-green-500">Feedback's Overview</p>
     </div>
@@ -110,17 +110,17 @@
 
           var details = "<div>";
 
-          details += "<p class='text-xs text-gray-500'>" + formattedDate + " " + formattedTime + "</p>";
+          details += "<p class='text-sm text-gray-500'>" + formattedDate + " " + formattedTime + "</p>";
 
           details += "<p class='border-y-2 border-gray-500 py-2'>" + response.message + "</p>";
 
         
-          details += "<p class='text-gray-400'>" + response.identity + "</p>";
+          details += "<p class='text-gray-600'>" + response.identity + "</p>";
        
 
             details+="<div class='flex justify-end mt-3 space-x-2'>"
           details += "<div class='text-left'>";
-          details += "<button type='button' class='close-feedback-modal-btn close px-2 py-1 rounded-md bg-blue-500 text-white font-semibold'>Close</button>";
+          details += "<button type='button' class='close-feedback-modal-btn close px-2 py-1 rounded-md mx-2 bg-blue-500 text-white font-semibold'>Close</button>";
           details += "<button type='button' id='delete-btn' data-id=" + response.id + " class='px-2 py-1 rounded-md bg-red-500 text-white font-semibold'>Delete</button>";
           details += "</div>";
 
