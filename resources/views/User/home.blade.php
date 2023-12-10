@@ -61,7 +61,9 @@
     Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
 </h3>
           <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+          <button onclick="loadFullAnnouncement('{{ $announcements->id }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+
+ 
           </div>
       </div>
       @endforeach
@@ -308,8 +310,26 @@
   // Call the function when the page finishes loading
   window.addEventListener('load', scrollToAnnouncementCards);
 
-  function showFullAnnouncement(fullText) {
-    window.alert(fullText);}
+  function loadFullAnnouncement(id) {
+        // AJAX request to fetch the full announcement content
+        $.ajax({
+            type: 'GET',
+            url: '/announcement/' + id, // Replace with your route for fetching the full announcement
+            success: function(response) {
+                // Handle the response here - it could be HTML or JSON data depending on your backend
+                // For example, you might update a specific section on your page with the loaded content
+                $('#fullAnnouncement').html(response); // Assuming 'fullAnnouncement' is an HTML element where you want to display the content
+            },
+            error: function(error) {
+                console.error('Error fetching announcement:', error);
+            }
+        });
+      }
+
+
+
+
+    
     
 </script>
 

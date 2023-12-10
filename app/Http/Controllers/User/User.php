@@ -409,5 +409,25 @@ class User extends Controller
     }
 
     
+
+    public function Announcement($announcementId) {
+        if (session("USER")) {
+            // Fetch the specific announcement by ID using the Announcement model
+            $announcement = Announcement::find($announcementId);
+    
+            if ($announcement) {
+                // Pass the fetched announcement to the view
+                return view('User.single_announcement', ['announcement' => $announcement]);
+            } else {
+                // If the announcement is not found, handle accordingly (e.g., redirect or show an error)
+                return redirect()->back()->with('error', 'Announcement not found.');
+            }
+        } elseif (session('ADMIN') || session('STAFF')) {
+            return redirect('dashboard');
+        } else {
+            return redirect('/');
+        }
+    }
+    
    
 }
