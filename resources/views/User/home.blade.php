@@ -64,6 +64,34 @@
   </div>
 
 
+   <section class="h-auto bg-white" id="services">
+   
+   <!-- Add this to your Blade template or HTML file -->
+
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @foreach($announcements as $announcement)
+            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
+                <p class="text-gray-600 mb-4 announcement-content">
+                    {{ $announcement->content }}
+                </p>
+                <button class="read-more-btn text-blue-500 hover:underline focus:outline-none">
+                    Read More
+                </button>
+            </div>
+        @endforeach
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-4">
+        {{ $announcements->links() }}
+    </div>
+</div>
+
+  </section>
+
+
   <section class="h-auto bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
@@ -79,8 +107,6 @@
               <a href="/auth/signin" class="btn text-white bg-red-500 hover:bg-red-800 px-6  py-3 rounded-xl">JOIN US</a>
             </li>
           </ul>
-
-
         </div>
       </div>
     </div>
@@ -276,39 +302,59 @@
     });
   }
 
-  // function scrollToAnnouncementCards() {
-  //   const announcementCardsSection = document.getElementById('announcementCards');
-  //   if (announcementCardsSection) {
-  //     announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // }
+ // Function to fetch announcements
+ function fetchAnnouncements(page) {
+        $.ajax({
+            url: '/announcements?page=' + page,
+            type: 'GET',
+            success: function(response) {
+                $('#announcements').empty();
+                $.each(response.data, function(index, announcement) {
+                    // Render each announcement
+                    var content = (announcement.content.length > 150) ? announcement.content.substring(0, 150) + '...' : announcement.content;
+                    var announcementHtml = `
+                        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                            <h2 class="text-xl font-semibold mb-2">${announcement.title}</h2>
+                            <p class="text-gray-600 mb-4 announcement-content">
+                                ${content}
+                            </p>
+                            <button class="read-more-btn text-blue-500 hover:underline" onclick="showFullContent(${announcement.id})">
+                                Read More
+                            </button>
+                            <p class="full-content hidden">${announcement.content}</p>
+                        </div>
+                    `;
+                    $('#announcements').append(announcementHtml);
+                });
 
-  // // Call the function when the page finishes loading
-  // window.addEventListener('load', scrollToAnnouncementCards);
+                // Update pagination links
+                $('#pagination-links').html(response.links);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
 
-  // function showFullAnnouncement(fullText) {
-  //   window.alert(fullText);}
+    // Initial load of announcements
+    $(document).ready(function() {
+        fetchAnnouncements(1); // Load first page
+    });
+
+    // Function to handle pagination click
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var page = $(this).attr('href').split('page=')[1];
+        fetchAnnouncements(page);
+    });
+
+    // Function to show full content on "Read More" click
+    function showFullContent(id) {
+        $(`.announcement-content`).show();
+        $(`.full-content`).hide();
+        $(`#${id} .announcement-content`).hide();
+        $(`#${id} .full-content`).show();
+    }
 </script>
-<!-- <script>
-  // Initialization for ES Users
-
-  import {
-    Carousel,
-    initTE,
-  } from "tw-elements";
-
-  initTE({
-    Carousel
-  });
-</script> -->
-
-
-
-
-<!-- module.exports = {
-//...
-plugins: [require("daisyui")],
-} -->
-
 
 @endsection

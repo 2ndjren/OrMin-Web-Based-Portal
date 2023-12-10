@@ -70,11 +70,7 @@ class Announcements extends Controller
         $poster=user::find($id);
         return response()->json($poster);
     }
-    // public function Find_Post($id){
-    //     $user=announcement::find($id);
-    //     $poster=$user->announcement;
-    //     return response()->json($poster);
-    // }
+
 
     public function Find_Post($id){
         $announcement = Announcement::find($id);
@@ -104,6 +100,15 @@ public function repostAnnouncement($id)
     return response()->json(['message' => 'Announcement marked as latest']);
 
 }
-    
+
+
+public function getAllAnnouncements()
+{
+    // Retrieve paginated announcements from the database
+    $announcements = Announcement::paginate(10); // Change the number based on your requirement
+
+    // Return the announcements along with the view
+    return view('announcements.index', ['announcements' => $announcements]);
+}
 
 }
