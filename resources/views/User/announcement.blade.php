@@ -1,52 +1,11 @@
 @extends('layout.user.layout')
-@section('home')
+@section('announcement')
 
 
-<title>Welcome to PRC ORMIN</title>
-<div class="h-screen w-full overflow-y-auto ">
-  <div class="py-4">
-  <div class="bg-video-container relative w-full h-screen">
-    <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
-        <source src="static/user/animated.webm" type="video/webm">
-        Your browser does not support the video tag.
-    </video>
+<title>PRC ORMIN|Announcement</title>
 
-    <!-- Content goes here -->
-    <div class=" h-screen shadow-lg relative">
+     
 
-      <div class=" bg-white bg-opacity-50">
-        <div class=" xl:p-8 xl:py-24 p-2">
-          <div class="flex flex-col lg:flex-row">
-            <!-- Larger left-side column (for screens larger than lg) -->
-            <div class="lg:w-2/3  p-8 ">
-              <!-- Content for the larger column goes here -->
-              <div class="py-4">
-                <div class="block text-center xl:text-left space-y-2 ">
-                  <p class="text-gray-800 font-bold text-2xl xl:text-4xl text-shadow-sm">PHILIPPINE</p>
-                  <p class="text-blue-800 font-bold text-4xl xl:text-6xl text-shadow-sm transition-transform ease-in-out transform hover:scale-110"><span class="text-red-700">RED CROSS</span> ASSOCIATION</p>
-                  <p class="text-gray-800 text-2xl xl:text-5xl font-bold ">Oriental Mindoro Chapter</p>
-                  <p class="text-gray-800 text-md xl:text-xl  font-italic justify-items-end">A portal can serve as a central hub for communication between you, the chapter, its members, volunteers, and the public. It allows for efficient sharing of important information, updates, and news related to your Red Cross activities and initiatives in the region.</p>
-
-                  <button class="bg-blue-800 hover:bg-red-700 text-white font-bold mt-4 py-4 px-6 rounded transition-transform ease-in-out transform hover:scale-110">
-                    Get Involved!
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Smaller right-side column (for screens larger than lg) -->
-            <div class="lg:w-1/3  xl-w-1/4 p-8  xl:justify-start">
-              <!-- Content for the smaller column goes here -->
-              <div class="flex justify-center">
-                <iframe width="560" height="400" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
 
   </div>
 
