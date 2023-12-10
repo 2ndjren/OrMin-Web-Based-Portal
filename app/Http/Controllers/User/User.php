@@ -28,7 +28,7 @@ class User extends Controller
             return redirect('dashboard');
         } else {
             $announcements = Announcement::paginate(10); // Change the number based on your requirement
-            return view('User.home', ['announcement' => $announcements]);
+            return view('User.home', ['announcements' => $announcements]);
         }
     }
     
