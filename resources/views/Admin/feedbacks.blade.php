@@ -26,12 +26,12 @@
 
 <script>
   $(document).ready(function() {
-    initializeDataTable();
+    getAll();
     Feedback_Btn();
     // reloadDataTable();
   });
 
-  function initializeDataTable() {
+  function getAll() {
     var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
 
     feedback_records += "<thead>";
@@ -152,7 +152,6 @@ function reloadDataTable(dataTable) {
     $(document).on('click', '#delete-btn', function() {
       
         var feedbackID = $(this).data('id');
-        let dataTable = initializeDataTable();
 
         // Display a confirmation dialog before proceeding with deletion
         if (confirm('Are you sure you want to delete this feedback?')) {
@@ -169,7 +168,7 @@ function reloadDataTable(dataTable) {
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                    reloadDataTable(dataTable);
+                     reloadDataTable(dataTable);
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);
