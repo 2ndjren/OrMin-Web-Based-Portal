@@ -53,6 +53,10 @@
                 <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                         <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
                     </a></li>
+
+                    <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
+                        <i class="fa-solid fa-bullhorn mr-2"></i> <span>Feedback</span>
+                    </a></li>
                 <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                 <i class="fa-solid fa-calendar-check mr-2"></i> <span>Appointments</span>
                     </a></li> -->
@@ -146,6 +150,7 @@
                 @yield('volunteers')
                 @yield('donations')
                 @yield('announcements')
+                @yield('feedbacks')
                 @yield('appointments')
                 @yield('chats')
                 @yield('accounts')
