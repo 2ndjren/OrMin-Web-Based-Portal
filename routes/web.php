@@ -7,14 +7,14 @@ use App\Http\Controllers\Admin\Appointments;
 use App\Http\Controllers\Admin\Chats;
 use App\Http\Controllers\Admin\Donations;
 use App\Http\Controllers\Admin\Feedback;
-use App\Http\Controllers\Admin\Feedbacks;
+// use App\Http\Controllers\Admin\Feedbacks;
 use App\Http\Controllers\Admin\Generate_Reports;
 use App\Http\Controllers\Admin\Imports;
-use App\Http\Controllers\Admin\Insurance;
+// use App\Http\Controllers\Admin\Insurance;
 use App\Http\Controllers\Admin\Membership;
 use App\Http\Controllers\Admin\Print_Report;
 use App\Http\Controllers\Admin\Reports;
-use App\Http\Controllers\Admin\Users;
+// use App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Admin\Volunteers;
 use App\Http\Controllers\User\User_Volunteers;
 use App\Http\Controllers\Auth\Auth;
@@ -191,9 +191,9 @@ Route::get('submitted-appointments',[Appointments::class,'Appointments_Submitted
 
 
 
-// Route::get('feedbacks',[Feedbacks::class,'Feedbacks']);
 
-// Route::get('user-feedback',[Feedbacks::class,'Feedbacks']);
+
+Route::get('user-feedback',[Feedback::class,'Feedback']);
 
 
 Route::get('reports',[Reports::class,'Reports']);
