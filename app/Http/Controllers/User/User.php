@@ -19,21 +19,19 @@ use Illuminate\Support\Facades\Validator;
 class User extends Controller
 {
     //
-    public function home(){
+    public function Home(){
         if(session("USER")){
-           return view('User.home');
-        }
-        elseif(session('ADMIN')||session('STAFF')){
+            return view('User.home');
+        } elseif(session('ADMIN') || session('STAFF')){
             return redirect('dashboard');
-        }
-        else{
-
-              // Retrieve announcements from the database
-        $announcements = Announcement::paginate(10); // Assuming 10 announcements per page
-
-        return view('User.home', compact('announcements'));
+        } else {
+            // Retrieve announcements from the database
+            $announcements = Announcement::paginate(10); // Assuming 10 announcements per page
+    
+            return view('User.home', compact('announcements'));
         }
     }
+    
     public function Appointment(){
         return view('User.appointment');
     }
