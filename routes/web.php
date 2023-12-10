@@ -64,6 +64,13 @@ Route::get('userinsurance',[User::class,'MyInsurance']);
 Route::post('create-user-appointment',[User::class,'Create_User_Appointment']);
 Route::get('my-appointments',[User::class,'User_Appointments']);
 Route::get('my-appointments-details/{id}',[User::class,'User_Appointment_Details']);
+Route::get('my-existing-appointments',[User::class,'Existing_Appointment']);
+Route::get('user-scheduled-appointments',[User::class,'Scheduled_Appointements']);
+Route::get('user-exist-check',[User::class,'Check_User']);
+Route::get('user-today-schedule',[User::class,'Today_Appointments']);
+Route::get('cancel-appointment/{id}',[User::class,'Cancel_Appointments']);
+
+
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);
 Route::get('my-blood-donation-history',[User::class,'blood_history']);
 Route::post('create-user-membership',[User::class,'Create_Membership_Account']);

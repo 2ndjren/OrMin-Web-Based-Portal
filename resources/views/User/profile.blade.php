@@ -64,12 +64,12 @@
       <div class=" bg-gray-200 p-3">
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
-      <div class=" my-2">
+      <div id="set-an-appointment-btn" class=" flex justify-center hidden my-4">
         <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a>
       </div>
       <div class="">
         <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
-          <thead>
+          <thead class="bg-blue-500 text-white">
             <tr>
               <th>Date</th>
               <th>Time</th>
@@ -310,6 +310,39 @@
   </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- appointment-modal -->
+<div id="appointment-details-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+    <div id="decline-membership-note" class="w-full">
+      <p class="font-semibold text-center text-blue-500 ">Appointment Details</p>
+      <div id="myappointment-details">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 <script>
   $(document).ready(function () {
     SelectInsuranceLevel()
@@ -319,6 +352,8 @@
     Edit_Profile()
     MyAppointments()
     Show_My_Appointment()
+    Check_Existing_Appointment()
+    Appointment_Btn()
   });
 
 
@@ -399,10 +434,105 @@ function Show_My_Appointment(){
       dataType: "json",
       success: function (response) {
         console.log(response)
+        $('#myappointment-details').empty()
+        var start = new Date(response.app_date);
+
+var day = start.getDate();
+var month = start.getMonth() + 1;
+var year = start.getFullYear();
+
+var months = [
+  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+ var monthss = months[month - 1];
+        var details="<div>"
+        details+="<p>Date: <span class='ml-2'>"+monthss+" "+day+", "+year+"</span><p>"
+        details+="<p>Time: <span class='ml-2'>"+response.app_time+"</span><p>"
+        details+="<p>Description: <span class='ml-2'>"+response.app_description+"</span><p>"
+        if(response.note!==null){
+          details+="<p>Note: <span class='ml-2'>"+response.note+"</span><p>"
+          
+        }
+        if(response.status==='PENDING'){
+                  details+="<p>Status:<span class='text-white bg-gray-500 px-2 rounded-md'>"+response.status+"</span></p>"
+
+                  }else if(response.status==='APPROVED'){
+                  details+="<p>Status: <span class='text-white bg-yellow-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                    
+                  }else if(response.status==="ONGOING"){
+                    details+="<p>Status: <span class='text-white bg-green-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  
+                  }else if(response.status==="DECLINED"){
+                    details+="<p>Status: <span class='text-white bg-blue-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  }else if(response.status==="CANCELLED"){
+                    details+="<p>Status: <span class='text-black border-2 bg-white px-2 rounded-md'>"+response.status+"</span></p>"
+                  }else if(response.status==="DONE"){
+                    details+="<p>Status: <span class='text-white bg-orange-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  }
+                  details+="<div class='flex justify-center spcae-x-2 mt-5'>"
+                  if(response.status==='PENDING'|| response.status==='APPROVED'){
+                    details+="<button class='px-2 py-2 rounded-md bg-blue-500 text-white' type='button' data-id='"+response.id+"' id='cancel-appointment'>Cancel Appointment</button>"
+                    
+                  }
+                  details+="<button class='px-2 py-2 ml-2 rounded-md bg-gray-500 text-white mr-2' type='button' data-id='"+response.id+"' id='close-appointment-details'>Close</button>"
+                  details+="</div>"
+
+        details+="</div>"
+        $('#myappointment-details').append(details)
+        $('#appointment-details-modal').removeClass('hidden')
       }
     });
   })
   
+}
+function Appointment_Btn(){
+  $(document).on('click','#close-appointment-details',function(){
+    $('#myappointment-details').empty()
+    $('#appointment-details-modal').addClass('hidden')
+
+  })
+  $(document).on('click','#cancel-appointment',function(){
+    var id=$(this).data('id')
+    $.ajax({
+      type: "GET",
+      url: "/cancel-appointment/"+id,
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        if(response.success){
+          Check_Existing_Appointment()
+          MyAppointments()
+          alert(response.success)
+        }else{
+          alert(response.failed)
+        }
+        
+      }
+    });
+    $('#myappointment-details').empty()
+    $('#appointment-details-modal').addClass('hidden')
+
+  })
+  
+}
+
+
+function Check_Existing_Appointment(){
+  $.ajax({
+    type: "GET",
+    url: "/my-existing-appointments",
+    data: "data",
+    dataType: "json",
+    success: function (response) {
+      console.log(response)
+      if(response.results){
+        $('#set-an-appointment-btn').removeClass('hidden')
+      }else{
+        $('#set-an-appointment-btn').addClass('hidden')
+      }
+    }
+  });
 }
 function MyAppointments(){
   $.ajax({
@@ -411,13 +541,30 @@ function MyAppointments(){
     data: "data",
     dataType: "json",
     success: function (response) {
+      $('#appointment-table tbody').empty();
       console.log(response)
       if(response!==null){
         $.each(response, function (index, field) { 
           var datalist="<tr>"
-           datalist+="<td><button class='appointment-btn' type='button' data-id='"+field.id+"'>"+field.app_date+"</button></td>"
+           datalist+="<td><button class='appointment-btn hover:underline' type='button' data-id='"+field.id+"'>"+field.app_date+"</button></td>"
            datalist+="<td>"+field.app_time+"</td>"
-           datalist+="<td>"+field.status+"</td>"
+           if(field.status==='PENDING'){
+            datalist+="<td><span class='text-white bg-gray-500 px-2 rounded-md'>"+field.status+"</span></td>"
+
+                  }else if(field.status==='APPROVED'){
+                  datalist+="<td> <span class='text-white bg-yellow-500 px-2 rounded-md'>"+field.status+"</span></td>"
+                    
+                  }else if(field.status==="ONGOING"){
+                    datalist+="<td> <span class='text-white bg-green-500 px-2 rounded-md'>"+field.status+"</span></td>"
+                  
+                  }else if(field.status==="DECLINED"){
+                    datalist+="<td> <span class='text-white bg-blue-500 px-2 rounded-md'>"+field.status+"</span></td>"
+                  }else if(field.status==="CANCELLED"){
+                    datalist+="<td> <span class='text-black border-2 bg-white px-2 rounded-md'>"+field.status+"</span></td>"
+                  }else if(field.status==="DONE"){
+                    datalist+="<td> <span class='text-white bg-orange-500 px-2 rounded-md'>"+field.status+"</span></td>"
+                  }
+          
            datalist+="<tr>"
          $('#appointment-table tbody').append(datalist);
         });

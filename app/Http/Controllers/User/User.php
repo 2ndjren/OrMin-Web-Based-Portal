@@ -32,6 +32,15 @@ class User extends Controller
     public function Appointment(){
         return view('User.appointment');
     }
+    public function Scheduled_Appointements(){
+        $checker=appointments::whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
+        $schedule=appointments::whereIn('status',['PENDING','APPROVED','ONGOING'])->orderBy('app_date','asc')->orderBy('app_time','asc')->get();
+        if($checker >0){
+            return response()->json($schedule);
+        }else{
+            return response()->json(['results'=>'No appointments found!']);
+        }
+    }
     public function Create_User_Appointment(Request $request){
         $rules=[
             'app_date'=>'required',
@@ -42,20 +51,26 @@ class User extends Controller
         if($validator->fails()){
             return response()->json(['failed'=>'All fields are required!']);
         }
-        $id=mt_rand(11111111,999999999);
-        $create= new appointments();
-        $create->u_id=session('USER')['id'];
-        $create->id=$id;
-        $create->app_date=$request->app_date;
-        $create->app_time=$request->app_time;
-        $create->app_description=$request->app_description;
-        $create->status="PENDING";
-        $saved=$create->save();
-        if($saved){
-            return response()->json(['success'=>'Appointment successfully submitted!']);
+        $checker=appointments::where('app_date',$request->app_date)->where('app_time',$request->app_time)->whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
+        if($checker>0){
+            return response()->json(['failed'=>'Schedule already taken!']);
         }else{
-            return response()->json(['failed'=>'Something went wrong!']);
+            $id=mt_rand(11111111,999999999);
+            $create= new appointments();
+            $create->u_id=session('USER')['id'];
+            $create->id=$id;
+            $create->app_date=$request->app_date;
+            $create->app_time=$request->app_time;
+            $create->app_description=$request->app_description;
+            $create->status="PENDING";
+            $saved=$create->save();
+            if($saved){
+                return response()->json(['success'=>'Appointment successfully submitted!']);
+            }else{
+                return response()->json(['failed'=>'Something went wrong!']);
+            }
         }
+       
         
 
     }
@@ -108,17 +123,69 @@ class User extends Controller
                 return response()->json(['failed'=>'No changes yet!']);
             }
         }
+        
       
+    }
+    public function Check_User(){
+     if(session('USER')['id']){
+        $check=appointments::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
+        $exist=appointments::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','APPROVED','ONGOING'])->first();
+        if($check>0){
+            return response()->json($exist);
+        }else{
+            return response()->json(['results'=>'Set yours now!']);
+
+        }
+     }
+    }
+    public function Today_Appointments(){
+        $today=date('Y-m-d');
+        $check=appointments::where('app_date',$today)->whereIn('status',['APPROVED','ONGOING'])->count();
+        $exist=appointments::where('app_date',$today)->whereIn('status',['APPROVED','ONGOING'])->get();
+        if($check>0){
+            return response()->json($exist);
+        }else{
+            return response()->json(['results'=>'No scheduled appointments today!']);
+        }
+        
+
     }
 
 
     public function User_Appointments(){
+        $check=appointments::where('u_id',session('USER')['id'])->count();
         $myapp=appointments::where('u_id',session('USER')['id'])->orderBy('updated_at','desc')->get();
+       if($check>0){
         return response()->json($myapp);
+    }else{
+           return response()->json(['resutls'=>'No history']);
+
+       }
+    }
+
+    public function Cancel_Appointments($id){
+        $cancelled=appointments::where('id',$id)->update([
+            'status'=>'CANCELLED',
+        ]);
+        if($cancelled){
+            return response()->json(['success'=>'Appointment cancellation successfull!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong']);
+
+        }
     }
     public function User_Appointment_Details($id){
         $user= appointments::find($id);
         return response()->json($user);
+    }
+
+    public function Existing_Appointment(){
+        $existing=appointments::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','APPROVED','ONGOING'])->first();
+        if($existing!=null){
+            return response()->json($existing);
+        }else{
+            return response()->json(['results'=>'No existing appointments now!']);
+        }
     }
 
     
