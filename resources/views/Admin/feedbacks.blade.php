@@ -72,10 +72,13 @@
         console.log("Success: ", response);
       },
       "error": function(xhr, status, error) {
-        console.log("Error: ", xhr, status, error);
         window.alert(xhr.responseText);
       }
     });
+
+    $(document).on('click', '.show-feedback-details-btn ', function() {
+    $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
+  });
   }
 
 
@@ -98,7 +101,7 @@
         details += "<p>" + response.identity + "</p>";
         details += "<p>" + response.u_id + "</p>";
 
-        details += "<button type='button' id='show-feedback-modal-btn' class=' px-2 py-1 rounded-md bg-blue-500 text-white font-semibold'>Close</button>";
+        details += "<button type='button' class='close-feedback-modal-btn close px-2 py-1 rounded-md bg-blue-500 text-white font-semibold'>Close</button>";
         details += "<button type='button' id='delete-btn' data-id=" + response.id + " class='px-2 py-1 rounded-md bg-red-500 text-white font-semibold'>Delete</button>";
 
         details += "</div>";
@@ -116,9 +119,7 @@
     $('#show-feedback-details-modal').removeClass('block').addClass('hidden');
   });
 
-  $(document).on('click', '.show-feedback-details-btn ', function() {
-    $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
-  });
+
 }
 
 </script>

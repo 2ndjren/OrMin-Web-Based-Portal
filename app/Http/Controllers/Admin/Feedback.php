@@ -55,13 +55,14 @@ class Feedback extends Controller
     {
         // Fetch a specific feedback by ID
         $specificFeedback = ModelFeedback::find($id);
-
+    
         if (!$specificFeedback) {
             return response()->json(['message' => 'Feedback not found'], 404);
         }
-
-        return response()->json(['feedback' => $specificFeedback], 200);
+    
+        return response()->json($specificFeedback, 200);
     }
+    
 
     public function deleteFeedback($id)
     {
