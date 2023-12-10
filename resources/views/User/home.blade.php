@@ -68,12 +68,25 @@
    
    <!-- Add this to your Blade template or HTML file -->
 
-<<div class="container mx-auto p-4" id="announcement-container">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="announcements">
-        <!-- Announcements will be dynamically loaded here -->
+<div class="container mx-auto p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @foreach($announcements as $announcement)
+            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
+                <p class="text-gray-600 mb-4 announcement-content">
+                    {{ $announcement->content }}
+                </p>
+                <button class="read-more-btn text-blue-500 hover:underline focus:outline-none">
+                    Read More
+                </button>
+            </div>
+        @endforeach
     </div>
 
-
+    <!-- Pagination -->
+    <div class="mt-4">
+        {{ $announcements->links() }}
+    </div>
 </div>
 
   </section>
@@ -289,59 +302,28 @@
     });
   }
 
- // Function to fetch announcements
- function fetchAnnouncements(page) {
-        $.ajax({
-            url: '/announcements?page=' + page,
-            type: 'GET',
-            success: function(response) {
-                $('#announcements').empty();
-                $.each(response.data, function(index, announcement) {
-                    // Render each announcement
-                    var content = (announcement.content.length > 150) ? announcement.content.substring(0, 150) + '...' : announcement.content;
-                    var announcementHtml = `
-                        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                            <h2 class="text-xl font-semibold mb-2">${announcement.title}</h2>
-                            <p class="text-gray-600 mb-4 announcement-content">
-                                ${content}
-                            </p>
-                            <button class="read-more-btn text-blue-500 hover:underline" onclick="showFullContent(${announcement.id})">
-                                Read More
-                            </button>
-                            <p class="full-content hidden">${announcement.content}</p>
-                        </div>
-                    `;
-                    $('#announcements').append(announcementHtml);
-                });
 
-                // Update pagination links
-                $('#pagination-links').html(response.links);
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    }
 
-    // Initial load of announcements
-    $(document).ready(function() {
-        fetchAnnouncements(1); // Load first page
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all elements with the 'announcement-content' class
+    const announcementContents = document.querySelectorAll('.announcement-content');
+
+    // Add event listener to each announcement content
+    announcementContents.forEach(function (content) {
+        // Check if the content needs trimming
+        if (content.scrollHeight > content.clientHeight) {
+            // Show the "Read More" button
+            content.nextElementSibling.style.display = 'block';
+
+            // Add event listener to the "Read More" button
+            content.nextElementSibling.addEventListener('click', function () {
+                // Toggle the class to show/hide content
+                content.classList.toggle('truncate');
+            });
+        }
     });
-
-    // Function to handle pagination click
-    $(document).on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        var page = $(this).attr('href').split('page=')[1];
-        fetchAnnouncements(page);
-    });
-
-    // Function to show full content on "Read More" click
-    function showFullContent(id) {
-        $(`.announcement-content`).show();
-        $(`.full-content`).hide();
-        $(`#${id} .announcement-content`).hide();
-        $(`#${id} .full-content`).show();
-    }
+});
 </script>
+
 
 @endsection
