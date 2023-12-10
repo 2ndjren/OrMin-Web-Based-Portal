@@ -28,7 +28,7 @@
   $(document).ready(function() {
     getAll();
     Feedback_Btn();
-    reloadDataTable()
+    reloadDataTable();
   });
 
   function getAll() {
@@ -85,11 +85,8 @@
   }
 
   function reloadDataTable() {
-  // Destroy the existing DataTable
-  $('#feedback-table-container').DataTable().destroy();
-
-  // Reinitialize the DataTable
-  getAll();
+  let dataTable = $('#feedback-table-container').DataTable();
+  dataTable.ajax.reload();
 }
 
 
@@ -168,7 +165,7 @@
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                    reloadDataTable()
+                    reloadDataTable();
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);
