@@ -3,9 +3,9 @@
 
 
 <title>Welcome to PRC ORMIN</title>
-<div class="h-screen w-full overflow-y-auto ">
+<div class="h-auto w-full overflow-y-auto ">
   <div class="">
-  <div class="bg-video-container relative w-full h-screen">
+  <div class="bg-video-container relative w-full h-auto">
     <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover absolute inset-0">
         <source src="static/user/animated.webm" type="video/webm">
         Your browser does not support the video tag.
