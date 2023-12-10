@@ -28,7 +28,7 @@ class Feedback extends Controller
             $create->id=$id;
             if(session('USER')){
                 $create->u_id=session('USER')['id'];
-                $create->identity=session('USER')['type'];
+                $create->identity=session('USER')['email'];
             }else{
                 $create->identity='ANONYMOUS';
             }
@@ -41,5 +41,13 @@ class Feedback extends Controller
         return response()->json(['failed'=>'To continue please fill up the form first!']);
     }
 
+    }
+
+    public function getAllFeedback()
+    {
+        // Fetch all feedback data from the 'feedback' table
+        $data = ModelFeedback::all();
+
+        return response()->json(['feedback' => $data], 200);
     }
 }
