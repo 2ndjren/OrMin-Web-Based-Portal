@@ -1,12 +1,13 @@
 @extends('layout.admin.layout')
 @section('feedbacks')
+
     <title>PRC ORMIN | User's Feedbacks</title>
     <div class="py-2 px-10">
         <p class="text-2xl text-green-600">Manage User's Feedback</p>
     </div>
 
     <div class="py-10 px-10 h-auto">
-        <div class="bg-white rounded-md w-full overflow-x-auto p-5 space-y-2">
+     
             <div id="feedback-table" class="block w-full"></div>
             
         </div>

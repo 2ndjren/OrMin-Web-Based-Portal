@@ -17,6 +17,7 @@
       <button id="pending-membership-btn" class="p-2 rounded-md text-white bg-green-500">Pending Applications</button>
       <button id="other-membership-btn" class="p-2 rounded-md text-white bg-red-500">More</button>
     </div>
+    
     <div id="membership-accounts-table" class="block w-full">
 
     </div>
