@@ -65,28 +65,44 @@
 
 
    <section class="h-auto bg-white">
-   <!-- HTML structure for the announcement card -->
-<div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-  <!-- Announcement content -->
-  <div class="p-6">
-    <!-- Announcement title -->
-    <h2 class="font-bold text-xl mb-4">Important Announcement</h2>
-    <!-- Announcement text (initially visible) -->
-    <p class="text-gray-700 leading-relaxed">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in velit ut odio posuere dapibus.
-      Curabitur consequat, sapien ac pharetra volutpat, justo lorem interdum tortor, id aliquet neque justo sit amet lorem.
-      Sed quis efficitur lectus. Read more <span class="text-blue-500 cursor-pointer">...</span>
-    </p>
-    <!-- Hidden content (initially not visible) -->
-    <div class="hidden text-gray-700 leading-relaxed mt-4">
-      Additional information: Sed tincidunt, ipsum id malesuada interdum, odio lorem accumsan arcu,
-      vel facilisis sapien libero non tortor. Nulla facilisi.
+   <div class="container mx-auto py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Announcement Card 1 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <h2 class="font-bold text-xl mb-4">Announcement 1</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Content of announcement 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
+        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
+      </div>
     </div>
-    <!-- Read more button -->
-    <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
+
+    <!-- Announcement Card 2 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <h2 class="font-bold text-xl mb-4">Announcement 2</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Content of announcement 2. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
+      </div>
+    </div>
+
+    <!-- Announcement Card 3 -->
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <h2 class="font-bold text-xl mb-4">Announcement 3</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Content of announcement 3. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        </p>
+        <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
+      </div>
+    </div>
   </div>
 </div>
 
+   
   </section>
 
 
@@ -301,27 +317,6 @@
   }
 
 </script>
-
-<script>
-  // Get the elements
-  const readMoreButton = document.querySelector('.max-w-lg .p-6 button');
-  const hiddenContent = document.querySelector('.max-w-lg .p-6 .hidden');
-  const ellipsisSpan = document.querySelector('.max-w-lg .p-6 span');
-
-  // Add click event to toggle content visibility
-  readMoreButton.addEventListener('click', function () {
-    if (hiddenContent.classList.contains('hidden')) {
-      hiddenContent.classList.remove('hidden');
-      readMoreButton.textContent = 'Read Less';
-      ellipsisSpan.style.display = 'none';
-    } else {
-      hiddenContent.classList.add('hidden');
-      readMoreButton.textContent = 'Read More';
-      ellipsisSpan.style.display = 'inline';
-    }
-  });
-</script>
-
 
 
 @endsection
