@@ -4,6 +4,8 @@
 
 <title>PRC ORMIN|Announcement</title>
 
+<h2 class="text-2xl text-gray-400 mb-2">PRC ORMIN | Announcement | {{ $announcement->id }}</h2>
+
 <section class="bg-slate-200 py-8">
   <div class="container mx-auto">
     <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
