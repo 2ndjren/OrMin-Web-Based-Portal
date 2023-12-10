@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 class Feedback extends Controller
 {
     //
+
+    public function Feedback(){
+        if(session('USER')){
+            return redirect('/');
+        }else if(session('STAFF') || session('ADMIN')){
+            return view('Admin.feedbacks');
+        }else{
+            return redirect('signin');
+        }
+    }
+
     public function Create_Feedback(Request $request)  {
         $message=$request->message;
         if($message!=null){
@@ -17,7 +28,7 @@ class Feedback extends Controller
             $create->id=$id;
             if(session('USER')){
                 $create->u_id=session('USER')['id'];
-                $create->identity=session('USER')['type'];
+                $create->identity=session('USER')['email'];
             }else{
                 $create->identity='ANONYMOUS';
             }
@@ -31,4 +42,41 @@ class Feedback extends Controller
     }
 
     }
+
+    public function getAllFeedback()
+    {
+        // Fetch all feedback data from the 'feedback' table
+        $data = ModelFeedback::all();
+
+        return response()->json(['feedback' => $data], 200);
+    }
+
+    public function getSpecificFeedback($id)
+    {
+        // Fetch a specific feedback by ID
+        $specificFeedback = ModelFeedback::find($id);
+    
+        if (!$specificFeedback) {
+            return response()->json(['message' => 'Feedback not found'], 404);
+        }
+    
+        return response()->json($specificFeedback, 200);
+    }
+    
+
+    public function deleteFeedback($id)
+    {
+        // Find the feedback by ID
+        $feedbackToDelete = ModelFeedback::find($id);
+
+        if (!$feedbackToDelete) {
+            return response()->json(['message' => 'Feedback not found'], 404);
+        }
+
+        // Delete the feedback
+        $feedbackToDelete->delete();
+
+        return response()->json(['message' => 'Feedback deleted successfully'], 200);
+    }
+
 }

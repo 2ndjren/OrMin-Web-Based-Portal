@@ -20,7 +20,7 @@
 <body class="bg-gray-100">
     <div class="flex h-screen">
 
-       <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/admin/sidebar.jpg');">
+       <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/user/home/sidebar.jpg');">
 
             <div class="border-b-2 border-gray-300 w-full text-xl p-4 flex flex-col items-center">
                 <img src="{{asset('static/user/home/logo.png')}}" alt="" width="100" />
@@ -52,6 +52,12 @@
                 @endif
                 <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                         <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
+                    </a></li>
+
+       
+
+                    <li><a href="{{url('feedback/view')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
+                        <i class="fa-solid fa-comments mr-2"></i> <span>Feedback</span>
                     </a></li>
                 <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-2 rounded-full flex items-center">
                 <i class="fa-solid fa-calendar-check mr-2"></i> <span>Appointments</span>
@@ -117,6 +123,9 @@
                     <li><a href="{{url('announcements')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-bullhorn mr-2"></i> <span>Announcements</span>
                         </a></li>
+                        <li><a href="{{url('feedback/view')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                            <i class="fa-solid fa-comments  mr-2"></i> <span>Feedback</span>
+                        </a></li>
                     <!-- <li><a href="{{url('appointments')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-solid fa-bullhorn mr-2"></i> <span>Appointments</span>
                         </a></li> -->
@@ -147,6 +156,7 @@
                 @yield('donations')
                 @yield('announcements')
                 @yield('appointments')
+                @yield('feedbacks')
                 @yield('chats')
                 @yield('accounts')
             </div>

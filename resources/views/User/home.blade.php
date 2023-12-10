@@ -226,7 +226,7 @@
           <form id="create-feedback-form" class="w-full">
             @csrf
             <div>
-              <textarea name="message" cols="10" rows="3" placeholder="message" class="mt-3 w-full rounded-xl border border-gray-300 p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
+              <textarea name="message" cols="10" rows="3" placeholder="message" class="mt-3 w-full rounded-lg border border-gray-300 text-black p-3 shadow focus:outline-none focus:ring-2 focus:ring-purple-600"></textarea>
             </div>
             <div class="flex justify-center">
               <button type="submit" class="rounded-xl bg-yellow-400 px-8 py-2 text-white">Submit</button>
@@ -269,7 +269,7 @@
         },
         error: function(xhr, status, error) {
           // Handle errors, if any
-          window.alert(xhr.responseText);
+          window.alert('Something went wrong. Try Again!');
         }
       });
 
