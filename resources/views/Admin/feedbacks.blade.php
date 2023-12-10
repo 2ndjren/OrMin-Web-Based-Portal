@@ -110,7 +110,7 @@
 
           var details = "<div>";
 
-          details += "<p class='text-xs text-gray-400'>" + formattedDate + " " + formattedTime + "</p>";
+          details += "<p class='text-xs text-gray-500'>" + formattedDate + " " + formattedTime + "</p>";
 
           details += "<p class='border-y-2 border-gray-500 py-2'>" + response.message + "</p>";
 
@@ -159,6 +159,7 @@
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
+                    getAll()
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);
