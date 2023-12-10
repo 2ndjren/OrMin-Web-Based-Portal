@@ -70,11 +70,11 @@
 
 <div class="container mx-auto p-4">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($announcements as $announcement)
+        @foreach($announcement as $announcements)
             <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
+                <h2 class="text-xl font-semibold mb-2">{{ $announcements->title }}</h2>
                 <p class="text-gray-600 mb-4 announcement-content">
-                    {{ $announcement->content }}
+                    {{ $announcements->content }}
                 </p>
                 <button class="read-more-btn text-blue-500 hover:underline focus:outline-none">
                     Read More
@@ -85,7 +85,7 @@
 
     <!-- Pagination -->
     <div class="mt-4">
-        {{ $announcements->links() }}
+        {{ $announcement->links() }}
     </div>
 </div>
 
