@@ -417,7 +417,7 @@ class User extends Controller
     
             if ($announcement) {
                 // Pass the fetched announcement to the view
-                return view('User.single_announcement', ['announcement' => $announcement]);
+                return view('User.announcement', ['announcement' => $announcement]);
             } else {
                 // If the announcement is not found, handle accordingly (e.g., redirect or show an error)
                 return redirect()->back()->with('error', 'Announcement not found.');
