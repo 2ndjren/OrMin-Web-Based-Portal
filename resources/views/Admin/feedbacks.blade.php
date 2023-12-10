@@ -28,13 +28,10 @@
   $(document).ready(function() {
     getAll();
     Feedback_Btn();
+    reloadDataTable()
   });
 
   function getAll() {
-
-   
-
-
     var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
 
     feedback_records += "<thead>";
@@ -86,6 +83,14 @@
       $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
     });
   }
+
+  function reloadDataTable() {
+  // Destroy the existing DataTable
+  $('#feedback-table-container').DataTable().destroy();
+
+  // Reinitialize the DataTable
+  getAll();
+}
 
 
 
@@ -163,7 +168,7 @@
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                    getAll()
+                    reloadDataTable()
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);
