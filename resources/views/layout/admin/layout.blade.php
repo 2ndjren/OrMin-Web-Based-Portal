@@ -153,8 +153,8 @@
                 @yield('volunteers')
                 @yield('donations')
                 @yield('announcements')
-                @yield('feedbacks')
                 @yield('appointments')
+                @yield('feedbacks')
                 @yield('chats')
                 @yield('accounts')
             </div>
