@@ -14,11 +14,13 @@
 </div>
 
 <div id="show-feedback-details-modal" class="fixed hidden inset-0 flex items-center justify-center z-10 bg-black bg-opacity-50 overflow-y-auto">
-  <div class="modal-container bg-white w-auto rounded-lg shadow-lg mx-5">
+  <div class="modal-container bg-white w-auto p-4 rounded-lg shadow-lg mx-5">
     <div class="px-4 py-3">
       <p class="text-2xl text-center font-semibold text-green-500">Feedback's Overview</p>
     </div>
-    <div id="feedback-details" class="block px-10 py-3"></div>
+    <div id="feedback-details" class="block px-3 py-3">
+
+    </div>
   </div>
 </div>
 
@@ -108,14 +110,15 @@
 
           var details = "<div>";
 
-          details += "<p class='text-xs text-gray-300'>" + formattedDate + " " + formattedTime + "</p>";
+          details += "<p class='text-xs text-gray-400'>" + formattedDate + " " + formattedTime + "</p>";
 
-          details += "<p class='border-y-2 border-gray-500 p-2'>" + response.message + "</p>";
+          details += "<p class='border-y-2 border-gray-500 py-2'>" + response.message + "</p>";
 
-          details += "<p> <span class='text-sm text-gray-300'>SENDER</span> </p>";
-          details += "<p>" + response.identity + "</p>";
-          details += "<p>" + response.u_id + "</p>";
+        
+          details += "<p class='text-gray-400'>" + response.identity + "</p>";
+       
 
+            details+="<div class='flex justify-end mt-3 space-x-2'>"
           details += "<div class='text-left'>";
           details += "<button type='button' class='close-feedback-modal-btn close px-2 py-1 rounded-md bg-blue-500 text-white font-semibold'>Close</button>";
           details += "<button type='button' id='delete-btn' data-id=" + response.id + " class='px-2 py-1 rounded-md bg-red-500 text-white font-semibold'>Delete</button>";
@@ -137,42 +140,34 @@
       $('#show-feedback-details-modal').removeClass('block').addClass('hidden');
     });
 
-
     // Event listener for the DELETE button (handle deletion functionality)
-    $('#btn-delete').on('click', function() {
-      var feedbackID = $(this).data('id');
+    $(document).on('click', '#delete-btn', function() {
+        var feedbackID = $(this).data('id');
 
-      // Display a confirmation dialog before proceeding with deletion
-      if (confirm('Are you sure you want to delete this feedback?')) {
-        var submit = $(this);
-        submit.prop('disabled', true)
-        submit.addClass('opacity-50 cursor-not-allowed')
-        $.ajax({
-          type: 'GET',
-          url: 'feedback/delete/' + feedbackID,
-          success: function(response) {
-            submit.prop('disabled', false)
-            submit.removeClass('opacity-50 cursor-not-allowed')
-            // Handle success message or any UI updates upon successful deletion
-            console.log(response.message);
-            $('#show-feedback-details-modal').addClass('hidden');
-
-            // Reload announcements-table after successful deletion
-            getAll()
-          },
-          error: function(xhr, status, error) {
-            submit.prop('disabled', false)
-            submit.removeClass('opacity-50 cursor-not-allowed')
-            window.alert(xhr.responseText);
-          }
-        });
-      }
-
-
+        // Display a confirmation dialog before proceeding with deletion
+        if (confirm('Are you sure you want to delete this feedback?')) {
+            var deleteBtn = $(this);
+            deleteBtn.prop('disabled', true);
+            deleteBtn.addClass('opacity-50 cursor-not-allowed');
+            
+            $.ajax({
+                type: 'GET',
+                url: '/feedback/delete/' + feedbackID,
+                success: function(response) {
+                    deleteBtn.prop('disabled', false);
+                    deleteBtn.removeClass('opacity-50 cursor-not-allowed');
+                    console.log(response.message);
+                    $('#show-feedback-details-modal').addClass('hidden');
+                    // You might want to refresh the feedback details or perform any necessary actions upon deletion
+                },
+                error: function(xhr, status, error) {
+                    deleteBtn.prop('disabled', false);
+                    deleteBtn.removeClass('opacity-50 cursor-not-allowed');
+                    window.alert(xhr.responseText);
+                }
+            });
+        }
     });
-
-
-
-  }
+}
 </script>
 @endsection

@@ -187,6 +187,7 @@
 
   </div>
 </div>
+
 <div id="donation-proof-image" class="hidden  fixed md:px-5  lg:px-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
   <div class="modal-container bg-white sm:w-full  lg:w-1/2 mx-auto rounded-lg p-4 shadow-lg  ">
   <div id="donation-image" class="block">
