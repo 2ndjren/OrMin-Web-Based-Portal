@@ -417,7 +417,7 @@ class User extends Controller
             $announcement = Announcement::findOrFail($id); // Assuming 'id' is the primary key of the Announcement model
 
             // Return the announcement content in a view
-            return view('User.announcements', compact('announcement'));
+            return view('User.announcement', compact('announcement'));
         } catch (\Exception $e) {
             // Handle the case when the announcement is not found
             abort(404, 'Announcement not found');

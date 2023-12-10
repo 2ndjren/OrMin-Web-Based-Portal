@@ -47,8 +47,6 @@
   </div>
 
 
-  <div class="bg-slate-400 h-auto p-8">
-  </div>
 
   <div class=" bg-gray-400">
     <div class="p-20">
