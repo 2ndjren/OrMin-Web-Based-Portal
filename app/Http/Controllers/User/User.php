@@ -20,17 +20,25 @@ class User extends Controller
 {
     //
     public function Home(){
-        if(session("USER")){
-            return view('User.home');
-        } elseif(session('ADMIN') || session('STAFF')){
-            return redirect('dashboard');
-        } else {
-            // Retrieve announcements from the database
-            $announcements = Announcement::paginate(10); // Assuming 10 announcements per page
-    
-            return view('User.home', compact('announcements'));
-        }
-    }
+
+        // Fetch announcements from the database using the Announcement model
+     //  $announcement = Announcement::all(); // Fetch all announcements
+      $announcement = Announcement::paginate(3);
+
+        
+     if(session("USER")){
+       // Pass the fetched announcements to the view
+       return view('User.home', ['announcement' => $announcement]);
+     }
+     elseif(session('ADMIN')||session('STAFF')){
+         return redirect('dashboard');
+     }
+     else{
+        // Pass the fetched announcements to the view
+        return view('User.home', ['announcement' => $announcement]);
+
+     }
+ }
     
     public function Appointment(){
         return view('User.appointment');

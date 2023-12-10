@@ -64,30 +64,25 @@
   </div>
 
 
-   <section class="h-auto bg-white">
-   <div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($announcements as $announcement)
-            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
-                <p class="text-gray-600 mb-4 announcement-content">
-                    {{ $announcement->content }}
-                </p>
-                <!-- <a href="{{ route('announcements.show', $announcement->id) }}" class="read-more-btn text-blue-500 hover:underline focus:outline-none">
-                    Read More
-                </a> -->
-            </div>
-        @endforeach
+  <section class="bg-slate-200 h-auto p-8">
+  <div class="container mx-auto py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
+      @foreach($announcement as $announcements)
+      <div class="announcement-card">
+        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
+          <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
+          <p class="text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
+          <button onclick="showFullAnnouncement('{{ $announcements->announcement }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+          </div>
+      </div>
+      @endforeach
     </div>
-
-    <!-- Pagination -->
-    <div class="mt-4">
-        {{ $announcements->links() }}
+    <div id="paginationButtons" class="flex justify-center mt-8">
+      {{ $announcement->links() }} <!-- Display pagination links -->
     </div>
-</div>
+  </div>
+</section>
 
-
-  </section>
 
 
   <section class="h-auto bg-white" id="services">
@@ -268,7 +263,7 @@
 <script>
   $(document).ready(function() {
     Create_Feedback()
-    // showFullAnnouncement(fullText) 
+    showFullAnnouncement(fullText) 
   });
 
   function Create_Feedback() {
@@ -300,9 +295,18 @@
     });
   }
 
+  function scrollToAnnouncementCards() {
+    const announcementCardsSection = document.getElementById('announcementCards');
+    if (announcementCardsSection) {
+      announcementCardsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
-  
+  // Call the function when the page finishes loading
+  window.addEventListener('load', scrollToAnnouncementCards);
 
+  function showFullAnnouncement(fullText) {
+    window.alert(fullText);}
 </script>
 
 
