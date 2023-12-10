@@ -61,13 +61,10 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="show-feedback-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Details</button>';
+            return '<button class="show-feedback-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">View</button>';
           }
         }
       ],
-      "success": function(response) {
-        console.log("Success: ", response);
-      },
       "error": function(xhr, status, error) {
         console.log("Error: ", xhr, status, error);
         window.alert(xhr.responseText);
