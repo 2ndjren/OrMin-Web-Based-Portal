@@ -14,10 +14,6 @@ class Feedback extends Controller
         if(session('USER')){
             return redirect('/');
         }else if(session('STAFF') || session('ADMIN')){
-              // Fetch all feedback data from the 'feedback' table
-        $data = ModelFeedback::all();
-
-        return response()->json(['feedback' => $data], 200);
             return view('Admin.feedbacks');
         }else{
             return redirect('signin');
