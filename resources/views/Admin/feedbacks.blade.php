@@ -29,11 +29,11 @@
 
   function getAll() {
     var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
-    
+
     feedback_records += "<thead>";
     feedback_records += "<tr>";
     feedback_records += "<th>Feedback</th>";
-    feedback_records += "<th>Sender</th>";
+    feedback_records += "<th>User ID</th>";
     feedback_records += "<th>Action</th>";
     feedback_records += "</tr>";
     feedback_records += "</thead>";
@@ -52,7 +52,9 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.message + '</p>';
+            const maxLength = 100; // Define your maximum length
+            const trimmedMessage = row.message.length > maxLength ? row.message.substring(0, maxLength) + '...' : row.message;
+            return '<p class="text-gray-600 text-xs font-semibold">' + trimmedMessage + '</p>';
           }
         },
         {
