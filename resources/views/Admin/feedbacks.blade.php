@@ -25,6 +25,7 @@
 <script>
   $(document).ready(function() {
     getAll();
+    Feedback_Btn();
   });
 
   function getAll() {
@@ -76,5 +77,49 @@
       }
     });
   }
+
+
+
+  function Feedback_Btn() {
+  $(document).on('click', '.show-feedback-details-btn', function() {
+    var id = $(this).data('id');
+    $.ajax({
+      type: "GET",
+      url: "/feedback/details/" + id,
+      dataType: "json",
+      success: function(response) {
+        var details = "<div>";
+
+        details += "<p> <span class='text-sm'>Feedback</span> </p>";
+        details += "<p class='text-xs'>" + response.details.created_at + "</p>";
+        details += "<p class='border-y-2 border-gray-200 p-2'>" + response.details.message + "</p>";
+
+        details += "<p> <span class='text-sm'>Sender</span> </p>";
+        details += "<p>" + response.details.identity + "</p>";
+        details += "<p>" + response.details.u_id + "</p>";
+
+        details += "<button type='button' id='show-feedback-modal-btn' class=' px-2 py-1 rounded-md bg-blue-500 text-white font-semibold'>Close</button>";
+        details += "<button type='button' id='delete-btn' data-id=" + response.details.id + " class='px-2 py-1 rounded-md bg-red-500 text-white font-semibold'>Delete</button>";
+
+        details += "</div>";
+        $('#feedback-details').empty().append(details);
+
+        $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
+      },
+      error: function(xhr, status, error) {
+        window.alert(xhr.responseText);
+      }
+    });
+  });
+
+  $(document).on('click', '.close-feedback-modal-btn', function() {
+    $('#show-feedback-details-modal').removeClass('block').addClass('hidden');
+  });
+
+  $(document).on('click', '.show-feedback-details-btn ', function() {
+    $('#show-feedback-details-modal').removeClass('hidden').addClass('block');
+  });
+}
+
 </script>
 @endsection

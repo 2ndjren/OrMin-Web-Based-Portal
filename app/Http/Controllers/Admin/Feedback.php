@@ -28,7 +28,7 @@ class Feedback extends Controller
             $create->id=$id;
             if(session('USER')){
                 $create->u_id=session('USER')['id'];
-                $create->identity=session('USER')['type'];
+                $create->identity=session('USER')['email'];
             }else{
                 $create->identity='ANONYMOUS';
             }
@@ -50,4 +50,32 @@ class Feedback extends Controller
 
         return response()->json(['feedback' => $data], 200);
     }
+
+    public function getSpecificFeedback($id)
+    {
+        // Fetch a specific feedback by ID
+        $specificFeedback = ModelFeedback::find($id);
+
+        if (!$specificFeedback) {
+            return response()->json(['message' => 'Feedback not found'], 404);
+        }
+
+        return response()->json(['feedback' => $specificFeedback], 200);
+    }
+
+    public function deleteFeedback($id)
+    {
+        // Find the feedback by ID
+        $feedbackToDelete = ModelFeedback::find($id);
+
+        if (!$feedbackToDelete) {
+            return response()->json(['message' => 'Feedback not found'], 404);
+        }
+
+        // Delete the feedback
+        $feedbackToDelete->delete();
+
+        return response()->json(['message' => 'Feedback deleted successfully'], 200);
+    }
+
 }

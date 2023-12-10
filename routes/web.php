@@ -195,6 +195,11 @@ Route::get('submitted-appointments',[Appointments::class,'Appointments_Submitted
 
 Route::get('feedback/view',[Feedback::class,'Feedback']);
 Route::get('feedback/all',[Feedback::class,'getAllFeedback']);
+Route::get('feedback/details/{id}',[Feedback::class,'getFeedbackDetail']);
+Route::get('feedback/delete/{id}',[Feedback::class,'deleteFeedback']);
+
+
+
 
 
 Route::get('reports',[Reports::class,'Reports']);
