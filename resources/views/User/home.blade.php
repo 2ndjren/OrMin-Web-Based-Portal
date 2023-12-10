@@ -64,29 +64,27 @@
   </div>
 
 
-   <section class="h-auto bg-white" id="services">
-   
-   <!-- Add this to your Blade template or HTML file -->
-
-<div class="container mx-auto p-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @foreach($announcement as $announcements)
-            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                <h2 class="text-xl font-semibold mb-2">{{ $announcements->title }}</h2>
-                <p class="text-gray-600 mb-4 announcement-content">
-                    {{ $announcements->content }}
-                </p>
-                <button class="read-more-btn text-blue-500 hover:underline focus:outline-none">
-                    Read More
-                </button>
-            </div>
-        @endforeach
+   <section class="h-auto bg-white">
+   <!-- HTML structure for the announcement card -->
+<div class="max-w-lg mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+  <!-- Announcement content -->
+  <div class="p-6">
+    <!-- Announcement title -->
+    <h2 class="font-bold text-xl mb-4">Important Announcement</h2>
+    <!-- Announcement text (initially visible) -->
+    <p class="text-gray-700 leading-relaxed">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in velit ut odio posuere dapibus.
+      Curabitur consequat, sapien ac pharetra volutpat, justo lorem interdum tortor, id aliquet neque justo sit amet lorem.
+      Sed quis efficitur lectus. Read more <span class="text-blue-500 cursor-pointer">...</span>
+    </p>
+    <!-- Hidden content (initially not visible) -->
+    <div class="hidden text-gray-700 leading-relaxed mt-4">
+      Additional information: Sed tincidunt, ipsum id malesuada interdum, odio lorem accumsan arcu,
+      vel facilisis sapien libero non tortor. Nulla facilisi.
     </div>
-
-    <!-- Pagination -->
-    <div class="mt-4">
-        {{ $announcement->links() }}
-    </div>
+    <!-- Read more button -->
+    <button class="mt-4 text-blue-500 font-semibold focus:outline-none">Read More</button>
+  </div>
 </div>
 
   </section>
@@ -302,28 +300,28 @@
     });
   }
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Get all elements with the 'announcement-content' class
-    const announcementContents = document.querySelectorAll('.announcement-content');
-
-    // Add event listener to each announcement content
-    announcementContents.forEach(function (content) {
-        // Check if the content needs trimming
-        if (content.scrollHeight > content.clientHeight) {
-            // Show the "Read More" button
-            content.nextElementSibling.style.display = 'block';
-
-            // Add event listener to the "Read More" button
-            content.nextElementSibling.addEventListener('click', function () {
-                // Toggle the class to show/hide content
-                content.classList.toggle('truncate');
-            });
-        }
-    });
-});
 </script>
+
+<script>
+  // Get the elements
+  const readMoreButton = document.querySelector('.max-w-lg .p-6 button');
+  const hiddenContent = document.querySelector('.max-w-lg .p-6 .hidden');
+  const ellipsisSpan = document.querySelector('.max-w-lg .p-6 span');
+
+  // Add click event to toggle content visibility
+  readMoreButton.addEventListener('click', function () {
+    if (hiddenContent.classList.contains('hidden')) {
+      hiddenContent.classList.remove('hidden');
+      readMoreButton.textContent = 'Read Less';
+      ellipsisSpan.style.display = 'none';
+    } else {
+      hiddenContent.classList.add('hidden');
+      readMoreButton.textContent = 'Read More';
+      ellipsisSpan.style.display = 'inline';
+    }
+  });
+</script>
+
 
 
 @endsection

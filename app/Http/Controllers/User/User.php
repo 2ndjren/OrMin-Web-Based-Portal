@@ -14,24 +14,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use App\Models\announcement;
-
 
 class User extends Controller
 {
     //
-    public function Home()
-    {
-        if (session("USER")) {
-            return view('User.home');
-        } elseif (session('ADMIN') || session('STAFF')) {
+    public function Home(){
+        if(session("USER")){
+           return view('User.home');
+        }
+        elseif(session('ADMIN')||session('STAFF')){
             return redirect('dashboard');
-        } else {
-            $announcements = Announcement::paginate(10); // Change the number based on your requirement
-            return view('User.home', ['announcements' => $announcements]);
+        }
+        else{
+            return view('User.home');
         }
     }
-    
     public function Appointment(){
         return view('User.appointment');
     }
