@@ -73,10 +73,7 @@
         <!-- Announcements will be dynamically loaded here -->
     </div>
 
-    <!-- Pagination -->
-    <div class="mt-4" id="pagination-links">
-        {{ $announcements->links() }}
-    </div>
+
 </div>
 
   </section>
