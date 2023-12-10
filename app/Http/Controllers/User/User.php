@@ -408,26 +408,28 @@ class User extends Controller
         return view('User.volunteer');
     }
 
-    
 
-    public function Announcement($id) {
-        if (session("USER")) {
-            // Fetch the specific announcement by ID using the Announcement model
-            $announcement = Announcement::find($id);
-    
-            if ($announcement) {
-                // Pass the fetched announcement to the view
-                return view('User.announcement', ['announcement' => $announcement]);
-            } else {
-                // If the announcement is not found, handle accordingly (e.g., redirect or show an error)
-                return redirect()->back()->with('error', 'Announcement not found.');
-            }
-        } elseif (session('ADMIN') || session('STAFF')) {
-            return redirect('dashboard');
-        } else {
-            return redirect('/');
-        }
+
+    public function Announcement($id)
+{
+    try {
+        // Fetch the announcement based on the provided ID
+        $announcement = announcement::findOrFail($id); // Assuming 'id' is the primary key of the Announcement model
+
+        // Return JSON response with the announcement content
+        return response()->json([
+            'success' => true,
+            'announcement' => $announcement,
+        ]);
+    } catch (\Exception $e) {
+        // Handle the case when the announcement is not found
+        return response()->json([
+            'success' => false,
+            'message' => 'Announcement not found',
+        ], 404); // Return 404 status code for not found
     }
+}
+
 
     
     

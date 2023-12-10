@@ -50,21 +50,38 @@
 
   </div>
 
-  <section class="bg-slate-200 h-auto sm:mt-16 p-8">
+<!-- Modal -->
+<div class="modal fade" id="announcementModal" tabindex="-1" aria-labelledby="announcementModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="announcementModalLabel">Announcement Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Content will be loaded dynamically here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Your existing announcement section with 'Read More' buttons -->
+<section class="bg-slate-200 h-auto sm:mt-16 p-8">
   <div class="container mx-auto py-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="announcementCards">
       @foreach($announcement as $announcements)
       <div class="announcement-card">
-        <div class="p-4 border  bg-white rounded-md  shadow-md w-auto">
+        <div class="p-4 border bg-white rounded-md shadow-md w-auto">
           <h3 class="text-2xl font-semibold mb-2 uppercase">{{ $announcements->title }}</h3>
-          <h3 class="text-xs text-gray-500  mb-2">
-    Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
-</h3>
+          <h3 class="text-xs text-gray-500 mb-2">
+            Posted on {{ \Carbon\Carbon::parse($announcements->created_at)->format('F d, Y h:i A') }} by PRC ORMIN CHAPTER
+          </h3>
           <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
-          <button onclick="loadFullAnnouncement('{{ $announcements->id }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
-
- 
-          </div>
+          <button onclick="loadAndShowAnnouncementModal('{{ $announcements->id }}')" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
+        </div>
       </div>
       @endforeach
     </div>
@@ -75,21 +92,7 @@
 </section>
 
 
-
-  <div class=" bg-gray-400">
-    <div class="p-20">
-      <div class="flex justify-center">
-        <iframe width="840" height="473"  src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-  <section class="h-auto bg-white" id="services">
+<section class="h-auto bg-white" id="services">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="py-12 md:py-20">
 
@@ -108,6 +111,21 @@
       </div>
     </div>
   </section>
+
+
+  <div class=" bg-gray-400">
+    <div class="p-20">
+      <div class="flex justify-center">
+        <iframe width="840" height="473"  src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
 
 
 
@@ -310,22 +328,27 @@
   // Call the function when the page finishes loading
   window.addEventListener('load', scrollToAnnouncementCards);
 
-  function loadFullAnnouncement(id) {
-        // AJAX request to fetch the full announcement content
-        $.ajax({
-            type: 'GET',
-            url: '/announcement/' + id, // Replace with your route for fetching the full announcement
-            success: function(response) {
-                // Handle the response here - it could be HTML or JSON data depending on your backend
-                // For example, you might update a specific section on your page with the loaded content
-                $('#fullAnnouncement').html(response); // Assuming 'fullAnnouncement' is an HTML element where you want to display the content
-            },
-            error: function(error) {
-                console.error('Error fetching announcement:', error);
-            }
-        });
-      }
 
+
+    
+
+  function loadAndShowAnnouncementModal(id) {
+    // AJAX request to fetch the full announcement content
+    $.ajax({
+      type: 'GET',
+      url: '/announcement/' + id, // Replace with your route for fetching the full announcement
+      success: function(response) {
+        // Load content into the modal body
+        $('#announcementModal .modal-body').html(response);
+        // Show the modal
+        $('#announcementModal').modal('show');
+      },
+      error: function(error) {
+        console.error('Error fetching announcement:', error);
+      }
+    });
+  }
+</script>
 
 
 
