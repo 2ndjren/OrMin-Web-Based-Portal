@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\appointments;
+use App\Models\announcement;
 use App\Models\blood;
 use App\Models\insurance;
 use App\Models\user as ModelsUser;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Validator;
 class User extends Controller
 {
     //
-    public function Home(){
+    public function home(){
         if(session("USER")){
            return view('User.home');
         }
@@ -26,7 +27,11 @@ class User extends Controller
             return redirect('dashboard');
         }
         else{
-            return view('User.home');
+
+              // Retrieve announcements from the database
+        $announcements = Announcement::paginate(10); // Assuming 10 announcements per page
+
+        return view('User.home', compact('announcements'));
         }
     }
     public function Appointment(){

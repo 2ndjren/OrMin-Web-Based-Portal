@@ -58,7 +58,7 @@
   <div class=" bg-gray-400">
     <div class="p-20">
       <div class="flex justify-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="840" height="auto" src="https://www.youtube.com/embed/pOmpSYs-SyE?si=j8MBaDVhgdBouwc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </div>
@@ -66,15 +66,26 @@
 
    <section class="h-auto bg-white">
    <div class="container mx-auto p-4">
-    <div id="announcements" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Announcement cards will be dynamically loaded here -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @foreach($announcements as $announcement)
+            <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-2">{{ $announcement->title }}</h2>
+                <p class="text-gray-600 mb-4 announcement-content">
+                    {{ $announcement->content }}
+                </p>
+                <!-- <a href="{{ route('announcements.show', $announcement->id) }}" class="read-more-btn text-blue-500 hover:underline focus:outline-none">
+                    Read More
+                </a> -->
+            </div>
+        @endforeach
     </div>
 
     <!-- Pagination -->
-    <div id="pagination" class="mt-4">
-        <!-- Pagination links will be loaded here -->
+    <div class="mt-4">
+        {{ $announcements->links() }}
     </div>
 </div>
+
 
   </section>
 
@@ -290,41 +301,7 @@
   }
 
 
-
-  $(document).ready(function() {
-    // Function to fetch announcements using AJAX
-    function fetchAnnouncements(page = 1) {
-        $.ajax({
-            type: "POST",
-            url: "{{ route('view_announcement') }}", // Replace with your actual route
-            data: { page: page }, // Send page number if paginated
-            success: function(response) {
-                const announcementsContainer = $('#announcements');
-                announcementsContainer.empty();
-
-                response.data.forEach(announcement => {
-                    const announcementCard = `
-                        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
-                            <h2 class="text-xl font-semibold mb-2">${announcement.title}</h2>
-                            <p class="text-gray-600 mb-4 announcement-content">${announcement.content}</p>
-                        </div>
-                    `;
-                    announcementsContainer.append(announcementCard);
-                });
-
-                const paginationContainer = $('#pagination');
-                paginationContainer.html(response.links);
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching announcements:', error);
-            }
-        });
-    }
-
-    // Call the fetchAnnouncements function when the page loads
-    fetchAnnouncements();
-});
-
+  
 
 </script>
 
