@@ -28,8 +28,8 @@
   });
 
   function getAll() {
+    var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
     
-    var activated_table = "<table id='tableFeedback' class='stripe hover  w_full '>"
     feedback_records += "<thead>";
     feedback_records += "<tr>";
     feedback_records += "<th>Feedback</th>";
@@ -42,11 +42,12 @@
     feedback_records += "</table>";
     $('#feedback-table').append(feedback_records);
 
-    let dataTable = new DataTable('#tableFeedback', {
+    let dataTable = new DataTable('#feedback-table-container', {
       "responsive": true,
       "ajax": {
         "url": "/feedback/all",
         "type": "GET",
+        "dataSrc": "feedback" // Assuming "feedback" is the key containing the data array in your response
       },
       "columns": [{
           "data": null,
@@ -60,10 +61,13 @@
         {
           "data": null,
           "render": function(data, type, row) {
-            return '<button class="show-feedback-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">View</button>';
+            return '<button class="show-feedback-details-btn text-sm font-semibold bg-green-500 rounded-md text-white p-2" data-id="' + row.id + '">Details</button>';
           }
         }
       ],
+      "success": function(response) {
+        console.log("Success: ", response);
+      },
       "error": function(xhr, status, error) {
         console.log("Error: ", xhr, status, error);
         window.alert(xhr.responseText);
