@@ -14,7 +14,7 @@ class Feedback extends Controller
         if(session('USER')){
             return redirect('/');
         }else if(session('STAFF') || session('ADMIN')){
-            return view('Admin.feedback');
+            return view('Admin.feedbacks');
         }else{
             return redirect('signin');
         }
