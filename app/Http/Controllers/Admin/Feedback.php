@@ -28,7 +28,7 @@ class Feedback extends Controller
             $create->id=$id;
             if(session('USER')){
                 $create->u_id=session('USER')['id'];
-                $create->identity=session('USER')['email'];
+                $create->identity=session('USER')['type'];
             }else{
                 $create->identity='ANONYMOUS';
             }

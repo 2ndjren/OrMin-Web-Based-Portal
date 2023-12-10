@@ -74,7 +74,7 @@
             }
           },
           {
-            "data": "email"
+            "data": "u_id"
 
           },
           {
