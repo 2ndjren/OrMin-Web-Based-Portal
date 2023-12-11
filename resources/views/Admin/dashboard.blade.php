@@ -8,7 +8,7 @@
   <div class="bg-red-500 rounded-xl text-white py-8 px-4 absolute w-full z-10">
 
     <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold">WELCOME TO YOUR DASHBOARD</h1>
+      <h1 class="text-xl md:2xl xl:4xl lg:text-3xl font-bold">WELCOME TO YOUR DASHBOARD</h1>
       <p class="mt-4 text-xl pb-20 ">Explore the data and manage your tasks</p>
     </div>
   </div>
