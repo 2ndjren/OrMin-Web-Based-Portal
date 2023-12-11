@@ -79,8 +79,9 @@
           <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
         </div>
           <!-- Your card content -->
-      <canvas id="sales_per_program"></canvas>
+      
       </div>
+      <canvas id="sales_per_program"></canvas>
 
     </div>
 
@@ -92,8 +93,9 @@
         <div class="w-full">
         <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
           <canvas id="Memberships_Overall_Counts"></canvas>
-          <canvas id="sales_per_program"></canvas>
+        
         </div>
+        <canvas id="sales_per_program"></canvas>
       </div>
     </div>
 
