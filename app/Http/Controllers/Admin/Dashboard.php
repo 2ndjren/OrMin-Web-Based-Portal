@@ -79,21 +79,21 @@ class Dashboard extends Controller
     }
     public function Memberships_Count_Per_Municipalities(){
 
-      $puerto_galera=insurance::where('municipality','PUERTO GALERA')->where('status','ACTIVATED')->count();
-      $san_teodoro=insurance::where('municipality','SAN TEODORO')->where('status','ACTIVATED')->count();
-      $baco=insurance::where('municipality','BACO')->where('status','ACTIVATED')->count();
-      $calapan_city=insurance::where('municipality','LIKE','CALAPAN')->where('status','ACTIVATED')->count();
-      $naujan=insurance::where('municipality','NAUJAN')->where('status','ACTIVATED')->count();
-      $victoria=insurance::where('municipality','VICTORIA')->where('status','ACTIVATED')->count();
-      $socorro=insurance::where('municipality','SOCORRO')->where('status','ACTIVATED')->count();
-      $pola=insurance::where('municipality','POLA')->where('status','ACTIVATED')->count();
-      $pinamalayan=insurance::where('municipality','PINAMALAYAN')->where('status','ACTIVATED')->count();
-      $gloria=insurance::where('municipality','GLORIA')->where('status','ACTIVATED')->count();
-      $bansud=insurance::where('municipality','BANSUD')->where('status','ACTIVATED')->count();
-      $bongabong=insurance::where('municipality','BONGABONG')->where('status','ACTIVATED')->count();
-      $roxas=insurance::where('municipality','ROXAS')->where('status','ACTIVATED')->count();
-      $mansalay=insurance::where('municipality','MANSALAY')->where('status','ACTIVATED')->count();
-      $bulalacao=insurance::where('municipality','BULALACAO')->where('status','ACTIVATED')->count();
+      $puerto_galera=insurance::where('municipality','LIKE','%PUERTO GALERA%')->where('status','ACTIVATED')->count();
+      $san_teodoro=insurance::where('municipality','LIKE','%SAN TEODORO%')->where('status','ACTIVATED')->count();
+      $baco=insurance::where('municipality','LIKE','%BACO%')->where('status','ACTIVATED')->count();
+      $calapan_city=insurance::where('municipality','%LIKE%','LIKE','CALAPAN')->where('status','ACTIVATED')->count();
+      $naujan=insurance::where('municipality','LIKE','%NAUJAN%')->where('status','ACTIVATED')->count();
+      $victoria=insurance::where('municipality','LIKE','%VICTORIA%')->where('status','ACTIVATED')->count();
+      $socorro=insurance::where('municipality','LIKE','%SOCORRO%')->where('status','ACTIVATED')->count();
+      $pola=insurance::where('municipality','LIKE','%POLA%')->where('status','ACTIVATED')->count();
+      $pinamalayan=insurance::where('municipality','LIKE','%PINAMALAYAN%')->where('status','ACTIVATED')->count();
+      $gloria=insurance::where('municipality','LIKE','%GLORIA%')->where('status','ACTIVATED')->count();
+      $bansud=insurance::where('municipality','LIKE','%BANSUD%')->where('status','ACTIVATED')->count();
+      $bongabong=insurance::where('municipality','LIKE','%BONGABONG%')->where('status','ACTIVATED')->count();
+      $roxas=insurance::where('municipality','LIKE','%ROXAS%')->where('status','ACTIVATED')->count();
+      $mansalay=insurance::where('municipality','LIKE','%MANSALAY%')->where('status','ACTIVATED')->count();
+      $bulalacao=insurance::where('municipality','LIKE','%BULALACAO%')->where('status','ACTIVATED')->count();
 
       $data=[
 
