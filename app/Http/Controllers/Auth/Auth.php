@@ -180,7 +180,7 @@ class Auth extends Controller
 
         $token=mt_rand(111111,999999);
         $user= new user();
-        $user->id=mt_rand(111111,999999);
+        $user->id=mt_rand(111111111,999999999);
           // $image=$request->file('user_profile');
           $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
           $originalFilePath = $uploadedFile->getRealPath();
@@ -188,25 +188,24 @@ class Auth extends Controller
           // Resize the image
           $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
       
-              // Convert the resized image to BLOB data with a targeted file size (approx. 400KB)
-        $maxSize = 400 * 1024; // 400KB in bytes
-        $imageQuality = 90; // Initial quality setting
-      
-        do {
-            ob_start();
-            imagejpeg($resizedImage, null, $imageQuality);
-            $imageData = ob_get_contents();
-            ob_end_clean();
-    
-            $imageSize = strlen($imageData);
-    
-            if ($imageSize > $maxSize && $imageQuality > 10) {
-                // Reduce quality if the file size exceeds the limit
-                $imageQuality -= 5;
-            } else {
-                break;
-            }
-        } while (true);
+          $maxSize = 50 * 1024; // 50KB in bytes
+          $imageQuality = 90; // Initial quality setting
+  
+          do {
+              ob_start();
+              imagejpeg($resizedImage, null, $imageQuality);
+              $imageData = ob_get_contents();
+              ob_end_clean();
+  
+              $imageSize = strlen($imageData);
+  
+              if ($imageSize > $maxSize && $imageQuality > 10) {
+                  // Reduce quality if the file size exceeds the limit
+                  $imageQuality -= 2;
+              } else {
+                  break;
+              }
+          } while (true);
         $user->user_profile= $imageData;
         $user->fname= strtoupper($request->fname);
         $user->mname=strtoupper($request->mname);
@@ -247,32 +246,32 @@ class Auth extends Controller
         }
     }
 
-   private function resizeImage($filePath, $newWidth, $newHeight = null)
-{
-    list($width, $height, $type) = getimagesize($filePath);
-
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            $image = imagecreatefromjpeg($filePath);
-            break;
-        case IMAGETYPE_PNG:
-            $image = imagecreatefrompng($filePath);
-            break;
-        // Add cases for other image types if needed
-        default:
-            return false; // Unsupported image type
+    private function resizeImage($filePath, $newWidth, $newHeight = null)
+    {
+        list($width, $height, $type) = getimagesize($filePath);
+    
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $image = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($filePath);
+                break;
+            default:
+                return false; // Unsupported image type
+        }
+    
+        if ($newHeight === null) {
+            $newHeight = round($height * $newWidth / $width);
+        }
+    
+        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($image);
+    
+        return $imageResized;
     }
-
-    if ($newHeight === null) {
-        $newHeight = round($height * $newWidth / $width);
-    }
-
-    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-    imagedestroy($image);
-
-    return $imageResized;
-}
     public function Verify_Account($token){
         $user= user::where('token',$token)->first();
         $new_token=mt_rand(111111,999999);

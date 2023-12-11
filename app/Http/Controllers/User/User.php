@@ -157,24 +157,24 @@ $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to d
 
 if ($resizedImage) {
         // Convert the resized image to BLOB data with a targeted file size (approx. 400KB)
-        $maxSize = 400 * 1024; // 400KB in bytes
+        $maxSize = 50 * 1024; // 50KB in bytes
         $imageQuality = 90; // Initial quality setting
 
-    do {
-        ob_start();
-        imagejpeg($resizedImage, null, $imageQuality);
-        $imageData = ob_get_contents();
-        ob_end_clean();
+        do {
+            ob_start();
+            imagejpeg($resizedImage, null, $imageQuality);
+            $imageData = ob_get_contents();
+            ob_end_clean();
 
-        $imageSize = strlen($imageData);
+            $imageSize = strlen($imageData);
 
-        if ($imageSize > $maxSize && $imageQuality > 10) {
-            // Reduce quality if the file size exceeds the limit
-            $imageQuality -= 5;
-        } else {
-            break;
-        }
-    } while (true);
+            if ($imageSize > $maxSize && $imageQuality > 10) {
+                // Reduce quality if the file size exceeds the limit
+                $imageQuality -= 2;
+            } else {
+                break;
+            }
+        } while (true);
       // $image_content = file_get_contents($uploadedFile);
       $updated = ModelsUser::where('id', $request->id)->update([
         'fname' => strtoupper($request->fname),
@@ -239,38 +239,33 @@ if ($resizedImage) {
    
        
     }
+    
     private function resizeImage($filePath, $newWidth, $newHeight = null)
-{
-    // Get image dimensions and type
-    list($width, $height, $type) = getimagesize($filePath);
-
-    // Create an image resource based on the file type
-    switch ($type) {
-        case IMAGETYPE_JPEG:
-            $image = imagecreatefromjpeg($filePath);
-            break;
-        case IMAGETYPE_PNG:
-            $image = imagecreatefrompng($filePath);
-            break;
-        // Add cases for other image types if needed
-        default:
-            return false; // Unsupported image type
+    {
+        list($width, $height, $type) = getimagesize($filePath);
+    
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $image = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($filePath);
+                break;
+            default:
+                return false; // Unsupported image type
+        }
+    
+        if ($newHeight === null) {
+            $newHeight = round($height * $newWidth / $width);
+        }
+    
+        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($image);
+    
+        return $imageResized;
     }
-
-    if ($newHeight === null) {
-        $newHeight = round($height * $newWidth / $width);
-    }
-
-    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-
-    // Resample and resize the image
-    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-    // Free up memory
-    imagedestroy($image);
-
-    return $imageResized;
-}
     public function Check_User()
     {
         if (session('USER')['id']) {
