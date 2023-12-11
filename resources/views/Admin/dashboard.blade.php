@@ -90,7 +90,7 @@
     </div>
 
     @endif
-    @if(session('STAFF'))
+    <!-- @if(session('STAFF')) -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
       <!-- Your card content -->
       <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM<< /h2>
@@ -115,34 +115,38 @@
           </div>
 
     </div>
-    @endif
+    <!-- @endif -->
   </div>
 
 
 
 
 
-<div class=" sm:px-3 lg:px-10">
-  <div class="h-screen ">
-    <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
-      <div class="container mx-auto py-4 bg-white sm:mt-5">
+  <div class=" sm:px-3 lg:px-10">
+    <div class="h-screen ">
+      <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
+        <div class="container mx-auto py-4 bg-white sm:mt-5">
 
-        <div class=" p-4">
-          <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
-          <canvas id="Membership_Program_Counts"></canvas>
+          <div class=" p-4">
+            <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
+            <canvas id="Membership_Program_Counts"></canvas>
+          </div>
         </div>
-      </div>
-      <div class="container mx-auto py-4 bg-white sm:mt-5">
-        <div class="p-4">
-          <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
-          <canvas id="Members_Per_Municipality"></canvas>
+        <div class="container mx-auto py-4 bg-white sm:mt-5">
+          <div class="p-4">
+            <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
+            <canvas id="Members_Per_Municipality"></canvas>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 </div>
+
+
+
+
 </div>
 
 
