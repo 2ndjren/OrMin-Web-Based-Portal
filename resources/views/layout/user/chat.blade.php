@@ -169,7 +169,7 @@ var targetarea=  $('#last-message')
       },
       error: function (xhr, status, error) {
                 // Handle errors, if any
-                window.alert("Something went wrong!");
+                window.alert("Something went wrong hh!");
                 
             }
     });
