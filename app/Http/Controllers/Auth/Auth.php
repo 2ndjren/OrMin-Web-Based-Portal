@@ -250,39 +250,38 @@ class Auth extends Controller
             }
         }
     }
-    
     private function resizeImage($filePath, $newWidth, $newHeight = null)
-    {
-        // Get image dimensions and type
-        list($width, $height, $type) = getimagesize($filePath);
-    
-        // Create an image resource based on the file type
-        switch ($type) {
-            case IMAGETYPE_JPEG:
-                $image = imagecreatefromjpeg($filePath);
-                break;
-            case IMAGETYPE_PNG:
-                $image = imagecreatefrompng($filePath);
-                break;
-            // Add cases for other image types if needed
-            default:
-                return false; // Unsupported image type
-        }
-    
-        if ($newHeight === null) {
-            $newHeight = round($height * $newWidth / $width);
-        }
-    
-        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-    
-        // Resample and resize the image
-        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-    
-        // Free up memory
-        imagedestroy($image);
-    
-        return $imageResized;
+{
+    // Get image dimensions and type
+    list($width, $height, $type) = getimagesize($filePath);
+
+    // Create an image resource based on the file type
+    switch ($type) {
+        case IMAGETYPE_JPEG:
+            $image = imagecreatefromjpeg($filePath);
+            break;
+        case IMAGETYPE_PNG:
+            $image = imagecreatefrompng($filePath);
+            break;
+        // Add cases for other image types if needed
+        default:
+            return false; // Unsupported image type
     }
+
+    if ($newHeight === null) {
+        $newHeight = round($height * $newWidth / $width);
+    }
+
+    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+
+    // Resample and resize the image
+    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+    // Free up memory
+    imagedestroy($image);
+
+    return $imageResized;
+}
     public function Verify_Account($token){
         $user= user::where('token',$token)->first();
         $new_token=mt_rand(111111,999999);
