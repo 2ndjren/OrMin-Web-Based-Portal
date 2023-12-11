@@ -16,7 +16,7 @@
 
 
 <!-- Dashboard layout -->
-<div class="container mx-auto mt-36 sm:mt-44 px-4">
+<div class="container mx-auto mt-36 sm:mt-48 px-4">
 
   <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
 
