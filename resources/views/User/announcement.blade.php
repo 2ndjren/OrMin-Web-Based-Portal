@@ -4,7 +4,7 @@
   <title>PRC ORMIN | Announcement</title>
 
   <div class="min-h-screen flex flex-col justify-between bg-gray-100">
-    <div class="m-4 bg-white rounded-lg shadow-md">
+    <div class="m-8 bg-white rounded-lg shadow-md">
       <h2 class="text-lg text-gray-500 my-2 px-6 py-4 border-b border-gray-200">
         PRC ORMIN | Announcement | {{ $announcement->id }}
       </h2>
