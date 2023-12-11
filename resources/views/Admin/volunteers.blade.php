@@ -108,8 +108,9 @@
           <div class="relative">
             <select id="year" name="year" class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
               <option value="">Select </option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
+              <option value="2024">2023</option>
+              <option value="2023">2024</option>
+          
 
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -927,6 +928,9 @@
   }
 
   function Registered_Volunteers() {
+
+    $('#volunteers-table').empty();
+
     var validated_table = "<table id='validated-accounts' class='stripe hover  w_full '>"
     validated_table += "<thead>"
     validated_table += "<tr>"
@@ -1158,6 +1162,9 @@
   }
 
   function Pending_Volunteer_Applications() {
+
+    $('#volunteers-table').empty();
+
     var validated_table = "<table id='validated-accounts' class='stripe hover  w_full '>"
     validated_table += "<thead>"
     validated_table += "<tr>"
