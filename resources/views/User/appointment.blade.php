@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
 </head>
 <body>
-<div class="font-semibold  text-gray-600"><a href="{{url('/profile')}}"> BACK</a></div>
+<div class="font-semibold  text-gray-600 pl-14 pt-14"><a href="{{url('/profile')}}"> BACK</a></div>
     
 <div class="px-10">
   <p class="text-2xl font-semibold text-blue-500 text-center ">Red Cross Oriental Mindoro Chapter Appointment Schedules</p>

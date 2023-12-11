@@ -3,7 +3,7 @@
 @section('profile')
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
 
-<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 h-screen w-full">
+<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 lg:h-screen w-full">
   <div class="md:w-1/3  xl:w-1/3 sm:w-full p-10 bg-white shadow-md rounded-lg block space-y-5">
 
     <div class="flex justify-center">
@@ -60,14 +60,17 @@
     </div>
 
     {{-- APPOINTMENT --}}
-    <div id="appointment-container" class=" rounded-r-xl  rounded-b-xl p-10 h-full bg-white shadow-xl">
+    <div id="appointment-container" class=" rounded-r-xl  rounded-b-xl p-10 bg-white shadow-xl">
       <div class=" bg-gray-200 p-3">
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
-      <div id="set-an-appointment-btn" class=" flex justify-center hidden my-4">
+      <div id="set-an-appointment-btn" class="  hidden my-4">
+      <p class="font-semibold text-gray-500 mb-5"> <span class="text-white text-sm bg-gray-500 rounded-full px-3 py-1 w-5 mr-2"><i class="fa-solid fa-exclamation"></i></span>To schedule your appointment, simply click the button below.</p>
+
         <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a>
       </div>
       <div class="">
+        <p class="font-semibold text-gray-500"> <i class="fa-solid fa-clock-rotate-left mr-2"></i>Appointment History</p>
         <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
           <thead class="bg-blue-500 text-white">
             <tr>
@@ -88,13 +91,15 @@
 
     {{-- VOLUNTEER --}}
 
-    <div id="volunteer-container" class=" rounded-r-xl  rounded-b-xl p-10 h-full hidden bg-white shadow-xl">
+    <div id="volunteer-container" class=" rounded-r-xl  rounded-b-xl p-10  hidden bg-white shadow-xl">
       <div class=" bg-gray-200 p-3">
         <p class="text-cyan-600 font-bold text-xl">VOLUNTEER</p>
 
       </div>
-      <div id="register-as-volunteer-btn" class="hidden flex justify-center my-20">
-        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('register-volunteer')}}">Register</a>
+      
+      <div id="register-as-volunteer-btn" class="hidden  border-2 border-blue-500 p-5">
+      <p class="font-semibold text-gray-500 mb-5"> <span class="text-white text-sm bg-gray-500 rounded-full px-3 py-1 w-5 mr-2"><i class="fa-solid fa-exclamation"></i></span>Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
+        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('register-volunteer')}}">Be a volunteer!</a>
       </div>
       <div class="sm:block lg:flex mt-2" id="volunteer-details">
 
@@ -111,7 +116,7 @@
 
     </div>
     {{-- MEMBERSHIP --}}
-    <div id="membership-container" class=" rounded-r-xl  rounded-b-xl p-10 h-full hidden bg-white shadow-xl">
+    <div id="membership-container" class=" rounded-r-xl  rounded-b-xl p-10  hidden bg-white shadow-xl">
       <div class=" bg-gray-200 p-3">
         <p class="text-cyan-600 font-bold text-xl">MEMBERSHIP PROGRAM</p>
       </div>

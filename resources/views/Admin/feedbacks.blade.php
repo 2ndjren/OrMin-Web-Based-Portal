@@ -32,6 +32,7 @@
   });
 
   function getAll() {
+    $('#feedback-table').empty();
     var feedback_records = "<table id='feedback-table-container' class='stripe hover w-full h-auto'>";
 
     feedback_records += "<thead>";
@@ -86,10 +87,10 @@
     return dataTable;
   }
 
- // Function to reload DataTable
-function reloadDataTable(dataTable) {
-  dataTable.ajax.reload();
-}
+//  // Function to reload DataTable
+// function reloadDataTable(dataTable) {
+//   dataTable.ajax.reload();
+// }
 
 
 
@@ -167,8 +168,9 @@ function reloadDataTable(dataTable) {
                     deleteBtn.removeClass('opacity-50 cursor-not-allowed');
                     console.log(response.message);
                     $('#show-feedback-details-modal').addClass('hidden');
+                    getAll()
                     // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                     reloadDataTable(dataTable);
+                    //  reloadDataTable(dataTable);
                 },
                 error: function(xhr, status, error) {
                     deleteBtn.prop('disabled', false);

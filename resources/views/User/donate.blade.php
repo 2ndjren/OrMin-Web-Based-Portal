@@ -179,9 +179,9 @@
 
                     <ul class="mt-8">
                         <li class="text-right">
-                            <button type="button"  class="bg-transparent hover:bg-yellow-500 text-red-600 font-bold hover:text-white py-2 px-4 border-4 border-red-600 hover:border-transparent rounded">
+                            <a href="{{url('user-appointment')}}" class="bg-transparent hover:bg-yellow-500 text-red-600 font-bold hover:text-white py-2 px-4 border-4 border-red-600 hover:border-transparent rounded">
                                 DONATE BLOOD!
-                            </button>
+                </a>
                         </li>
                       </ul>
               </div>

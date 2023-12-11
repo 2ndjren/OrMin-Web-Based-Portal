@@ -38,7 +38,19 @@ class User extends Controller
         }
     }
     public function Appointment(){
-        return view('User.appointment');
+        if(session('USER')['id']){
+            $check=appointments::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
+            if($check){
+                return redirect('profile');
+                return redirect('profile');
+            }else{
+                return view('User.appointment');
+            }
+        }else if(session('ADMIN')|| session('STAFF')){
+            return redirect('appointments');
+        }else{
+            return redirect('signin');
+        }
     }
     public function Register_Volunteer(){
         if(session('USER')){
