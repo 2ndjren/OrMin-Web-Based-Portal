@@ -59,7 +59,7 @@
   </div>
 
 
-  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2  gap-6 relative z-10">
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2  my-4 gap-6 relative z-10">
     @if(session('ADMIN'))
     <!-- Cards or panels -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
