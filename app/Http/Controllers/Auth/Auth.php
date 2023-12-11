@@ -189,7 +189,7 @@ class Auth extends Controller
           $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
       
           // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
-          $maxSize = 2 * 1024 * 1024; // 2MB in bytes
+          $maxSize = 1 * 1024 * 1024; // 2MB in bytes
           $imageQuality = 90; // Initial quality setting
       
           do {
@@ -246,12 +246,11 @@ class Auth extends Controller
             }
         }
     }
-    private function resizeImage($filePath, $newWidth, $newHeight = null)
+
+   private function resizeImage($filePath, $newWidth, $newHeight = null)
 {
-    // Get image dimensions and type
     list($width, $height, $type) = getimagesize($filePath);
 
-    // Create an image resource based on the file type
     switch ($type) {
         case IMAGETYPE_JPEG:
             $image = imagecreatefromjpeg($filePath);
@@ -269,11 +268,7 @@ class Auth extends Controller
     }
 
     $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-
-    // Resample and resize the image
     imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-    // Free up memory
     imagedestroy($image);
 
     return $imageResized;

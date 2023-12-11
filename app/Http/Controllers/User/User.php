@@ -156,9 +156,9 @@ $originalFilePath = $uploadedFile->getRealPath();
 $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
 
 if ($resizedImage) {
-    // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
-    $maxSize = 2 * 1024 * 1024; // 2MB in bytes
-    $imageQuality = 90; // Initial quality setting
+        // Convert the resized image to BLOB data with a targeted file size (approx. 400KB)
+        $maxSize = 400 * 1024; // 400KB in bytes
+        $imageQuality = 90; // Initial quality setting
 
     do {
         ob_start();
@@ -170,7 +170,7 @@ if ($resizedImage) {
 
         if ($imageSize > $maxSize && $imageQuality > 10) {
             // Reduce quality if the file size exceeds the limit
-            $imageQuality -= 10;
+            $imageQuality -= 5;
         } else {
             break;
         }
