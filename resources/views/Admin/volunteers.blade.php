@@ -956,7 +956,7 @@
           "render": function(data, type, row) {
             let fullName = (row.fname || '') + ' ' + (row.mname || '') + ' ' + (row.lname || '');
             if (fullName.trim() !== '') {
-              return '<p class="text-gray-500 text-xs font-semibold">' + fullName + '</p>';
+              return '<p class="text-xs font-semibold">' + fullName + '</p>';
             }
             return '';
           }
@@ -1192,7 +1192,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1202,7 +1202,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
@@ -1239,7 +1243,7 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
           }
         },
         {
@@ -1249,7 +1253,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
