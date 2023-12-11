@@ -159,49 +159,6 @@
 
 
 
-
-
-
-<div class=" mt-2">
-  <div class=" sm:block lg:flex w-full space-x-2">
-    <div class="container mx-auto py-4 w-full">
-      <div class=" rounded-lg p-4 gap">
-
-        <div class="sm:block lg:flex w-full lg:space-x-2 sm:mt-5">
-          <div class="container mx-auto py-4 bg-white p-4">
-            <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">PRC VOLUNTEER PROGRAM</p>
-            <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
-
-            <div class="flex">
-
-
-            </div>
-            <canvas id="volunteers_per_municipality"></canvas>
-
-          </div>
-          <div class="container mx-auto py-4 w-96  bg-white lg:mt-0 sm:mt-5">
-            <div class=" p-4">
-              <p class="text-blue-500 font-semibold text-center">OVERALL ACTIVE ROLES IN MINDORO </p>
-            </div>
-          </div>
-
-        </div>
-
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-
-
-</div>
-</div>
-
 <script>
   $(document).ready(function() {
     Donations()
