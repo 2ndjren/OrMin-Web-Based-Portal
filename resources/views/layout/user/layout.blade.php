@@ -225,7 +225,7 @@
 
       </div>
 
-    @include('layout.user.footer')
+  
 
     </div>
 
