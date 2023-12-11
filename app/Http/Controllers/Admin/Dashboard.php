@@ -78,11 +78,10 @@ class Dashboard extends Controller
       
     }
     public function Memberships_Count_Per_Municipalities(){
-
       $puerto_galera=insurance::where('municipality','LIKE','%PUERTO GALERA%')->where('status','ACTIVATED')->count();
       $san_teodoro=insurance::where('municipality','LIKE','%SAN TEODORO%')->where('status','ACTIVATED')->count();
       $baco=insurance::where('municipality','LIKE','%BACO%')->where('status','ACTIVATED')->count();
-      $calapan_city=insurance::where('municipality','%LIKE%','LIKE','CALAPAN')->where('status','ACTIVATED')->count();
+      $calapan_city=insurance::where('municipality','LIKE','%CALAPAN%')->where('status','ACTIVATED')->count();
       $naujan=insurance::where('municipality','LIKE','%NAUJAN%')->where('status','ACTIVATED')->count();
       $victoria=insurance::where('municipality','LIKE','%VICTORIA%')->where('status','ACTIVATED')->count();
       $socorro=insurance::where('municipality','LIKE','%SOCORRO%')->where('status','ACTIVATED')->count();
