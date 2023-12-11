@@ -213,7 +213,7 @@
         @include('layout.user.chat')
         @yield('home')
         @yield('appointment')
-        @section('announcement')
+        @yield('announcement')
         @yield('donate')
         @yield('training')
         @yield('volunteer')
