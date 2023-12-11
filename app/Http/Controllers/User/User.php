@@ -119,6 +119,20 @@ class User extends Controller
     }
     public function User_Update_Profile(Request $request)
     {
+        $uploadedFile = $request->file('user_profile');
+
+       if($uploadedFile !=null)
+       {
+        $rule = [
+            'user_profile' => 'required|image|mimes:jpeg,png,jpg|max:20348',
+            'fname' => 'required',
+            'mname' => 'required',
+            'lname' => 'required',
+            'phone_num' => 'required',
+            'user_profile' => 'image',
+            'bday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
+        ];
+       }else{
         $rule = [
             'fname' => 'required',
             'mname' => 'required',
@@ -127,13 +141,15 @@ class User extends Controller
             'user_profile' => 'image',
             'bday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         ];
+       }
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
             return response()->json(['failed' => 'All fields are required, dont leave it blank!']);
         }
-        // Usage:
-$uploadedFile = $request->file('user_profile');
-$fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+
+        if ($uploadedFile != null) {
+
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
 $originalFilePath = $uploadedFile->getRealPath();
 
 // Resize the image
@@ -159,62 +175,68 @@ if ($resizedImage) {
             break;
         }
     } while (true);
+      // $image_content = file_get_contents($uploadedFile);
+      $updated = ModelsUser::where('id', $request->id)->update([
+        'fname' => strtoupper($request->fname),
+        'mname' => strtoupper($request->mname),
+        'lname' => strtoupper($request->lname),
+        'bday' => $request->bday,
+        'phone_num' => $request->phone_num,
+        'user_profile' => $imageData,
+    ]);
+    if ($updated) {
+    $user=ModelsUser::where('id',session('USER')['id'])->first();
+    $image=base64_encode($user->user_profile);
+    $data=[
+        'id'=>$user->id,
+        'user_profile'=>$image,
+       'fname'=>$user->fname,
+       'mname'=>$user->mname,
+       'lname'=>$user->lname,
+       'sname'=>$user->sname,
+       'age'=>$user->age,
+       'gender'=>$user->gender,
+       'bday'=>$user->bday,
+       'phone_num'=>$user->phone_num,
+       'email'=>$user->email,
+       'password'=>$user->password,
+       'type'=>$user->type,
+    ];
+    session()->put('USER',$data);
+    imagedestroy($resizedImage);
 
-    if ($uploadedFile != null) {
-        // $image_content = file_get_contents($uploadedFile);
-        $updated = ModelsUser::where('id', $request->id)->update([
-            'fname' => strtoupper($request->fname),
-            'mname' => strtoupper($request->mname),
-            'lname' => strtoupper($request->lname),
-            'bday' => $request->bday,
-            'phone_num' => $request->phone_num,
-            'user_profile' => $imageData,
-        ]);
-        if ($updated) {
-        $user=ModelsUser::where('id',session('USER')['id'])->first();
-        $image=base64_encode($user->user_profile);
-        $data=[
-            'id'=>$user->id,
-            'user_profile'=>$image,
-           'fname'=>$user->fname,
-           'mname'=>$user->mname,
-           'lname'=>$user->lname,
-           'sname'=>$user->sname,
-           'age'=>$user->age,
-           'gender'=>$user->gender,
-           'bday'=>$user->bday,
-           'phone_num'=>$user->phone_num,
-           'email'=>$user->email,
-           'password'=>$user->password,
-           'type'=>$user->type,
-        ];
-        session()->put('USER',$data);
-            return response()->json(['success' => 'Update successfull']);
-        } else {
-
-            return response()->json(['failed' => 'No changes yet!']);
-        }
+        return response()->json(['success' => 'Update successfull']);
     } else {
-        $updated = ModelsUser::where('id', $request->id)->update([
-            'fname' => strtoupper($request->fname),
-            'mname' => strtoupper($request->mname),
-            'lname' => strtoupper($request->lname),
-            'bday' => $request->bday,
-            'phone_num' => $request->phone_num,
-        ]);
-        if ($updated) {
-            return response()->json(['success' => 'Update successfull']);
-        } else {
-            return response()->json(['failed' => 'No changes yet!']);
-        }
+
+        return response()->json(['failed' => 'No changes yet!']);
     }
+
 } else {
     // Handle case when an unsupported image type is uploaded
-    return response()->json(['error' => 'Unsupported image type']);
+    return response()->json(['failed' => 'Unsupported image type']);
 }
 
 
-        
+
+
+
+          
+        } else {
+            $updated = ModelsUser::where('id', $request->id)->update([
+                'fname' => strtoupper($request->fname),
+                'mname' => strtoupper($request->mname),
+                'lname' => strtoupper($request->lname),
+                'bday' => $request->bday,
+                'phone_num' => $request->phone_num,
+            ]);
+            if ($updated) {
+                return response()->json(['success' => 'Update successfull']);
+            } else {
+                return response()->json(['failed' => 'No changes yet!']);
+            }
+        }
+        // Usage:
+   
        
     }
     private function resizeImage($filePath, $newWidth, $newHeight = null)
