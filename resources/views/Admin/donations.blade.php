@@ -422,6 +422,7 @@
     donation_records += "<thead>"
     donation_records += "<tr>"
     donation_records += "<th>Name</th>"
+    donation_records += "<th>Donated Amount</th>"
     donation_records += "<th>Muncipality</th>"
     donation_records += " <th>Action</th>"
     donation_records += " </tr>"        
@@ -437,15 +438,24 @@
         "type": "GET",
         "dataSrc": "verified",
       },
-      "columns": [{
+      "columns": [
+        {
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
         {
-          "data":"municipality_city"
-
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.donated_amount + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.municipality_city + '</p>'
+          }
         },
         {
           "data": null,
@@ -462,6 +472,7 @@
     donation_records += "<thead>"
     donation_records += "<tr>"
     donation_records += "<th>Name</th>"
+    donation_records += "<th>Donated Amount</th>"
     donation_records += "<th>Muncipality</th>"
     donation_records += " <th>Action</th>"
     donation_records += " </tr>"        
@@ -480,12 +491,20 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
         {
-          "data":"municipality_city"
-
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.donated_amount + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.municipality_city + '</p>'
+          }
         },
         {
           "data": null,
@@ -502,6 +521,7 @@
     donation_records += "<thead>"
     donation_records += "<tr>"
     donation_records += "<th>Name</th>"
+    donation_records += "<th>Donated Amount</th>"
     donation_records += "<th>Muncipality</th>"
     donation_records += " <th>Action</th>"
     donation_records += " </tr>"        
@@ -520,12 +540,20 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' '  + ' ' + row.lname + '</p>'
           }
         },
         {
-          "data":"municipality_city"
-
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.donated_amount + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<p class="text-xs font-semibold">' + row.municipality_city + '</p>'
+          }
         },
         {
           "data": null,
