@@ -164,21 +164,21 @@ class Dashboard extends Controller
 
 
     public function Volunteers_Per_Municipalities(){
-      $puerto_galera= volunteers::where('status','VALIDATED')->where('municipal','LIKE','PUERTO GALERA')->count();
-      $san_teodoro= volunteers::where('status','VALIDATED')->where('municipal','LIKE','SAN TEODORO')->count();
-      $baco= volunteers::where('status','VALIDATED')->where('municipal','LIKE','BACO')->count();
-      $calapan_city= volunteers::where('status','VALIDATED')->where('municipal','LIKE','CALAPAN')->count();
-      $naujan= volunteers::where('status','VALIDATED')->where('municipal','LIKE','NAUJAN')->count();
-      $victoria= volunteers::where('status','VALIDATED')->where('municipal','LIKE','VICTORIA')->count();
-      $socorro= volunteers::where('status','VALIDATED')->where('municipal','LIKE','SOCORRO')->count();
-      $pinamalayan= volunteers::where('status','VALIDATED')->where('municipal','LIKE','PINAMALAYAN')->count();
-      $pola= volunteers::where('status','VALIDATED')->where('municipal','LIKE','POLA')->count();
-      $gloria= volunteers::where('status','VALIDATED')->where('municipal','LIKE','GLORIA')->count();
-      $bansud= volunteers::where('status','VALIDATED')->where('municipal','LIKE','BANSUD')->count();
-      $bongabong= volunteers::where('status','VALIDATED')->where('municipal','LIKE','BONGABONG')->count();
-      $roxas= volunteers::where('status','VALIDATED')->where('municipal','LIKE','ROXAS')->count();
-      $mansalay= volunteers::where('status','VALIDATED')->where('municipal','LIKE','MANSALAY')->count();
-      $bulalacao= volunteers::where('status','VALIDATED')->where('municipal','LIKE','BULALACAO')->count();
+      $puerto_galera= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%PUERTO%')->count();
+      $san_teodoro= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%SAN TEODORO%')->count();
+      $baco= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%BACO%')->count();
+      $calapan_city= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%CALAPAN%')->count();
+      $naujan= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%NAUJAN%')->count();
+      $victoria= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%VICTORIA%')->count();
+      $socorro= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%SOCORRO%')->count();
+      $pinamalayan= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%PINAMALAYAN%')->count();
+      $pola= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%POLA%')->count();
+      $gloria= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%GLORIA%')->count();
+      $bansud= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%BANSUD%')->count();
+      $bongabong= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%BONGABONG%')->count();
+      $roxas= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%ROXAS%')->count();
+      $mansalay= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%MANSALAY%')->count();
+      $bulalacao= volunteers::where('status','VALIDATED')->where('municipal','LIKE','%BULALACAO%')->count();
       $data=[
         'puerto_galera'=>$puerto_galera,
         'san_teodoro'=>$san_teodoro,
