@@ -59,7 +59,7 @@
   </div>
 
 
-  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2  my-4 gap-6 relative z-10">
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2  my-6 gap-6 relative z-10">
     @if(session('ADMIN'))
     <!-- Cards or panels -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
@@ -79,6 +79,11 @@
           <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
         </div>
       </div>
+
+    </div>
+
+    <div class="relative bg-white rounded-lg shadow-lg p-6">
+      <!-- Your card content -->
       <canvas id="sales_per_program"></canvas>
 
       <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
@@ -87,6 +92,7 @@
           <canvas id="Memberships_Overall_Counts"></canvas>
         </div>
       </div>
+
     </div>
 
     @endif
