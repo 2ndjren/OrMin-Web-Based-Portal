@@ -972,7 +972,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
