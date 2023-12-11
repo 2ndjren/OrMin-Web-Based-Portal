@@ -83,10 +83,11 @@
             </h3>
             <p class="text-base text-gray-600">{{ Str::limit($announcements->announcement, 500) }}</p>
             <!-- Create a form to submit the announcement ID to a controller -->
-            <form action="{{ route('announcement', $announcements->id) }}" method="GET">
+            <form action="{{ route('view.announcement', $announcements->id) }}" method="GET">
               @csrf
               <button type="submit" class="bg-blue-500 text-white py-2 px-4 mt-2">Read More</button>
             </form>
+
           </div>
         </div>
         @endforeach
