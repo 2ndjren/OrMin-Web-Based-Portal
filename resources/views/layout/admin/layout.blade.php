@@ -20,10 +20,10 @@
 <body class="bg-gray-100 font-sans">
 <header class="flex justify-between items-center bg-gray-50 text-gray-900 p-3 border-b-2 border-gray-300">
                 <!-- Header content -->
-                <h1 class="font-bold text-blue-800 px-4">PRC MINDORO ORIENTAL CHAPTER <span class="text-gray-300">| Always first, Always ready, Always there.</span></h1>
+                <h1 class="font-bold text-black px-4">PRC MINDORO ORIENTAL CHAPTER <span class="text-gray-500 font-normal">| Always first, Always ready, Always there.</span></h1>
 
                 <!-- Dropdown for account settings -->
-                <div class="bg-blue-800 p-2">
+                <div class="bg-green-500 p-3">
                     <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
                         @if(session('ADMIN'))
                         <span class="mr-1">{{session('ADMIN')['fname']}}</span>
