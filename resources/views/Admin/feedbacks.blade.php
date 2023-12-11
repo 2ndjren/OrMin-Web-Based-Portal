@@ -87,12 +87,6 @@
     return dataTable;
   }
 
-//  // Function to reload DataTable
-// function reloadDataTable(dataTable) {
-//   dataTable.ajax.reload();
-// }
-
-
 
   function Feedback_Btn() {
     $(document).on('click', '.show-feedback-details-btn', function() {
