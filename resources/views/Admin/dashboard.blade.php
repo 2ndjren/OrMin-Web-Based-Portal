@@ -16,7 +16,7 @@
 
 
 <!-- Dashboard layout -->
-<div class="container mx-auto xl:mt-36 lg:mt-36 mt-48 px-4">
+<div class="container mx-auto xl:mt-36 lg:mt-36 mt-42 px-4">
 
   <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
 
@@ -91,35 +91,34 @@
 
     @endif
     <!-- @if(session('STAFF')) -->
-    <div class="relative bg-white rounded-lg shadow-lg p-6">
-      <!-- Your card content -->
-      <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM</h2>
-      <!-- Add more content here -->
-      <div class="flex">
-        <div class="text-center w-full">
-          <p class="text-green-500 font-semibold">Accounts</p>
-          <p class="text-4xl text-green-500 font-semibold" id="activated-accounts"></p>
-        </div>
-        <div class="text-center w-full">
-          <p class="text-green-500 font-semibold">Pending</p>
-          <p class="text-4xl text-green-500 font-semibold" id="pending-accounts"></p>
-        </div>
-        <div class="text-center w-full">
-          <p class="text-green-500 font-semibold">Expired</p>
-          <p class="text-4xl text-green-500 font-semibold" id="expired-accounts"></p>
-        </div>
-        <div class="text-center w-full">
-          <p class="text-green-500 font-semibold">Declined</p>
-          <p class="text-4xl text-green-500 font-semibold" id="declined-accounts"></p>
-        </div>
-      </div>
-
-    </div>
+   
     <!-- @endif -->
   </div>
 
 
 
+
+
+
+
+
+
+
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
+     
+     <!-- Cards or panels -->
+     <div class="relative bg-white rounded-lg shadow-lg p-6">
+       <!-- Your card content -->
+       <h2 class="text-xl font-semibold mb-2">Card 1</h2>
+       <!-- Add more content here -->
+     </div>
+
+     <div class="relative bg-white rounded-lg shadow-lg p-6">
+       <!-- Your card content -->
+       <h2 class="text-xl font-semibold mb-2">Card 2</h2>
+       <!-- Add more content here -->
+     </div>
+   </div>
 
 
   <div class=" sm:px-3 lg:px-10">
@@ -141,6 +140,10 @@
       </div>
     </div>
   </div>
+
+
+
+
 
 </div>
 
