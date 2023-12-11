@@ -18,6 +18,27 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
+<header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
+                <!-- Header content -->
+                <h1 class="font-bold text-blue-800">PRC MINDORO ORIENTAL CHAPTER</h1>
+
+                <!-- Dropdown for account settings -->
+                <div class="bg-blue-800 p-2">
+                    <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
+                        @if(session('ADMIN'))
+                        <span class="mr-1">{{session('ADMIN')['fname']}}</span>
+
+                        @elseif (session('STAFF'))
+                        <span class="mr-1">{{session('STAFF')['fname']}}</span>
+
+                        @else
+                        <span class="mr-1">'RED CROSS'</span>
+                        @endif
+
+                    </button>
+
+                </div>
+            </header>
     <div class="flex h-screen">
 
        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/user/home/sidebar.jpg');">
@@ -80,27 +101,7 @@
         <!-- Main content area -->
         <div class="flex-1 overflow-y-auto">
             <!-- Header -->
-            <header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
-                <!-- Header content -->
-                <h1 class="font-bold text-blue-800">PRC MINDORO ORIENTAL CHAPTER</h1>
-
-                <!-- Dropdown for account settings -->
-                <div class="bg-blue-800 p-2">
-                    <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
-                        @if(session('ADMIN'))
-                        <span class="mr-1">{{session('ADMIN')['fname']}}</span>
-
-                        @elseif (session('STAFF'))
-                        <span class="mr-1">{{session('STAFF')['fname']}}</span>
-
-                        @else
-                        <span class="mr-1">'RED CROSS'</span>
-                        @endif
-
-                    </button>
-
-                </div>
-            </header>
+          
 
 
             <!-- Mobile Sidebar (hidden by default) -->
