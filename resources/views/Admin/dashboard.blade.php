@@ -87,14 +87,14 @@
     <div class="relative bg-white rounded-lg shadow-lg p-6">
     
     <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
-
-      <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
-        <div class=" p-4">
-          <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
+    <p class="text-green-500 font-semibold text-center">PROGRAM STATISTICS</p>
+    <div class="flex">
+        <div class="w-full">
+        <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
           <canvas id="Memberships_Overall_Counts"></canvas>
+          <canvas id="sales_per_program"></canvas>
         </div>
       </div>
-
     </div>
 
     @endif
