@@ -19,6 +19,7 @@
 <div class="w-full sm:block lg:flex px-10 pt-12 sm:h-auto lg:h-screen sm:space-x-0 sm:space-y-2 lg:space-x-2 lg:space-y-0">
 
 <div class="w-full lg:h-4/5 border border-blue-500 sm:h-auto overflow-y-auto">
+  <p class="text-center p-4 sm:text-lg lg:text-2xl font-semibold text-blue-500">Scheduled/ Pending Appointments</p>
   <table id="schedule-appointments-table" class="w-full text-center ">
     <thead class="bg-blue-500 text-white">
       <tr>
@@ -33,11 +34,26 @@
 <div class="sm:w-full lg:w-full">
   <div id="user-existing-schedule" class="hidden px-2 "></div>
  <div id="set-appointment-now" class="hidden">
-<form class=" border rounded-md border-gray-500 p-5" id="create-appointment-form">
+<form class=" border border-gray-500 p-5" id="create-appointment-form">
         @csrf
         <p class="text-lg font-semibold text-center text-blue-500" >Make appointment!</p>
+        <div class="flex mb-5 mt-5">
+  <div class=" p-2 border-r-2 border-blue-500">
+  </div>
+  <div class=" pl-2">
+    <p class="text-yellow-500 font-semibold">How to set an appointment!</p>
+  <p class="font-semibold text-sm text-gray-700">1.Review the scheduled and pending appointments in the Scheduled/Pending Appointments Table.</p>
+  <p class="font-semibold text-sm text-gray-700 ">2.Select your preferred date and time that do not appear in the table.</p>
+  <p class="font-semibold text-sm text-gray-700 ">3.State your purpose on the description box.</p>
+  <p class="font-semibold text-sm text-gray-700 ">4.Click submit.</p>
+       
+</div>
+
+</div>
         <div  id="app-user-data"></div>
+        
         <div class="flex lg:space-x-2 sm:space-y-2 lg:space-y-0">
+          
             <div class="">
               <p>Date</p>
               <input type="date"  class="form-inputs appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="app_date" id="">

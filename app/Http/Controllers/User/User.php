@@ -124,25 +124,69 @@ class User extends Controller
             'mname' => 'required',
             'lname' => 'required',
             'phone_num' => 'required',
-            'user_profile' => 'image|max:2500',
+            'user_profile' => 'image',
             'bday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         ];
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
             return response()->json(['failed' => 'All fields are required, dont leave it blank!']);
         }
-        $image = $request->file('user_profile');
-        if ($image != null) {
-            $image_content = file_get_contents($image);
+        // $image = $request->file('user_profile');
+        $uploadedFile = $request->file('user_profile');
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+        $originalFilePath = $uploadedFile->getRealPath();
+    
+        // Resize the image
+        $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+    
+        // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
+        $maxSize = 2 * 1024 * 1024; // 2MB in bytes
+        $imageQuality = 90; // Initial quality setting
+    
+        do {
+            ob_start();
+            imagejpeg($resizedImage, null, $imageQuality);
+            $imageData = ob_get_contents();
+            ob_end_clean();
+    
+            $imageSize = strlen($imageData);
+    
+            if ($imageSize > $maxSize && $imageQuality > 10) {
+                // Reduce quality if the file size exceeds the limit
+                $imageQuality -= 10;
+            } else {
+                break;
+            }
+        } while (true);
+        if ($uploadedFile != null) {
+            // $image_content = file_get_contents($uploadedFile);
             $updated = ModelsUser::where('id', $request->id)->update([
                 'fname' => strtoupper($request->fname),
                 'mname' => strtoupper($request->mname),
                 'lname' => strtoupper($request->lname),
                 'bday' => $request->bday,
                 'phone_num' => $request->phone_num,
-                'user_profile' => $image_content,
+                'user_profile' => $imageData,
             ]);
             if ($updated) {
+            $user=ModelsUser::where('id',session('USER')['id'])->first();
+            $image=base64_encode($user->user_profile);
+            $data=[
+                'id'=>$user->id,
+                'user_profile'=>$image,
+               'fname'=>$user->fname,
+               'mname'=>$user->mname,
+               'lname'=>$user->lname,
+               'sname'=>$user->sname,
+               'age'=>$user->age,
+               'gender'=>$user->gender,
+               'bday'=>$user->bday,
+               'phone_num'=>$user->phone_num,
+               'email'=>$user->email,
+               'password'=>$user->password,
+               'type'=>$user->type,
+            ];
+            session()->put('USER',$data);
                 return response()->json(['success' => 'Update successfull']);
             } else {
                 return response()->json(['failed' => 'No changes yet!']);
@@ -162,6 +206,23 @@ class User extends Controller
             }
         }
     }
+
+
+    private function resizeImage($filePath, $newWidth, $newHeight = null)
+{
+    list($width, $height) = getimagesize($filePath);
+
+    if ($newHeight === null) {
+        $newHeight = round($height * $newWidth / $width);
+    }
+
+    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+    $image = imagecreatefromjpeg($filePath); // Change this based on the uploaded image type
+
+    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+    return $imageResized;
+}
     public function Check_User()
     {
         if (session('USER')['id']) {
@@ -194,7 +255,7 @@ class User extends Controller
         if ($check > 0) {
             return response()->json($myapp);
         } else {
-            return response()->json(['resutls' => 'No history']);
+            return response()->json(['results' => 'No history']);
         }
     }
 
