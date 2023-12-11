@@ -18,7 +18,11 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
-<header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
+
+
+    <div class="flex h-screen">
+
+    <header class=" justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
                 <!-- Header content -->
                 <h1 class="font-bold text-blue-800">PRC MINDORO ORIENTAL CHAPTER</h1>
 
@@ -39,7 +43,6 @@
 
                 </div>
             </header>
-    <div class="flex h-screen">
 
        <aside class="w-64 text-white hidden fixed flex-shrink-0 lg:flex flex-col items-center relative bg-cover bg-center overflow-y-auto" style="background-image: url('static/user/home/sidebar.jpg');">
 

@@ -5,7 +5,7 @@
 
 
 <div class="relative">
-<div class="bg-gradient-to-b from-red-500 via-yellow-500 to-green-500 rounded-xl text-white py-8 px-4 absolute w-full z-10">
+  <div class="bg-red-400 rounded-xl text-white py-8 px-4 absolute w-full z-10">
 
     <div class="container mx-auto text-center">
       <h1 class="text-4xl font-bold">WELCOME TO YOUR DASHBOARD</h1>
