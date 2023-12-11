@@ -209,7 +209,7 @@
       </div>
 
       <div class="">
-        @include('layout.user')
+        @include('layout.user.alerts')
         @include('layout.user.chat')
         @yield('home')
         @yield('appointment')
