@@ -201,13 +201,13 @@ class Dashboard extends Controller
     }
  
     public function Volunteer_Roles_Count(){
-      $first_aider= volunteers::where('status','VALIDATED')->where('role','LIKE','FIRST AIDER')->count();
-      $blood= volunteers::where('status','VALIDATED')->where('role','LIKE','BLOOD')->count();
-      $welfare= volunteers::where('status','VALIDATED')->where('role','LIKE','WELFARE')->count();
-      $wash= volunteers::where('status','VALIDATED')->where('role','LIKE','WASH')->count();
-      $health= volunteers::where('status','VALIDATED')->where('role','LIKE','HEALTH')->count();
-      $dms= volunteers::where('status','VALIDATED')->where('role','LIKE','DMS')->count();
-      $rcy= volunteers::where('status','VALIDATED')->where('role','LIKE','RCY')->count();
+      $first_aider= volunteers::where('status','VALIDATED')->where('role','LIKE','%FIRST')->count();
+      $blood= volunteers::where('status','VALIDATED')->where('role','LIKE','%BLOOD%')->count();
+      $welfare= volunteers::where('status','VALIDATED')->where('role','LIKE','%WELFARE%')->count();
+      $wash= volunteers::where('status','VALIDATED')->where('role','LIKE','%WASH%')->count();
+      $health= volunteers::where('status','VALIDATED')->where('role','LIKE','%HEALTH%')->count();
+      $dms= volunteers::where('status','VALIDATED')->where('role','LIKE','%DMS%')->count();
+      $rcy= volunteers::where('status','VALIDATED')->where('role','LIKE','%RCY%')->count();
 
       $data=[
         'first_aider'=>$first_aider,
