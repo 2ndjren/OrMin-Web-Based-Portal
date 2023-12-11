@@ -78,13 +78,14 @@
           <p class=" text text-green-600 text-3xl text-center" id="monthly-membership-sales"></p>
           <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
         </div>
+          <!-- Your card content -->
+      <canvas id="sales_per_program"></canvas>
       </div>
 
     </div>
 
     <div class="relative bg-white rounded-lg shadow-lg p-6">
-      <!-- Your card content -->
-      <canvas id="sales_per_program"></canvas>
+    
 
       <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
         <div class=" p-4">
