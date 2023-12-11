@@ -280,6 +280,8 @@ class Volunteers extends Controller
     
         return $imageResized;
     }
+
+ 
     public function Update_Volunteer_Profile(Request $request){
         if(session('ADMIN') || session('STAFF')){
             $rules=[
@@ -333,11 +335,36 @@ class Volunteers extends Controller
         $update= new ModelsVolunteers();
         
         if($request->file('edit_vol_profile')!=null){
-            $image=$request->file('edit_vol_profile');
-            $image_content=file_get_contents($image);
+            $uploadedFile = $request->file('edit_vol_profile');
+
+            // $image=$request->file('user_profile');
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $originalFilePath = $uploadedFile->getRealPath();
+        
+            // Resize the image
+            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+        
+            $maxSize = 50 * 1024; // 50KB in bytes
+            $imageQuality = 90; // Initial quality setting
+    
+            do {
+                ob_start();
+                imagejpeg($resizedImage, null, $imageQuality);
+                $imageData = ob_get_contents();
+                ob_end_clean();
+    
+                $imageSize = strlen($imageData);
+    
+                if ($imageSize > $maxSize && $imageQuality > 10) {
+                    // Reduce quality if the file size exceeds the limit
+                    $imageQuality -= 2;
+                } else {
+                    break;
+                }
+            } while (true);
             $updated= $update::where('id',$request->edit_id)->update([
                 'vol_id'=>$request->edit_vol_id,
-                'vol_profile'=>$image_content,
+                'vol_profile'=>$imageData,
                 'fname'=>strtoupper($request->edit_fname),
                 'mname'=>strtoupper($request->edit_mname),
                 'lname'=>$request->edit_lname,
@@ -386,6 +413,11 @@ class Volunteers extends Controller
         
 
     }
+    
+    
+
+    
+
     public function Validated_Pending_Volunteers(){
         $validated= ModelsVolunteers::where('status','VALIDATED')->limit(10)->get();
         $pending= ModelsVolunteers::where('status','PENDING')->limit(10 )->get();
