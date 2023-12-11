@@ -166,12 +166,8 @@ var targetarea=  $('#last-message')
 
         // scrollToBottom()
 
-      },
-      error: function (xhr, status, error) {
-                // Handle errors, if any
-                window.alert("Something went wrong hh!");
-                
-            }
+      }
+    
     });
   }
 
