@@ -159,25 +159,26 @@
 
 
   <div class="bg-center h-auto bg-no-repeat bg-cover ease-in-out transition-opacity" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
-    <div class="p-4 bg-green-600 bg-opacity-75">
-      <div class="flex flex-col-reverse md:flex-row w-full">
-        <div class="w-full md:w-1/2 space-y-4 md:px-10 py-4 md:py-10">
-          <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
-          <div class="space-y-2">
-            <p class="text-white font-semibold">Joining the Philippine Red Cross Membership Program gives individuals a sense of self-worth as you extend help to the most vulnerable Filipinos.</p>
-            <p class="text-white font-semibold">The Membership Fund Drive program grants you access to all services of the Philippine Red Cross during emergencies, sickness, and disasters.</p>
-          </div>
-          <p class="text-white font-semibold">GET THE NEW PLATINUM CARD FOR ONLY P1,200! THIS COMES WITH 2 NEW BENEFITS: FREE EMERGENCY AMBULANCE SERVICE AND 1 UNIT OF WHOLE BLOOD.</p>
-          <div class="py-5">
-            <a class="text-white bg-green-500 rounded-md shadow-md py-2 px-4 md:px-5" href="/membership">LEARN MORE...</a>
-          </div>
+  <div class="p-4 bg-green-600 bg-opacity-75">
+    <div class="flex flex-col-reverse md:flex-row w-full">
+      <div class="w-full md:w-1/2 space-y-4 md:px-10 py-2 md:py-5"> <!-- Adjusted padding here -->
+        <p class="text-2xl md:text-4xl font-bold text-white">Be a Red Cross Member</p>
+        <div class="space-y-2">
+          <p class="text-white font-semibold">Joining the Philippine Red Cross Membership Program gives individuals a sense of self-worth as you extend help to the most vulnerable Filipinos.</p>
+          <p class="text-white font-semibold">The Membership Fund Drive program grants you access to all services of the Philippine Red Cross during emergencies, sickness, and disasters.</p>
         </div>
-        <div class="w-full md:w-1/2 flex justify-center py-4 md:py-10">
-          <img class="border-4 border-white shadow-md bg-center bg-cover bg-no-repeat h-48 md:h-1/2" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/376370625_239587185277034_3826957384081035787_n-f265f1e7.jpeg" alt="">
+        <p class="text-white font-semibold">GET THE NEW PLATINUM CARD FOR ONLY P1,200! THIS COMES WITH 2 NEW BENEFITS: FREE EMERGENCY AMBULANCE SERVICE AND 1 UNIT OF WHOLE BLOOD.</p>
+        <div class="py-2"> <!-- Adjusted padding here -->
+          <a class="text-white bg-green-500 rounded-md shadow-md py-2 px-4 md:px-5" href="/membership">LEARN MORE...</a>
         </div>
+      </div>
+      <div class="w-full md:w-1/2 flex justify-center py-2 md:py-5"> <!-- Adjusted padding here -->
+        <img class="border-4 border-white shadow-md bg-center bg-cover bg-no-repeat h-48 md:h-1/2" src="https://redcross.org.ph/wp-content/themes/yootheme/cache/376370625_239587185277034_3826957384081035787_n-f265f1e7.jpeg" alt="">
       </div>
     </div>
   </div>
+</div>
+
 
 
 
