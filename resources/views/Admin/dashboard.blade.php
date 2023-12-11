@@ -23,15 +23,15 @@
     <!-- Cards or panels -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
       <!-- Your card content -->
-      <h2 class="text-xl font-semibold mb-2">DONATION</h2>
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">DONATION</h2>
       <!-- Add more content here -->
       <div class="sm:flex lg:flex">
         <div class="w-full text-center">
-          <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="annual-donation-sum">0</span></i></p>
+          <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-3xl"> <span id="annual-donation-sum">0</span></i></p>
           <p class=" font-semibold text-blue-500">Annual</p>
         </div>
         <div class="w-full text-center">
-          <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="monthly-donation-sum">0</span></i></p>
+          <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-3xl"> <span id="monthly-donation-sum">0</span></i></p>
           <p class=" font-semibold text-blue-500">Monthly</p>
         </div>
       </div>
@@ -39,7 +39,7 @@
 
     <div class="relative bg-white rounded-lg shadow-lg p-6">
       <!-- Your card content -->
-      <h2 class="text-xl font-semibold mb-2">ACCOUNTS</h2>
+      <h2 class="text-xl font-semibold mb-2 text-gray-800">ACCOUNTS</h2>
       <!-- Add more content here -->
       <div class="flex">
         <div class="w-full text-center">
@@ -58,133 +58,134 @@
     </div>
   </div>
 
+
+
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
+    @if(session('ADMIN'))
+    <!-- Cards or panels -->
+    <div class="relative bg-white rounded-lg shadow-lg p-6">
+      <!-- Your card content -->
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">PRC MEMBERSHIP PROGRAM</h2>
+      <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
+
+      <!-- Add more content here -->
+      <div class="flex">
+        <div class="w-full">
+
+          <p class=" text text-green-600 text-3xl text-center" id="annual-membership-sales"></p>
+          <p class="text-blue-500 text-center font-semibold">Annual Sales</p>
+        </div>
+        <div class="w-full">
+          <p class=" text text-green-600 text-3xl text-center" id="monthly-membership-sales"></p>
+          <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
+        </div>
+      </div>
+      <canvas id="sales_per_program"></canvas>
+
+      <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
+        <div class=" p-4">
+          <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
+          <canvas id="Memberships_Overall_Counts"></canvas>
+        </div>
+      </div>
+    </div>
+
+    @endif
+    @if(session('STAFF'))
+    <div class="relative bg-white rounded-lg shadow-lg p-6">
+      <!-- Your card content -->
+      <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM<< /h2>
+          <!-- Add more content here -->
+          <div class="flex">
+            <div class="text-center w-full">
+              <p class="text-green-500 font-semibold">Accounts</p>
+              <p class="text-4xl text-green-500 font-semibold" id="activated-accounts"></p>
+            </div>
+            <div class="text-center w-full">
+              <p class="text-green-500 font-semibold">Pending</p>
+              <p class="text-4xl text-green-500 font-semibold" id="pending-accounts"></p>
+            </div>
+            <div class="text-center w-full">
+              <p class="text-green-500 font-semibold">Expired</p>
+              <p class="text-4xl text-green-500 font-semibold" id="expired-accounts"></p>
+            </div>
+            <div class="text-center w-full">
+              <p class="text-green-500 font-semibold">Declined</p>
+              <p class="text-4xl text-green-500 font-semibold" id="declined-accounts"></p>
+            </div>
+          </div>
+
+    </div>
+    @endif
+  </div>
+
+
+
+
+
+  <div class=" sm:px-3 lg:px-10">
+    <div class="h-screen ">
+      <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
+        <div class="container mx-auto py-4 bg-white sm:mt-5">
+
+          <div class=" p-4">
+            <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
+            <canvas id="Membership_Program_Counts"></canvas>
+          </div>
+        </div>
+        <div class="container mx-auto py-4 bg-white sm:mt-5">
+          <div class="p-4">
+            <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
+            <canvas id="Members_Per_Municipality"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
 </div>
 
-<div class=" sm:px-3 lg:px-10">
-  <div class="h-screen ">
 
-    <div class="">
-      <div class=" sm:block lg:flex w-full space-x-2">
-        <div class="container mx-auto w-full">
-          <div class=" rounded-lg p-4 gap">
-            @if(session('ADMIN'))
-            <div class="sm:block lg:flex w-full space-x-2 sm:my-5">
-              <div class="container mx-auto py-4 bg-white p-4 ">
-                <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">INSURANCE VISUALIZATION</p>
-                <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
+<div class=" mt-2">
+  <div class=" sm:block lg:flex w-full space-x-2">
+    <div class="container mx-auto py-4 w-full">
+      <div class=" rounded-lg p-4 gap">
 
-                <div class="flex">
-                  <div class="w-full">
+        <div class="sm:block lg:flex w-full lg:space-x-2 sm:mt-5">
+          <div class="container mx-auto py-4 bg-white p-4">
+            <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">VOLUNTEERING VISUALIZATION</p>
+            <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
 
-                    <p class=" text text-green-600 text-4xl text-center" id="annual-membership-sales"></p>
-                    <p class="text-blue-500 text-center font-semibold">Annual Sales</p>
-                  </div>
-                  <div class="w-full">
-                    <p class=" text text-green-600 text-4xl text-center" id="monthly-membership-sales"></p>
-                    <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
-                  </div>
-                </div>
-                <canvas id="sales_per_program"></canvas>
+            <div class="flex">
 
-              </div>
-              <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
-                <div class=" p-4">
-                  <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
-                  <canvas id="Memberships_Overall_Counts"></canvas>
-                </div>
-              </div>
 
             </div>
-            @endif
-            @if(session('STAFF'))
-            <div class="sm:block lg:flex w-full space-x-2 my-2">
-              <div class="container mx-auto py-4 bg-white p-4">
-                <p class="text-blue-500 font-semibold text-3xl text-center pb-2 ">MEMBERSHIP PROGRAM</p>
-                <hr>
-                <div class="flex">
-                  <div class="text-center w-full">
-                    <p class="text-green-500 font-semibold">Accounts</p>
-                    <p class="text-4xl text-green-500 font-semibold" id="activated-accounts"></p>
-                  </div>
-                  <div class="text-center w-full">
-                    <p class="text-green-500 font-semibold">Pending</p>
-                    <p class="text-4xl text-green-500 font-semibold" id="pending-accounts"></p>
-                  </div>
-                  <div class="text-center w-full">
-                    <p class="text-green-500 font-semibold">Expired</p>
-                    <p class="text-4xl text-green-500 font-semibold" id="expired-accounts"></p>
-                  </div>
-                  <div class="text-center w-full">
-                    <p class="text-green-500 font-semibold">Declined</p>
-                    <p class="text-4xl text-green-500 font-semibold" id="declined-accounts"></p>
-                  </div>
-                </div>
+            <canvas id="volunteers_per_municipality"></canvas>
 
-              </div>
-
-            </div>
-            @endif
-            <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
-              <div class="container mx-auto py-4 bg-white sm:mt-5">
-
-                <div class=" p-4">
-                  <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
-                  <canvas id="Membership_Program_Counts"></canvas>
-                </div>
-              </div>
-              <div class="container mx-auto py-4 bg-white sm:mt-5">
-                <div class="p-4">
-                  <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
-                  <canvas id="Members_Per_Municipality"></canvas>
-                </div>
-              </div>
+          </div>
+          <div class="container mx-auto py-4 w-96  bg-white lg:mt-0 sm:mt-5">
+            <div class=" p-4">
+              <p class="text-blue-500 font-semibold text-center">OVERALL ACTIVE ROLES IN MINDORO </p>
+              <canvas id="volunteer_roles_count"></canvas>
             </div>
           </div>
+
         </div>
+
 
       </div>
     </div>
-
-
-    <div class=" mt-2">
-      <div class=" sm:block lg:flex w-full space-x-2">
-        <div class="container mx-auto py-4 w-full">
-          <div class=" rounded-lg p-4 gap">
-
-            <div class="sm:block lg:flex w-full lg:space-x-2 sm:mt-5">
-              <div class="container mx-auto py-4 bg-white p-4">
-                <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">VOLUNTEERING VISUALIZATION</p>
-                <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
-
-                <div class="flex">
-
-
-                </div>
-                <canvas id="volunteers_per_municipality"></canvas>
-
-              </div>
-              <div class="container mx-auto py-4 w-96  bg-white lg:mt-0 sm:mt-5">
-                <div class=" p-4">
-                  <p class="text-blue-500 font-semibold text-center">OVERALL ACTIVE ROLES IN MINDORO </p>
-                  <canvas id="volunteer_roles_count"></canvas>
-                </div>
-              </div>
-
-            </div>
-
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-
-
-
 
   </div>
+</div>
+
+
+
+
+
+
+</div>
 </div>
 
 <script>
