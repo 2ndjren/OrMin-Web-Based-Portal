@@ -188,9 +188,9 @@ class Auth extends Controller
           // Resize the image
           $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
       
-          // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
-          $maxSize = 1 * 1024 * 1024; // 2MB in bytes
-          $imageQuality = 90; // Initial quality setting
+              // Convert the resized image to BLOB data with a targeted file size (approx. 400KB)
+        $maxSize = 400 * 1024; // 400KB in bytes
+        $imageQuality = 90; // Initial quality setting
       
           do {
               ob_start();
