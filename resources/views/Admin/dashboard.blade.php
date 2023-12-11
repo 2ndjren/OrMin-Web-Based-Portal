@@ -7,33 +7,9 @@
 <div class="relative">
   <div class="bg-blue-500 rounded-xl text-white py-8 px-4 absolute w-full z-10">
 
-  <header class=" flex justify-between items-center bg-gray-50 text-gray-900 p-6 border-b-2 border-gray-300">
-                <!-- Header content -->
-                <h1 class="font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
-
-                <!-- Dropdown for account settings -->
-                <div class="bg-green-800 p-2">
-                    <button class="flex items-center fonr-bold text-xs text-white hover:text-gray-900 focus:outline-none">
-                        @if(session('ADMIN'))
-                        <span class="mr-1">{{session('ADMIN')['fname']}}</span>
-
-                        @elseif (session('STAFF'))
-                        <span class="mr-1">{{session('STAFF')['fname']}}</span>
-
-                        @else
-                        <span class="mr-1">'RED CROSS'</span>
-                        @endif
-
-                    </button>
-
-                </div>
-            </header>
-
-
-
     <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold">WELCOME TO PRC ORMIN DASHBOARD</h1>
-      <p class="mt-4 text-lg pb-12">Explore the data and manage your tasks</p>
+      <h1 class="text-4xl font-bold">WELCOME TO YOUR DASHBOARD</h1>
+      <p class="mt-4 text-xl pb-12">Explore the data and manage your tasks</p>
     </div>
   </div>
 </div>
