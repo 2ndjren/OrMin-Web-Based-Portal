@@ -159,8 +159,7 @@
 
 
 
-  <div class="bg-cover bg-no-repeat h-auto py-6 md:py-12" style="background-image: url('static/user/home/BLOOD.jpg')">
-    <div class="p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
+  <div class="bg-cover bg-no-repeat h-auto py-6 md:py-12" style="background-image: url('https://redcross.org.ph/wp-content/themes/yootheme/cache/banner_inner-1966008c.jpeg');">
       <div class="w-full md:w-1/3 pb-4 md:pb-0">
         <div class="py-4 transition-transform ease-in-out transform hover:scale-110">
           <iframe class="border-4 border-white" width="100%" height="200" src="https://www.youtube.com/embed/IogKmimow7g?si=9T8cCsdpdjjLj_wt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
