@@ -142,7 +142,7 @@ class Auth extends Controller
          $now->modify('-15 years');
        $formatted_age=$now->format("m-d-Y");
         $rules=[
-            'user_profile' => 'required|image|mimes:jpeg,png,jpg|max:20348',
+            'user_profile' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'fname'=>'required|regex:/^[A-Za-z ]+$/',
             'mname'=>'required|regex:/^[A-Za-z ]+$/',
             'lname'=>'required|regex:/^[A-Za-z ]+$/',
@@ -192,21 +192,21 @@ class Auth extends Controller
         $maxSize = 400 * 1024; // 400KB in bytes
         $imageQuality = 90; // Initial quality setting
       
-          do {
-              ob_start();
-              imagejpeg($resizedImage, null, $imageQuality);
-              $imageData = ob_get_contents();
-              ob_end_clean();
-      
-              $imageSize = strlen($imageData);
-      
-              if ($imageSize > $maxSize && $imageQuality > 10) {
-                  // Reduce quality if the file size exceeds the limit
-                  $imageQuality -= 10;
-              } else {
-                  break;
-              }
-          } while (true);
+        do {
+            ob_start();
+            imagejpeg($resizedImage, null, $imageQuality);
+            $imageData = ob_get_contents();
+            ob_end_clean();
+    
+            $imageSize = strlen($imageData);
+    
+            if ($imageSize > $maxSize && $imageQuality > 10) {
+                // Reduce quality if the file size exceeds the limit
+                $imageQuality -= 5;
+            } else {
+                break;
+            }
+        } while (true);
         $user->user_profile= $imageData;
         $user->fname= strtoupper($request->fname);
         $user->mname=strtoupper($request->mname);
