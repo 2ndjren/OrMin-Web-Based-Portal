@@ -162,10 +162,10 @@
   <div class="bg-gray-200 p-4 md:p-28 flex flex-col-reverse md:flex-row w-full">
      
       <div class="w-full md:w-2/3 space-y-4 md:space-y-6 px-4 md:px-10">
-        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white text-center md:text-right" data-aos="fade-up">
+        <h1 class="text-4xl md:text-4xl xl:text-6xl font-bold mb-2 md:mb-4 text-white justify-center text-center md:text-right" data-aos="fade-up">
         Be a Red Cross Member
         </h1>
-        <div class="text-white text-center md:text-right md:text-xl">
+        <div class="text-gray-800 text-center md:text-right md:text-xl">
         Joining the Philippine Red Cross Membership Program gives individuals a sense of self-worth as you extend help to the most vulnerable Filipinos.
             The Membership Fund Drive program grants you access to all services of the Philippine Red Cross during emergencies, sickness, and disasters.
         </div>
