@@ -1277,10 +1277,10 @@
           submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
           var left_details = "<div class='w-full'>";
-          if (response.vol_profile !== null) {
+          if (response.vol_profile !== null || response.vol_profile!=='') {
             left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>";
           } else {
-            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>";
+            left_details += " <p class='text-8xl '><i class='fa-solid fa-user w-auto shadow'></i></p>";
           }
           left_details += "</div>";
 
