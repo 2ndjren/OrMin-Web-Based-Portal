@@ -86,6 +86,7 @@
 
     <div class="relative bg-white rounded-lg shadow-lg p-6">
     
+    <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
 
       <div class="container mx-auto py-4 lg:w-96 sm:w-full  bg-white lg:mt-0 sm:mt-5">
         <div class=" p-4">
