@@ -289,34 +289,34 @@
     showFullAnnouncement(fullText)
   });
 
-  // function Create_Feedback() {
-  //   $('#create-feedback-form').submit(function(e) {
-  //     e.preventDefault();
-  //     var formdata = new FormData($(this)[0]);
-  //     $.ajax({
-  //       type: "POST",
-  //       url: "{{url('share-feedback')}}",
-  //       data: formdata,
-  //       contentType: false,
-  //       processData: false,
-  //       success: function(response) {
-  //         if (response.success) {
-  //           $('#create-feedback-form')[0].reset()
-  //           alert(response.success)
-  //         } else if (response.failed) {
-  //           alert(response.failed)
-  //         } else {
-  //           alert('Something went wrong!')
-  //         }
-  //       },
-  //       error: function(xhr, status, error) {
-  //         // Handle errors, if any
-  //         window.alert('Something went wrong. Try Again!');
-  //       }
-  //     });
+  function Create_Feedback() {
+    $('#create-feedback-form').submit(function(e) {
+      e.preventDefault();
+      var formdata = new FormData($(this)[0]);
+      $.ajax({
+        type: "POST",
+        url: "{{url('share-feedback')}}",
+        data: formdata,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+          if (response.success) {
+            $('#create-feedback-form')[0].reset()
+            alert(response.success)
+          } else if (response.failed) {
+            alert(response.failed)
+          } else {
+            alert('Something went wrong!')
+          }
+        },
+        error: function(xhr, status, error) {
+          // Handle errors, if any
+          window.alert('Something went wrong. Try Again!');
+        }
+      });
 
-  //   });
-  // }
+    });
+  }
 
   // Function to scroll to the announcement section
   function scrollToAnnouncementCards() {
