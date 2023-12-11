@@ -31,7 +31,7 @@
 
             </div>
 
-            <div class="w-full sm:py-4 sm:shadow-lg sm:bg-white">
+            <div class="w-full sm:py-4 sm:shadow-lg ml-2 sm:bg-white">
 
             <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">ACCOUNTS</p>
             <div class="flex">
