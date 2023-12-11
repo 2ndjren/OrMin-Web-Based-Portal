@@ -59,11 +59,11 @@
   </div>
 
 
-  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 my-6 gap-6 relative z-10">
 
     @if(session('ADMIN'))
     <!-- Cards or panels -->
-    <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <div class="relative bg-white rounded-lg shadow-lg p-6 xl:col-span-3 lg:col-span-3">
       <!-- Your card content -->
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">PRC MEMBERSHIP PROGRAM</h2>
       <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
@@ -82,7 +82,7 @@
       <canvas id="sales_per_program"></canvas>
     </div>
 
-    <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <div class="relative bg-white rounded-lg shadow-lg p-6 xl:col-span-2 lg:col-span-2">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
       <p class="text-green-500 font-semibold text-center">PROGRAM STATISTICS</p>
       <div class="flex">
