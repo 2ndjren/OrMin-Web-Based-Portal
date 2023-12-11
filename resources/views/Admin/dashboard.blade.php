@@ -2,52 +2,60 @@
 @section('dashboard')
 
 <title>PRC ORMIN|Dashboard</title>
-<div class="py-4 px-10 bg-gradient-to-b from-gray-800 to-gray-700 text-white">
-  <p class="text-3xl font-bold text-green-600">Dashboard</p>
+<div class="py-2 px-10">
+  <p class="text-3xl text-green-600 ">Dashboard</p>
+  <div class="flex justify-end">
+  </div>
+
 </div>
 
-<div class="container mx-auto px-3 lg:px-10 mt-4">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <!-- Donations -->
-    <div class="rounded-lg p-4 bg-white shadow-lg">
-      <p class="text-blue-500 font-semibold text-2xl text-center pb-2">DONATIONS</p>
-      <div class="flex justify-around items-center">
-        <div class="text-center">
-          <p><i class="fas fa-money-bill-wave text-blue-500 text-4xl"></i></p>
-          <p class="font-semibold text-blue-500">Annual</p>
-          <p id="annual-donation-sum">0</p>
-        </div>
-        <div class="text-center">
-          <p><i class="fas fa-money-bill-wave text-blue-500 text-4xl"></i></p>
-          <p class="font-semibold text-blue-500">Monthly</p>
-          <p id="monthly-donation-sum">0</p>
-        </div>
-      </div>
-    </div>
+<div class=" sm:px-3 lg:px-10">
+<div class="h-screen ">
+  <div class="">
+    <div class=" sm:block lg:flex w-full space-x-2">
+        <div class="container mx-auto py-4 w-full">
+          <div class=" rounded-lg p-4 gap">
+            <div class="container mx-auto sm:py-0 lg:py-4  p-4 sm:space-y-5 lg:space-y-0 sm:mb-2 sm:block lg:flex">
+            <div class="w-full sm:py-4 sm:shadow-lg sm:bg-white sm:mb-2 lg:mb-0">
+            <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">DONATIONS</p>
+            <div class="sm:flex lg:flex">
+            <div class="w-full text-center">
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="annual-donation-sum">0</span></i></p>
+                <p class=" font-semibold text-blue-500">Annual</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="monthly-donation-sum">0</span></i></p>
+                <p class=" font-semibold text-blue-500">Monthly</p>
+              </div>
+            </div>
 
-    <!-- Accounts -->
-    <div class="rounded-lg p-4 bg-white shadow-lg">
-      <p class="text-blue-500 font-semibold text-2xl text-center pb-2">ACCOUNTS</p>
-      <div class="flex justify-around items-center">
-        <div class="text-center">
-          <p><i class="fas fa-users text-green-500 text-4xl"></i></p>
-          <p class="font-semibold text-blue-500">User</p>
-          <p id="user-counts">1</p>
-        </div>
-        <div class="text-center">
-          <p><i class="fas fa-user text-yellow-500 text-4xl"></i></p>
-          <p class="font-semibold text-blue-500">Staff</p>
-          <p id="staff-counts">1</p>
-        </div>
-        <div class="text-center">
-          <p><i class="fas fa-user-shield text-red-500 text-4xl"></i></p>
-          <p class="font-semibold text-blue-500">Administrator</p>
-          <p id="administrator-counts">1</p>
-        </div>
-      </div>
-    </div>
+            </div>
 
-    
+            <div class="w-full sm:py-4 sm:shadow-lg sm:bg-white">
+
+            <p class="text-blue-500 font-semibold text-2xl text-center pb-2 ">ACCOUNTS</p>
+            <div class="flex">
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-users text-green-500 text-4xl"> <span id="user-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">User</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-user text-yellow-500 text-4xl"> <span id="staff-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">Staff</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-user-shield text-red-500 text-4xl"> <span id="administrator-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">Adminsitrator</p>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+   
+    </div>
+  </div>
+  
   <div class="">
     <div class=" sm:block lg:flex w-full space-x-2">
         <div class="container mx-auto py-4 w-full">
