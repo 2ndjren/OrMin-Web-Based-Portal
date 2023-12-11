@@ -189,6 +189,7 @@ class User extends Controller
             session()->put('USER',$data);
                 return response()->json(['success' => 'Update successfull']);
             } else {
+
                 return response()->json(['failed' => 'No changes yet!']);
             }
         } else {
@@ -209,20 +210,37 @@ class User extends Controller
 
 
     private function resizeImage($filePath, $newWidth, $newHeight = null)
-{
-    list($width, $height) = getimagesize($filePath);
-
-    if ($newHeight === null) {
-        $newHeight = round($height * $newWidth / $width);
+    {
+        // Get image dimensions and type
+        list($width, $height, $type) = getimagesize($filePath);
+    
+        // Create an image resource based on the file type
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+                $image = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($filePath);
+                break;
+            // Add cases for other image types if needed
+            default:
+                return false; // Unsupported image type
+        }
+    
+        if ($newHeight === null) {
+            $newHeight = round($height * $newWidth / $width);
+        }
+    
+        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+    
+        // Resample and resize the image
+        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+    
+        // Free up memory
+        imagedestroy($image);
+    
+        return $imageResized;
     }
-
-    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-    $image = imagecreatefromjpeg($filePath); // Change this based on the uploaded image type
-
-    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-
-    return $imageResized;
-}
     public function Check_User()
     {
         if (session('USER')['id']) {
