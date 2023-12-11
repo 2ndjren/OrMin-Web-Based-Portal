@@ -8,6 +8,8 @@
     <script src="{{asset('js/jquery.js')}}"></script>
 </head>
 <body>
+<div class="font-semibold  text-gray-600 pl-14 pt-14"><a href="{{url('/profile')}}"> BACK</a></div>
+
     <div class="flex justify-center mx-auto">
 <div class="relative mx-auto">
             <div class="max-w-6xl">
@@ -247,6 +249,7 @@
                                 submit.prop('disabled', false)
                         submit.removeClass('opacity-50 cursor-not-allowed')
                         $('#register-volunteer-form')[0].reset()
+                        window.location.href="register-volunteer"
                         alert(response.success)
 
                             }else if(response.errors){

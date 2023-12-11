@@ -142,7 +142,7 @@ class Auth extends Controller
          $now->modify('-15 years');
        $formatted_age=$now->format("m-d-Y");
         $rules=[
-            'user_profile'=>'required|image|max:2500',
+            'user_profile' => 'required|image|mimes:jpeg,png,jpg',
             'fname'=>'required|regex:/^[A-Za-z ]+$/',
             'mname'=>'required|regex:/^[A-Za-z ]+$/',
             'lname'=>'required|regex:/^[A-Za-z ]+$/',
@@ -156,11 +156,11 @@ class Auth extends Controller
         $message=[
             'user_profile.required'=>'Image is required',
             'user_profile.image'=>'File must be image format.',
-            'fname.required'=>'Required',
+            'fname.required'=>'First name is required',
             'fname.regex'=>'First name field requires letters only.',
-            'mname.required'=>'Required',
+            'mname.required'=>'Middle name is required',
             'mname.regex'=>'First name field requires letters only.',
-            'lname.required'=>'Required',
+            'lname.required'=>'Last name is required',
             'lname.regex'=>'First name field requires letters only.',
             'age.required'=>'Age is required',
             'age.numeric'=>'Invalid age data.',
@@ -181,12 +181,37 @@ class Auth extends Controller
         $user->id=mt_rand(111111,999999);
         if($request->user_profile!=null){
 
-            $image=$request->file('user_profile');
-            $image_content=file_get_contents($image);
-            $user->user_profile=$image_content;
+            // $image=$request->file('user_profile');
+            $uploadedFile = $request->file('user_profile');
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $originalFilePath = $uploadedFile->getRealPath();
+        
+            // Resize the image
+            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+        
+            // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
+            $maxSize = 2 * 1024 * 1024; // 2MB in bytes
+            $imageQuality = 90; // Initial quality setting
+        
+            do {
+                ob_start();
+                imagejpeg($resizedImage, null, $imageQuality);
+                $imageData = ob_get_contents();
+                ob_end_clean();
+        
+                $imageSize = strlen($imageData);
+        
+                if ($imageSize > $maxSize && $imageQuality > 10) {
+                    // Reduce quality if the file size exceeds the limit
+                    $imageQuality -= 10;
+                } else {
+                    break;
+                }
+            } while (true);
         }else{
         // $user->user_profile='/storage/user/profiles/noprofile.png';
         }
+        $user->user_profile= $imageData;
         $user->fname= strtoupper($request->fname);
         $user->mname=strtoupper($request->mname);
         $user->lname=strtoupper($request->lname);
@@ -225,6 +250,22 @@ class Auth extends Controller
             }
         }
     }
+    
+private function resizeImage($filePath, $newWidth, $newHeight = null)
+{
+    list($width, $height) = getimagesize($filePath);
+
+    if ($newHeight === null) {
+        $newHeight = round($height * $newWidth / $width);
+    }
+
+    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+    $image = imagecreatefromjpeg($filePath); // Change this based on the uploaded image type
+
+    imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+    return $imageResized;
+}
     public function Verify_Account($token){
         $user= user::where('token',$token)->first();
         $new_token=mt_rand(111111,999999);

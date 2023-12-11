@@ -3,21 +3,21 @@
 @section('profile')
 <div class="font-semibold p-2 text-gray-600"><a href="{{url('/')}}"> BACK</a></div>
 
-<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 lg:h-screen w-full">
+<div class="2xl:flex sm:block md:block lg:flex xl:flex mb-10  xl:space-x-5 lg:h-auto w-full">
   <div class="md:w-1/3  xl:w-1/3 sm:w-full p-10 bg-white shadow-md rounded-lg block space-y-5">
 
     <div class="flex justify-center">
-      @if(session('USER'))
+      @if(session('USER')['user_profile']!=null)
       <img src="data:image/jpeg;base64,{{session('USER')['user_profile']}}" alt="Image" class="h-40 w-auto shadow">
       @else
-      <p>No Image</p>
-      
+      <p class="text-8xl "><i class="fa-solid fa-user w-auto shadow"></i></p>
+    
       @endif
 
     </div>
 
     <div class="text-xl text-gray-700 text-center font-bold">
-      <p class="text-2xl"><i class="fa-solid fa-user"></i></p>
+      
       <p> {{session('USER')['fname']}} {{session('USER')['lname']}}</p>
     </div>
     <div class=" p-2 bg-gray-100 font-bold  text-cyan-500">
@@ -65,12 +65,22 @@
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
       <div id="set-an-appointment-btn" class="  hidden my-4">
-      <p class="font-semibold text-gray-500 mb-5"> <span class="text-white text-sm bg-gray-500 rounded-full px-3 py-1 w-5 mr-2"><i class="fa-solid fa-exclamation"></i></span>To schedule your appointment, simply click the button below.</p>
+      <div class="flex mb-5 mt-5">
+  <div class=" p-2 border-r-2 border-blue-500">
+  </div>
+  <div class=" pl-2">
+    <p class="text-yellow-500 font-semibold">How to set an appointment?</p>
+  <p class="font-semibold text-sm text-gray-700 mb-5">To schedule your appointment, simply click the button below.</p>
+       
+</div>
 
-        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a>
+</div>
+<div class="ml-5"><a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a></div>
+
+        
       </div>
       <div class="">
-        <p class="font-semibold text-gray-500"> <i class="fa-solid fa-clock-rotate-left mr-2"></i>Appointment History</p>
+        <p class="font-semibold text-gray-500 ml-5">Appointment History</p>
         <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
           <thead class="bg-blue-500 text-white">
             <tr>
@@ -96,10 +106,21 @@
         <p class="text-cyan-600 font-bold text-xl">VOLUNTEER</p>
 
       </div>
+
+
       
-      <div id="register-as-volunteer-btn" class="hidden  border-2 border-blue-500 p-5">
-      <p class="font-semibold text-gray-500 mb-5"> <span class="text-white text-sm bg-gray-500 rounded-full px-3 py-1 w-5 mr-2"><i class="fa-solid fa-exclamation"></i></span>Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
-        <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('register-volunteer')}}">Be a volunteer!</a>
+      <div id="register-as-volunteer-btn" class="show hidden mt-2">
+      <div class="flex mb-5 mt-5">
+  <div class=" p-2 border-r-2 border-blue-500">
+  </div>
+  <div class=" pl-2">
+    <p class="text-yellow-500 font-semibold">Volunteering</p>
+  <p class="font-semibold text-sm text-gray-700 mb-5">Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a> to discover additional information. <br> To volunteer, kindly click the blue button below.</p>
+       
+</div>
+
+</div>
+        <a class="font-semibold text-white px-2 py-2 ml-5  bg-blue-500 " href="{{url('register-volunteer')}}">Be a volunteer!</a>
       </div>
       <div class="sm:block lg:flex mt-2" id="volunteer-details">
 
@@ -122,10 +143,15 @@
       </div>
   <div class="">
   <div id="membership-info" class="pt-10">
-
-
+<div class="flex mb-5">
+  <div class="border-r-2 border-blue-500">
+  </div>
+  <div class=" pl-2">
+  <p class="font-semibold text-gray-500 mb-5">Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
+       
+  </div>
 </div>
-<div id="membership-card"></div>
+</div>
   </div>
     </div>
 
@@ -398,9 +424,17 @@ $('#edit-profile-details').click(function (e) {
     success: function (user) {
  
       $('#current-profile-picture').empty()
+      
 
-      var profile="<img  class='mx-auto h-32 border-2 border-blue-500' src='data:image/jpeg;base64,"+user.user_profile+"'>"
+      if(user.user_profile!==""){
+        var profile="<img  class='mx-auto h-32 border-2 border-blue-500' src='data:image/jpeg;base64,"+user.user_profile+"'>"
       $('#current-profile-picture').append(profile)
+
+      }else{
+      var profile="<p class='text-8xl text-center'><i class='fa-solid fa-user w-auto shadow'></i></p>"
+      $('#current-profile-picture').append(profile)
+
+      }
       $('#edit-fname').val(user.fname);
       $('#edit-mname').val(user.mname);
       $('#edit-lname').val(user.lname);
@@ -428,6 +462,7 @@ $('#edit-user-profile-form').submit(function (e) {
     success: function (response) {
       if(response.success){
         alert(response.success)
+        window.location.href="/profile"
         submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
       }else{
@@ -564,7 +599,18 @@ function MyAppointments(){
     success: function (response) {
       $('#appointment-table tbody').empty();
       console.log(response)
-      if(response!==null){
+      if(response.results){
+        var datalist="<tr>"
+          
+           datalist+="<td></td>"
+           datalist+="<td>"+response.results+"</td>"
+           datalist+="<td></td>"
+           
+          
+           datalist+="<tr>"
+         $('#appointment-table tbody').append(datalist);
+      }
+      else{
         $.each(response, function (index, field) { 
           var datalist="<tr>"
            datalist+="<td><button class='appointment-btn hover:underline' type='button' data-id='"+field.id+"'>"+field.app_date+"</button></td>"
@@ -676,23 +722,31 @@ function SelectInsuranceLevel(){
              $('#register-as-volunteer-btn').removeClass('hidden')
 
             }else{
-              var left="<div class='p-2 w-full'>"
-              left+="<div class='flex w-full space-x-2'>"
-              left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-500 ml-2 '>"+response.vol_id+"</span><p>"
-              left+="<p class='font-semibold text-blue-500 w-full text-left'>Expiration: <span class='text-gray-500 ml-2 '>"+response.expiration_date+"</span><p>"
+              var left="<div class='p-2 w-full text-sm border-l-2 border-red-500 ml-4'>"
+              left+="<div class='flex w-full space-x-2 '>"
+              if(response.vol_id!== null){
+                left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-700 ml-2 '>"+response.vol_id+"</span><p>"
+              }else{
+                left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-700 ml-2 '>Pending</span><p>"
+              }
+              if(response.expiration_date!==null){
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Expiration: <span class='text-gray-700 ml-2 '>"+response.expiration_date+"</span><p>"
+              }else{
+                left+="<p class='font-semibold text-blue-500 w-full'>Expiration: <span class='text-gray-700 ml-2 '>Pending</span><p>"
+              }
               left+="</div>"
-              left+="<p class='font-semibold text-blue-500'>Role: <span class='text-gray-500 ml-2 '>"+response.role+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Name: <span class='text-gray-500 ml-2 '>"+response.fname+" "+response.mname+" "+response.lname+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Role: <span class='text-gray-700 ml-2 '>"+response.role+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Name: <span class='text-gray-700 ml-2 '>"+response.fname+" "+response.mname+" "+response.lname+"</span><p>"
               left+="<div class='flex w-full space-x-2'>"
-              left+="<p class='font-semibold text-blue-500 w-full'>Birthday: <span class='text-gray-500 ml-2 '>"+response.birthday+"</span><p>"
-              left+="<p class='font-semibold text-blue-500 w-full text-left'>Gender: <span class='text-gray-500 ml-2 '>"+response.gender+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full'>Birthday: <span class='text-gray-700 ml-2 '>"+response.birthday+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Gender: <span class='text-gray-700 ml-2 '>"+response.gender+"</span><p>"
               left+="</div>"
-              left+="<p class='font-semibold text-blue-500'>Phone No: <span class='text-gray-500 ml-2 '>"+response.phone_no+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Civil Status: <span class='text-gray-500 ml-2 '>"+response.civil_status+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Address: <span class='text-gray-500 ml-2 '>"+response.barangay_street+", "+response.barangay+", "+response.municipal+", "+response.province+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Phone No: <span class='text-gray-700 ml-2 '>"+response.phone_no+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Civil Status: <span class='text-gray-700 ml-2 '>"+response.civil_status+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Address: <span class='text-gray-700 ml-2 '>"+response.barangay_street+", "+response.barangay+", "+response.municipal+", "+response.province+"</span><p>"
               left+="</div>"
               $('#volunteer-details').append(left)
-              var right="<div class='w-full'>"
+              var right="<div class='w-full flex justify-center align-center'>"
               right+="<button type='button' data-id='"+response.id+"' id='show-my-volunteer-card' class='hover:underline text-lg'><i class='fa-solid fa-id-card text-xl mr-2'></i> My ID</button>"
               right+="</div>"
               $('#volunteer-details').append(right)
