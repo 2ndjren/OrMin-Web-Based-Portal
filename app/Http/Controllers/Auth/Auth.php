@@ -176,41 +176,37 @@ class Auth extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        $uploadedFile = $request->file('user_profile');
+
         $token=mt_rand(111111,999999);
         $user= new user();
         $user->id=mt_rand(111111,999999);
-        if($request->user_profile!=null){
-
-            // $image=$request->file('user_profile');
-            $uploadedFile = $request->file('user_profile');
-            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-            $originalFilePath = $uploadedFile->getRealPath();
-        
-            // Resize the image
-            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
-        
-            // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
-            $maxSize = 2 * 1024 * 1024; // 2MB in bytes
-            $imageQuality = 90; // Initial quality setting
-        
-            do {
-                ob_start();
-                imagejpeg($resizedImage, null, $imageQuality);
-                $imageData = ob_get_contents();
-                ob_end_clean();
-        
-                $imageSize = strlen($imageData);
-        
-                if ($imageSize > $maxSize && $imageQuality > 10) {
-                    // Reduce quality if the file size exceeds the limit
-                    $imageQuality -= 10;
-                } else {
-                    break;
-                }
-            } while (true);
-        }else{
-        // $user->user_profile='/storage/user/profiles/noprofile.png';
-        }
+          // $image=$request->file('user_profile');
+          $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+          $originalFilePath = $uploadedFile->getRealPath();
+      
+          // Resize the image
+          $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+      
+          // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
+          $maxSize = 2 * 1024 * 1024; // 2MB in bytes
+          $imageQuality = 90; // Initial quality setting
+      
+          do {
+              ob_start();
+              imagejpeg($resizedImage, null, $imageQuality);
+              $imageData = ob_get_contents();
+              ob_end_clean();
+      
+              $imageSize = strlen($imageData);
+      
+              if ($imageSize > $maxSize && $imageQuality > 10) {
+                  // Reduce quality if the file size exceeds the limit
+                  $imageQuality -= 10;
+              } else {
+                  break;
+              }
+          } while (true);
         $user->user_profile= $imageData;
         $user->fname= strtoupper($request->fname);
         $user->mname=strtoupper($request->mname);
