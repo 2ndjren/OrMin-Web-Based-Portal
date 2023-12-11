@@ -38,7 +38,7 @@
     feedback_records += "<thead>";
     feedback_records += "<tr>";
     feedback_records += "<th>Feedback</th>";
-    feedback_records += "<th>User ID</th>";
+    feedback_records += "<th>Account ID</th>";
     feedback_records += "<th>Action</th>";
     feedback_records += "</tr>";
     feedback_records += "</thead>";
@@ -63,7 +63,14 @@
           }
         },
         {
-          "data": "u_id"
+          "data": "u_id",
+          "render": function(data, type, row) {
+            if (data === null) {
+              return "Anonymous";
+            } else {
+              return data;
+            }
+          }
         },
         {
           "data": null,
@@ -72,6 +79,7 @@
           }
         }
       ],
+
       "success": function(response) {
         console.log("Success: ", response);
       },
@@ -117,11 +125,11 @@
 
           details += "<p class='border-y-2 border-gray-500 py-2'>" + response.message + "</p>";
 
-        
-          details += "<p class='text-gray-600'>" + response.identity + "</p>";
-       
 
-            details+="<div class='flex justify-end mt-3 space-x-2'>"
+          details += "<p class='text-gray-600'>" + response.identity + "</p>";
+
+
+          details += "<div class='flex justify-end mt-3 space-x-2'>"
           details += "<div class='text-left'>";
           details += "<button type='button' class='close-feedback-modal-btn close px-2 py-1 rounded-md mx-2 bg-blue-500 text-white font-semibold'>Close</button>";
           details += "<button type='button' id='delete-btn' data-id=" + response.id + " class='px-2 py-1 rounded-md bg-red-500 text-white font-semibold'>Delete</button>";
@@ -145,36 +153,36 @@
 
     // Event listener for the DELETE button (handle deletion functionality)
     $(document).on('click', '#delete-btn', function() {
-      
-        var feedbackID = $(this).data('id');
 
-        // Display a confirmation dialog before proceeding with deletion
-        if (confirm('Are you sure you want to delete this feedback?')) {
-            var deleteBtn = $(this);
-            deleteBtn.prop('disabled', true);
-            deleteBtn.addClass('opacity-50 cursor-not-allowed');
-            
-            $.ajax({
-                type: 'GET',
-                url: '/feedback/delete/' + feedbackID,
-                success: function(response) {
-                    deleteBtn.prop('disabled', false);
-                    deleteBtn.removeClass('opacity-50 cursor-not-allowed');
-                    console.log(response.message);
-                    $('#show-feedback-details-modal').addClass('hidden');
-                    getAll()
-                    // You might want to refresh the feedback details or perform any necessary actions upon deletion
-                    //  reloadDataTable(dataTable);
-                },
-                error: function(xhr, status, error) {
-                    deleteBtn.prop('disabled', false);
-                    deleteBtn.removeClass('opacity-50 cursor-not-allowed');
-                    window.alert(xhr.responseText);
-                }
-            });
-        }
+      var feedbackID = $(this).data('id');
+
+      // Display a confirmation dialog before proceeding with deletion
+      if (confirm('Are you sure you want to delete this feedback?')) {
+        var deleteBtn = $(this);
+        deleteBtn.prop('disabled', true);
+        deleteBtn.addClass('opacity-50 cursor-not-allowed');
+
+        $.ajax({
+          type: 'GET',
+          url: '/feedback/delete/' + feedbackID,
+          success: function(response) {
+            deleteBtn.prop('disabled', false);
+            deleteBtn.removeClass('opacity-50 cursor-not-allowed');
+            console.log(response.message);
+            $('#show-feedback-details-modal').addClass('hidden');
+            getAll()
+            // You might want to refresh the feedback details or perform any necessary actions upon deletion
+            //  reloadDataTable(dataTable);
+          },
+          error: function(xhr, status, error) {
+            deleteBtn.prop('disabled', false);
+            deleteBtn.removeClass('opacity-50 cursor-not-allowed');
+            window.alert(xhr.responseText);
+          }
+        });
+      }
     });
 
-}
+  }
 </script>
 @endsection
