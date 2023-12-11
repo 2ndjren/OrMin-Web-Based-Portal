@@ -936,6 +936,7 @@
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
     validated_table += "<th>Address</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
     validated_table += " </tr>"
@@ -959,6 +960,13 @@
               return '<p class="text-xs font-semibold">' + fullName + '</p>';
             }
             return '';
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
@@ -1173,6 +1181,7 @@
     validated_table += "<thead>"
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Address</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
@@ -1193,6 +1202,13 @@
           "data": null,
           "render": function(data, type, row) {
             return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
@@ -1224,6 +1240,7 @@
     validated_table += "<thead>"
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Address</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
@@ -1244,6 +1261,13 @@
           "data": null,
           "render": function(data, type, row) {
             return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
