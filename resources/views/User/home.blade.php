@@ -328,8 +328,8 @@
     }
   }
 
-  // Call the function when the page finishes loading
-  window.addEventListener('load', scrollToAnnouncementCards);
+  // // Call the function when the page finishes loading
+  // window.addEventListener('load', scrollToAnnouncementCards);
 
 
 
