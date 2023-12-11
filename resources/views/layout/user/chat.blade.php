@@ -2,6 +2,7 @@
 <button id="chat-btn" class="fixed right-0 bottom-0 m-20 py-3 px-4 hover:bg-yellow-500 rounded-full z-10 bg-yellow-300"><i class="fa-solid fa-paper-plane"></i></button>
 @endif
 
+
 <div id="chat-messages" class="fixed hidden right-0 bottom-0 m-20 h-96 w-80 border-2 z-20 shadow-md bg-gray-200 border-gray-600">
   <div class=" text-md shadow-sm bg-red-500 p-2 w-full flex">
    <div class="w-full"> <p class="text-center">Red Cross Calapan</p></div>
@@ -110,7 +111,7 @@ var targetarea=  $('#last-message')
 
         },  error: function (xhr, status, error) {
                 // Handle errors, if any
-                window.alert(xhr.responseText);
+                window.alert("Something went wrong!");
             }
         
       });
@@ -165,11 +166,8 @@ var targetarea=  $('#last-message')
 
         // scrollToBottom()
 
-      },
-      error: function (xhr, status, error) {
-                // Handle errors, if any
-                window.alert(xhr.responseText);
-            }
+      }
+    
     });
   }
 
