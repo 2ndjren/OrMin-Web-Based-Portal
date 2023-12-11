@@ -201,7 +201,7 @@ class Dashboard extends Controller
     }
  
     public function Volunteer_Roles_Count(){
-      $first_aider= volunteers::where('status','VALIDATED')->where('role','LIKE','%FIRST')->count();
+      $first_aider= volunteers::where('status','VALIDATED')->where('role','LIKE','%FIRST%')->count();
       $blood= volunteers::where('status','VALIDATED')->where('role','LIKE','%BLOOD%')->count();
       $welfare= volunteers::where('status','VALIDATED')->where('role','LIKE','%WELFARE%')->count();
       $wash= volunteers::where('status','VALIDATED')->where('role','LIKE','%WASH%')->count();
