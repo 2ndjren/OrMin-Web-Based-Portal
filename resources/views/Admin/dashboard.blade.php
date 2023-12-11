@@ -9,14 +9,14 @@
 
     <div class="container mx-auto text-center">
       <h1 class="text-4xl font-bold">WELCOME TO YOUR DASHBOARD</h1>
-      <p class="mt-4 text-xl pb-12">Explore the data and manage your tasks</p>
+      <p class="mt-4 text-xl pb-20 ">Explore the data and manage your tasks</p>
     </div>
   </div>
 </div>
 
 
 <!-- Dashboard layout -->
-<div class="container mx-auto mt-32 px-4">
+<div class="container mx-auto mt-36 sm:mt-44 px-4">
 
   <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
 
