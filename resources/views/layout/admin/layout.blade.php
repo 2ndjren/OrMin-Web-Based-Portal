@@ -18,9 +18,9 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
-<header class="flex justify-between items-center bg-gray-50 text-gray-900 p-2 border-b-2 border-gray-300">
+<header class="flex justify-between items-center bg-gray-50 text-gray-900 p-3 border-b-2 border-gray-300">
                 <!-- Header content -->
-                <h1 class="font-bold text-blue-800">PRC MINDORO ORIENTAL CHAPTER</h1>
+                <h1 class="font-bold text-blue-800 px-4">PRC MINDORO ORIENTAL CHAPTER <span class="text-gray-300">| Always first, Always ready, Always there.</span></h1>
 
                 <!-- Dropdown for account settings -->
                 <div class="bg-blue-800 p-2">
