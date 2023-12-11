@@ -101,7 +101,7 @@
     <!-- @if(session('STAFF')) -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
       <!-- Your card content -->
-      <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM<< /h2>
+      <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM</h2>
           <!-- Add more content here -->
           <div class="flex">
             <div class="text-center w-full">
