@@ -4,12 +4,12 @@
 
 <title>PRC ORMIN|Announcement</title>
 
-<div class="container mx-auto overflow-y-auto">
+<div class="h-screen w-full overflow-y-auto ">
 
 <h2 class="text-2xl text-gray-400 mb-2">PRC ORMIN | Announcement | {{ $announcement->id }}</h2>
 
 
-  <div class="container mx-auto">
+
     <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
       <div class="p-6">
         <h2 class="text-4xl font-semibold mb-2">{{ $announcement->title }}</h2>
@@ -26,7 +26,7 @@
         </button>
       </div>
     </div>
-  </div>
+  
 
 
 <div class="">

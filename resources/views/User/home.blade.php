@@ -279,7 +279,7 @@
     </div>
   </section>
   <div class="">
-    @include('layout.user.footer')
+    <!-- @include('layout.user.footer') -->
   </div>
 
 </div>
