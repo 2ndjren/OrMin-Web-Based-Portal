@@ -1280,7 +1280,7 @@
           if (response.vol_profile!=="") {
             left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>";
           } else {
-            left_details += " <div class='flex justify-center align-center'>";
+            left_details += " <div class='flex justify-center align-center w-full text-center'>";
             left_details += " <p class='text-8xl text-blue-500'><i class='fa-solid fa-user w-auto shadow'></i></p>";
             left_details += " <//div>";
           }
