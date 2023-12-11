@@ -59,7 +59,7 @@
   </div>
 
 
-  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 my-6 gap-6 relative z-10">
+  <div class="grid grid-cols-1 xl:grid-cols-5 lg:grid-cols-5 gap-6 my-6 relative z-10">
 
     @if(session('ADMIN'))
     <!-- Cards or panels -->
@@ -82,12 +82,11 @@
       <canvas id="sales_per_program"></canvas>
     </div>
 
-    <div class="relative bg-white rounded-lg shadow-lg p-6 xl:col-span-2 lg:col-span-2">
+    <div class="relative bg-white rounded-lg shadow-lg p-6 xl:col-span- lg:col-span-2">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
       <p class="text-green-500 font-semibold text-center">PROGRAM STATISTICS</p>
-      <div class="flex">
+    
         <canvas id="Memberships_Overall_Counts"></canvas>
-      </div>
     </div>
 
     @endif
