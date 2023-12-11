@@ -417,7 +417,7 @@ function Accounts_Btns(){
       submit.removeClass('opacity-50 cursor-not-allowed')
         var left_details="<div class='w-full'>"
 
-        left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.user.fname+" Profile</p>"
+        left_details+="<p class='text-xl font-bold text-green-600 text-center'> "+response.user.fname+"</p>"
        if(response.user.user_profile!==null){
         left_details+="<img class='p-3' src='data:image/jpeg;base64,"+response.user.user_profile+"' alt='image'>"
      " </div>"
@@ -436,7 +436,7 @@ function Accounts_Btns(){
        right_details += "<p class='font-semibold text-gray-400 text-xs'>GENDER: <span class='text-gray-600  text-sm' id='profile-gender'>"+response.user.gender+"</span></p>"
        right_details += "<p class='font-semibold text-gray-400 text-xs'>CONTACT NO. : <span class='text-gray-600  text-sm' id='profile-phone_num'>"+response.user.phone_num+"</span></p>"
        right_details += "<p class='font-semibold text-gray-400 text-xs'>EMAIL. : <span class='text-gray-600  text-sm' id='profile-email'>"+response.user.email+"</span></p>"
-       right_details += "<p class='font-semibold text-gray-400 text-xs'>PASSWORD. : <span class='text-gray-600  text-sm' id='profile-password'>"+response.user.password+"</span></p>"
+      //  right_details += "<p class='font-semibold text-gray-400 text-xs'>PASSWORD. : <span class='text-gray-600  text-sm' id='profile-password'>"+response.user.password+"</span></p>"
        
        if(response.user.account_status==='VERIFIED'){
         right_details += "<p class='font-semibold text-gray-400 text-xs'>ACCOUNT STATUS. : <span class='text-white  text-xs bg-green-500 px-2 py-1 rounded-full' id='profile-account_status'>"+response.user.account_status+"</span></p>"
