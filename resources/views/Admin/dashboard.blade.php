@@ -59,8 +59,7 @@
   </div>
 
 
-
-  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
+  <div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 my-4 gap-6 relative z-10">
     @if(session('ADMIN'))
     <!-- Cards or panels -->
     <div class="relative bg-white rounded-lg shadow-lg p-6">
@@ -119,29 +118,29 @@
     @endif
   </div>
 
+</div>
 
 
 
+<div class=" sm:px-3 lg:px-10">
+  <div class="h-screen ">
+    <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
+      <div class="container mx-auto py-4 bg-white sm:mt-5">
 
-  <div class=" sm:px-3 lg:px-10">
-    <div class="h-screen ">
-      <div class=" sm:block lg:flex w-full sm:my-2 lg:space-x-2">
-        <div class="container mx-auto py-4 bg-white sm:mt-5">
-
-          <div class=" p-4">
-            <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
-            <canvas id="Membership_Program_Counts"></canvas>
-          </div>
+        <div class=" p-4">
+          <p class="text-blue-500 font-semibold text-center">TOTAL SUBSCRIBERS PER PROGRAM</p>
+          <canvas id="Membership_Program_Counts"></canvas>
         </div>
-        <div class="container mx-auto py-4 bg-white sm:mt-5">
-          <div class="p-4">
-            <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
-            <canvas id="Members_Per_Municipality"></canvas>
-          </div>
+      </div>
+      <div class="container mx-auto py-4 bg-white sm:mt-5">
+        <div class="p-4">
+          <p class="text-blue-500 font-semibold text-center">TOTAL PROGRAM SUBSCRIBERS PER MUNICIPALITIES</p>
+          <canvas id="Members_Per_Municipality"></canvas>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </div>
 </div>
