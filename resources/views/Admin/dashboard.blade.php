@@ -4,19 +4,18 @@
 <title>PRC ORMIN|Dashboard</title>
 
 
-<div class="py-2 px-10">
-  <p class="text-3xl text-green-600 ">Dashboard</p>
-  <div class="flex justify-end">
+<div class="relative">
+  <div class="py-2 px-10">
+    <p class="text-3xl text-green-600">Dashboard</p>
   </div>
 
-</div>
-
-<div class="bg-blue-500 text-white py-8 px-4 absolute top-0 left-0 w-full">
-    <div class="container  mx-auto text-center">
+  <div class="bg-blue-500 text-white py-8 px-4 absolute w-full z-10">
+    <div class="container mx-auto text-center">
       <h1 class="text-4xl font-bold">Welcome to Your Dashboard</h1>
       <p class="mt-4 text-lg pb-8">Explore the data and manage your tasks</p>
     </div>
   </div>
+</div>
 
 
     <!-- Dashboard layout -->
