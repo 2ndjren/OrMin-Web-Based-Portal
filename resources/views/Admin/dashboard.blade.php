@@ -66,11 +66,9 @@
       <!-- Your card content -->
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">PRC MEMBERSHIP PROGRAM</h2>
       <p class="text-green-500 font-semibold text-center">OVERALL STATISTICS</p>
-
       <!-- Add more content here -->
       <div class="flex">
         <div class="w-full">
-
           <p class=" text text-green-600 text-3xl text-center" id="annual-membership-sales"></p>
           <p class="text-blue-500 text-center font-semibold">Annual Sales</p>
         </div>
@@ -78,24 +76,16 @@
           <p class=" text text-green-600 text-3xl text-center" id="monthly-membership-sales"></p>
           <p class="text-blue-500 text-center font-semibold">Monthly Sales</p>
         </div>
-          <!-- Your card content -->
-      
+        <!-- Your card content -->
       </div>
       <canvas id="sales_per_program"></canvas>
-
     </div>
 
     <div class="relative bg-white rounded-lg shadow-lg p-6">
-    
-    <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
-    <p class="text-green-500 font-semibold text-center">PROGRAM STATISTICS</p>
-    <div class="flex">
-        <div class="w-full">
-        <p class="text-blue-500 font-semibold text-center">TOTAL ACCOUNTS </p>
-          <canvas id="Memberships_Overall_Counts"></canvas>
-        
-        </div>
-        <canvas id="sales_per_program"></canvas>
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-2">MEMBERSHIP PROGRAM OVERVIEW</h2>
+      <p class="text-green-500 font-semibold text-center">PROGRAM STATISTICS</p>
+      <div class="flex">
+        <canvas id="Memberships_Overall_Counts"></canvas>
       </div>
     </div>
 
@@ -104,25 +94,25 @@
     <div class="relative bg-white rounded-lg shadow-lg p-6">
       <!-- Your card content -->
       <h2 class="text-xl font-semibold  text-center mb-2">MEMBERSHIP PROGRAM</h2>
-          <!-- Add more content here -->
-          <div class="flex">
-            <div class="text-center w-full">
-              <p class="text-green-500 font-semibold">Accounts</p>
-              <p class="text-4xl text-green-500 font-semibold" id="activated-accounts"></p>
-            </div>
-            <div class="text-center w-full">
-              <p class="text-green-500 font-semibold">Pending</p>
-              <p class="text-4xl text-green-500 font-semibold" id="pending-accounts"></p>
-            </div>
-            <div class="text-center w-full">
-              <p class="text-green-500 font-semibold">Expired</p>
-              <p class="text-4xl text-green-500 font-semibold" id="expired-accounts"></p>
-            </div>
-            <div class="text-center w-full">
-              <p class="text-green-500 font-semibold">Declined</p>
-              <p class="text-4xl text-green-500 font-semibold" id="declined-accounts"></p>
-            </div>
-          </div>
+      <!-- Add more content here -->
+      <div class="flex">
+        <div class="text-center w-full">
+          <p class="text-green-500 font-semibold">Accounts</p>
+          <p class="text-4xl text-green-500 font-semibold" id="activated-accounts"></p>
+        </div>
+        <div class="text-center w-full">
+          <p class="text-green-500 font-semibold">Pending</p>
+          <p class="text-4xl text-green-500 font-semibold" id="pending-accounts"></p>
+        </div>
+        <div class="text-center w-full">
+          <p class="text-green-500 font-semibold">Expired</p>
+          <p class="text-4xl text-green-500 font-semibold" id="expired-accounts"></p>
+        </div>
+        <div class="text-center w-full">
+          <p class="text-green-500 font-semibold">Declined</p>
+          <p class="text-4xl text-green-500 font-semibold" id="declined-accounts"></p>
+        </div>
+      </div>
 
     </div>
     <!-- @endif -->
