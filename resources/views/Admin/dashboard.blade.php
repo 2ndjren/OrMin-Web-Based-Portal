@@ -2,10 +2,68 @@
 @section('dashboard')
 
 <title>PRC ORMIN|Dashboard</title>
-<div class="py-2 px-10">
-  <p class="text-3xl text-green-600 ">Dashboard</p>
-  <div class="flex justify-end">
+
+<div class="bg-blue-500 text-white py-8 px-4 absolute top-0 left-0 w-full">
+    <div class="container  mx-auto text-center">
+      <h1 class="text-4xl font-bold">Welcome to Your Dashboard</h1>
+      <p class="mt-4 text-lg pb-8">Explore the data and manage your tasks</p>
+    </div>
   </div>
+
+
+    <!-- Dashboard layout -->
+    <div class="container mx-auto mt-32 px-4">
+
+<div class="grid grid-cols-1 xl:grid-cols-2 lg:grid-cols-2 gap-6 relative z-10">
+
+  <!-- Cards or panels -->
+  <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <!-- Your card content -->
+    <h2 class="text-xl font-semibold mb-2">DONATION</h2>
+    <!-- Add more content here -->    <div class="sm:flex lg:flex">
+            <div class="w-full text-center">
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="annual-donation-sum">0</span></i></p>
+                <p class=" font-semibold text-blue-500">Annual</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-money-bill-1-wave text-blue-500 text-4xl"> <span id="monthly-donation-sum">0</span></i></p>
+                <p class=" font-semibold text-blue-500">Monthly</p>
+              </div>
+            </div>
+  </div>
+
+  <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <!-- Your card content -->
+    <h2 class="text-xl font-semibold mb-2">ACCOUNTS</h2>
+    <!-- Add more content here -->
+    <div class="flex">
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-users text-green-500 text-4xl"> <span id="user-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">User</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-user text-yellow-500 text-4xl"> <span id="staff-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">Staff</p>
+              </div>
+              <div class="w-full text-center">
+              <p><i class="fa-solid fa-user-shield text-red-500 text-4xl"> <span id="administrator-counts">1</span></i></p>
+                <p class=" font-semibold text-blue-500">Adminsitrator</p>
+              </div>
+            </div>
+  </div>
+
+  <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <!-- Your card content -->
+    <h2 class="text-xl font-semibold mb-2">Card 3</h2>
+    <!-- Add more content here -->
+  </div>
+
+  <div class="relative bg-white rounded-lg shadow-lg p-6">
+    <!-- Your card content -->
+    <h2 class="text-xl font-semibold mb-2">Card 4</h2>
+    <!-- Add more content here -->
+  </div>
+</div>
 
 </div>
 
@@ -58,7 +116,7 @@
   
   <div class="">
     <div class=" sm:block lg:flex w-full space-x-2">
-        <div class="container mx-auto py-4 w-full">
+        <div class="container mx-auto w-full">
               <div class=" rounded-lg p-4 gap">
                @if(session('ADMIN'))
                <div class="sm:block lg:flex w-full space-x-2 sm:my-5">
@@ -499,17 +557,19 @@ new Chart(line, conf);
     'First Aider',
     'Blood',
     'Welfare',
+    'Health',
     'Wash',
     'DMS',
     'RCY'
   ],
   datasets: [{
     label: 'My First Dataset',
-    data: [res.first_aider,res.blood,res.welfare,res.wash,res.dms,res.rcy],
+    data: [res.first_aider,res.blood,res.welfare,res.health,res.wash,res.dms,res.rcy],
     backgroundColor: [  
       'rgb(255, 99, 132)',
       'rgb(75, 192, 192)',
       'rgb(201, 203, 207)',
+      'rgb(205, 203, 207)',
       'rgb(255, 205, 86)',
       'rgb(201, 203, 207)',
       'rgb(54, 162, 235)'
