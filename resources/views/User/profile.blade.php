@@ -147,7 +147,7 @@
   <div class="border-r-2 border-blue-500">
   </div>
   <div class=" pl-2">
-  <p class="font-semibold text-gray-500 mb-5">Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
+  <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
        
   </div>
 </div>
