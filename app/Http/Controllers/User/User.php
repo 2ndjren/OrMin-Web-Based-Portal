@@ -119,6 +119,20 @@ class User extends Controller
     }
     public function User_Update_Profile(Request $request)
     {
+        $uploadedFile = $request->file('user_profile');
+
+       if($uploadedFile !=null)
+       {
+        $rule = [
+            'user_profile' => 'required|image|mimes:jpeg,png,jpg|max:20348',
+            'fname' => 'required',
+            'mname' => 'required',
+            'lname' => 'required',
+            'phone_num' => 'required',
+            'user_profile' => 'image',
+            'bday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
+        ];
+       }else{
         $rule = [
             'fname' => 'required',
             'mname' => 'required',
@@ -127,71 +141,86 @@ class User extends Controller
             'user_profile' => 'image',
             'bday' => 'required|date|before_or_equal:' . now()->subYears(15)->format('Y-m-d'),
         ];
+       }
         $validator = Validator::make($request->all(), $rule);
         if ($validator->fails()) {
             return response()->json(['failed' => 'All fields are required, dont leave it blank!']);
         }
-        // $image = $request->file('user_profile');
-        $uploadedFile = $request->file('user_profile');
-        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
-        $originalFilePath = $uploadedFile->getRealPath();
-    
-        // Resize the image
-        $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
-    
-        // Convert the resized image to BLOB data with a targeted file size (approx. 2MB)
-        $maxSize = 2 * 1024 * 1024; // 2MB in bytes
+
+        if ($uploadedFile != null) {
+
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+$originalFilePath = $uploadedFile->getRealPath();
+
+// Resize the image
+$resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+
+if ($resizedImage) {
+        // Convert the resized image to BLOB data with a targeted file size (approx. 400KB)
+        $maxSize = 50 * 1024; // 50KB in bytes
         $imageQuality = 90; // Initial quality setting
-    
+
         do {
             ob_start();
             imagejpeg($resizedImage, null, $imageQuality);
             $imageData = ob_get_contents();
             ob_end_clean();
-    
+
             $imageSize = strlen($imageData);
-    
+
             if ($imageSize > $maxSize && $imageQuality > 10) {
                 // Reduce quality if the file size exceeds the limit
-                $imageQuality -= 10;
+                $imageQuality -= 2;
             } else {
                 break;
             }
         } while (true);
-        if ($uploadedFile != null) {
-            // $image_content = file_get_contents($uploadedFile);
-            $updated = ModelsUser::where('id', $request->id)->update([
-                'fname' => strtoupper($request->fname),
-                'mname' => strtoupper($request->mname),
-                'lname' => strtoupper($request->lname),
-                'bday' => $request->bday,
-                'phone_num' => $request->phone_num,
-                'user_profile' => $imageData,
-            ]);
-            if ($updated) {
-            $user=ModelsUser::where('id',session('USER')['id'])->first();
-            $image=base64_encode($user->user_profile);
-            $data=[
-                'id'=>$user->id,
-                'user_profile'=>$image,
-               'fname'=>$user->fname,
-               'mname'=>$user->mname,
-               'lname'=>$user->lname,
-               'sname'=>$user->sname,
-               'age'=>$user->age,
-               'gender'=>$user->gender,
-               'bday'=>$user->bday,
-               'phone_num'=>$user->phone_num,
-               'email'=>$user->email,
-               'password'=>$user->password,
-               'type'=>$user->type,
-            ];
-            session()->put('USER',$data);
-                return response()->json(['success' => 'Update successfull']);
-            } else {
+      // $image_content = file_get_contents($uploadedFile);
+      $updated = ModelsUser::where('id', $request->id)->update([
+        'fname' => strtoupper($request->fname),
+        'mname' => strtoupper($request->mname),
+        'lname' => strtoupper($request->lname),
+        'bday' => $request->bday,
+        'phone_num' => $request->phone_num,
+        'user_profile' => $imageData,
+    ]);
+    if ($updated) {
+    $user=ModelsUser::where('id',session('USER')['id'])->first();
+    $image=base64_encode($user->user_profile);
+    $data=[
+        'id'=>$user->id,
+        'user_profile'=>$image,
+       'fname'=>$user->fname,
+       'mname'=>$user->mname,
+       'lname'=>$user->lname,
+       'sname'=>$user->sname,
+       'age'=>$user->age,
+       'gender'=>$user->gender,
+       'bday'=>$user->bday,
+       'phone_num'=>$user->phone_num,
+       'email'=>$user->email,
+       'password'=>$user->password,
+       'type'=>$user->type,
+    ];
+    session()->put('USER',$data);
+    imagedestroy($resizedImage);
 
-                return response()->json(['failed' => 'No changes yet!']);
-            }
+        return response()->json(['success' => 'Update successfull']);
+    } else {
+
+        return response()->json(['failed' => 'No changes yet!']);
+    }
+
+} else {
+    // Handle case when an unsupported image type is uploaded
+    return response()->json(['failed' => 'Unsupported image type']);
+}
+
+
+
+
+
+          
         } else {
             $updated = ModelsUser::where('id', $request->id)->update([
                 'fname' => strtoupper($request->fname),
@@ -206,23 +235,23 @@ class User extends Controller
                 return response()->json(['failed' => 'No changes yet!']);
             }
         }
+        // Usage:
+   
+       
     }
-
-
+    
     private function resizeImage($filePath, $newWidth, $newHeight = null)
     {
-        // Get image dimensions and type
         list($width, $height, $type) = getimagesize($filePath);
     
-        // Create an image resource based on the file type
         switch ($type) {
             case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
                 $image = imagecreatefromjpeg($filePath);
                 break;
             case IMAGETYPE_PNG:
                 $image = imagecreatefrompng($filePath);
                 break;
-            // Add cases for other image types if needed
             default:
                 return false; // Unsupported image type
         }
@@ -232,11 +261,7 @@ class User extends Controller
         }
     
         $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-    
-        // Resample and resize the image
         imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-    
-        // Free up memory
         imagedestroy($image);
     
         return $imageResized;

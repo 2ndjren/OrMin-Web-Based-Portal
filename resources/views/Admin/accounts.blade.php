@@ -317,17 +317,26 @@ function Verified_Accounts(){
             { 
               "data": null ,
               "render":function(data,type,row){
-                return '<p class="text-gray-500 text-xs font-semibold">'+row.fname+' '+row.mname+' '+row.lname+'</p>'
+                return '<p class="text-xs font-semibold">'+row.fname+' '+row.mname+' '+row.lname+'</p>'
               }
             },
-            {
-              "data":"gender"
+            { 
+              "data": null ,
+              "render":function(data,type,row){
+                return '<p class="text-xs font-semibold">'+row.gender+'</p>'
+              }
             },
-            {
-              "data":"bday"
+            { 
+              "data": null ,
+              "render":function(data,type,row){
+                return '<p class="text-xs font-semibold">'+row.bday+'</p>'
+              }
             },
-            {
-              "data":"email"
+            { 
+              "data": null ,
+              "render":function(data,type,row){
+                return '<p class="text-xs font-semibold">'+row.email+'</p>'
+              }
             },
             
           
@@ -343,8 +352,11 @@ function Verified_Accounts(){
                 }
               }
             },
-            {
-              "data":"account_status"
+            { 
+              "data": null ,
+              "render":function(data,type,row){
+                return '<p class="text-xs font-semibold">'+row.account_status+'</p>'
+              }
             },
             {
                 "data": null,

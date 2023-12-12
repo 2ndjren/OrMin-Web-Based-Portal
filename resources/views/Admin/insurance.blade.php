@@ -1628,6 +1628,7 @@
     var activated_table = "<table id='activated-accounts' class='stripe hover  w_full '>"
     activated_table += "<thead>"
     activated_table += "<tr>"
+    activated_table += "<th>Membership ID</th>"
     activated_table += "<th>Name</th>"
     activated_table += "<th>Program</th>"
     activated_table += "<th>Validity</th>"
@@ -1645,7 +1646,14 @@
         "type": "GET",
         "dataSrc": "activated",
       },
-      "columns": [{
+      "columns": [
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<span class=" font-semibold text-xs ">' + row.mem_id + '</span>'
+          }
+        },
+        {
           "data": null,
           "render": function(data, type, row) {
             console.log(data);
@@ -1713,6 +1721,7 @@
     var pending_table = "<table id='pending-accounts' class='stripe hover  w_full '>"
     pending_table += "<thead>"
     pending_table += "<tr>"
+    pending_table += "<th>Membership ID</th>"
     pending_table += "<th>Name</th>"
     pending_table += "<th>Program</th>"
     pending_table += "<th>Status</th>"
@@ -1730,7 +1739,14 @@
         "type": "GET",
         "dataSrc": "pending",
       },
-      "columns": [{
+      "columns": [
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<span class=" font-semibold text-xs ">' + row.mem_id + '</span>'
+          }
+        },
+        {
           "data": null,
           "render": function(data, type, row) {
             return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'
@@ -1781,6 +1797,7 @@
     var other_table = "<table id='other-accounts' class='stripe hover  w_full '>"
     other_table += "<thead>"
     other_table += "<tr>"
+    other_table += "<th>Membership ID</th>"
     other_table += "<th>Name</th>"
     other_table += "<th>Program</th>"
     other_table += "<th>Status</th>"
@@ -1798,7 +1815,14 @@
         "type": "GET",
         "dataSrc": "others",
       },
-      "columns": [{
+      "columns": [
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<span class=" font-semibold text-xs ">' + row.mem_id + '</span>'
+          }
+        },
+        {
           "data": null,
           "render": function(data, type, row) {
             return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + ' ' + row.lname + '</p>'

@@ -116,6 +116,9 @@ class Donations extends Controller
         if(session('ADMIN')){
         $create->e_id=session('ADMIN')['id'];
         }
+
+
+        
         $create->fname=strtoupper($request->fname);
         $create->mname=strtoupper($request->mname);
         $create->lname=strtoupper($request->lname);
@@ -127,10 +130,37 @@ class Donations extends Controller
         $create->type=strtoupper($request->type);
         $create->donation_type=strtoupper($request->donation_type);
         $create->donator_info=$request->donator_info;
-        $image=$request->file('donation_proof');
-        $image_content=file_get_contents($image);
-        $create->donation_proof=$image_content;
-        $create->status='PENDING';
+
+
+        $uploadedFile = $request->file('donation_proof');
+
+        // $image=$request->file('user_profile');
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+        $originalFilePath = $uploadedFile->getRealPath();
+    
+        // Resize the image
+        $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+    
+        $maxSize = 50 * 1024; // 50KB in bytes
+        $imageQuality = 90; // Initial quality setting
+
+        do {
+            ob_start();
+            imagejpeg($resizedImage, null, $imageQuality);
+            $imageData = ob_get_contents();
+            ob_end_clean();
+
+            $imageSize = strlen($imageData);
+
+            if ($imageSize > $maxSize && $imageQuality > 10) {
+                // Reduce quality if the file size exceeds the limit
+                $imageQuality -= 2;
+            } else {
+                break;
+            }
+        } while (true);
+        $create->donation_proof=$imageData;
+        $create->status='VERIFIED';
         $saved=$create->save();
         if($saved){
             return response()->json(['success'=>'Record added successfully!']);
@@ -138,6 +168,32 @@ class Donations extends Controller
             return response()->json(['failed'=>'Something went wrong!']);
 
         }
+    }
+    private function resizeImage($filePath, $newWidth, $newHeight = null)
+    {
+        list($width, $height, $type) = getimagesize($filePath);
+    
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $image = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($filePath);
+                break;
+            default:
+                return false; // Unsupported image type
+        }
+    
+        if ($newHeight === null) {
+            $newHeight = round($height * $newWidth / $width);
+        }
+    
+        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($image);
+    
+        return $imageResized;
     }
     
 

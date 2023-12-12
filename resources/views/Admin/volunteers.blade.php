@@ -936,6 +936,7 @@
     validated_table += "<thead>"
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Address</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
@@ -957,9 +958,16 @@
           "render": function(data, type, row) {
             let fullName = (row.fname || '') + ' ' + (row.mname || '') + ' ' + (row.lname || '');
             if (fullName.trim() !== '') {
-              return '<p class="text-gray-500 text-xs font-semibold">' + fullName + '</p>';
+              return '<p class="text-xs font-semibold">' + fullName + '</p>';
             }
             return '';
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
@@ -973,7 +981,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
@@ -1170,6 +1182,7 @@
     validated_table += "<thead>"
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Address</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
@@ -1189,7 +1202,14 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
@@ -1199,7 +1219,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
@@ -1217,6 +1241,7 @@
     validated_table += "<thead>"
     validated_table += "<tr>"
     validated_table += "<th>Name</th>"
+    validated_table += "<th>Mobile No.</th>"
     validated_table += "<th>Address</th>"
     validated_table += "<th>Role</th>"
     validated_table += " <th>Action</th>"
@@ -1236,7 +1261,14 @@
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
-            return '<p class="text-gray-500 text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+            return '<p class="text-xs font-semibold">' + row.fname + ' ' + row.mname + ' ' + row.lname + '</p>'
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.phone_no + '</span>';
           }
         },
         {
@@ -1246,7 +1278,11 @@
           }
         },
         {
-          'data': 'role'
+          "data": null,
+          "render": function(data, type, row) {
+   
+            return '<span class="font-semibold text-xs">' + row.role + '</span>';
+          }
         },
         {
           "data": null,
@@ -1278,10 +1314,12 @@
           submit.prop('disabled', false)
           submit.removeClass('opacity-50 cursor-not-allowed')
           var left_details = "<div class='w-full'>";
-          if (response.vol_profile !== null) {
+          if (response.vol_profile!=="") {
             left_details += "<div class='mx-auto h-auto w-full border'><img src='data:image/jpeg;base64," + response.vol_profile + "'></div>";
           } else {
-            left_details += "<div class='mx-auto h-w-20 h-full border'><img src='https://cdn-icons-png.flaticon.com/512/3106/3106921.png'></div>";
+            left_details += " <div class='flex justify-center align-center w-full text-center'>";
+            left_details += " <p class='text-9xl text-blue-500'><i class='fa-solid fa-user w-auto shadow'></i></p>";
+            left_details += " <//div>";
           }
           left_details += "</div>";
 

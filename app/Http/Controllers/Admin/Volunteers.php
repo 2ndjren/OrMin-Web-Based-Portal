@@ -124,7 +124,7 @@ class Volunteers extends Controller
             ];
         }else{
             $rules=[
-                'vol_profile'=>'required|image|max:2500',
+                'vol_profile'=>'required|image|max:2048',
                 'fname'=>'required',
                 'mname'=>'required',
                 'lname'=>'required',
@@ -161,9 +161,34 @@ class Volunteers extends Controller
         }
         $vol->vol_id=$request->vol_id;
         if($request->vol_profile!=null){
-            $image=$request->file('vol_profile');
-            $image_content=file_get_contents($image);
-            $vol->vol_profile=$image_content;
+
+
+            $uploadedFile = $request->file('vol_profile');
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $originalFilePath = $uploadedFile->getRealPath();
+        
+            // Resize the image
+            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+        
+            $maxSize = 50 * 1024; // 50KB in bytes
+            $imageQuality = 90; // Initial quality setting
+    
+            do {
+                ob_start();
+                imagejpeg($resizedImage, null, $imageQuality);
+                $imageData = ob_get_contents();
+                ob_end_clean();
+    
+                $imageSize = strlen($imageData);
+    
+                if ($imageSize > $maxSize && $imageQuality > 10) {
+                    // Reduce quality if the file size exceeds the limit
+                    $imageQuality -= 2;
+                } else {
+                    break;
+                }
+            } while (true);
+            $vol->vol_profile=$imageData;
         }
         $vol->fname=strtoupper($request->fname);
         $vol->mname=strtoupper($request->mname);
@@ -186,9 +211,36 @@ class Volunteers extends Controller
         }
         $vol->privacy_agreement="AGREE";
         if(session('USER')){
-            $image=$request->file('consent');
-            $image_content=file_get_contents($image);
-            $vol->consent=$image_content;
+
+            $uploadedFile = $request->file('consent');
+
+            // $image=$request->file('user_profile');
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $originalFilePath = $uploadedFile->getRealPath();
+        
+            // Resize the image
+            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+        
+            $maxSize = 50 * 1024; // 50KB in bytes
+            $imageQuality = 90; // Initial quality setting
+    
+            do {
+                ob_start();
+                imagejpeg($resizedImage, null, $imageQuality);
+                $imageData = ob_get_contents();
+                ob_end_clean();
+    
+                $imageSize = strlen($imageData);
+    
+                if ($imageSize > $maxSize && $imageQuality > 10) {
+                    // Reduce quality if the file size exceeds the limit
+                    $imageQuality -= 2;
+                } else {
+                    break;
+                }
+            } while (true);
+            
+            $vol->consent=$imageData;
         }
         $vol->email=$request->email;
         $vol->status="VALIDATED";
@@ -201,6 +253,35 @@ class Volunteers extends Controller
 
 
     }
+
+    private function resizeImage($filePath, $newWidth, $newHeight = null)
+    {
+        list($width, $height, $type) = getimagesize($filePath);
+    
+        switch ($type) {
+            case IMAGETYPE_JPEG:
+            case IMAGETYPE_JPEG2000:
+                $image = imagecreatefromjpeg($filePath);
+                break;
+            case IMAGETYPE_PNG:
+                $image = imagecreatefrompng($filePath);
+                break;
+            default:
+                return false; // Unsupported image type
+        }
+    
+        if ($newHeight === null) {
+            $newHeight = round($height * $newWidth / $width);
+        }
+    
+        $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+        imagecopyresampled($imageResized, $image, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+        imagedestroy($image);
+    
+        return $imageResized;
+    }
+
+ 
     public function Update_Volunteer_Profile(Request $request){
         if(session('ADMIN') || session('STAFF')){
             $rules=[
@@ -254,11 +335,36 @@ class Volunteers extends Controller
         $update= new ModelsVolunteers();
         
         if($request->file('edit_vol_profile')!=null){
-            $image=$request->file('edit_vol_profile');
-            $image_content=file_get_contents($image);
+            $uploadedFile = $request->file('edit_vol_profile');
+
+            // $image=$request->file('user_profile');
+            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+            $originalFilePath = $uploadedFile->getRealPath();
+        
+            // Resize the image
+            $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+        
+            $maxSize = 50 * 1024; // 50KB in bytes
+            $imageQuality = 90; // Initial quality setting
+    
+            do {
+                ob_start();
+                imagejpeg($resizedImage, null, $imageQuality);
+                $imageData = ob_get_contents();
+                ob_end_clean();
+    
+                $imageSize = strlen($imageData);
+    
+                if ($imageSize > $maxSize && $imageQuality > 10) {
+                    // Reduce quality if the file size exceeds the limit
+                    $imageQuality -= 2;
+                } else {
+                    break;
+                }
+            } while (true);
             $updated= $update::where('id',$request->edit_id)->update([
                 'vol_id'=>$request->edit_vol_id,
-                'vol_profile'=>$image_content,
+                'vol_profile'=>$imageData,
                 'fname'=>strtoupper($request->edit_fname),
                 'mname'=>strtoupper($request->edit_mname),
                 'lname'=>$request->edit_lname,
@@ -307,6 +413,11 @@ class Volunteers extends Controller
         
 
     }
+    
+    
+
+    
+
     public function Validated_Pending_Volunteers(){
         $validated= ModelsVolunteers::where('status','VALIDATED')->limit(10)->get();
         $pending= ModelsVolunteers::where('status','PENDING')->limit(10 )->get();
