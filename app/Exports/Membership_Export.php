@@ -4,11 +4,11 @@ namespace App\Exports;
 
 use App\Models\insurance;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 
-class Membership_Export implements FromCollection,ShouldAutoSize
+class Membership_Export implements FromCollection,ShouldAutoSize,  WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
