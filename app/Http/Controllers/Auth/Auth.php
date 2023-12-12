@@ -142,7 +142,7 @@ class Auth extends Controller
          $now->modify('-15 years');
        $formatted_age=$now->format("m-d-Y");
         $rules=[
-            'user_profile' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'user_profile' => 'required|image|mimes:jpeg,png,jpg',
             'fname'=>'required|regex:/^[A-Za-z ]+$/',
             'mname'=>'required|regex:/^[A-Za-z ]+$/',
             'lname'=>'required|regex:/^[A-Za-z ]+$/',
