@@ -68,7 +68,8 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
-        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
         <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
         <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>
@@ -203,7 +204,7 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
-        <img src="https://redcross.org.ph/wp-content/themes/yootheme/cache/logo-968682b9.png" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
+        <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
         <h1 class="mt-6 text-xl text-white font-bold">PHILIPPINE RED CROSS</h1>
         <p class="text-white text-sm font-semibold">MINDORO ORIENTAL CHAPTER</p>

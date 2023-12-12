@@ -41,6 +41,7 @@
 
       <div class="container mx-auto p-2 text-center relative">
         <!-- Logo positioned on top center of the header -->
+  
         <img src="{{asset('static/user/home/logo.png')}}" class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-20">
 
         <h1 class="mt-6 text-xl text-white font-bold">PRC MINDORO ORIENTAL CHAPTER</h1>
