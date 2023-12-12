@@ -354,7 +354,7 @@ function Verified_Accounts(){
             { 
               "data": null ,
               "render":function(data,type,row){
-                return '<p class="text-xs font-semibold">'+row.status+'</p>'
+                return '<p class="text-xs font-semibold">'+row.account_status+'</p>'
               }
             },
             {
