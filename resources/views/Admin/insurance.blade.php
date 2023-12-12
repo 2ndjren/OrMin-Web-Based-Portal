@@ -1985,7 +1985,9 @@
       },
       error: function(xhr, status, error) {
         // Handle error response here
-        window.alert("Error: Please ensure the Excel file matches the required format for importing.");
+        // window.alert(xhr.responseText);
+        window.alert(xhr.responseText);
+
         document.getElementById('loading-page').classList.add('hidden');
       }
     });
