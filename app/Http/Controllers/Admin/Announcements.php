@@ -106,8 +106,8 @@ class Announcements extends Controller
     public function getAllAnnouncements()
     {
         // Retrieve paginated announcements from the database
-        $announcements = Announcement::paginate(10); // Change the number based on your requirement
-
+        $announcements = Announcement::orderBy('created_at', 'desc')->paginate(10); // Change the number based on your requirement
+    
         // If the request expects JSON, return announcements as JSON
         return response()->json($announcements);
     }
