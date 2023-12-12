@@ -13,7 +13,7 @@ class Imports_data_vol implements ToModel, WithStartRow
      
      public function startRow(): int
     {
-        return 3; // Start importing from the 2nd row (row index 1)
+        return 2; // Start importing from the 2nd row (row index 1)
     }
 
 
