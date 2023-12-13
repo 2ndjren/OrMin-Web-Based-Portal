@@ -71,6 +71,9 @@ Route::get('user-today-schedule',[User::class,'Today_Appointments']);
 Route::get('cancel-appointment/{id}',[User::class,'Cancel_Appointments']);
 
 
+Route::get('register-insurance',[User::class,'Register_Membership']);
+
+
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);
 Route::get('my-blood-donation-history',[User::class,'blood_history']);
 Route::post('create-user-membership',[User::class,'Create_Membership_Account']);

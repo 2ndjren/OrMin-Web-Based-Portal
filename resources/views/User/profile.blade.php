@@ -64,23 +64,23 @@
       <div class=" bg-gray-200 p-3">
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
-      <div id="set-an-appointment-btn" class="  hidden my-4">
+      <div class="sm:block lg:flex">
+      <div id="set-an-appointment-btn" class=" w-full  hidden my-4">
       <div class="flex mb-5 mt-5">
   <div class=" p-2 border-r-2 border-blue-500">
   </div>
   <div class=" pl-2">
     <p class="text-yellow-500 font-semibold">How to set an appointment?</p>
-  <p class="font-semibold text-sm text-gray-700 mb-5">To schedule your appointment, simply click the button below.</p>
+  <p class="font-semibold text-sm text-gray-700 mb-5">To schedule your appointment, simply click the button below. <br> <br> <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a></p>
        
 </div>
 
 </div>
-<div class="ml-5"><a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a></div>
+
 
         
       </div>
-      <div class="">
-        <p class="font-semibold text-gray-500 ml-5">Appointment History</p>
+      <div class="w-full mt-5">
         <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
           <thead class="bg-blue-500 text-white">
             <tr>
@@ -93,6 +93,7 @@
 
           </tbody>
         </table>
+      </div>
       </div>
 
           
@@ -115,12 +116,12 @@
   </div>
   <div class=" pl-2">
     <p class="text-yellow-500 font-semibold">Volunteering</p>
-  <p class="font-semibold text-sm text-gray-700 mb-5">Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a> to discover additional information. <br> To volunteer, kindly click the blue button below.</p>
+  <p class="font-semibold text-sm text-gray-700 mb-5">Would you like to explore further about volunteering? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a> to discover additional information. <br>To volunteer, kindly click the blue button below.  <br> <br><a class="font-semibold text-white px-2 py-2 ml-5  bg-blue-500 " href="{{url('register-volunteer')}}">Be a volunteer!</a></p>
        
 </div>
 
 </div>
-        <a class="font-semibold text-white px-2 py-2 ml-5  bg-blue-500 " href="{{url('register-volunteer')}}">Be a volunteer!</a>
+       
       </div>
       <div class="sm:block lg:flex mt-2" id="volunteer-details">
 
@@ -147,7 +148,7 @@
   <div class="border-r-2 border-blue-500">
   </div>
   <div class=" pl-2">
-  <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <a class="hover:underline text-blue-500 font-semibold" href="{{url('user/volunteer')}}">Click here</a>  to discover additional information. To volunteer, kindly click the blue button below.</p>
+  <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <br> <a class="hover:underline px-2 py-1 bg-blue-500 shadow-lg text-white font-semibold" href="{{url('user/membership')}}">Learn More ...</a></p>
        
   </div>
 </div>
@@ -373,11 +374,11 @@
 
 
 <div id="my-volunteer-card-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
-    <div id="decline-membership-note" class="w-full">
+  <div class="modal-container h-4/6 bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+    <div id="decline-membership-note" class="w-full h-full">
       <p class="font-semibold text-center text-blue-500 ">Volunteer Virtual Card</p>
-      <div id="myappointment-details" style="background-image: url('public/static/');">
-
+      <div id="my-volunteer-details"  class=" h-full bg-no-repeat bg-center bg-contain" style="background-image: url('/static/user/categories/volunteer.jpg'); ">
+      <div id="volunteer-data" class=""></div>
       </div>
 
     </div>
@@ -768,6 +769,50 @@ function SelectInsuranceLevel(){
               if(response.results){
                 alert(response.results)
               }else{
+                var vol_id="<div class='w-full pt-20 pl-40'>";
+                if(response.vol_id!==null){
+                  vol_id+="<p class='pt-5 text-center font-semibold'>"+response.vol_id+"</p>";
+                }else{
+                  vol_id+="<p class='pt-5 text-center font-semibold'>Pending</p>";
+                }
+                vol_id+="</div>";
+                var profile="<div class='flex justify-end pt-10 mr-14'>";
+               if(response.vol_profile!==null){
+                profile+="<p class='pt-5 text-center font-semibold'>"+response.vol_profile+"</p>";
+               }else{
+                  profile+="<p class='text-8xl '><i class='fa-solid fa-user w-auto shadow'></i></p>"
+
+               }
+                profile+="</div>";
+                var vol_fname="<div class='pt-5'>";
+               if( response.mname!==null||response.lname!==null){
+                vol_fname+="<p class='pt-5 text-center font-semibold'>"+response.fname+" "+response.mname+" "+response.lname+"</p>";
+               }else{
+                vol_fname+="<p class='pt-5 text-center font-semibold'></p>";
+               }
+                vol_fname+="</div>";
+                var address="<div class='pt-4'>";
+                address+="<p class='pt-5 font-semibold text-sm'><span class='mr-20 ml-8'>"+response.barangay_street+"</span> <span>"+response.barangay+"</span></p>";
+                address+="<p class='pt-5 font-semibold text-sm'><span class='mr-20 ml-8'>"+response.municipal+"</span> <span>"+response.province+"</span></p>";
+                address+="</div>";
+                var mobile="<div class='pt-10'>";
+                address+="<p class='pt-9 font-semibold text-sm'><span class='mr-40 ml-20'>"+response.phone_no+"</span> <span>"+response.blood_type+"</span></p>";
+
+                mobile+="</div>";
+                var expiration="<div class=' text-right w-full'>";
+                if(response.expiration_date!==null){
+                  expiration+="<p class='pt-7 font-semibold text-sm'><span class='mr-20 ml-20'>"+response.expiration_date+"</span></p>";
+                }else{
+                  expiration+="<p class='pt-7 font-semibold text-sm'><span class='mr-20 ml-20'>Pending</span></p>";
+                }
+
+                expiration+="</div>";
+                $('#volunteer-data').append(vol_id);
+                $('#volunteer-data').append(profile);
+                $('#volunteer-data').append(vol_fname);
+                $('#volunteer-data').append(address);
+                $('#volunteer-data').append(mobile);
+                $('#volunteer-data').append(expiration);
                 $('#my-volunteer-card-modal').removeClass('hidden')
               }
             }

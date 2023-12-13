@@ -23,6 +23,7 @@
                         <p class='text-gray-800 pb-3'>PERSONAL INFORMATION</p>
                         <div class="grid md:grid-cols-1 md:gap-6">
 
+                        <div class="sm:block space-x-2 lg:flex">
                         <div class="relative z-0 w-full mb-6 group">
                                 <label for="role" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
                                     Role</label>
@@ -38,6 +39,23 @@
                                 </select>
                                 <span id="role_msg" class="text-sm text-red-500 ml-5 hidden"></span>
                             </div>
+                            <div class="relative z-0 w-full mb-6 group">
+                                <label for="role" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                                    Blood Type</label>
+                                <select name='blood_type' autoComplete="on" class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-2 border-gray-100 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                <option class='text-gray-400' disabled selected hidden>--- CHOOSE HERE ---</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                                </select>
+                                <span id="blood_type_msg" class="text-sm text-red-500 ml-5 hidden"></span>
+                            </div>
+                        </div>
                             </div>
 
                         <div class="grid md:grid-cols-3 md:gap-6">

@@ -52,6 +52,21 @@ class User extends Controller
             return redirect('signin');
         }
     }
+    public function Register_Membership(){
+        if(session('USER')['id']){
+            $check1=insurance::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','ACTIVATED'])->count();
+            $check2=insurance::where('fname',session('USER')['fname'])->where('mname',session('USER')['mname'])->where('lname',session('USER')['lname'])->where('birthday',session('USER')['bday'])->whereIn('status',['PENDING','ACTIVATED'])->count();
+            if($check1>0||$check2>0){
+                return redirect('profile');
+            }else{
+                return view('User.register_membership');
+            }
+        }else if(session('ADMIN')|| session('STAFF')){
+            return redirect('membership');
+        }else{
+            return redirect('signin');
+        }
+    }
     public function Register_Volunteer(){
         if(session('USER')){
             $check1=volunteers::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','VALIDATED'])->count();
@@ -149,7 +164,6 @@ class User extends Controller
 
         if ($uploadedFile != null) {
 
-            $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
 $originalFilePath = $uploadedFile->getRealPath();
 
 // Resize the image
@@ -486,7 +500,7 @@ if ($resizedImage) {
             'level' => 'required',
             'amount' => 'required',
             'type_of_payment' => 'required',
-            'proof_of_payment' => 'required|image|max:25000',
+            'proof_of_payment' => 'required|image',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -509,21 +523,49 @@ if ($resizedImage) {
         $create->barangay_street = strtoupper($request->barangay_street);
         $create->level = strtoupper($request->level);
         $create->type_of_payment = strtoupper($request->type_of_payment);
-        $image = $request->file('proof_of_payment');
-        $image_content = file_get_contents($image);
-        $create->proof_of_payment = $image_content;
-        $create->amount = $request->amount;
-        $create->notified = '0';
-        $create->email = session('USER')['email'];
-        $create->status = "PENDING";
-        $saved = $create->save();
-        if ($saved) {
-            DB::commit();
-            return response()->json(['success' => 'Membership account successfully created!']);
-        } else {
-            return response()->json(['failed' => 'Network error!']);
-        }
+        $uploadedFile = $request->file('proof_of_payment');
+
+        // $image=$request->file('user_profile');
+        $fileName = time() . '_' . $uploadedFile->getClientOriginalName();
+        $originalFilePath = $uploadedFile->getRealPath();
+    
+        // Resize the image
+        $resizedImage = $this->resizeImage($originalFilePath, 800, null); // Resize to desired dimensions
+    
+        $maxSize = 50 * 1024; // 50KB in bytes
+        $imageQuality = 90; // Initial quality setting
+
+        do {
+            ob_start();
+            imagejpeg($resizedImage, null, $imageQuality);
+            $imageData = ob_get_contents();
+            ob_end_clean();
+
+            $imageSize = strlen($imageData);
+
+            if ($imageSize > $maxSize && $imageQuality > 10) {
+                // Reduce quality if the file size exceeds the limit
+                $imageQuality -= 2;
+            } else {
+                break;
+            }
+        } while (true);
+            $create->proof_of_payment = $imageData;
+            $create->amount = $request->amount;
+            $create->notified = '0';
+            $create->email = session('USER')['email'];
+            $create->status = "PENDING";
+            $saved = $create->save();
+            if ($saved) {
+                DB::commit();
+                return response()->json(['success' => 'Membership account successfully created!']);
+            } else {
+                return response()->json(['failed' => 'Network error!']);
+            }
+
+      
     }
+    
 
 
     public function Membership()
@@ -554,6 +596,7 @@ if ($resizedImage) {
             'municipal'=>'required',
             'barangay'=>'required',
             'barangay_street'=>'required',
+            'blood_type'=>'required',
             'postal_code'=>'required',
             'role'=>'required',
             'phone_no'=>'required',
@@ -582,6 +625,7 @@ if ($resizedImage) {
         $create->barangay_street=strtoupper($request->barangay_street);
         $create->postal_code=$request->postal_code;
         $create->role=strtoupper($request->role);
+        $create->blood_type=strtoupper($request->blood_type);
         $create->occupation_address=strtoupper($request->occupation_address);
         $create->phone_no=$request->phone_no;
         $create->email=$request->email;

@@ -35,7 +35,7 @@
                     </p>
                     <ul>
                         <li class="mt-8">
-                            <a href="/signin" class="rounded-xl bg-gradient-to-b from-yellow-300 to-yellow-500 px-8 py-2 text-xl text-slate-900 font-bold hover:shadow-2xl">JOIN NOW!</a>
+                            <a href="{{url('register-insurance')}}" class="rounded-xl bg-gradient-to-b from-yellow-300 to-yellow-500 px-8 py-2 text-xl text-slate-900 font-bold hover:shadow-2xl">JOIN NOW!</a>
                         </li>
                     </ul>
                 </div>
