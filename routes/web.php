@@ -58,7 +58,6 @@ Route::get('user-appointment',[User::class,'Appointment']);
 Route::get('user-appointment-history',[User::class,'MyAppointmentHistory']);
 // Route::get('user-appointment',[User::class,'MySchedule']);
 Route::get('user-appointment-details/{id}',[User::class,'ViewMyAppointmentDetails']);
-Route::get('userinsurance',[User::class,'MyInsurance']);
 
 // USER INSURANCE 
 Route::post('create-user-appointment',[User::class,'Create_User_Appointment']);
@@ -72,6 +71,11 @@ Route::get('cancel-appointment/{id}',[User::class,'Cancel_Appointments']);
 
 
 Route::get('register-insurance',[User::class,'Register_Membership']);
+Route::get('user-insurance',[User::class,'MyInsurance']);
+Route::get('user-insurance-details/{id}',[User::class,'UserInsurance_Info']);
+
+
+
 
 
 Route::get('my-inurance-history',[User::class,'MyInsuranceHistory']);

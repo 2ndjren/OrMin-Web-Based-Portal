@@ -27,6 +27,7 @@ class insurance extends Model
         'barangay',
         'barangay_street',
         'email',
+        'blood_type',
         'amount',
         'status',
         'pick_up_address',

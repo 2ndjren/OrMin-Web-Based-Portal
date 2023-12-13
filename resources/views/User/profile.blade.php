@@ -64,7 +64,8 @@
       <div class=" bg-gray-200 p-3">
         <p class="text-blue-900 font-bold text-xl">APPOINTMENT</p>
       </div>
-      <div class="sm:block lg:flex">
+      <div class="sm:block lg:flex  pt">
+
       <div id="set-an-appointment-btn" class=" w-full  hidden my-4">
       <div class="flex mb-5 mt-5">
   <div class=" p-2 border-r-2 border-blue-500">
@@ -80,8 +81,11 @@
 
         
       </div>
-      <div class="w-full mt-5">
-        <table id="appointment-table" class="w-full border text-center border-blue-500 p-2 mt-2">
+      <div class="w-full" id="appointment-details-submitted">
+
+      </div>
+      <div class="w-full">
+        <table id="appointment-table" class="w-full border text-center border-blue-500 p-2">
           <thead class="bg-blue-500 text-white">
             <tr>
               <th>Date</th>
@@ -143,22 +147,31 @@
         <p class="text-cyan-600 font-bold text-xl">MEMBERSHIP PROGRAM</p>
       </div>
   <div class="">
-  <div id="membership-info" class="pt-10">
-<div class="flex mb-5">
-  <div class="border-r-2 border-blue-500">
-  </div>
-  <div class=" pl-2">
-  <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <br> <a class="hover:underline px-2 py-1 bg-blue-500 shadow-lg text-white font-semibold" href="{{url('user/membership')}}">Learn More ...</a></p>
-       
-  </div>
+    <div id="get-membership-details" class=" hidden pl-2">
+    <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <br> <a class="hover:underline px-2 py-1 bg-blue-500 shadow-lg text-white font-semibold" href="{{url('user/membership')}}">Learn More ...</a></p>
+         
+    </div>
+    <div id="user-insurance-data"></div>
+    <div class="flex">
+<div class="w-full"></div>
+
+    <div class="w-full  h-auto">
+<table id='membership-history-table' class="border border-red-500 w-full text-center">
+          <thead class="text-white bg-red-500">
+            <tr>
+              <th>Program</th>
+              <th>Validity</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
 </div>
-</div>
+    </div>
   </div>
     </div>
 
-    <div class="sm:h-96 lg:h-0">
-
-    </div>
 
   </div>
 
@@ -374,15 +387,48 @@
 
 
 <div id="my-volunteer-card-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container h-4/6 bg-white sm:w-1/2  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+  <div class="modal-container sm:h-3/4 lg:h-4/6 sm:w-3/4  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
     <div id="decline-membership-note" class="w-full h-full">
-      <p class="font-semibold text-center text-blue-500 ">Volunteer Virtual Card</p>
       <div id="my-volunteer-details"  class=" h-full bg-no-repeat bg-center bg-contain" style="background-image: url('/static/user/categories/volunteer.jpg'); ">
       <div id="volunteer-data" class=""></div>
       <div class="flex justify-center mt-5"><button id="volunteer-card-btn" class="text-white bg-blue-500 px-3 py-1 rounded-md " type="button">Close</button></div>
       </div>
 
     </div>
+  </div>
+</div>
+
+
+<div id="my-membership-card-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
+  <div id="card-background-modal" class="modal-container sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 mx-auto rounded-lg">
+    <div id="classic-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden " style="background-image: url('/static/user/categories/classic.png'); ">
+      <div id="insurance-user-classic-data" class=""></div>
+  
+    </div>
+    <div id="bronze-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/bronze.png'); ">
+      <div id="insurance-user-bronze-data" class=""></div>
+  
+    </div>
+    <div id="silver-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/silver.png'); ">
+      <div id="insurance-user-silver-data" class=""></div>
+  
+    </div>
+    <div id="gold-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/gold.png'); ">
+      <div id="insurance-user-gold-data" class=""></div>
+  
+    </div>
+    <div id="platinum-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/platinum.png'); ">
+      <div id="insurance-user-platinum-data" class=""></div>
+  
+    </div>
+    <div id="senior-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/senior.png'); ">
+      <div id="insurance-user-senior-data" class=""></div>
+  
+    </div>
+    <div id="plus-card"  class=" h-full bg-no-repeat bg-center bg-contain hidden" style="background-image: url('/static/user/categories/plus.png'); ">
+      <div id="insurance-user-plus-data" class=""></div>
+    </div>
+    <div class="flex justify-center mt-5"><button id="close-insurance-card-btn" class="text-white bg-blue-500 px-3 py-1 rounded-md " type="button">Close</button></div>
   </div>
 </div>
 
@@ -403,6 +449,9 @@
     Appointment_Btn()
     Volunter_Record()
     Show_My_Volunteer_Card()
+    User_Insurance()
+    Show_Insurance_Details()
+    CLose_Inusarnce_Card_Modal()
   });
 
 
@@ -823,6 +872,231 @@ function SelectInsuranceLevel(){
           e.preventDefault();
           $('#volunteer-data').empty();
           $('#my-volunteer-card-modal').addClass('hidden')
+          
+        });
+      }
+
+      function User_Insurance(){
+        $.ajax({
+          type: "GET",
+          url: "/user-insurance",
+          data: "data",
+          dataType: "json",
+          success: function (response) {
+            console.log(response)
+            if(response.ongoing.status==="ACTIVATED"){
+              $('#get-membership-details').addClass('hidden')
+            }else{
+              $('#get-membership-details').removeClass('hidden')
+
+            }
+            if(response.history!=="No results found!"){
+             $.each(response.history, function (index, value) { 
+              var table_data="<tr class='text-blue-500 font-semibold'>"
+              table_data+="<td><button type='button' class='history-details-btn hover:underline'  data-id="+value.id+">"+value.level+"</button></td>"
+              table_data+="<td>"+value.start_at+" "+value.end_at+"</td>"
+              table_data+="<td>"+value.status+"</td>"
+              table_data+="</tr>"
+              $('#membership-history-table tbody').append(table_data)
+             });
+            }else{
+              var table_data="<tr>"
+              table_data+="<td></td>"
+              table_data+="<td>"+response.history+"</td>"
+              table_data+="<td></td>"
+              table_data+="</tr>"
+              $('#membership-history-table tbody').append(table_data)
+
+            }
+
+
+
+          }
+        });
+      }
+
+      function Show_Insurance_Details(){
+        $(document).on('click','.history-details-btn',function(){
+          var id=$(this).data('id');
+          $.ajax({
+            type: "GET",
+            url: "/user-insurance-details/"+id,
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+              console.log(response)
+              if(response.level==="CLASSIC"){
+
+                $('#classic-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/2 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                var name="<div class='sm:pt-96 sm:pl-20'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-16'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var address="<div class='sm:pl-20 '>"
+                address+="<p class=' font-semibold sm:pt-7'>"+response.barangay_street+", "+response.barangay+", "+response.municipality+"</p>"
+                address+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div>"
+                validity+="<p class=' font-semibold sm:pt-7 sm:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div>"
+                validity+="<p class=' font-semibold sm:pt-7   sm:pt-5'>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-classic-data').append(name)
+                $('#insurance-user-classic-data').append(address)
+                $('#insurance-user-classic-data').append(validity)
+              }
+              if(response.level==="BRONZE"){
+                $('#bronze-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-bronze-data').append(name)
+                $('#insurance-user-bronze-data').append(validity)
+            
+
+              }
+              if(response.level==="SILVER"){
+                $('#silver-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-silver-data').append(name)
+                $('#insurance-user-silver-data').append(validity)
+              }
+              if(response.level==="GOLD"){
+                $('#gold-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-gold-data').append(name)
+                $('#insurance-user-gold-data').append(validity)
+              }
+              if(response.level==="PLATINUM"){
+                $('#platinum-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-platinum-data').append(name)
+                $('#insurance-user-platinum-data').append(validity)
+              }
+              if(response.level==="SENIOR"){
+                $('#senior-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-senior-data').append(name)
+                $('#insurance-user-senior-data').append(validity)
+              }
+              if(response.level==="SENIOR PLUS"){
+                $('#plus-card').removeClass('hidden')
+                $('#card-background-modal').removeClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/4 ')
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-full lg:w-1/2 ')
+                var name="<div class='sm:pt-96 sm:pl-24'>"
+                if(response.mname!==null && response.lname!== null){
+                  name+="<p class=' font-semibold sm:pt-7 lg:pt-28'>"+response.fname+" "+response.mname+" "+response.lname+"</p>"
+                }else{
+                  name+="<p class=' sm:pt-7 lg:pt-16'>"+response.fname+"</p>"
+                }
+                name+="</div>"
+                var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
+                validity+="<div class='w-full lg:pl-10'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                validity+="</div>"
+                validity+="<div class='w-full  lg:pl-5'>"
+                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
+                validity+="</div>"
+                validity+="</div>"
+                $('#insurance-user-plus-data').append(name)
+                $('#insurance-user-plus-data').append(validity)
+              }
+                $('#card-background-modal').addClass('sm:h-3/4 lg:h-3/4 sm:w-3/4 lg:w-1/2 ')
+
+              $('#my-membership-card-modal').removeClass('hidden')
+            }
+          });
+        })
+      }
+      function CLose_Inusarnce_Card_Modal(){
+        $('#close-insurance-card-btn').click(function (e) { 
+          e.preventDefault();
+          $('#my-membership-card-modal').addClass('hidden')
           
         });
       }

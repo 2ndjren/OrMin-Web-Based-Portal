@@ -423,34 +423,40 @@ if ($resizedImage) {
     }
     public function MyInsurance()
     {
-        $ongoing = insurance::where('u_id', session('USER')['id'])->orderBy('start_at', 'desc')->whereIn('status', ['PENDING', 'ACTIVATED'])->first();
-        $history = insurance::where('u_id', session('USER')['id'])->whereIn('status', ['DECLINED', 'EXPIRED'])->get();
-        $classic = asset('/static/user/categories/classic.png');
-        $bronze = asset('/static/user/categories/bronze.png');
-        $silver = asset('/static/user/categories/silver.png');
-        $gold = asset('/static/user/categories/gold.png');
-        $platinum = asset('/static/user/categories/platinum.png');
-        $senior = asset('/static/user/categories/senior.png');
-        $plus = asset('/static/user/categories/plus.png');
-        $data = [
-            'ongoing' => $ongoing,
-            'history' => $history,
-            'classic' => $classic,
-            'bronze' => $bronze,
-            'silver' => $silver,
-            'gold' => $gold,
-            'platinum' => $platinum,
-            'senior' => $senior,
-            'plus' => $plus,
-        ];
-        if ($ongoing != null) {
+        
+    $ongoingInsurance = insurance::where('u_id', session('USER')['id'])
+    ->whereIn('status', ['PENDING', 'ACTIVATED'])
+    ->first();
 
-            return response()->json($data);
-        } else if ($ongoing != "") {
-            return response()->json($data);
-        } else {
-            return response()->json(['results' => 'No active insurance found!']);
-        }
+    if($ongoingInsurance){
+    $ongoingInsurance->proof_of_payment = base64_encode($ongoingInsurance->proof_of_payment);
+
+    $history = insurance::where('u_id', session('USER')['id'])
+        ->whereIn('status', [ 'ACTIVATED','PENDING', 'DECLINED', 'EXPIRED'])
+        ->get()
+        ->map(function ($item) {
+            $item->proof_of_payment = base64_encode($item->proof_of_payment);
+            return $item;
+        });
+
+    $data = [
+    'ongoing' => $ongoingInsurance,
+    'history' => $history->isEmpty() ? "No results found!" : $history,
+    ];
+    } else {
+    $data = [
+    'ongoing' => 'Get yours now!',
+    'history' => "No results found!",
+    ];
+    }
+
+    return response()->json($data);
+    }
+
+    public function UserInsurance_Info($id){
+        $user=insurance::find($id);
+        $user->proof_of_payment=base64_encode($user->proof_of_payment);
+        return response()->json($user);
     }
 
     public function blood_history()
@@ -489,6 +495,8 @@ if ($resizedImage) {
             return response()->json(['results' => 'No history records found!']);
         }
     }
+
+
 
     public function Create_Membership_Account(Request $request)
     {
