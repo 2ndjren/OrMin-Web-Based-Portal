@@ -919,10 +919,7 @@ function SelectInsuranceLevel(){
             if(response.ongoing.status==="ACTIVATED"){
               $('#get-membership-details').addClass('hidden')
             }else{
-              var insurance_data="<div>"
-              insurance_data+="<p class='text-center text-xl font-semibold'>MY INSURANCE INFORMATIONS<p>"
-              insurance_data+="</div>"
-              $('#user-insurance-data').append(insurance_data)
+
               $('#user-insurance-data').removeClass('hidden')
               $('#get-membership-details').removeClass('hidden')
 
