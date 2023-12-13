@@ -379,6 +379,7 @@
       <p class="font-semibold text-center text-blue-500 ">Volunteer Virtual Card</p>
       <div id="my-volunteer-details"  class=" h-full bg-no-repeat bg-center bg-contain" style="background-image: url('/static/user/categories/volunteer.jpg'); ">
       <div id="volunteer-data" class=""></div>
+      <div class="flex justify-center mt-5"><button id="volunteer-card-btn" class="text-white bg-blue-500 px-3 py-1 rounded-md " type="button">Close</button></div>
       </div>
 
     </div>
@@ -806,7 +807,7 @@ function SelectInsuranceLevel(){
                   expiration+="<p class='pt-7 font-semibold text-sm'><span class='mr-20 ml-20'>Pending</span></p>";
                 }
 
-                expiration+="</div>";
+
                 $('#volunteer-data').append(vol_id);
                 $('#volunteer-data').append(profile);
                 $('#volunteer-data').append(vol_fname);
@@ -818,6 +819,12 @@ function SelectInsuranceLevel(){
             }
           });
         })
+        $('#volunteer-card-btn').click(function (e) { 
+          e.preventDefault();
+          $('#volunteer-data').empty();
+          $('#my-volunteer-card-modal').addClass('hidden')
+          
+        });
       }
 
 </script>
