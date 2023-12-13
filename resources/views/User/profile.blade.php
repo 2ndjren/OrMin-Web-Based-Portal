@@ -894,7 +894,12 @@ function SelectInsuranceLevel(){
              $.each(response.history, function (index, value) { 
               var table_data="<tr class='text-blue-500 font-semibold'>"
               table_data+="<td><button type='button' class='history-details-btn hover:underline'  data-id="+value.id+">"+value.level+"</button></td>"
+             if(value.start_at!==null && value.end_at!==null){
               table_data+="<td>"+value.start_at+" "+value.end_at+"</td>"
+             }else{
+              table_data+="<td>Pending</td>"
+
+             }
               table_data+="<td>"+value.status+"</td>"
               table_data+="</tr>"
               $('#membership-history-table tbody').append(table_data)
@@ -942,7 +947,11 @@ function SelectInsuranceLevel(){
                 address+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div>"
-                validity+="<p class=' font-semibold sm:pt-7 sm:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-7 sm:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div>"
                 validity+="<p class=' font-semibold sm:pt-7   sm:pt-5'>"+response.blood_type+"</p>"
@@ -965,7 +974,11 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
@@ -989,7 +1002,11 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
@@ -1011,7 +1028,11 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
@@ -1033,7 +1054,11 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
@@ -1055,7 +1080,11 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
@@ -1077,7 +1106,12 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+
+                if(response.statr_at!==null && response.end_at!==mnull){
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
+                }else{
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
                 validity+="<p class=' font-semibold sm:pt-3 lg:pt-5  '>"+response.blood_type+"</p>"
