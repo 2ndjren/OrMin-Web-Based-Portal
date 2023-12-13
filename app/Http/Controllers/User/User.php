@@ -39,13 +39,7 @@ class User extends Controller
     }
     public function Appointment(){
         if(session('USER')['id']){
-            $check=appointments::where('u_id',session('USER')['id'])->whereIn('status',['PENDING','APPROVED','ONGOING'])->count();
-            if($check){
-                return redirect('profile');
-                return redirect('profile');
-            }else{
-                return view('User.appointment');
-            }
+            return view('User.appointment');
         }else if(session('ADMIN')|| session('STAFF')){
             return redirect('appointments');
         }else{
@@ -108,7 +102,8 @@ class User extends Controller
         $checker = appointments::where('app_date', $request->app_date)->where('app_time', $request->app_time)->whereIn('status', ['PENDING', 'APPROVED', 'ONGOING'])->count();
         if ($checker > 0) {
             return response()->json(['failed' => 'Schedule already taken!']);
-        } else {
+        }
+         else {
             $id = mt_rand(11111111, 999999999);
             $create = new appointments();
             $create->u_id = session('USER')['id'];

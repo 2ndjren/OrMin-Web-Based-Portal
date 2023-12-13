@@ -13,14 +13,12 @@
 <body>
 <div class="font-semibold  text-gray-600 pl-14 pt-14"><a href="{{url('/profile')}}"> BACK</a></div>
     
-<div class="px-10">
-  <p class="text-2xl font-semibold text-blue-500 text-center ">Red Cross Oriental Mindoro Chapter Appointment Schedules</p>
-</div>
-<div class="w-full sm:block lg:flex px-10 pt-12 sm:h-auto lg:h-screen sm:space-x-0 sm:space-y-2 lg:space-x-2 lg:space-y-0">
 
-<div class="w-full lg:h-4/5 border border-blue-500 sm:h-auto overflow-y-auto">
-  <p class="text-center p-4 sm:text-lg lg:text-2xl font-semibold text-blue-500">Scheduled/ Pending Appointments</p>
-  <table id="schedule-appointments-table" class="w-full text-center ">
+<div class="w-full sm:block lg:flex px-10 pt-5 sm:h-auto lg:h-screen sm:space-x-0 sm:space-y-2 lg:space-x-2 lg:space-y-0">
+
+<div class="w-full sm:my-2 lg:my-0 lg:h-4/5 border-2 rounded-md border-blue-500 sm:h-auto overflow-y-auto">
+  <p class="text-center p-4 sm:text-lg lg:text-lg font-semibold text-blue-500">SCHEDULED APPOINTMENTS</p>
+  <table id="schedule-appointments-table" class="w-full text-center font-semibold">
     <thead class="bg-blue-500 text-white">
       <tr>
         <th>Date</th>
@@ -32,20 +30,20 @@
   </table>
 </div>
 <div class="sm:w-full lg:w-full">
-  <div id="user-existing-schedule" class="hidden px-2 "></div>
+  <div id="user-existing-schedule" class="hidden px-2 border-2 border-blue-500 rounded-md p-5"></div>
  <div id="set-appointment-now" class="hidden">
-<form class=" border border-gray-500 p-5" id="create-appointment-form">
+<form class=" border-2 rounded-md border-blue-500 p-5" id="create-appointment-form">
         @csrf
         <p class="text-lg font-semibold text-center text-blue-500" >Make appointment!</p>
         <div class="flex mb-5 mt-5">
   <div class=" p-2 border-r-2 border-blue-500">
   </div>
-  <div class=" pl-2">
+  <div class=" pl-2 text-blue-500">
     <p class="text-yellow-500 font-semibold">How to set an appointment!</p>
-  <p class="font-semibold text-sm text-gray-700">1.Review the scheduled and pending appointments in the Scheduled/Pending Appointments Table.</p>
-  <p class="font-semibold text-sm text-gray-700 ">2.Select your preferred date and time that do not appear in the table.</p>
-  <p class="font-semibold text-sm text-gray-700 ">3.State your purpose on the description box.</p>
-  <p class="font-semibold text-sm text-gray-700 ">4.Click submit.</p>
+  <p class="font-semibold text-sm text-blue-500 ">1.Review the scheduled and pending appointments in the Scheduled/Pending Appointments Table.</p>
+  <p class="font-semibold text-sm text-blue-500  ">2.Select your preferred date and time that do not appear in the table.</p>
+  <p class="font-semibold text-sm text-blue-500  ">3.State your purpose on the description box.</p>
+  <p class="font-semibold text-sm text-blue-500  ">4.Click submit.</p>
        
 </div>
 
@@ -84,7 +82,7 @@
         </div>
       </form>
  </div>
- <div class="w-full mt-2 border border-green-500 lg:h-60 overflow-y-auto">
+ <div class="w-full mt-2 border-2 rounded-md border-green-500 lg:h-60 overflow-y-auto">
   <table id="today-schedules" class="w-full text-center">
     <thead class="bg-green-500 text-white">
       <tr>
@@ -159,7 +157,7 @@
             success: function (response) {
               console.log(response)
               if(response.results){
-                var schedules="<tr class='text-center h-20'>"
+                var schedules="<tr class='text-center h-20 font-semibold'>"
                 schedules+="<td></td>"
                 schedules+="<td>"+response.results+"</td>"
                 schedules+="<td></td>"
@@ -181,7 +179,7 @@
                   ];
                    var monthss = months[month - 1];
 
-                  var schedules="<tr>"
+                  var schedules="<tr class='font-semibold '>"
                   schedules+="<td>"+monthss+" "+day+","+year+"</td>"
                   schedules+="<td>"+field.app_time+"</td>"
                   if(field.status==='PENDING'){
@@ -216,25 +214,29 @@
               $('#set-appointment-now').removeClass('hidden')
 
               }else{
-                var user_data="<div>"
-              user_data +="<p class='text-center font-semibold'> My Appointment</p>"
+                var user_data="<div class='px-5'>"
+              user_data +="<p class='text-center text-lg font-semibold text-blue-500'>MY APPOINTMENT INFORMATION</p>"
               user_data +="<div class='flex space-x-2'>"
               user_data +="<p class='w-full'> Date: <span class='ml-2'>"+response.app_date+"</span></p>"
               user_data +="<p class='w-full'> Time: <span class='ml-2'>"+response.app_time+"</span></p>"
+              if(response.status==='PENDING'){
+                  user_data+="<p class='w-full'> Status: <span class='text-white bg-gray-500 px-2 rounded-md'>"+response.status+"</span></p>"
+
+                  }else if(response.status==='APPROVED'){
+                  user_data+="<p class='w-full'> Status: <span class='text-white bg-yellow-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                    
+                  }else if(response.status==="ONGOING"){
+                    user_data+="<p class='w-full'> Status: <span class='text-white bg-green-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  }
               user_data +="</div>"
-              user_data +="<p> Description: <span class='ml-2'>"+response.app_description+"</span></p>"
+
+              user_data +="<p class='text-center font-semibold text-blue-500' > Description </br></p>"
+              user_data +="<p class='px-10 pb-10'><span class=''>"+response.app_description+"</span></p>"
+
               if(response.note!==null){
                 user_data +="<p> Note: <span class='ml-2'>"+response.note+"</span></p>"
               }
-              if(response.status==='PENDING'){
-                  user_data+="<td><span class='text-white bg-gray-500 px-2 rounded-md'>"+response.status+"</span></td>"
-
-                  }else if(response.status==='APPROVED'){
-                  user_data+="<td><span class='text-white bg-yellow-500 px-2 rounded-md'>"+response.status+"</span></td>"
-                    
-                  }else if(response.status==="ONGOING"){
-                    user_data+="<td><span class='text-white bg-green-500 px-2 rounded-md'>"+response.status+"</span></td>"
-                  }
+            
               user_data +="<div>"
                 $('#user-existing-schedule').append(user_data)
                 $('#set-appointment-now').addClass('hidden')
@@ -253,7 +255,7 @@
             success: function (response) {
               console.log(response)
               if(response.results){
-                var schedules="<tr class='text-center h-20'>"
+                var schedules="<tr class='text-center font-semibold h-20'>"
                 schedules+="<td></td>"
                 schedules+="<td>"+response.results+"</td>"
                 schedules+="<td></td>"
@@ -275,8 +277,8 @@
                   ];
                    var monthss = months[month - 1];
 
-                  var schedules="<tr>"
-                  schedules+="<td>"+field.app_time+"</td>"
+                  var schedules="<tr class='font-semibold text-blue-500'>"
+                  schedules+="<td class='font-semibold'>"+field.app_time+"</td>"
                   if(field.status==='APPROVED'){
                   schedules+="<td><span class='text-white bg-yellow-500 px-2 rounded-md'>"+field.status+"</span></td>"
                     

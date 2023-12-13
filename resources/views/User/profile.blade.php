@@ -66,10 +66,9 @@
       </div>
       <div class="sm:block lg:flex  pt">
 
-      <div id="set-an-appointment-btn" class=" w-full  hidden my-4">
+      <div id="set-an-appointment-btn" class=" w-full  hidden">
       <div class="flex mb-5 mt-5">
-  <div class=" p-2 border-r-2 border-blue-500">
-  </div>
+
   <div class=" pl-2">
     <p class="text-yellow-500 font-semibold">How to set an appointment?</p>
   <p class="font-semibold text-sm text-gray-700 mb-5">To schedule your appointment, simply click the button below. <br> <br> <a class="font-semibold text-white px-2 py-2  bg-blue-500 " href="{{url('user-appointment')}}">Set Appointment</a></p>
@@ -81,7 +80,7 @@
 
         
       </div>
-      <div class="w-full" id="appointment-details-submitted">
+      <div class="w-full hidden pb-10 px-10 pt-5" id="appointment-details-submitted">
 
       </div>
       <div class="w-full">
@@ -151,8 +150,8 @@
     <p class="font-semibold text-gray-500 mb-5">Benifits of having an insurance account in our organization? <br> <a class="hover:underline px-2 py-1 bg-blue-500 shadow-lg text-white font-semibold" href="{{url('user/membership')}}">Learn More ...</a></p>
          
     </div>
-    <div id="user-insurance-data"></div>
-    <div class="flex">
+    <div id="user-insurance-data" class="hidden"></div>
+    <div class=" sm:block lg:flex">
 <div class="w-full"></div>
 
     <div class="w-full  h-auto">
@@ -387,7 +386,7 @@
 
 
 <div id="my-volunteer-card-modal" class="fixed hidden px-5 inset-0 flex items-center justify-center z-30  bg-black bg-opacity-50  overflow-y-auto ">
-  <div class="modal-container sm:h-3/4 lg:h-4/6 sm:w-3/4  lg:w-1/4 mx-auto rounded-lg p-4 shadow-lg ">
+  <div class="modal-container sm:h-3/4 lg:h-4/6 sm:w-3/4  lg:w-1/4 mx-auto rounded-lg p-4 ">
     <div id="decline-membership-note" class="w-full h-full">
       <div id="my-volunteer-details"  class=" h-full bg-no-repeat bg-center bg-contain" style="background-image: url('/static/user/categories/volunteer.jpg'); ">
       <div id="volunteer-data" class=""></div>
@@ -452,6 +451,7 @@
     User_Insurance()
     Show_Insurance_Details()
     CLose_Inusarnce_Card_Modal()
+    Show_App_Schedules()
   });
 
 
@@ -553,7 +553,7 @@ var months = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 ];
  var monthss = months[month - 1];
-        var details="<div>"
+        var details="<div  class='p-5'>"
         details+="<p>Date: <span class='ml-2'>"+monthss+" "+day+", "+year+"</span><p>"
         details+="<p>Time: <span class='ml-2'>"+response.app_time+"</span><p>"
         details+="<p>Description: <span class='ml-2'>"+response.app_description+"</span><p>"
@@ -562,20 +562,20 @@ var months = [
           
         }
         if(response.status==='PENDING'){
-                  details+="<p>Status:<span class='text-white bg-gray-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  details+="<p>Status:<span class='text-white bg-gray-500 px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
 
                   }else if(response.status==='APPROVED'){
-                  details+="<p>Status: <span class='text-white bg-yellow-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                  details+="<p>Status: <span class='text-white bg-yellow-500 px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
                     
                   }else if(response.status==="ONGOING"){
-                    details+="<p>Status: <span class='text-white bg-green-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                    details+="<p>Status: <span class='text-white bg-green-500 px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
                   
                   }else if(response.status==="DECLINED"){
-                    details+="<p>Status: <span class='text-white bg-blue-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                    details+="<p>Status: <span class='text-white bg-blue-500 px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
                   }else if(response.status==="CANCELLED"){
-                    details+="<p>Status: <span class='text-black border-2 bg-white px-2 rounded-md'>"+response.status+"</span></p>"
+                    details+="<p>Status: <span class='text-black border-2 bg-white px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
                   }else if(response.status==="DONE"){
-                    details+="<p>Status: <span class='text-white bg-orange-500 px-2 rounded-md'>"+response.status+"</span></p>"
+                    details+="<p>Status: <span class='text-white bg-orange-500 px-2 ml-2 rounded-md'>"+response.status+"</span></p>"
                   }
                   details+="<div class='flex justify-center spcae-x-2 mt-5'>"
                   if(response.status==='PENDING'|| response.status==='APPROVED'){
@@ -636,10 +636,38 @@ function Check_Existing_Appointment(){
       if(response.results){
         $('#set-an-appointment-btn').removeClass('hidden')
       }else{
+        var appDetail="<div class='mb-5'>"
+        appDetail+="<p class='font-semibold text-xl text-yellow-500 text-center'>MY SCHEDULE<p>"
+        appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Appointment ID:</span><span >"+response.id+"</span><p>"
+        appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Date:</span><span >"+response.app_date+"</span><p>"
+        appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Time:</span><span >"+response.app_time+"</span><p>"
+        if(response.status==="PENDING"){
+          appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Time:</span><span class='px-2 py-1 bg-gray-500 text-white rounded-md' >"+response.status+"</span><p>"
+        }else{
+          appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Status:</span><span class='px-2 py-1 bg-green-500 text-white rounded-md' >"+response.status+"</span><p>"
+        }
+        if(response.note!==null){
+        appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Note:</span><span >"+response.app_time+"</span><p>"
+          
+        }
+        appDetail+="<p class='font-semibold'><span class='text-green-500 mr-2'>Description:</span><span class='text-gray-500' >"+response.app_description+"</span><p>"
+
+        appDetail+="</div>"
+        var app="<div class='flex justify-center'>"
+        app+="<button type='button' id='show-schedule-btn'  class='px-3 py-1 rounded-md bg-blue-500 hover:bg-blue-500 text-white font-semibold'>Show Schedules</button>"
+        app+="</div>"
+        $('#appointment-details-submitted').append(appDetail)
+        $('#appointment-details-submitted').append(app)
+        $('#appointment-details-submitted').removeClass('hidden')
         $('#set-an-appointment-btn').addClass('hidden')
       }
     }
   });
+}
+function Show_App_Schedules(){
+  $(document).on('click','#show-schedule-btn',function(){
+    window.location.href="/user-appointment"
+  })
 }
 function MyAppointments(){
   $.ajax({
@@ -773,32 +801,36 @@ function SelectInsuranceLevel(){
              $('#register-as-volunteer-btn').removeClass('hidden')
 
             }else{
-              var left="<div class='p-2 w-full text-sm border-l-2 border-red-500 ml-4'>"
+              var left="<div class='p-2 w-full px-10'>"
+              left+="<p class='font-semibold text-yellow-500 w-full text-center text-xl'>MY INFORMATIONS</p>"
               left+="<div class='flex w-full space-x-2 '>"
               if(response.vol_id!== null){
-                left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-700 ml-2 '>"+response.vol_id+"</span><p>"
+                left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-700 ml-2 '>"+response.vol_id+"</span></p>"
               }else{
                 left+="<p class='font-semibold text-blue-500 w-full'>Volunteer ID: <span class='text-gray-700 ml-2 '>Pending</span><p>"
               }
               if(response.expiration_date!==null){
-              left+="<p class='font-semibold text-blue-500 w-full text-left'>Expiration: <span class='text-gray-700 ml-2 '>"+response.expiration_date+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Expiration: <span class='text-gray-700 ml-2 '>"+response.expiration_date+"</span></p>"
               }else{
                 left+="<p class='font-semibold text-blue-500 w-full'>Expiration: <span class='text-gray-700 ml-2 '>Pending</span><p>"
               }
               left+="</div>"
               left+="<p class='font-semibold text-blue-500'>Role: <span class='text-gray-700 ml-2 '>"+response.role+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Name: <span class='text-gray-700 ml-2 '>"+response.fname+" "+response.mname+" "+response.lname+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Name: <span class='text-gray-700 ml-2 '>"+response.fname+" "+response.mname+" "+response.lname+"</span></p>"
               left+="<div class='flex w-full space-x-2'>"
-              left+="<p class='font-semibold text-blue-500 w-full'>Birthday: <span class='text-gray-700 ml-2 '>"+response.birthday+"</span><p>"
-              left+="<p class='font-semibold text-blue-500 w-full text-left'>Gender: <span class='text-gray-700 ml-2 '>"+response.gender+"</span><p>"
+              left+="<p class='font-semibold text-blue-500 w-full'>Birthday: <span class='text-gray-700 ml-2 '>"+response.birthday+"</span></p>"
+              left+="<p class='font-semibold text-blue-500 w-full text-left'>Gender: <span class='text-gray-700 ml-2 '>"+response.gender+"</span></p>"
               left+="</div>"
-              left+="<p class='font-semibold text-blue-500'>Phone No: <span class='text-gray-700 ml-2 '>"+response.phone_no+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Civil Status: <span class='text-gray-700 ml-2 '>"+response.civil_status+"</span><p>"
-              left+="<p class='font-semibold text-blue-500'>Address: <span class='text-gray-700 ml-2 '>"+response.barangay_street+", "+response.barangay+", "+response.municipal+", "+response.province+"</span><p>"
+              left+="<p class='font-semibold text-blue-500'>Phone No: <span class='text-gray-700 ml-2 '>"+response.phone_no+"</span></p>"
+              left+="<p class='font-semibold text-blue-500'>Civil Status: <span class='text-gray-700 ml-2 '>"+response.civil_status+"</span></p>"
+              left+="<p class='font-semibold text-blue-500'>Address: <span class='text-gray-700 ml-2 '>"+response.barangay_street+", "+response.barangay+", "+response.municipal+", "+response.province+"</span></p>"
               left+="</div>"
               $('#volunteer-details').append(left)
-              var right="<div class='w-full flex justify-center align-center'>"
-              right+="<button type='button' data-id='"+response.id+"' id='show-my-volunteer-card' class='hover:underline text-lg'><i class='fa-solid fa-id-card text-xl mr-2'></i> My ID</button>"
+              var right="<div class='w-full text-center'>"
+              right+="<p class='font-semibold text-yellow-500 w-full text-xl'>MY IDENTIFICATION</p>"
+              right+="<div class='w-full flex justify-center align-center'>"
+              right+="<button type='button' data-id='"+response.id+"' id='show-my-volunteer-card' class='hover:underline text-8xl'><i class='text-8xl fa-solid fa-id-card text-xl text-blue-500 mr-2'></i></button>"
+              right+="</div>"
               right+="</div>"
               $('#volunteer-details').append(right)
             }
@@ -887,6 +919,11 @@ function SelectInsuranceLevel(){
             if(response.ongoing.status==="ACTIVATED"){
               $('#get-membership-details').addClass('hidden')
             }else{
+              var insurance_data="<div>"
+              insurance_data+="<p class='text-center text-xl font-semibold'>MY INSURANCE INFORMATIONS<p>"
+              insurance_data+="</div>"
+              $('#user-insurance-data').append(insurance_data)
+              $('#user-insurance-data').removeClass('hidden')
               $('#get-membership-details').removeClass('hidden')
 
             }
@@ -897,7 +934,7 @@ function SelectInsuranceLevel(){
              if(value.start_at!==null && value.end_at!==null){
               table_data+="<td>"+value.start_at+" "+value.end_at+"</td>"
              }else{
-              table_data+="<td>Pending</td>"
+              table_data+="<td>---</td>"
 
              }
               table_data+="<td>"+value.status+"</td>"
@@ -947,10 +984,10 @@ function SelectInsuranceLevel(){
                 address+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-7 sm:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div>"
@@ -974,10 +1011,10 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
@@ -1002,10 +1039,10 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
@@ -1028,10 +1065,10 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
@@ -1054,10 +1091,10 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
@@ -1080,10 +1117,10 @@ function SelectInsuranceLevel(){
                 name+="</div>"
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"
@@ -1107,10 +1144,10 @@ function SelectInsuranceLevel(){
                 var validity="<div class='flex sm:space-x-20 sm:pt-6 sm:pl-16'>"
                 validity+="<div class='w-full lg:pl-10'>"
 
-                if(response.statr_at!==null && response.end_at!==mnull){
+                if(response.statr_at!==null && response.end_at!==null){
                   validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>"+response.start_at+" "+response.end_at+"</p>"
                 }else{
-                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>Pending</p>"
+                  validity+="<p class=' font-semibold sm:pt-3 lg:pt-5'>---</p>"
                 }
                 validity+="</div>"
                 validity+="<div class='w-full  lg:pl-5'>"

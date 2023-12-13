@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('e_id')->nullable();
             $table->date('app_date');
             $table->string('app_time');
-            $table->string('app_description');
+            $table->text('app_description');
             $table->string('status');
             $table->string('note')->nullable();
             $table->timestamps();
