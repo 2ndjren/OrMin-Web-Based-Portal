@@ -16,23 +16,15 @@
     </div>
   </div>
 
-  <div class=" sm:block md:flex lg:flex  max-h-screen lg:space-x-2 sm:space-y-2 lg:space-y-0 lg:mb-2">
-    <div class="w-full bg-white rounded-md p-5  ">
-    <p class="font-semibold text-yellow-500 text-lg">Next</p>
-    <div class="w-full">
-      <div id="next-app-user" class="font-semibold text-blue-500  text-center">
-   
+  <!-- <div class=" sm:block md:flex justify-center lg:flex  max-h-screen lg:space-x-2 sm:space-y-2 lg:space-y-0 lg:mb-2">
 
-    </div>
-  </div>
-    </div>
     <div class="sm:w-full lg:w-96 bg-white rounded-md p-5 ">
-    <div class="flex justify-center lg:space-x-2 w-full ">
+    <div class="flex justify-center lg:space-x-2 w-full sm:space-x-2 ">
       <button type="button" id="open-create-app-modal" class="px-2 py-1 rounded-md bg-yellow-500 text-white font-semibold ">Create</button>
-      <button type="button" class="px-2 py-1 rounded-md bg-green-500 text-white font-semibold ">Next</button>
+      <button type="button" class="app-next-modal-btn px-2 py-1 rounded-md bg-green-500 text-white font-semibold ">Next</button>
     </div>
     </div>
-  </div>
+  </div> -->
   <div class=" sm:block md:flex lg:flex  max-h-screen sm:space-y-2 lg:space-y-0 lg:space-x-2 sm:mt-2">
     <div class="w-full bg-white rounded-md p-5  ">
       <p class="font-semibold text-lg text-green-500 text-center">Appointment List</p>
@@ -162,13 +154,69 @@
 </div>
 
 
+
+<div id="show-appointment-details-modal" class="fixed hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-1/4 mx-auto rounded-lg shadow-lg p-5">
+    <div class="font-semibold" id="app_information"></div>
+
+  </div>
+</div>
+<div id="approve-appointment-note-modal" class="fixed hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-1/4 mx-auto rounded-lg shadow-lg p-5">
+    <div class="font-semibold" id="note">
+      <form id="approve-decision-form">
+        @csrf
+        <div class="">
+          <p>ADD NOTE</p>
+        </div>
+        <div class=" w-full pb-2">
+        <input id="approve-id" name="approve_id"   type="text">
+        <textarea name="note" class="p-2 w-full border-2 border-blue-500 rounded-md" cols="30" rows="10"></textarea>
+        </div>
+ <div class="flex space-x-2 justify-center">
+ <button  class="close-decision-modal px-2 py-1 text-white bg-blue-500 rounded-md" type="button">Cancel</button>
+      <button class="px-2 py-1 text-white bg-green-500 rounded-md" type="submit">Proceed</button>
+ </div>
+          </form>
+    </div>
+
+  </div>
+</div>
+<div id="decline-appointment-note-modal" class="fixed hidden inset-0 flex items-center justify-center z-10  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white sm:w-full md:w-1/2  lg:w-1/4 mx-auto rounded-lg shadow-lg p-5">
+    <div class="font-semibold" id="note">
+      <form id="decline-decision-form">
+        @csrf
+        <div class="">
+          <p>ADD NOTE</p>
+        </div>
+        <div class=" w-full pb-2">
+          <input id="decline-id" name="decline_id"   type="text">
+        <textarea name="note" class="p-2 w-full border-2 border-blue-500 rounded-md" cols="30" rows="10"></textarea>
+        </div>
+ <div class="flex space-x-2 justify-center">
+ <button class="close-decision-modal px-2 py-1 text-white bg-blue-500 rounded-md" type="button">Cancel</button>
+      <button class="px-2 py-1 text-white bg-green-500 rounded-md" type="submit">Proceed</button>
+ </div>
+          </form>
+    </div>
+
+  </div>
+</div>
+
+
 <script>
   $(document).ready(function () {
     Search_User()
     HandleSearch()
     Appointment_Btn()
     Submitted_Appointments()
-    Approved_Pending()
+  
+    Incoming_Request()
+    Approve_List()
+    Show_Appointment_Details()
+    Appointment_Movement_Btn()
+    End_Appointment()
   });
   function Search_User(){
     $('#search').on('input', function () {
@@ -199,7 +247,7 @@
           $('#results').empty()
           if(data.match){
             $.each(data.match, function (index, field) { 
-            var results="<button type='button' data-id="+field.id+"  class='get-user set-app-user-details show-user-details p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
+            var results="<button type='button' data-id="+field.id+" id='get-user' class=' set-app-user-details show-user-details p-3 w-full rounded-full h-16 mb-1 bg-gray-400 text-white'>"
             results+="<div class='flex space-x-2'>"
             results+="<div>"
             if(field.vol_profile!==""){
@@ -497,6 +545,8 @@ var monthss = months[month - 1];
     });
   }
   function Submitted_Appointments(){
+    $('#ongoing-appointment').empty()
+
     $.ajax({
       type: "GET",
       url: "/submitted-appointments",
@@ -505,10 +555,11 @@ var monthss = months[month - 1];
       success: function (app) {
         console.log(app)
       if(app.ongoing!==null){
-        var on_meeting="<button class='ongoing-app-user-details' data-id="+app.ongoing.u_id+"  type='button' id='ongoing-appointment'>"
-        on_meeting+="<p id='ongoing-appointment-user' class='text-green-500 font-bold text-4xl text-center'>"+app.ongoing_user.fname+" "+app.ongoing_user.lname+"</p>"
+        var on_meeting="<button class='app-modal-details' data-id="+app.ongoing.id+"  type='button' id='ongoing-appointment'>"
+        on_meeting+="<p id='ongoing-appointment-user' class='text-blue-500 font-bold text-4xl text-center'>"+app.ongoing_user.fname+" "+app.ongoing_user.lname+"</p>"
         on_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-lg text-center'>"+app.ongoing.app_date+", "+app.ongoing.app_time+"</p>"
         on_meeting+="</button>"
+        $(".app-next-modal-btn").attr('data-id',app.ongoing.id)
         $('#ongoing-appointment').append(on_meeting)
       }else{
         var on_meeting="<button class='set-app-user-details'  type='button'>"
@@ -516,21 +567,6 @@ var monthss = months[month - 1];
         on_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-lg text-center'>...</p>"
         on_meeting+="</button>"
         $('#ongoing-appointment').append(on_meeting)
-
-      }
-      if(app.next!==null){
-        var next_meeting="<button class='set-app-user-details' data-id="+app.next.u_id+"  type='button' id='ongoing-appointment'>"
-        next_meeting+="<p id='next-app-user' class='text-green-500 font-bold text-lg text-center'>"+app.next_user.fname+" "+app.next_user.lname+"</p>"
-        next_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-sm text-center'>"+app.next.app_date+", "+app.next.app_time+"</p>"
-        next_meeting+="</button>"
-        $('#next-app-user').append(next_meeting)
-      }else{
-        var on_meeting="<button class='set-app-user-details' type='button'>"
-        on_meeting+="<p id='next-app-user' class='text-green-500 font-bold text-md text-center'>...</p>"
-        $('#next-app-user').append(on_meeting)
-        
-      }
-      if(app.pending){
 
       }
         
@@ -542,44 +578,273 @@ var monthss = months[month - 1];
       }
     });
   }
-  function Approved_Pending(){
+
+  function Incoming_Request(){
+    $('#app-request').empty()
     $.ajax({
       type: "GET",
-      url: "/submitted-appointments",
+      url: "/incoming-requrest-appointment",
       data: "data",
       dataType: "json",
-      success: function (app) {
-        console.log(app)
-        if(app.approved>0){
-          $.each(app.approved, function (index, field) { 
-          var app_list="<div class='text-center'>"
-        app_list+="<p>"+field.app_time+"</p>"
-        app_list+="</div>"
-        $('#app-list').append(app_list)
-        });
+      success: function (response) {
+        console.log(response)
+        if(response.results){
+          var sched="<p class='text-center'>"+response.results+"</p>"
+
+$('#app-request').append(sched)
         }else{
-          var app_list="<div class='text-center'>"
-        app_list+="<p>No results found!</p>"
-        app_list+="</div>"
-        $('#app-list').append(app_list)
+          $.each(response, function (index, value) { 
+            
+            var appdate = new Date(value.app_date);
+
+          var day = appdate.getDate();
+          var month = appdate.getMonth() + 1;
+          var year = appdate.getFullYear();
+          var months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          ];
+          var newmonth = months[month - 1];
+            var req="<div class='flex justify-center'>"
+          req+="<button type='button' data-id="+value.id+" class=' app-modal-details  font-semibold text-blue-500 hover:underline'>"+newmonth+" "+day+", "+year+"-"+value.app_time+"</button>"
+          req+="</div>"
+          $('#app-request').append(req)
+          });
         }
-        if(app.pending>0){
-        $.each(app.pending, function (index, field) { 
-                  var app_list="<div class='text-center'>"
-                app_list+="<p>No results found!</p>"
-                app_list+="</div>"
-                $('#app-request').append(app_list)
-                });
-        }else{
-          var app_list="<div class='text-center'>"
-                app_list+="<p>No results found!</p>"
-                app_list+="</div>"
-                $('#app-request').append(app_list)
-        }
-        
+      },
+      error: function(xhr, status, error) {
+        // Handle error response here
+        console.log(xhr.responseText);
       }
     });
   }
+
+  function Show_Appointment_Details(){
+    $(document).on('click','.app-modal-details', function(){
+      var id=$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/user-appointment-details/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          $('#app_information').empty()      
+
+          console.log(response)
+          console.log(id)
+          var info = "<div>"
+          info += "<p class='text-center tex-xl'>APPOINTMENT DETAILS</p>"
+          info += "<p>Name: "+response.user.fname+" "+response.user.mname+" "+response.user.lname+"</p>"
+          info += "<p>Age: "+response.user.age+"</p>"
+          info += "<p>Gender: "+response.user.gender+"</p>"
+          info += "<p>Mobile No: "+response.user.phone_num+"</p>"
+          info += "<p>Date: "+response.app.app_date+"</p>"
+          info += "<p>Time: "+response.app.app_time+"</p>"
+          info += "<p>Description: "+response.app.app_description+"</p>"
+          if(response.app.note!==null){
+            info += "<p>Note: "+response.app.note+"</p>"
+
+          }
+          if(response.app.e_id!==null){
+            info += "<p>By: "+response.app.e_id+"</p>"
+
+          }
+          $('#approve-id').val(response.app.id)
+          $('#decline-id').val(response.app.id)
+
+          info += "<div class='flex justify-center space-x-2'> "
+          if(response.app.status==="PENDING"){
+            info += "<button id='app-approve-modal-btn' type='button' data-id="+response.app.id+" class='p-2 bg-green-500 text-white font-semibold rounded-md'>Approve</button>"
+            info += "<button id='app-decline-modal-btn' type='button' data-id="+response.app.id+" class='p-2 bg-red-500 text-white font-semibold rounded-md'>Decline</button>"
+          }
+          
+          if(response.app.status==="ONGOING"){
+            
+            info += "<button id='app-done-modal-btn' type='button' data-id="+response.app.id+" class='app-next-modal-btn p-2 bg-blue-500 text-white font-semibold rounded-md'>Done</button>"
+          }
+          if(response.app.status==="APPROVED"){
+            
+            info += "<button type='button' data-id="+response.app.id+" class='app-next-modal-btn p-2 bg-yellow-500 text-white font-semibold rounded-md'>Next</button>"
+          }
+          info += "<button id='app-back-modal-btn' type='button' data-id="+response.app.id+" class='p-2 bg-gray-500 text-white font-semibold rounded-md'>Back</button>"
+          info += "</div>"
+          info += "</div>"
+          $('#app_information').append(info)      
+          $('#show-appointment-details-modal'). removeClass('hidden')      
+         
+        },
+        error: function(xhr, status, error) {
+        // Handle error response here
+        console.log(xhr.responseText);
+      }
+      });
+    })
+  }
+
+  function End_Appointment(){
+    $(document).on('click','#app-done-modal-btn',function(){
+      var id=$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/end-appointment/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          if(response.success){
+            alert(response.success)
+            $('#show-appointment-details-modal').addClass('hidden')
+          }else if(response.failed){
+            alert(response.failed)
+          }
+          
+        }
+      });
+    })
+  }
+
+  function Appointment_Movement_Btn(){
+    $(document).on('click','#app-back-modal-btn',function(){
+      $('#app_information').empty()      
+      $('#approve-decision-form')[0].reset()      
+      $('#decline-decision-form')[0].reset() 
+      $('#show-appointment-details-modal').addClass('hidden')      
+      
+    })
+    $(document).on('click','#app-approve-modal-btn',function(){  
+      $('#approve-appointment-note-modal').removeClass('hidden')      
+      
+    })
+    $(document).on('click','#app-decline-modal-btn',function(){  
+      $('#decline-appointment-note-modal').removeClass('hidden')      
+      
+    })
+    $(document).on('click','.close-decision-modal',function(){ 
+
+     
+      $('#approve-appointment-note-modal').addClass('hidden')      
+      $('#decline-appointment-note-modal').addClass('hidden')      
+      
+    })
+    $(document).on('click','.app-next-modal-btn',function(){ 
+          var id=$(this).data('id')
+          $.ajax({
+            type: "GET",
+            url: "/next-user/"+id,
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+              console.log(response)
+              if(response.success){
+                alert(response.success)
+                Submitted_Appointments()
+      $('#show-appointment-details-modal').addClass('hidden')      
+                $('#show-appointment-details-modal').removeClass('hidden')
+              }else if(response.failed){
+                alert(response.failed)
+              }
+            }
+          });   
+    })
+
+
+    $('#approve-decision-form').submit(function (e) { 
+      e.preventDefault();
+      var formadata= new FormData($(this)[0])
+      $.ajax({
+        type: "POST",
+        url: "{{url('approve-pending-appointment')}}",
+        data: formadata,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          console.log(response)
+          if(response.success){
+            Incoming_Request()
+            Approve_List()
+            $('#approve-decision-form')[0].reset()  
+            $('#approve-appointment-note-modal').addClass('hidden')
+      $('#show-appointment-details-modal').addClass('hidden')      
+
+            alert(response.success)
+          }else if(response.failed){
+            alert(response.failed)
+          }
+        },error: function(xhr, status, error) {
+        // Handle error response here
+        console.log(xhr.responseText);
+      }
+      });
+      
+    });
+    $('#decline-decision-form').submit(function (e) { 
+      e.preventDefault();
+      var formadata= new FormData($(this)[0])
+      $.ajax({
+        type: "POST",
+        url: "{{url('decline-pending-appointment')}}",
+        data: formadata,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          console.log(response)
+          if(response.success){
+            Incoming_Request()
+            $('#decline-decision-form')[0].reset()  
+            $('#decline-appointment-note-modal').addClass('hidden')  
+      $('#show-appointment-details-modal').addClass('hidden')      
+
+            alert(response.success)
+          }else if(response.failed){
+            alert(response.failed)
+          }
+        },error: function(xhr, status, error) {
+        // Handle error response here
+        console.log(xhr.responseText);
+      }
+      });
+      
+    });
+
+
+
+  }
+
+  function Approve_List(){
+    $('#app-list').empty()
+    $.ajax({
+      type: "GET",
+      url: "/listed-scheduled-appointments",
+      data: "data",
+      dataType: "json",
+      success: function (response) {
+        console.log(response)
+        if(response.results){
+            var sched="<p class='text-center'>"+response.results+"</p>"
+
+          $('#app-list').append(sched)
+        }else{
+          $.each(response, function (index, value) { 
+            
+            var appdate = new Date(value.app_date);
+
+          var day = appdate.getDate();
+          var month = appdate.getMonth() + 1;
+          var year = appdate.getFullYear();
+          var months = [
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+          ];
+          var newmonth = months[month - 1];
+            var req="<div class='flex justify-center'>"
+          req+="<button  type='button' data-id="+value.id+"  class='app-modal-details  font-semibold text-blue-500 hover:underline'>"+newmonth+" "+day+", "+year+"-"+value.app_time+"</button>"
+          req+="</div>"
+          $('#app-list').append(req)
+          });
+        }
+      }
+    });
+  }
+
 
 </script>
 @endsection

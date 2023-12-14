@@ -71,41 +71,193 @@ class Appointments extends Controller
 
     
   }
+  public function Appointment_Request(){
+    $check=ModelsAppointments::where('status','PENDING')->count();
+    $coming=ModelsAppointments::where('status','PENDING')->get();
+    if($check>0){
+        return response()->json($coming);
+    }else{
+        return response()->json(['results'=>'No submitted appointments found!']);
+    }
+  }
+  public function Scheduled_Appointments(){
+    $check=ModelsAppointments::whereIn('status',['APPROVED'])->count();
+    $list=ModelsAppointments::whereIn('status',['APPROVED'])->skip(1)->take(7);
+    if($check>0){
+        return response()->json($list);
+    }else{
+        return response()->json(['results'=>'No submitted appointments found!']);
+    }
+  }
+
+  public function User_Appointment_Details($id){
+    $match=ModelsAppointments::find($id);
+    $user=user::where('id',$match->u_id)->first();
+    $user->user_profile=base64_encode($user->user_profile);
+    $data=[
+        'app'=>$match,
+        'user'=>$user,
+    ];
+    return response()->json($data);
+  }
+  public function Next_Appointment($id){
+    $ongoing=ModelsAppointments::where('status','ONGOING')->update([
+        'status'=>'DONE'
+    ]);
+    if($ongoing){
+        if(session('ADMIN')){
+            $next=ModelsAppointments::where('id',$id)->update([
+                'status'=>'ONGOING',
+                'e_id'=>session('ADMIN')['id'],
+            ]);
+        }else if(session('STAFF')){
+            $next=ModelsAppointments::where('id',$id)->update([
+                'status'=>'ONGOING',
+                'e_id'=>session('STAFF')['id'],
+            ]);
+        }
+        if($next){
+            return response()->json(['success'=>'Appointment is now ongoing!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+    
+        }
+    }else{
+        $approve=ModelsAppointments::where('status','APPROVED')->update([
+            'status'=>'ONGOING'
+        ]);
+        if($approve){
+            if(session('ADMIN')){
+                $next=ModelsAppointments::where('id',$id)->update([
+                    'status'=>'ONGOING',
+                    'e_id'=>session('ADMIN')['id'],
+                ]);
+            }else if(session('STAFF')){
+                $next=ModelsAppointments::where('id',$id)->update([
+                    'status'=>'ONGOING',
+                    'e_id'=>session('STAFF')['id'],
+                ]);
+            }
+            if($next){
+                return response()->json(['success'=>'Appointment is now ongoing!']);
+            }else{
+                return response()->json(['failed'=>'Something went wrong!']);
+        
+            }
+        }
+    }
+  }
+  public function End_Appointment($id){
+    if(session('ADMIN')){
+        $next=ModelsAppointments::where('id',$id)->update([
+            'status'=>'DONE',
+            'e_id'=>session('ADMIN')['id'],
+        ]);
+    }else if(session('STAFF')){
+        $next=ModelsAppointments::where('id',$id)->update([
+            'status'=>'DONE',
+            'e_id'=>session('STAFF')['id'],
+        ]);
+    }
+    if($next){
+        return response()->json(['success'=>'Appointment completed!']);
+    }else{
+        return response()->json(['failed'=>'Something went wrong!']);
+
+    }
+  }
+
+  public function Approve_User_Appointment(Request $request){
+    if($request->note!==null){
+
+        if(session('ADMIN')){
+            $updated=ModelsAppointments::where('id',$request->approve_id)->update([
+                'status'=>'APPROVED',
+                'note'=>$request->note,
+                'e_id'=>session('ADMIN')['id'],
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Appointment successfully approved']);
+
+            }else{
+                return response()->json(['failed'=>'All fields are required!']);
+                
+            }
+        }else{
+            $updated=ModelsAppointments::where('id',$request->approve_id)->update([
+                'status'=>'APPROVED',
+                'note'=>$request->note,
+                'e_id'=>session('STAFF')['id'],
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Appointment successfully approved']);
+
+            }else{
+                return response()->json(['failed'=>'All fields are required!']);
+                
+            }
+        }
+    }else{
+        return response()->json(['failed'=>'All fields are required!']);
+    }
+  }
+  public function Decline_User_Appointment(Request $request){
+    if($request->note!==null){
+
+        if(session('ADMIN')){
+            $updated=ModelsAppointments::where('id',$request->decline_id)->update([
+                'status'=>'APPROVED',
+                'note'=>$request->note,
+                'e_id'=>session('ADMIN')['id'],
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Appointment successfully declined']);
+            }else{
+                return response()->json(['failed'=>'Somthing went wrong']);
+                
+            }
+        }else{
+            $updated=ModelsAppointments::where('id',$request->decline_id)->update([
+                'status'=>'APPROVED',
+                'note'=>$request->note,
+                'e_id'=>session('STAFF')['id'],
+            ]);
+            if($updated){
+                return response()->json(['success'=>'Appointment successfully declined']);
+
+            }else{
+                return response()->json(['failed'=>'Somthing went wrong']);
+
+                
+            }
+        }
+    }else{
+        return response()->json(['failed'=>'All fields are required!']);
+    }
+  }
+
+
   public function Appointments_Submitted(){
     $ongoing=ModelsAppointments::where('status','ONGOING')->first();
     $next=ModelsAppointments::where('status','APPROVED')->first();
     if(!empty($ongoing)){
         $ongoing_user=user::where('id',$ongoing->u_id)->first();
+        $ongoing_user->user_profile=base64_encode($ongoing_user->user_profile);
     }else{
         $ongoing_user="No ongoing meeting!";
     }
-    if(!empty($next)){
-        $next_user=user::where('id',$next->u_id)->first();
-    }else{
-        $next_user="Waiting";
-    }
-
-$approved=ModelsAppointments::where('status','APPROVED')->skip(1)->take(10)->get();
-    $pending=ModelsAppointments::where('status','PENDING')->get();
+   
     $data=[
         'ongoing_user'=>$ongoing_user,
         'ongoing'=>$ongoing,
-        'next'=>$next,
-        'next_user'=>$next_user,
-        'approved'=>$approved,
-        'pending'=>$pending,
+
+
       
     ];
     return response()->json($data);
   }
-  public function Scheduled_Appointments(){
-    $appointments=ModelsAppointments::select('app_date')->where('status','APPROVED')->orderBy('created_at','desc')->groupBy('app_date')->get();
-    $data=[
-        'appointments'=>$appointments,
-    ];
-    return response()->json($data);
 
-  }
+
 
   public function Create_Appointment(Request $request){ 
   

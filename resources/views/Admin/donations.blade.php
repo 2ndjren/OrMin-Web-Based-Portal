@@ -284,6 +284,7 @@
           details+="<button type='button' id='approve-donation-btn' data-id="+response.details.id+" class=' px-2 py-1  rounded-md bg-green-500 text-white font-semibold'>Accept</button>"
           details+="<button type='button' id='decline-donation-btn' data-id="+response.details.id+" class=' px-2 py-1  rounded-md bg-red-500 text-white font-semibold'>Decline</button>"
         }
+        details+="<button type='button' data-id="+response.details.id+" class='delete-donation-btn  px-2 py-1  rounded-md bg-red-500 text-white font-semibold'>Delete</button>"
         details+="<button type='button' class='close-details-modal-btn close px-2 py-1  rounded-md bg-blue-500 text-white font-semibold'>Close</button>"
         
         details+="</div'>"
@@ -294,6 +295,34 @@
         }
       });
     });
+
+    $(document).on('click','.delete-donation-btn ',function(){
+      var id =$(this).data('id')
+      $.ajax({
+        type: "GET",
+        url: "/delete-donation-data/"+id,
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+          console.log(response)
+          if(response.success){
+            alert(response.success)
+            $('#donation-details').empty()
+          
+          $('#show-donation-details-modal').addClass('hidden')
+          }else{
+            alert(response.failed)
+            
+          }
+        },
+        error: function(xhr, status, error) {
+        //   submit.prop('disabled', false)
+        // submit.removeClass('opacity-50 cursor-not-allowed')
+          window.alert(xhr.responseText);
+        }
+      });
+    })
+
     $(document).on('click','.donation-proof-btn',function(){
      
       var id=$(this).data('id')

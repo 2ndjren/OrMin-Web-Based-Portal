@@ -162,7 +162,7 @@ Route::post('send-chat',[Chats::class,'Send_Message']);
 
 Route::get('user-messages',[Chats::class,'User_Messages']);
 Route::get('user-chat-profile/{id}',[Chats::class,'User_Profile']);
-Route::get('user-chat-conversation/{id}',[Chats::class,' ']);
+Route::get('user-chat-conversation/{id}',[Chats::class,'Conversation']);
 
 
 Route::get('donations',[Donations::class,'Donations']);
@@ -170,6 +170,8 @@ Route::post('add-donation-record',[Donations::class,'Create_Donation']);
 Route::get('donation-records',[Donations::class,'Donated_Funds']);
 Route::get('donation-details/{id}',[Donations::class,'Donation_Details']);
 Route::post('change-donation-status',[Donations::class,'Change_Status_Donation']);
+Route::get('delete-donation-data/{id}',[Donations::class,'Delete_Donation_Data']);
+
 
 
 
@@ -215,8 +217,15 @@ Route::get('appointments',[Appointments::class,'Appointments']);
 Route::get('search-user-appointment/{search}',[Appointments::class,'Search_User']);
 Route::get('set-user-app-details/{id}',[Appointments::class,'SetAppointment_Details']);
 Route::post('create-appointment',[Appointments::class,'Create_Appointment']);
-Route::get('scheduled-appointments',[Appointments::class,'Scheduled_Appointments']);
+
 Route::get('submitted-appointments',[Appointments::class,'Appointments_Submitted']);
+Route::get('incoming-requrest-appointment',[Appointments::class,'Appointment_Request']);
+Route::get('listed-scheduled-appointments',[Appointments::class,'Scheduled_Appointments']);
+Route::get('user-appointment-details/{id}',[Appointments::class,'User_Appointment_Details']);
+Route::post('approve-pending-appointment',[Appointments::class,'Approve_User_Appointment']);
+Route::post('decline-pending-appointment',[Appointments::class,'Decline_User_Appointment']);
+Route::get('next-user/{id}',[Appointments::class,'Next_Appointment']);
+Route::get('end-appointment/{id}',[Appointments::class,'End_Appointment']);
 
 
 

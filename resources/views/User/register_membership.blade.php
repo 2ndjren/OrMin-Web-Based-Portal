@@ -253,7 +253,7 @@ function Mode_Of_Payment(){
             $('#membership-modal').addClass('hidden')
             $('#open-modal-form').addClass('hidden')
           $('#create-membership-account')[0].reset()
-          window.location.href="/register-insurance"
+          window.location.href="/register-insurance "
             alert(response.success)
           } else {
             alert(response.failed)

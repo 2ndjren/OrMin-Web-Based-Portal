@@ -1153,7 +1153,12 @@
           $('#edit_gender').val(response.gender)
           $('#edit_civil_status').val(response.civil_status)
           $('#edit_nationality').val(response.nationality)
-          $('#edit_municipality').val(response.municipal)
+          $('#edit_municipality').append($('<option>', {
+                        value: response.municipal,
+                        text: response.municipal.toUpperCaseFirst,
+                        selected: response.municipal == response.municipal.toUpperCaseFirst
+
+                    }));
           $('#edit_barangay').val(response.barangay)
           $('#edit_barangay_street').val(response.barangay_street)
           $('#edit_postal_code').val(response.barangay_street)

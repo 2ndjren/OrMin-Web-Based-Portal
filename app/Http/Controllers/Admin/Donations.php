@@ -169,6 +169,16 @@ class Donations extends Controller
 
         }
     }
+
+    public function Delete_Donation_Data($id){
+        $deleted=ModelsDonations::where('id',$id)->delete();
+        if($deleted){
+            return response()->json(['success'=>'Successfully Deleted!']);
+        }else{
+            return response()->json(['failed'=>'Failed to delete, Something went wrong!']);
+        }
+    }
+
     private function resizeImage($filePath, $newWidth, $newHeight = null)
     {
         list($width, $height, $type) = getimagesize($filePath);
