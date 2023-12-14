@@ -823,7 +823,8 @@ $('#app-request').append(sched)
 
           $('#app-list').append(sched)
         }else{
-          $.each(response, function (index, value) { 
+          if(response!==""){
+            $.each(response, function (index, value) { 
             
             var appdate = new Date(value.app_date);
 
@@ -840,6 +841,11 @@ $('#app-request').append(sched)
           req+="</div>"
           $('#app-list').append(req)
           });
+          }else{
+            var sched="<p class='text-center'>"+response.results+"</p>"
+
+$('#app-list').append(sched)
+          }
         }
       }
     });

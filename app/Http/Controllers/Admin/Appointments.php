@@ -82,7 +82,7 @@ class Appointments extends Controller
   }
   public function Scheduled_Appointments(){
     $check=ModelsAppointments::whereIn('status',['APPROVED'])->count();
-    $list=ModelsAppointments::whereIn('status',['APPROVED'])->skip(1)->take(7);
+    $list=ModelsAppointments::whereIn('status',['APPROVED'])->get();
     if($check>0){
         return response()->json($list);
     }else{
