@@ -78,7 +78,6 @@
     End_Session()
     Send_Message()
     Thread_Messages()
-
     var convo= localStorage.getItem('user_id')
     if(convo!==null){
       setInterval(() => {
