@@ -78,9 +78,16 @@
     End_Session()
     Send_Message()
     Thread_Messages()
-    setInterval(() => {
+
+    var convo= localStorage.getItem('user_id')
+    if(convo!==null){
+      setInterval(() => {
       Conversation()
     }, 3000);
+    }else{
+      Conversation()
+    }
+    
     var check=localStorage.getItem('user_id')
     if(check!==null){
       setInterval(() => {
@@ -162,19 +169,16 @@ textarea.on('input', function () {
       data: "data",
       dataType: "json",
       success: function (chatThreads) {
+        console.log(chatThreads)
     $('#chat-threads-loading-spinner').addClass('hidden')
-        $.each(chatThreads.user, function (chatID, chatData) { 
-          $.ajax({
-            type: "GET",
-            url: "/user-chat-profile/"+chatData.u_id,
-            data: "data",
-            dataType: "json",
-            success: function (data) {
-              var user =" <button type='button' data-id="+chatData.u_id+" class='chat_head_button flex items-center w-full p-3 border rounded-lg'>"
+        $.each(chatThreads.messages, function (chatID, chatData) { 
+          $.each(chatThreads.user, function (index, value) { 
+             
+          var user =" <button type='button' data-id="+chatData.u_id+" class='chat_head_button flex items-center w-full p-3 border rounded-lg'>"
                           user +=" <div class='flex'>"
-                          user +=" <img src='data:image/jpeg;base64,"+data.user.user_profile+"' class='w-12 h-12 mr-4 rounded-full'>"
+                          user +=" <img src='data:image/jpeg;base64,"+value.user_profile+"' class='w-12 h-12 mr-4 rounded-full'>"
                           user +=" <div class='flex-1 '>"
-                          user +=" <div class='font-semibold text-left'>"+data.user.fname+" "+data.user.lname+"</div>"
+                          user +=" <div class='font-semibold text-left'>"+value.fname+" "+value.lname+"</div>"
                           if(chatData.status==="DELIVERED"){
                             user +=" <div class='text-black font-semibold'>"+chatData.message+"</div>"
                           }else{
@@ -186,7 +190,6 @@ textarea.on('input', function () {
                           user +=" </button>"
                             
                           $('#inboxThreads').append(user)
-            }
           });
            
         });
@@ -237,7 +240,13 @@ textarea.on('input', function () {
         $.each(user.message, function (index, message) { 
          if(message.type=="USER"){
            var left="<div class='flex items-end'>"
+           if(user.user.user_profile!==null){
         left+="<img src='data:image/jpeg;base64,"+user.user.user_profile+"' alt='Left Avatar' class='w-8 h-8 mr-2 rounded-full'>"
+
+           }else{
+
+             left+="<img src='data:image/jpeg;base64,"+user.user.user_profile+"' alt='Left Avatar' class='w-8 h-8 mr-2 rounded-full'>"
+           }
         left+=" <div class='flex flex-col items-start max-w-xs'>"
         left+=" <div class='bg-blue-500 text-white p-4 rounded-lg leading-normal'>"
         left+="  <i class='far fa-user-circle mr-2'></i>"+message.message+""

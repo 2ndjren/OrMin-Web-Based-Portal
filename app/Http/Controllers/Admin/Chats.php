@@ -175,9 +175,9 @@ class Chats extends Controller
 
     public function User_Profile($id){
         $user=user::find($id);
+        $user->user_profile=base64_encode($user->User_Profile);
         $unseen=chat::where('u_id',$id)->where('notify','0')->where('status','DELIVERED')->count();
         $message=chat::where('u_id',$user->id)->orderBy('created_at','desc')->limit(1)->get();
-        $user->user_profile=base64_encode($user->user_profile);
         $data=[
             'user'=>$user,
             'message'=>$message,
@@ -203,27 +203,41 @@ class Chats extends Controller
 
     }
     public function User_Messages(){
-        if(session('ADMIN')|| session('STAFF'))
-        {
-            $messages=chat_threads::whereIn('status',['SEEN','DELIVERED'])->orderBy('sent_at','desc')->get()->map(function ($item) {
-                $item->proof_image = base64_encode($item->proof_image);
-
+        if (session('ADMIN') || session('STAFF')) {
+            $messages = chat_threads::whereIn('status', ['SEEN', 'DELIVERED'])
+            ->orderBy('sent_at', 'desc')
+            ->get()
+            ->map(function ($item) {
+                $item->prof_image = base64_encode($item->prof_image);
                 return $item;
             });
-            $data = [
-                'user'=>$messages,
-              ];
-              
-              return response()->json($data);
-
+        
+        $userIDs = $messages->pluck('u_id')->unique(); // Extract unique user IDs from chat threads
+        
+        $user = user::whereIn('id', $userIDs)
+            ->orderBy('created_at', 'asc')
+            ->get()
+            ->map(function ($item) {
+                $item->user_profile = base64_encode($item->user_profile);
+                return $item;
+            });
+        
+        $data = [
+            'messages' => $messages,
+            'user' => $user,
+        ];
+        
+        return response()->json($data);
+        
         }
+        
         
         if(session('USER'))
         {
             $userId=session('USER')['id'];
             
             $user = chat::where('u_id', $userId)->with('user')->orderBy('created_at','asc')->get()->map(function ($item) {
-                $item->proof_image = base64_encode($item->proof_image);
+                $item->prof_image = base64_encode($item->prof_image);
                 return $item;
             });
             $check = chat::where('u_id', $userId)->with('user')->count();
