@@ -75,7 +75,10 @@ class Appointments extends Controller
     $check=ModelsAppointments::where('status','PENDING')->count();
     $coming=ModelsAppointments::where('status','PENDING')->get();
     if($check>0){
-        return response()->json($coming);
+        $data=[
+            'coming'=>$coming
+        ];
+        return response()->json($data);
     }else{
         return response()->json(['results'=>'No submitted appointments found!']);
     }
@@ -84,7 +87,10 @@ class Appointments extends Controller
     $check=ModelsAppointments::whereIn('status',['APPROVED'])->count();
     $list=ModelsAppointments::whereIn('status',['APPROVED'])->get();
     if($check>0){
-        return response()->json($list);
+        $data=[
+            'listed'=>$list
+        ];
+        return response()->json($data);
     }else{
         return response()->json(['results'=>'No submitted appointments found!']);
     }
@@ -104,48 +110,31 @@ class Appointments extends Controller
     $ongoing=ModelsAppointments::where('status','ONGOING')->update([
         'status'=>'DONE'
     ]);
-    if($ongoing){
-        if(session('ADMIN')){
-            $next=ModelsAppointments::where('id',$id)->update([
-                'status'=>'ONGOING',
-                'e_id'=>session('ADMIN')['id'],
-            ]);
-        }else if(session('STAFF')){
-            $next=ModelsAppointments::where('id',$id)->update([
-                'status'=>'ONGOING',
-                'e_id'=>session('STAFF')['id'],
-            ]);
-        }
+    if(session('ADMIN')){
+        $next=ModelsAppointments::where('id',$id)->update([
+            'status'=>'ONGOING',
+            'e_id'=>session('ADMIN')['id'],
+        ]);
         if($next){
             return response()->json(['success'=>'Appointment is now ongoing!']);
         }else{
             return response()->json(['failed'=>'Something went wrong!']);
     
         }
-    }else{
-        $approve=ModelsAppointments::where('status','APPROVED')->update([
-            'status'=>'ONGOING'
+    }else if(session('STAFF')){
+        $next=ModelsAppointments::where('id',$id)->update([
+            'status'=>'ONGOING',
+            'e_id'=>session('STAFF')['id'],
         ]);
-        if($approve){
-            if(session('ADMIN')){
-                $next=ModelsAppointments::where('id',$id)->update([
-                    'status'=>'ONGOING',
-                    'e_id'=>session('ADMIN')['id'],
-                ]);
-            }else if(session('STAFF')){
-                $next=ModelsAppointments::where('id',$id)->update([
-                    'status'=>'ONGOING',
-                    'e_id'=>session('STAFF')['id'],
-                ]);
-            }
-            if($next){
-                return response()->json(['success'=>'Appointment is now ongoing!']);
-            }else{
-                return response()->json(['failed'=>'Something went wrong!']);
-        
-            }
+        if($next){
+            return response()->json(['success'=>'Appointment is now ongoing!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+    
         }
     }
+
+   
   }
   public function End_Appointment($id){
     if(session('ADMIN')){
@@ -153,18 +142,25 @@ class Appointments extends Controller
             'status'=>'DONE',
             'e_id'=>session('ADMIN')['id'],
         ]);
+        if($next){
+            return response()->json(['success'=>'Appointment completed!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+    
+        }
     }else if(session('STAFF')){
         $next=ModelsAppointments::where('id',$id)->update([
             'status'=>'DONE',
             'e_id'=>session('STAFF')['id'],
         ]);
+        if($next){
+            return response()->json(['success'=>'Appointment completed!']);
+        }else{
+            return response()->json(['failed'=>'Something went wrong!']);
+    
+        }
     }
-    if($next){
-        return response()->json(['success'=>'Appointment completed!']);
-    }else{
-        return response()->json(['failed'=>'Something went wrong!']);
-
-    }
+  
   }
 
   public function Approve_User_Appointment(Request $request){

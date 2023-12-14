@@ -559,7 +559,7 @@ var monthss = months[month - 1];
         on_meeting+="<p id='ongoing-appointment-user' class='text-blue-500 font-bold text-4xl text-center'>"+app.ongoing_user.fname+" "+app.ongoing_user.lname+"</p>"
         on_meeting+="<p id='ongoing-appointment-time' class='text-green-500 font-bold text-lg text-center'>"+app.ongoing.app_date+", "+app.ongoing.app_time+"</p>"
         on_meeting+="</button>"
-        $(".app-next-modal-btn").attr('data-id',app.ongoing.id)
+        $("#app-next-modal-btn").attr('data-id',app.ongoing.id)
         $('#ongoing-appointment').append(on_meeting)
       }else{
         var on_meeting="<button class='set-app-user-details'  type='button'>"
@@ -592,8 +592,8 @@ var monthss = months[month - 1];
           var sched="<p class='text-center'>"+response.results+"</p>"
 
 $('#app-request').append(sched)
-        }else{
-          $.each(response, function (index, value) { 
+        }else if(response.coming){
+          $.each(response.coming, function (index, value) { 
             
             var appdate = new Date(value.app_date);
 
@@ -660,11 +660,11 @@ $('#app-request').append(sched)
           
           if(response.app.status==="ONGOING"){
             
-            info += "<button id='app-done-modal-btn' type='button' data-id="+response.app.id+" class='app-next-modal-btn p-2 bg-blue-500 text-white font-semibold rounded-md'>Done</button>"
+            info += "<button id='app-done-modal-btn' type='button' data-id="+response.app.id+" class=' p-2 bg-blue-500 text-white font-semibold rounded-md'>Done</button>"
           }
           if(response.app.status==="APPROVED"){
             
-            info += "<button type='button' data-id="+response.app.id+" class='app-next-modal-btn p-2 bg-yellow-500 text-white font-semibold rounded-md'>Next</button>"
+            info += "<button type='button' id='app-next-modal-btn' data-id="+response.app.id+" class=' p-2 bg-yellow-500 text-white font-semibold rounded-md'>Next</button>"
           }
           info += "<button id='app-back-modal-btn' type='button' data-id="+response.app.id+" class='p-2 bg-gray-500 text-white font-semibold rounded-md'>Back</button>"
           info += "</div>"
@@ -692,6 +692,7 @@ $('#app-request').append(sched)
         success: function (response) {
           if(response.success){
             alert(response.success)
+            Submitted_Appointments()
             $('#show-appointment-details-modal').addClass('hidden')
           }else if(response.failed){
             alert(response.failed)
@@ -725,7 +726,7 @@ $('#app-request').append(sched)
       $('#decline-appointment-note-modal').addClass('hidden')      
       
     })
-    $(document).on('click','.app-next-modal-btn',function(){ 
+    $(document).on('click','#app-next-modal-btn',function(){ 
           var id=$(this).data('id')
           $.ajax({
             type: "GET",
@@ -738,7 +739,6 @@ $('#app-request').append(sched)
                 alert(response.success)
                 Submitted_Appointments()
       $('#show-appointment-details-modal').addClass('hidden')      
-                $('#show-appointment-details-modal').removeClass('hidden')
               }else if(response.failed){
                 alert(response.failed)
               }
@@ -791,8 +791,8 @@ $('#app-request').append(sched)
             Incoming_Request()
             $('#decline-decision-form')[0].reset()  
             $('#decline-appointment-note-modal').addClass('hidden')  
-      $('#show-appointment-details-modal').addClass('hidden')      
-
+            
+            $('#show-appointment-details-modal').addClass('hidden')      
             alert(response.success)
           }else if(response.failed){
             alert(response.failed)
@@ -822,9 +822,8 @@ $('#app-request').append(sched)
             var sched="<p class='text-center'>"+response.results+"</p>"
 
           $('#app-list').append(sched)
-        }else{
-          if(response!==""){
-            $.each(response, function (index, value) { 
+        }else{if(response.listed){
+            $.each(response.listed, function (index, value) { 
             
             var appdate = new Date(value.app_date);
 
