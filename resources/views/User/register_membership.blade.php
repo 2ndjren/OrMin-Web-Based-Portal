@@ -131,8 +131,8 @@
                                 <p class="text-blue-500">Account Number: </p>
                                     </div>
                                     <div class="text-left ">
-                                        <p class="font-semibold text-center text-blue-500">Cha Honasan</p>
-                                        <p class="font-semibold text-center text-blue-500">12345678900</p>
+                                        <p class="font-semibold text-center text-blue-500">Cythia Honasan</p>
+                                        <p class="font-semibold text-center text-blue-500">09164207293 </p>
                                     </div>
                                 </div>
                             </div>
