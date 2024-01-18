@@ -94,7 +94,7 @@
                         <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
                     </a></li>
                 <li><a href="{{url('blood')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                        <i class="fa-regular fa-message mr-2"></i> <span>Blood</span>
+                        <i class="fa-solid fa-droplet mr-2"></i> <span>Blood</span>
                     </a></li>
                 @if(session('ADMIN'))
                 <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
@@ -144,7 +144,7 @@
                             <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
                         </a></li>
                     <li><a href="{{url('blood')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
-                            <i class="fa-regular fa-message mr-2"></i> <span>Blood</span>
+                            <i class="fa-solid fa-droplet mr-2"></i> <span>Blood</span>
                         </a></li>
                     @if(session('ADMIN'))
                     <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
