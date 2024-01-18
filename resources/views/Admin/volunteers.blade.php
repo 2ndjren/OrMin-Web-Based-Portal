@@ -757,8 +757,12 @@
        table += "<tr>";
         table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
         table += "<td>"+pdata.phone_no+"</td>";
-       table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
-       table += "<td>"+pdata.start_at+""+pdata.role+"</td>";
+        if(pdata.barangay_street!==null && pdata.barangay!==null ){
+          table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
+        }else{
+          table += "<td>"+pdata.municipal+"</td>";
+        }
+       table += "<td>"+pdata.role+"</td>";
        table += "</tr>";
      });
        table += "</tbody></table>";
