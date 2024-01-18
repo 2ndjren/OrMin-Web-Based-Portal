@@ -755,7 +755,11 @@
          table += "<thead><tr><th>FULLNAME</th><th>MOBILE NO.</th> <th>ADDRESS</th><th>ROLE</th></tr></thead><tbody>";
      $.each(data.validated, function (indexInArray, pdata) { 
        table += "<tr>";
+       if(pdata.lname!== null && pdata.sname !== null){
         table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
+       }else{
+        table += "<td>"+pdata.fname+"</td>";
+       }
         table += "<td>"+pdata.phone_no+"</td>";
         if(pdata.barangay_street!==null && pdata.barangay!==null ){
           table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
