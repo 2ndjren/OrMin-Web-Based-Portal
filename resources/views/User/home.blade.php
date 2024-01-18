@@ -10,7 +10,6 @@
         <source src="static/user/animated.webm" type="video/webm">
         Your browser does not support the video tag.
       </video>
-
       <!-- Content goes here -->
       <div class="shadow-lg relative">
         <div class=" xl:p-8 xl:py-24 p-2">
@@ -38,13 +37,13 @@
               <div class="flex justify-center">
                 <iframe width="560" height="400" src="https://www.youtube.com/embed/2BIOHd5XK54?si=imGvb4OUJWLrE11D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+ 
 
 
 
@@ -296,8 +295,33 @@
 <script>
   $(document).ready(function() {
     Create_Feedback()
-    showFullAnnouncement(fullText)
+    // showFullAnnouncement(fullText)
+    // Blood_Updates()
   });
+
+
+  // function Blood_Updates(){
+    
+  //   var dataTable= $('#blood-updates-table tbody')
+            
+  //           $.ajax({
+  //           type: "GET",
+  //           url: "/blood-data",
+  //           data: "data",
+  //           dataType: "json",
+  //           success: function (response) {
+  //               console.log(response)
+  //               $.each(response, function (index, data) { 
+  //               var tabledata="<tr class='text-center text-3xl font-semibold text-red-500 space-x-10'>"
+  //               tabledata +="<td>"+data.type+"</td>"
+  //               tabledata +="<td>"+data.quantity+"</td>"
+  //               tabledata +="</tr>"
+  //                   dataTable.append(tabledata);
+  //            });
+  //           }
+    
+  //       });
+  // }
 
   function Create_Feedback() {
     $('#create-feedback-form').submit(function(e) {

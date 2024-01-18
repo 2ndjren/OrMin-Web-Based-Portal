@@ -313,6 +313,10 @@ function Verified_Accounts(){
             "type": "GET",
             "dataSrc": "verified",
         },
+        dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
         "columns": [
             { 
               "data": null ,

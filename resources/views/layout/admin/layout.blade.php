@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{asset('js/jquery.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="{{asset('css/datatable.css')}}">
-    <script src="{{asset('js/datatable.js')}}"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script src="https://cdn.tailwindcss.com"></script>
+    
+        <script src="{{asset('js/jquery.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="{{asset('css/datatable.css')}}">
+        <script src="{{asset('js/datatable.js')}}"></script>
+    
+    
+        <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
 
-    <link rel="stylesheet" href="{{asset('fa6/css/all.css')}}">
-
-
+    
+    
 </head>
+
 
 <body class="bg-gray-100 font-sans">
 <header class="flex justify-between items-center bg-gray-50 text-gray-900 p-3 border-b-2 border-gray-300">
@@ -87,6 +93,9 @@
                 <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                         <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
                     </a></li>
+                <li><a href="{{url('blood')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                        <i class="fa-regular fa-message mr-2"></i> <span>Blood</span>
+                    </a></li>
                 @if(session('ADMIN'))
                 <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                         <i class="fas fa-users mr-2"></i> Accounts
@@ -134,6 +143,9 @@
                     <li><a href="{{url('chats')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fa-regular fa-message mr-2"></i> <span>Chats</span>
                         </a></li>
+                    <li><a href="{{url('blood')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
+                            <i class="fa-regular fa-message mr-2"></i> <span>Blood</span>
+                        </a></li>
                     @if(session('ADMIN'))
                     <li><a href="{{url('accounts')}}" class="block hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out p-3 rounded-full flex items-center">
                             <i class="fas fa-users mr-2"></i> <span>Accounts</span>
@@ -155,6 +167,7 @@
                 @yield('dashboard')
                 @yield('membership')
                 @yield('volunteers')
+                @yield('blood')
                 @yield('donations')
                 @yield('announcements')
                 @yield('appointments')
@@ -165,7 +178,18 @@
         </div>
     </div>
 
+  
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#sidebarToggle").click(function() {
@@ -183,6 +207,10 @@
             });
         });
     </script>
+
+
+
+
 </body>
 
 </html>

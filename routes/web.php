@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Appointments;
 use App\Http\Controllers\Admin\Chats;
 use App\Http\Controllers\Admin\Donations;
 use App\Http\Controllers\Admin\Feedback;
+use App\Http\Controllers\Admin\Blood;
 // use App\Http\Controllers\Admin\Feedbacks;
 use App\Http\Controllers\Admin\Generate_Reports;
 use App\Http\Controllers\Admin\Imports;
@@ -247,6 +248,16 @@ Route::get('reports',[Reports::class,'Reports']);
 Route::get('print-waiting-list',[Generate_Reports::class,'Export_Waiting_Appointments']);
 Route::get('print-approved-list',[Generate_Reports::class,'Export_Approved_Appointments']);
 Route::post('share-feedback',[Feedback::class,'Create_Feedback']);
+
+
+
+Route::get('blood',[Blood::class,'Blood']);
+Route::post('create-blood',[Blood::class,'Create_Blood']);
+Route::get('blood-data',[Blood::class,'BloodData']);
+Route::post('update-blood-record',[Blood::class,'Update_Blood']);
+Route::get('delete-blood-record/{id}',[Blood::class,'DeleteData']);
+Route::get('blood-table',[Blood::class,'BloodTable']);
+
 
 
 // IMPORT

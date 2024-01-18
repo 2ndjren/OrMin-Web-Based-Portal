@@ -54,6 +54,10 @@
         "type": "GET",
         "dataSrc": "feedback" // Assuming "feedback" is the key containing the data array in your response
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {

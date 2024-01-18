@@ -467,6 +467,10 @@
         "type": "GET",
         "dataSrc": "verified",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [
         {
           "data": null,
@@ -517,6 +521,10 @@
         "type": "GET",
         "dataSrc": "pending",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
@@ -566,6 +574,10 @@
         "type": "GET",
         "dataSrc": "declined",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {

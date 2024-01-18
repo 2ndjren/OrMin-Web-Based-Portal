@@ -42,6 +42,8 @@ class Volunteers extends Controller
         ];
         return response()->json($data);
     }
+
+    
     public function Volunteers_Profile($id){
         $data=ModelsVolunteers::find($id);
         $data->vol_profile=base64_encode($data->vol_profile);

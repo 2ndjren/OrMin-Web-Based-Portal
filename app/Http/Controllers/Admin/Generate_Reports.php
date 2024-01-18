@@ -88,73 +88,138 @@ class Generate_Reports extends Controller
         return Excel::download(new Membership_Export($collection), 'PRC ORMIN_Membership.xlsx');
     }
 
+
+   
+    
+    // public function Volunteer_exportFilteredData(Request $request)
+    // {
+    //     session()->forget('Export_Volunteer');
+    //     $rules = [
+    //         'municipal' => 'required',
+    //         'status' => 'required',
+    //         'year' => 'required',
+    //     ];
+    //     $validator = Validator::make($request->all(), $rules);
+    //     if ($validator->fails()) {
+    //         return response()->json(['failed' => 'All fields are required!']);
+    //     }
+    
+    //     $municipal = strtoupper($request->municipal);
+    //     $barangay = strtoupper($request->barangay);
+    //     $year = $request->year;
+    //     $status = strtoupper($request->status);
+    
+    //     // Query the database with the condition
+    //     $filteredData = volunteers::where('municipal', 'LIKE', '%' . $municipal . '%')
+    //         ->when($status == "EXPIRED" || $status == "VALIDATED", function ($query) use ($status, $year) {
+    //             return $query->where('status', $status)->where('created_at', 'LIKE', '%' . $year . '%');
+    //         })
+    //         ->when(!($status == "EXPIRED" || $status == "VALIDATED"), function ($query) use ($status, $year) {
+    //             return $query->where('status', $status)->where('created_at', 'LIKE', '%' . $year . '%');
+    //         })
+    //         ->get();
+    
+    //     if ($filteredData->count() > 0) {
+    //         $data = [
+    //             'municipal' => $municipal,
+    //             'barangay' => $barangay,
+    //             'status' => $status,
+    //             'year' => $year,
+    //         ];
+    
+    //         session()->put('Export_Volunteer', $data);
+    
+    //         return response()->json(['success' => 'Results found!', 'preview' => $filteredData]);
+    //     } else {
+    //         return response()->json(['failed' => 'No results found!']);
+    //     }
+    // }
+    
+    // public function Export_Volunteer()
+    // {
+    //     $municipal = session('Export_Volunteer')['municipal'];
+    //     $barangay = session('Export_Volunteer')['barangay'];
+    //     $status = session('Export_Volunteer')['status'];
+    //     $year = session('Export_Volunteer')['year'];
+    
+    //     $collection = volunteers::select('fname', 'mname', 'lname', 'phone_no', 'barangay', 'municipal', 'role')
+    //         ->where('municipal', $municipal)
+    //         ->where('status', $status)
+    //         ->where('created_at', 'LIKE', '%' . $year . '%')
+    //         ->get();
+    
+    //     return Excel::download(new Volunteer_Export($collection), 'Volunteer.xlsx');
+    // }
+
     public function Volunteer_exportFilteredData(Request $request)
     {
         session()->forget('Export_Volunteer');
-        $rules=[
-            'municipal'=>'required',
-            'barangay'=>'required',
-            'status'=>'required',
-            'year'=>'required',
+
+        
+    
+        // Get input values from query parameters
+        $municipal = strtoupper($request->query('municipal'));
+        $year = $request->query('year');
+        $status = strtoupper($request->query('status'));
+    
+        // Validation rules
+        $rules = [
+            'municipal' => 'required',
+            'status' => 'required',
+            'year' => 'required',
         ];
-        $validator=Validator::make($request->all(),$rules);
-        if($validator->fails()){
-            return response()->json(['failed'=>'All fields are required!']);
+    
+        // Validation
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(['failed' => 'All fields are required!']);
         }
-        $municipal = strtoupper($request->municipal);
-        $barangay = strtoupper($request->barangay);
-        $year = $request->year;
-        $status = strtoupper($request->status);
+    
+        // Query the database with the conditions
 
-        // Query the database with the condition
-        if($status=="EXPIRED" || $status == "VALIDATED"){
-            $check = volunteers::where('municipal','LIKE','%'.$municipal.'%')->where('barangay','LIKE','%'.$barangay.'%')->where('status', $status)->where('created_at','LIKE','%'.$year.'%')->count();
 
-        }else{
-            $check = volunteers::where('municipal','LIKE','%'.$municipal.'%')->where('barangay','LIKE','%'.$barangay.'%')->where('status', $status)->where('created_at','LIKE','%'.$year.'%')->count();
-         
-        }
-  
-        if($check > 0){
-            $data=[
-                'municipal'=>$municipal,
-                'barangay'=>$barangay,
-                'status'=>$status,
-                'year'=>$year,
+        $filteredData = volunteers::where('municipal', 'LIKE', '%' . $municipal . '%')
+                ->when($status == "EXPIRED" || $status == "VALIDATED", function ($query) use ($status, $year) {
+                    return $query->where('status', $status)->where('created_at', 'LIKE', '%' . $year . '%');
+                })
+                ->when(!($status == "EXPIRED" || $status == "VALIDATED"), function ($query) use ($status, $year) {
+                    return $query->where('status', $status)->where('created_at', 'LIKE', '%' . $year . '%');
+                })
+                ->get();
+
+        // Check if data is found
+        if ($filteredData->count() > 0) {
+            // Store data in session
+            $data = [
+                'municipal' => $municipal,
+                'status' => $status,
+                'year' => $year,
             ];
-           session()->put('Export_Volunteer',$data);
-           if(session()->has('Export_Volunteer')){
-                return response()->json(['success'=>'Results found!']);
-
-           }else{
-           return response()->json(['failed'=>session()]);
-
-           }
-        }else{
-            return response()->json(['failed'=>'No results found!']);
-
+    
+            session()->put('Export_Volunteer', $data);
+    
+            // Return data to the view
+            return response()->json($data);
+        } else {
+            return response()->json(['failed' => 'No results found!']);
         }
-
-        // Perform any additional processing on $filteredData if needed
-
     }
-
-    public function Export_Volunteer(){
-        $municipal=session('Export_Volunteer')['municipal'];
-        $barangay=session('Export_Volunteer')['barangay'];
-        $status=session('Export_Volunteer')['status'];
-        $year=session('Export_Volunteer')['year'];
-        if($status=="EXPIRED" || $status=="VALIDATED"){
-            $collection = volunteers::select('fname','mname','lname','phone_no','barangay','municipal')->where('municipal',$municipal)->where('barangay','LIKE','%'.$barangay.'%')->where('status', $status)->where('created_at','LIKE','%'.$year.'%')->get();
-            return Excel::download(new Volunteer_Export($collection), 'Volunteer.xlsx');
-
-        }else{
-            $collection = volunteers::select('fname','mname','lname','phone_no','barangay','municipal')->where('municipal',$municipal)->where('barangay','LIKE','%'.$barangay.'%')->where('status', $status)->where('created_at','LIKE','%'.$year.'%')->get();
-            return Excel::download(new Volunteer_Export($collection), 'Volunteer.xlsx');
-        }
-
-   
-
+    
+    
+    public function Export_Volunteer()
+    {
+        $municipal = session('Export_Volunteer')['municipal'];
+        // $barangay = session('Export_Volunteer')['barangay'];
+        $status = session('Export_Volunteer')['status'];
+        $year = session('Export_Volunteer')['year'];
+    
+        $collection = volunteers::select('fname', 'mname', 'lname', 'phone_no', 'barangay', 'municipal', 'role')
+            ->where('municipal', $municipal)
+            ->where('status', $status)
+            ->where('created_at', 'LIKE', '%' . $year . '%')
+            ->get();
+    
+        return Excel::download(new Volunteer_Export($collection), 'Volunteer.xlsx');
     }
-
+    
 }

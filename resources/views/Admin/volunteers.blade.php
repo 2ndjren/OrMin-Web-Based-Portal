@@ -1,6 +1,81 @@
 @extends('layout.admin.layout')
 @section('volunteers')
 <title>PRC ORMIN|Volunteers</title>
+
+<style>
+  @media print {
+   html body * {
+      visibility: hidden;
+      
+    }
+    #tableContainer,
+    #tableContainer * {
+
+      visibility: visible;
+    
+    }
+    #tableContainer {
+      font-family: 'Times New Roman', Times, serif;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%
+    }
+    #tableContainer table{
+      border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    }
+    #tableContainer thead{
+    border: 1px solid black;
+    color:rgb(34, 155, 255);
+    background-color: orange;
+    padding: 2px;
+    width: 100%
+    }
+    #tableContainer thead tr th{ 
+    border-right: 1px solid black;
+
+    }
+    #tableContainer tbody tr td{ 
+    border-right: 1px solid black;
+    }
+    #tableContainer tbody{
+    border: 1px solid black;
+
+    }
+    #tableContainer table thead tr{
+      padding: 2px;
+    }
+    #tableContainer table tbody tr{
+      padding: 2px;
+      text-align: center
+    }
+    #tableContainer tbody{
+    text-align: center;
+
+    }
+    #tableContainer h1{
+    text-align: center;
+    font-size: 25px;
+
+
+    }
+    #tableContainer p{
+    text-align: center;
+    font-size: 13px
+
+    }
+  }
+</style>
+
+
+<div id="printPreview" class="fixed  hidden  p-5 inset-0 flex items-center justify-center z-50  bg-black bg-opacity-50  overflow-y-auto ">
+  <div class="modal-container bg-white w-3/4 p-4 shadow-lg sm:overflow-x-auto mx-auto" >
+    <div id="tableContainer"></div>
+  </div>
+</div>
+
 <div class="py-2 px-10">
   <p class="text-3xl text-green-600 UPPERCASE">Manage Volunteers</p>
   <div class="flex justify-end">
@@ -23,9 +98,12 @@
 
       <div class=" flex justify-end space-x-2">
 
-        <button id="open-import-modal-form-btn" class="p-2 rounded-lg bg-blue-500 text-white font-semibold " type="button">Import Data</button>
+        <button id="open-import-modal-form-btn" class="p-3 mt-2 rounded-md bg-blue-600 font-semibold text-white" type="button">Import Data</button>
 
-        <button id="open-export-volunteer-modal-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button>
+        {{-- <button id="open-export-volunteer-modal-btn" class="p-2 rounded-lg bg-green-500 text-white font-semibold " type="button">Export Data</button> --}}
+        <button type="button" id="toprintactivated" class="p-3 mt-2 rounded-md bg-green-600 font-semibold text-white">Print</button>
+        <button type="button" id="toprintpending" class="p-3 mt-2 rounded-md bg-green-600 font-semibold text-white hidden">Print</button>
+        <button type="button" id="toprintothers" class="p-3 mt-2 rounded-md bg-green-600 font-semibold text-white hidden">Print</button>
 
       </div>
 
@@ -643,6 +721,8 @@
 </div>
 
 
+
+
 <script>
   $(document).ready(function() {
     Volunteer_Btn()
@@ -651,7 +731,167 @@
     Update_Profile()
     Update_User_Profiel()
     Export_Data()
+    Printdata()
   });
+
+
+
+  function Printdata(){
+   
+
+   $("#toprintactivated").click(function () {
+ $.ajax({
+     type: "GET",
+       url: "/volunteers_table",
+       data: "data",
+       dataType: "json",
+     success: function (data) {
+       console.log(data)
+         var table="<div>"
+       table += "<h1>PHILIPPINE RED CROSS </h1>";
+       table += "<p>Capitol Complex, Camilmil, 5200 City of Calapan (Capital) Oriental Mindoro Philippines</p>";
+       table += "<p>NON-VAT Reg. TIN: 000-804-271-00080</p> </br>";
+       table += "<table border='1'>";
+         table += "<thead><tr><th>FULLNAME</th><th>MOBILE NO.</th> <th>ADDRESS</th><th>ROLE</th></tr></thead><tbody>";
+     $.each(data.validated, function (indexInArray, pdata) { 
+       table += "<tr>";
+        table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
+        table += "<td>"+pdata.phone_no+"</td>";
+       table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
+       table += "<td>"+pdata.start_at+""+pdata.role+"</td>";
+       table += "</tr>";
+     });
+       table += "</tbody></table>";
+       table += "</div>";
+       $("#tableContainer").html(table);
+
+       // Print the table
+
+
+       window.onbeforeprint = function () {
+         $("#printPreview").removeClass('hidden')
+         $("#tableContainer").show()
+       };
+       
+       // After printing
+       window.onafterprint = function () {
+         $("#printPreview").addClass('hidden')
+         $("#tableContainer").empty()
+         $("#tableContainer").hide()
+       };
+
+       window.print();
+     },
+     error: function () {
+       console.error("Error fetching data");
+     }
+   });
+
+});
+   
+
+$("#toprintpending").click(function () {
+ $.ajax({
+     type: "GET",
+       url: "/volunteers_table",
+       data: "data",
+       dataType: "json",
+     success: function (data) {
+       console.log(data)
+         var table="<div>"
+       table += "<h1>PHILIPPINE RED CROSS </h1>";
+       table += "<p>Capitol Complex, Camilmil, 5200 City of Calapan (Capital) Oriental Mindoro Philippines</p>";
+       table += "<p>NON-VAT Reg. TIN: 000-804-271-00080</p> </br>";
+       table += "<table border='1'>";
+         table += "<thead><tr><th>FULLNAME</th><th>MOBILE NO.</th> <th>ADDRESS</th><th>ROLE</th></tr></thead><tbody>";
+     $.each(data.pending, function (indexInArray, pdata) { 
+       table += "<tr>";
+        table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
+        table += "<td>"+pdata.phone_no+"</td>";
+       table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
+       table += "<td>"+pdata.start_at+""+pdata.role+"</td>";
+       table += "</tr>";
+     });
+       table += "</tbody></table>";
+       table += "</div>";
+       $("#tableContainer").html(table);
+
+       // Print the table
+
+
+       window.onbeforeprint = function () {
+         $("#printPreview").removeClass('hidden')
+         $("#tableContainer").show()
+       };
+       
+       // After printing
+       window.onafterprint = function () {
+         $("#printPreview").addClass('hidden')
+         $("#tableContainer").empty()
+         $("#tableContainer").hide()
+       };
+
+       window.print();
+     },
+     error: function () {
+       console.error("Error fetching data");
+     }
+   });
+
+});
+
+$("#toprintothers").click(function () {
+ $.ajax({
+     type: "GET",
+       url: "/volunteers_table",
+       data: "data",
+       dataType: "json",
+     success: function (data) {
+       console.log(data)
+         var table="<div>"
+       table += "<h1>PHILIPPINE RED CROSS </h1>";
+       table += "<p>Capitol Complex, Camilmil, 5200 City of Calapan (Capital) Oriental Mindoro Philippines</p>";
+       table += "<p>NON-VAT Reg. TIN: 000-804-271-00080</p> </br>";
+       table += "<table border='1'>";
+         table += "<thead><tr><th>FULLNAME</th><th>MOBILE NO.</th> <th>ADDRESS</th><th>ROLE</th></tr></thead><tbody>";
+     $.each(data.declined, function (indexInArray, pdata) { 
+       table += "<tr>";
+        table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
+        table += "<td>"+pdata.phone_no+"</td>";
+       table += "<td>"+pdata.barangay_street+", "+pdata.barangay+", "+pdata.municipal+"</td>";
+       table += "<td>"+pdata.start_at+""+pdata.role+"</td>";
+       table += "</tr>";
+     });
+       table += "</tbody></table>";
+       table += "</div>";
+       $("#tableContainer").html(table);
+
+       // Print the table
+
+
+       window.onbeforeprint = function () {
+         $("#printPreview").removeClass('hidden')
+         $("#tableContainer").show()
+       };
+       
+       // After printing
+       window.onafterprint = function () {
+         $("#printPreview").addClass('hidden')
+         $("#tableContainer").empty()
+         $("#tableContainer").hide()
+       };
+
+       window.print();
+     },
+     error: function () {
+       console.error("Error fetching data");
+     }
+   });
+
+});
+
+
+}
 
   function toUpperCaseFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -777,16 +1017,25 @@
       e.preventDefault();
       $('#volunteers-table').empty()
       Registered_Volunteers()
+      $('#toprintactivated').removeClass('hidden')
+      $('#toprintpending').addClass('hidden')
+      $('#toprintothers').addClass('hidden')
     });
     $('#pending-volunteers-btn').click(function(e) {
       e.preventDefault();
       $('#volunteers-table').empty()
       Pending_Volunteer_Applications()
+      $('#toprintactivated').addClass('hidden')
+      $('#toprintpending').removeClass('hidden')
+      $('#toprintothers').addClass('hidden')
     });
     $('#others-volunteers-btn').click(function(e) {
       e.preventDefault();
       $('#volunteers-table').empty()
       Other_Volunteer_table()
+      $('#toprintactivated').addClass('hidden')
+      $('#toprintpending').addClass('hidden')
+      $('#toprintothers').removeClass('hidden')
     });
     $(document).on('click', '#close-volunteer-profile', function() {
       $('#volunteer-account-profile').empty();
@@ -953,6 +1202,10 @@
         "type": "GET",
         "dataSrc": "validated",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
@@ -1204,6 +1457,10 @@
         "type": "GET",
         "dataSrc": "pending",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {
@@ -1263,6 +1520,10 @@
         "type": "GET",
         "dataSrc": "declined",
       },
+      dom: 'Bfrtip',
+        buttons: [
+            'csv', 'excel', 'pdf'
+        ],
       "columns": [{
           "data": null,
           "render": function(data, type, row) {

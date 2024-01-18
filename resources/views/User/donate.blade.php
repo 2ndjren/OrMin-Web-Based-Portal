@@ -190,6 +190,29 @@
         </div>
         </section>
 
+        <div class="w-full text-center bg-white p-3 " >
+
+            <p></p>
+            <div class="w-1/4 bg-white border border-4 border-red-500 border-solid mx-auto ">
+              <p class="text-lg font-semibold text-center">BLOOD BANK STOCK UPDATES</p>
+              <table class="mx-auto w-full p-5" id="blood-updates-table">  
+                <thead class="bg-blue-500">
+                  <tr class="text-white space-x-10"> 
+                    <th>BLOOD TYPES</th>
+                    <th>STOCK</th>
+                  </tr>
+                </thead>
+                <tbody >
+        
+                </tbody>
+              </table>
+            </div>
+            <div class="w-full">
+              <p class="text-white">Blood Bank Available Bloods Update</p>
+          
+              </div>
+          </div>
+
 
             <section class="bg-cover bg-no-repeat py-12"">
             <div class=" max-w-6xl mx-auto px-4 sm:px-6 pt-8 md:pt-8">
@@ -341,7 +364,33 @@
 </div>
 
 
-
+<script>
+    $(document).ready(function () {
+        Blood_Updates()
+    });
+    function Blood_Updates(){
+    
+    var dataTable= $('#blood-updates-table tbody')
+            
+            $.ajax({
+            type: "GET",
+            url: "/blood-data",
+            data: "data",
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                $.each(response, function (index, data) { 
+                var tabledata="<tr class='text-center text-3xl font-semibold text-blue-500 space-x-10'>"
+                tabledata +="<td>"+data.type+"</td>"
+                tabledata +="<td>"+data.quantity+"</td>"
+                tabledata +="</tr>"
+                    dataTable.append(tabledata);
+             });
+            }
+    
+        });
+  }
+</script>
 
 
 
