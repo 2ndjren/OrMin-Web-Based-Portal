@@ -940,12 +940,13 @@
        table += "<p>Capitol Complex, Camilmil, 5200 City of Calapan (Capital) Oriental Mindoro Philippines</p>";
        table += "<p>NON-VAT Reg. TIN: 000-804-271-00080</p> </br>";
        table += "<table border='1'>";
-         table += "<thead><tr><th>MEMBERSHIP ID </th><th>FULLNAME</th> <th>LEVEL</th><th>VALIDITY</th></tr></thead><tbody>";
+         table += "<thead><tr><th>MEMBERSHIP ID </th><th>FULLNAME</th> <th>LEVEL</th><th>Addr/Org/Co</th><th>VALIDITY</th></tr></thead><tbody>";
      $.each(data.activated, function (indexInArray, pdata) { 
        table += "<tr>";
        table += "<td>"+pdata.mem_id+"</td>";
-       table += "<td>"+pdata.fname+""+pdata.sname+""+pdata.lname+"</td>";
+       table += "<td>"+pdata.fname+" " +pdata.lname+"</td>";
        table += "<td>"+pdata.level+"</td>";
+       table += "<td>"+pdata.municipality+"</td>";
        table += "<td>"+pdata.start_at+""+pdata.end_at+"</td>";
        table += "</tr>";
      });
@@ -1876,6 +1877,7 @@
     activated_table += "<th>Membership ID</th>"
     activated_table += "<th>Name</th>"
     activated_table += "<th>Program</th>"
+    activated_table += "<th>Addr/Org/Co</th>"
     activated_table += "<th>Validity</th>"
     activated_table += " <th>Action</th>"
     activated_table += " </tr>"
@@ -1929,6 +1931,14 @@
             }
           }
         },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            console.log(data);
+            return '<p class="text-gray-500 text-xs font-semibold">' + row.municipality + '</p>'
+          }
+        },
+        
         {
           "data": null,
           "render": function(data, type, row) {
