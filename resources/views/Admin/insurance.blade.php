@@ -2053,6 +2053,7 @@
     other_table += "<th>Membership ID</th>"
     other_table += "<th>Name</th>"
     other_table += "<th>Program</th>"
+    other_table += "<th>Addr/Org/Co</th>"
     other_table += "<th>Status</th>"
     other_table += " <th>Action</th>"
     other_table += " </tr>"
@@ -2103,6 +2104,12 @@
             } else if (row.level === "SENIOR PLUS") {
               return '<span class="rounded-full text-white font-semibold text-xs bg-purple-900 p-2 ">' + row.level + '</span>'
             }
+          }
+        },
+        {
+          "data": null,
+          "render": function(data, type, row) {
+            return '<span class=" font-semibold text-xs  ">' + row.municipality + '</span>'
           }
         },
         {
